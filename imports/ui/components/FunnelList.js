@@ -5,14 +5,17 @@ class FunnelList extends Component {
     constructor(props) {
         super(props);
     }
-
+    renderFunnels(){
+        const {funnels} = this.props;
+       return funnels.map((funnel)=>(
+            <FunnelItem key={funnel._id} funnel={funnel} />
+        ))
+    }
     render() {
         return (
-    <div className="wrapper wrapper-content animated fadeInRight">
+    <div style={{width: '100%'}} className="wrapper wrapper-content animated fadeInRight">
     <div className="row">
-        <FunnelItem />
-        <FunnelItem />
-        <FunnelItem />
+       {this.renderFunnels()}
     </div>
 
 </div>

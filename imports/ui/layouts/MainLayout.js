@@ -1,6 +1,10 @@
 import React, { Component, Fragment } from 'react';
-
+import {Meteor} from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import Location from '../components/Location'
 import Main from '../components/Main'
+import {Funnels} from '../../api/funnels/methods'
+
 
 // App component - represents the whole app
 class MainLayout extends Component {
@@ -10,9 +14,18 @@ class MainLayout extends Component {
 
   render () {
     return (
-         <Main/>
+      <Fragment>
+        <Location />
+         <Main funnels={this.props.funnels} />
+      </Fragment>
     )
   }
 }
 
-export default MainLayout;
+export default withTracker(()=>{
+  Meteor.subscribe('funnels');
+  return {
+    funnels: Funnels.find({}).fetch()
+     
+  }
+})(MainLayout)

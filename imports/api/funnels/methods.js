@@ -30,3 +30,7 @@ Meteor.methods({
     Funnels.remove(funnelId);
   }
 });
+
+exports.toObjectId = function(id){
+  return new Mongo.ObjectID(id);
+}

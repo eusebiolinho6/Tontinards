@@ -12,8 +12,6 @@ class Main extends Component {
 
     render() {
         return (
-            <Fragment>
-               <Location />
                 <div className="wrapper wrapper-content">
                     <div className="row">
                         <div className="col-lg-3">
@@ -21,12 +19,11 @@ class Main extends Component {
                         </div>
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">
-                                <FunnelList />
+                                <FunnelList funnels={this.props.funnels} />
                             </div>
                         </div>
                     </div>
                 </div>
-            </Fragment >
         )
     }
 }
