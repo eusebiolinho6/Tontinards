@@ -11,10 +11,10 @@ class FunnelDetailsLayout extends Component {
     super(props);
   }
   render () {
-    console.log(this.props.funnel);
-      return (
+    const location = {path: ['Home', 'Funnels', 'detail'], title: 'Details' };
+    return (
         <Fragment>
-            <Location />
+            <Location location={location} />
             <FunnelDetails funnel={this.props.funnel} />
         </Fragment>
       )

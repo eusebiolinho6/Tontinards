@@ -13,9 +13,13 @@ class MainLayout extends Component {
   }
 
   render () {
+    const location = {
+      path: ['Home', 'Funnels'],
+      title: 'List of funnels'
+    };
     return (
       <Fragment>
-        <Location />
+        <Location location={location} />
          <Main funnels={this.props.funnels} />
       </Fragment>
     )

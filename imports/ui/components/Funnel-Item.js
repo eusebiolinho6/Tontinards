@@ -4,9 +4,6 @@ import {Link} from 'react-router-dom';
 
 // Task component - represents a single todo item
 export default class FunnelItem extends Component {
-    convertToString(string){
-        return string.toString();
-    }
     render() {
         const{funnel} = this.props;
     return ( 

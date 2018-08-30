@@ -7,20 +7,15 @@ class Location extends Component {
     }
 
     render() {
+        const {props} = this;
         return (
                 <div className="row wrapper border-bottom white-bg page-heading">
                     <div className="col-lg-9">
-                        <h2>File Manager</h2>
+                        <h2>{props&&props.location.title}</h2>
                         <ol className="breadcrumb">
-                            <li className="breadcrumb-item">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li className="breadcrumb-item">
-                                App Views
-                            </li>
-                            <li className="breadcrumb-item active">
-                                <strong>File Manager</strong>
-                            </li>
+                            {props&&props.location.path.map((path, index)=>(<li key={index} className="breadcrumb-item">
+                                {path}
+                            </li>)) }
                         </ol>
                     </div>
                 </div>
