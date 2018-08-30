@@ -26,7 +26,7 @@ export default class FunnelItem extends Component {
                         </div>
                         <div className="m-t text-righ">
 
-                            <Link to={{pathname:'/funnels/'+funnel._id._str }}className="btn btn-xs btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
+                            <Link to={{pathname:'/funnels/'+funnel._id._str+'/details' }}className="btn btn-xs btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
                         </div>
                     </div>
                 </div>

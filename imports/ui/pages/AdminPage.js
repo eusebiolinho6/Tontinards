@@ -1,16 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import FunnelListAdmin from '../layouts/FunnelListAdmin';
+import AdminLayout from '../layouts/AdminLayout';
 // App component - represents the whole app
-class FunnelListAdminPage extends Component {
+class AdminPage extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-        <FunnelListAdmin />
+        <AdminLayout />
     )
   }
 }
 
-export default FunnelListAdminPage;
+export default AdminPage;

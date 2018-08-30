@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import {Meteor} from 'meteor/meteor';
 import Header from '../components/FunnelDetails';
 import Location from '../components/Location';
 import FunnelDetails from '../components/FunnelDetails';
@@ -22,7 +23,7 @@ class FunnelDetailsLayout extends Component {
 }
 
 export default withTracker(props=>{
-  Meteor.subscribe('funnels');
+  Meteor.subscribe('funnel');
 
   return {
     funnel: Funnels.findOne({_id: toObjectId(props.funnelId)})

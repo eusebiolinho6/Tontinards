@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 
 // App component - represents the whole app
-class SignupForm extends Component {
+class AdminComponent extends Component {
   constructor(props) {
     super(props);
       this.state = {
@@ -56,8 +56,7 @@ class SignupForm extends Component {
                                                                                        placeholder="Enter Password"
                                                                                        className="form-control" value={this.state.password} onChange={(event) => this.handleInputChange(event)} /></div>
                                 <div>
-                                    <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Log
-                                        in</strong></button>
+                                    <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
                                 </div>
                             </form>
                     </div>
@@ -69,4 +68,4 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm;
+export default AdminComponent;
