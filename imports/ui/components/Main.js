@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import FilterFunnelMenu from './FilterFunnelMenu'
 import FunnelList from './FunnelList'
+import Location from './Location'
 
 // App component - represents the whole app
 class Main extends Component {
@@ -12,22 +13,7 @@ class Main extends Component {
     render() {
         return (
             <Fragment>
-                <div className="row wrapper border-bottom white-bg page-heading">
-                    <div className="col-lg-9">
-                        <h2>File Manager</h2>
-                        <ol className="breadcrumb">
-                            <li className="breadcrumb-item">
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li className="breadcrumb-item">
-                                App Views
-                            </li>
-                            <li className="breadcrumb-item active">
-                                <strong>File Manager</strong>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+               <Location />
                 <div className="wrapper wrapper-content">
                     <div className="row">
                         <div className="col-lg-3">

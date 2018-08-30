@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-
+import {Link} from 'react-router-dom'
 // App component - represents the whole app
 class Header extends Component {
   constructor(props) {
@@ -12,10 +12,10 @@ class Header extends Component {
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0}}>
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
-                    <a ui-sref="home" style={{display: 'inline-block', marginLeft: '10px', marginTop: '14px'}}>
+                    <Link to="/" style={{display: 'inline-block', marginLeft: '10px', marginTop: '14px'}}>
                         <img src="modules/core/client/img/assets/online performance logo.png" className="img-responsive" alt="logo homepage" style={{height: '31px'}}/>
-                    </a>
-                    <span className="hidden-xs hidden-sm title-heading">
+                    </Link>
+                    <span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
                         Page Title
                     </span>
                     {/* Old form search

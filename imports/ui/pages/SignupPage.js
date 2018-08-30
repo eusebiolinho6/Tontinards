@@ -1,18 +1,16 @@
 import React, { Component, Fragment } from 'react';
-
-import Main from '../components/Main'
-
+import SignupLayout from '../layouts/SignupLayout';
 // App component - represents the whole app
-class MainLayout extends Component {
+class SignupPage extends Component {
   constructor(props) {
     super(props);
   }
 
-  render () {
+  render() {
     return (
-         <Main/>
+        <SignupLayout />
     )
   }
 }
 
-export default MainLayout;
+export default SignupPage;

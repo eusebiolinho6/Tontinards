@@ -1,18 +1,16 @@
 import React, { Component, Fragment } from 'react';
-
-import Main from '../components/Main'
-
+import LoginLayout from '../layouts/LoginLayout';
 // App component - represents the whole app
-class MainLayout extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props);
   }
 
-  render () {
+  render() {
     return (
-         <Main/>
+        <LoginLayout />
     )
   }
 }
 
-export default MainLayout;
+export default LoginPage;

@@ -1,18 +1,17 @@
 import React, { Component, Fragment } from 'react';
-
-import Main from '../components/Main'
+import MainLayout from '../layouts/MainLayout';
 
 // App component - represents the whole app
-class MainLayout extends Component {
+class FunnelList extends Component {
   constructor(props) {
     super(props);
   }
 
-  render () {
+  render() {
     return (
-         <Main/>
+        <MainLayout />
     )
   }
 }
 
-export default MainLayout;
+export default FunnelList;
