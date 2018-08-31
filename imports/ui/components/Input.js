@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import classnames from 'classnames';
 
 // App component - represents the whole app
 class Input extends Component {
@@ -18,7 +19,7 @@ class Input extends Component {
             name={field}
             className="form-control"
         />
-        {error && <span className="help-block">{error}</span>}
+        {error && <span style={{color: '#ed5565'}} className="error-block">{error}</span>}
     </div> 
         )
     }

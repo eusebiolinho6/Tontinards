@@ -1,11 +1,30 @@
 import React, { Component, Fragment } from 'react';
+import FunnelModalForm from './Funnel-Modal-Form';
+import Input from './Input'
+import {Modal, Button} from 'react-bootstrap';
 // App component - represents the whole app
 class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
-    }
+     this.state = {
+    identifier: '',
+    password: '',
+    errors: {},
+    isLoading: false,
+    show:false
+    };
+}
+
+  handleSUbmit(e) {
+     e.preventDefault();
+     if(this.isValid()){
+            console.log(this.state);
+     }
+      
+  }
 
     render() {
+         const { errors, identifier, password, isLoading } = this.state;
         const {funnels}=this.props;
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
@@ -18,13 +37,9 @@ class FunnelLIstAdmin extends Component {
         </div>
         <div className="ibox-content">
             <div className="row">
-                <div className="col-sm-9 m-b-xs">
-                   
-                </div>
-                <div className="col-sm-3">
-                      <button type="button" className="btn btn-sm btn-primary  pull-right"> New Funnel</button>
-                </div>
-            </div>
+            <FunnelModalForm />
+
+        </div>
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>

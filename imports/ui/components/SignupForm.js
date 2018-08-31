@@ -9,6 +9,7 @@ class AdminComponent extends Component {
     email: '',
     password: '',
      username: '',
+     confirmPassword: '',
     name: '',
     formErrors: {email: '', password: ''},
     emailValid: false,
@@ -55,6 +56,9 @@ class AdminComponent extends Component {
                                 <div className="form-group"><label>Password</label> <input type="password" name="password"
                                                                                        placeholder="Enter Password"
                                                                                        className="form-control" value={this.state.password} onChange={(event) => this.handleInputChange(event)} /></div>
+                                <div className="form-group"><label>Confirm Password</label> <input type="password" name="confirmPassword"
+                                                                                       placeholder="Enter Password"
+                                                                                       className="form-control" value={this.state.confirmPassword} onChange={(event) => this.handleInputChange(event)} /></div>
                                 <div>
                                     <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
                                 </div>

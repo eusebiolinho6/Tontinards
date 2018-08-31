@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import Input from './Input';
-import validateInput from '../../api/validations/login.js';
+import validateInput from '../../api/funnels/validations/login.js';
 
 // App component - represents the whole app
 class LoginForm extends Component {
@@ -12,9 +12,8 @@ this.state = {
     password: '',
     errors: {},
     isLoading: false
-};
-
-  }
+    };
+}
     isValid() {
         const {
             errors,
@@ -39,13 +38,17 @@ this.state = {
   }
 
   handleSUbmit(e) {
-      e.preventDefault();
-      console.log(this.state);
+     e.preventDefault();
+     if(this.isValid()){
+            console.log(this.state);
+     }
+      
   }
   render() {
+      const { errors, identifier, password, isLoading } = this.state;
     return (
-        <div onSubmit={(event) =>this.handleSUbmit(event)} className="wrapper wrapper-content animated fadeInRight">
-    <div className="row">
+        <div className="wrapper wrapper-content animated fadeInRight">
+             <div className="row">
             <div className="col-md-2" />
             <div className="ibox col-md-8 float-e-margins">
                 <div className="ibox-title">
@@ -56,20 +59,20 @@ this.state = {
                     <div className="row">
                         <div className="col-sm-6 b-r"><h3 className="m-t-none m-b">Sign in</h3>
 
-                            <form role="form">
+                            <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
                                     field="identifier"
                                     label="Username/Email"
                                     value={identifier}
                                     error={errors.identifier}
-                                    onChange={this.handleInputChange}
+                                    onChange={(event)=> this.handleInputChange(event) }
                                     />
                                 <Input
-                                    field="identifier"
-                                    label="Username/Email"
-                                    value={identifier}
-                                    error={errors.identifier}
-                                    onChange={this.handleInputChange}
+                                    field="password"
+                                    label="Pasword"
+                                    value={password}
+                                    error={errors.password}
+                                    onChange={(event)=> this.handleInputChange(event)}
                                     />
                                 <div>
                                     <button className="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
@@ -80,10 +83,10 @@ this.state = {
                         </div>
                         <div className="col-sm-6"><h4>Not a member?</h4>
 
-                            <p>You can create an account:</p>
+                            <p>Buy one our product and signed up</p>
 
                             <p className="text-center">
-                                <Link to="/authentication/signup"><i className="fa fa-sign-in big-icon"></i></Link>
+                                <Link to="/funnels"><i className="fa fa-sign-in big-icon"></i></Link>
                             </p>
                         </div>
                     </div>
