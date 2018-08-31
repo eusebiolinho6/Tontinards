@@ -11,12 +11,12 @@ class MainLayout extends Component {
   constructor(props) {
     super(props);
   }
-
   render () {
     const location = {
       path: ['Home', 'Funnels'],
       title: 'List of funnels'
     };
+    console.log(this.props.funnels);
     return (
       <Fragment>
         <Location location={location} />

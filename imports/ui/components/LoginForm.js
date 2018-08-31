@@ -1,19 +1,35 @@
 import React, { Component, Fragment } from 'react';
 import {Link} from 'react-router-dom';
+import Input from './Input';
+import validateInput from '../../api/validations/login.js';
 
 // App component - represents the whole app
 class LoginForm extends Component {
   constructor(props) {
     super(props);
 this.state = {
-    email: '',
+    identifier: '',
     password: '',
-    formErrors: {email: '', password: ''},
-    emailValid: false,
-    passwordValid: false,
-    formValid: false
+    errors: {},
+    isLoading: false
+};
+
   }
-  }
+    isValid() {
+        const {
+            errors,
+            isValid
+        } = validateInput(this.state);
+
+        if (!isValid) {
+            this.setState({
+                errors
+            });
+        }
+
+        return isValid;
+    }
+
   handleInputChange(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -41,12 +57,20 @@ this.state = {
                         <div className="col-sm-6 b-r"><h3 className="m-t-none m-b">Sign in</h3>
 
                             <form role="form">
-                                <div className="form-group"><label>Email</label> <input type="email"
-                                                                                    placeholder="Enter email"
-                                                                                    className="form-control" name="email" onChange={(event) => this.handleInputChange(event)} /></div>
-                                <div className="form-group"><label>Password</label> <input type="password"
-                                                                                       placeholder="Password"
-                                                                                       className="form-control" name="password" onChange={(event) => this.handleInputChange(event)} /></div>
+                                <Input
+                                    field="identifier"
+                                    label="Username/Email"
+                                    value={identifier}
+                                    error={errors.identifier}
+                                    onChange={this.handleInputChange}
+                                    />
+                                <Input
+                                    field="identifier"
+                                    label="Username/Email"
+                                    value={identifier}
+                                    error={errors.identifier}
+                                    onChange={this.handleInputChange}
+                                    />
                                 <div>
                                     <button className="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
                                         in</strong></button>
