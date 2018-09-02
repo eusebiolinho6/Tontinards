@@ -17,8 +17,8 @@ class FunnelDetails extends Component {
 
                     <div className="row">
                         <div className="col-md-5">
-                                    <div className="image-imitation">
-                                        {funnel&&funnel.descriptionImageUrl ? <img src={funnel&&funnel.descriptionImageUrl} /> : '[ Image ]'}
+                                    <div className={funnel&&!funnel.descriptionImageUrl?'image-imitation':''}>
+                                        {funnel&&funnel.descriptionImageUrl ? <img width='100%' src={funnel&&funnel.descriptionImageUrl} /> : '[ Image ]'}
                                     </div>
                         </div>
                         <div className="col-md-7">

@@ -25,10 +25,9 @@ class FunnelDetailsLayout extends Component {
 }
 
 export default withTracker(props=>{
-  Meteor.subscribe('funnel');
+  Meteor.subscribe('funnels');
 
   return {
-    funnel: Funnels.findOne({_id: toObjectId(props.funnelId)})
-     
+    funnel: Funnels.findOne({_id: toObjectId(props.funnelId)})  
   }
 })(FunnelDetailsLayout)
