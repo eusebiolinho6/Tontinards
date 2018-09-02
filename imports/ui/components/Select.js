@@ -2,28 +2,30 @@ import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
 
 // App component - represents the whole app
-class Input extends Component {
+class Select extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        const { field, value, label, error, onChange, checkUserExists } = this.props;
-        const type = this.props.type||'text';
+        const { field, options, value, label, error, type, onChange, checkUserExists } = this.props;
         return (
         <div className={classnames('form-group', { 'has-error': error })}>
             <label className="control-label">{label}</label>
-            <input
-            onChange={onChange}
+            <select
             value={value}
+            onChange={onChange}
             type={type}
             name={field}
             className="form-control"
-        />
+        >
+        <option value=''>Select one value</option>
+        {options.map((option, index) =>(<option key={index} value={option.value}>{option.label}</option>))}
+ </select>
         {error && <span style={{color: '#ed5565'}} className="error-block">{error}</span>}
     </div> 
         )
     }
 }
 
-export default Input;
+export default Select;

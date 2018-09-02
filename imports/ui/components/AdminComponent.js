@@ -7,24 +7,48 @@ class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
      this.state = {
-    identifier: '',
-    password: '',
-    errors: {},
-    isLoading: false,
-    show:false
+        title: '',
+        price: '',
+        description: '',
+        industry: '',
+        id: '',
+        show: false
     };
 }
 
-  handleSUbmit(e) {
-     e.preventDefault();
-     if(this.isValid()){
-            console.log(this.state);
-     }
-      
+  handleInputChange(e) {
+      console.log(e);
+      const name = e.target.name;
+      const value = e.target.value;
+      this.setState({
+          [name]: value
+      });
+  }
+  editFunnel(funnel){
+      this.setState({
+          price: funnel.price,
+          description: funnel.description,
+          title: funnel.title,
+          industry: funnel.industry,
+          id:funnel._id,
+          show: true
+      });
+  }
+  closeModal(){
+      this.setState({show:false});
+      this.setState({
+          title: '',
+          price: '',
+          description: '',
+          industry: '',
+          errors: {},
+          id: '',
+          isLoading: false,
+      })
   }
 
     render() {
-         const { errors, identifier, password, isLoading } = this.state;
+         const { show, price, title, description, industry } = this.state;
         const {funnels}=this.props;
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
@@ -33,13 +57,15 @@ class FunnelLIstAdmin extends Component {
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
         <div className="ibox-title">
-            <h5>Funnel Administration</h5>
+            <h5>Funnel List</h5>
         </div>
         <div className="ibox-content">
             <div className="row">
-            <FunnelModalForm />
-
-        </div>
+             <div className="col-sm-3">
+                    <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
+            </div>
+            <FunnelModalForm price={price} description={description} title={title} industry={industry} show={show} closeModal={()=>this.closeModal()} />
+             </div>
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
@@ -55,10 +81,10 @@ class FunnelLIstAdmin extends Component {
                     <tbody>
                         {funnels&&funnels.map((funnel)=>(<tr key={funnel._id}>
                         <td>{funnel.title}</td>
-                        <td>Patrick Smith</td>
+                        <td>{funnel.industry}</td>
                         <td>${funnel.price} </td>
                         <td>Jul 14, 2013</td>
-                        <td> <button type="button" className="btn btn-sm btn-primary pull-right"><i className="fa fa-pencil"></i> </button></td>
+                        <td> <button onClick={() =>this.editFunnel(funnel)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
                     </tr>))}
                     
                     </tbody>

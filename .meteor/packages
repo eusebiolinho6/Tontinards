@@ -21,3 +21,5 @@ react-meteor-data
 accounts-ui
 accounts-password
 fortawesome:fontawesome
+aldeed:simple-schema
+ostrio:files

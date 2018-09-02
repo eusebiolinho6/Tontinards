@@ -1,33 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
- 
-export const Funnels = new Mongo.Collection('funnels');
+export const Funnels = new Mongo.Collection('funnels')
 
 Meteor.methods({
-  'funnels.insert'(text) {
-    check(text, String);
- 
-    // Make sure the user is logged in before inserting a task
-    if (! this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
- 
-    Funnels.insert({
-      text,
-      createdAt: new Date(),
-      owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username,
-    });
+  'funnels.insert'(data) { 
+    Funnels.insert(data);
   },
-  'funnels.remove'(funnelId) {
-    check(funnelId, String);
-     const funnel = Funnels.findOne(funnelId);
-     if (funnel.owner !== this.userId) {
-         // If the task is private, make sure only the owner can delete it
-         throw new Meteor.Error('not-authorized');
-     }
-    Funnels.remove(funnelId);
+  'funnels.update'(funnelId, data) {
+   // const _id = new Mongo.ObjectID(funnelId);
+    Funnels.update({_id: funnelId}, {$set: data});
   }
 });
 

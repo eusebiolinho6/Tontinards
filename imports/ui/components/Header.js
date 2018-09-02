@@ -9,7 +9,7 @@ class Header extends Component {
   render() {
     return (
         <div className="row border-bottom">
-            <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0}}>
+            <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1045'}}>
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
                     <Link to="/" style={{display: 'inline-block', marginLeft: '10px', marginTop: '14px'}}>
