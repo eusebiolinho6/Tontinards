@@ -48,7 +48,7 @@ class FunnelLIstAdmin extends Component {
   }
 
     render() {
-         const { show, price, title, description, industry } = this.state;
+         const { show, price, title, description, industry,id } = this.state;
         const {funnels}=this.props;
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
@@ -64,7 +64,7 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm price={price} description={description} title={title} industry={industry} show={show} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm id={id} price={price} description={description} title={title} industry={industry} show={show} closeModal={()=>this.closeModal()} />
              </div>
             <div className="table-responsive">
                 <table className="table table-striped">

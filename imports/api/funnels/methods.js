@@ -7,9 +7,12 @@ Meteor.methods({
   'funnels.insert'(data) { 
     Funnels.insert(data);
   },
-  'funnels.update'(funnelId, data) {
+  'funnels.update'(funnelId, doc) {
    // const _id = new Mongo.ObjectID(funnelId);
-    Funnels.update({_id: funnelId}, {$set: data});
+    Funnels.update(funnelId, {$set: data}); 
+  }, 'funnels.remove'(funnelId) {
+    // const _id = new Mongo.ObjectID(funnelId);
+    Funnels.remove(funnelId);
   }
 });
 

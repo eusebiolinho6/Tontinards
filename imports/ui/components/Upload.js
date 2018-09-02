@@ -16,9 +16,10 @@ export default class Upload extends Component {
     }
     render() {
         const {imageUrl} = this.state;
+        const {label} = this.props;
     return ( 
-        <div style={{padding:'0px'}} className="col-md-4 subject-container">
-        <button className="btn btn-sm btn-primary" onClick={()=>this.inputElement.click()} >Uload a file</button>
+        <div className="col-md-6 subject-container">
+        <button className="btn btn-sm btn-primary" onClick={()=>this.inputElement.click()}>{label} </button>
             <input style={{visibility:'hidden'}} onChange={(event) => this.previewImage(event)} ref={input => this.inputElement = input} type="file" />
             <div className="ibox">
                 <div className="ibox-content product-box active">

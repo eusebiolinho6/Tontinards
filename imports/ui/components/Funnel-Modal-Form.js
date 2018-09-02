@@ -21,7 +21,9 @@ this.state = {
     errors: {},
     isLoading: false,
     id: '',
-    show:false
+    show:false,
+    descriptionImage:'',
+    funnelImage:''
     };
 }
 componentWillReceiveProps(nextProps){
@@ -63,6 +65,12 @@ componentWillReceiveProps(nextProps){
       });
   }
 
+    setFile(name,file) {
+        this.setState({
+            [name]: file
+        });
+    }
+
   handleSUbmit(e) {
      e.preventDefault();
      if(!this.isValid()){
@@ -76,14 +84,16 @@ componentWillReceiveProps(nextProps){
           id
      } = this.state;
         if(id){
-           Funnels.update(id, Object.assign({}, {
+            const doc = Funnels.findOne({_id: id}),
+            data =  Object.assign({}, {
                title,
                price,
                description,
                industry
            }, {
                updatedAt: new Date()
-           }))
+           });
+          Funnels.update(id, {$set: data});
         } else {
              Funnels.insert(Object.assign({}, {
             title,
@@ -96,13 +106,13 @@ componentWillReceiveProps(nextProps){
   }
   render() {
 
-      const {show, errors, title, price,industry, description, isLoading } = this.state;
+      const {show, errors, title, price,industry, description, isLoading, id } = this.state;
       const options = [{label: 'E-commerce', value: 'e-commerce'}, {label: 'B2B', value: 'b2b'}];
     return (            
 <Modal isOpen={show} className="modal-lg">
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-     Add Funnel
+     {id ?'Edit Funnel': ' Add Funnel'}
     </ModalHeader>
     <ModalBody>
         <div className="col-md-12">
@@ -140,8 +150,10 @@ componentWillReceiveProps(nextProps){
                     />
                     <h2>Uploads</h2>
                     <br />
-                    <Upload />
-                    <Upload />
+                    <div className="row">
+                    <Upload name="descriptionImage" label="Upload Description Image" />
+                    < Upload name="funnelImage" label = "Upload Funnel Image" />
+                    </div>
         </div>
     </ModalBody>
      
