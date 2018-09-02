@@ -7,7 +7,7 @@ import Textarea from './Textarea';
 import Select from './Select';
 import Upload from './Upload';
 import validateInput from '../../api/funnels/validations/funnel';
-import {Funnels} from '../../api/funnels/methods'
+import {Funnels, Images, toObjectId} from '../../api/funnels/methods'
 
 // App component - represents the whole app
 class FunnelModalForm extends Component {
@@ -39,7 +39,9 @@ componentWillReceiveProps(nextProps){
             industry: '',
             errors: {},
             isLoading: false,
-            id: ''
+            id: '',
+            descriptionImage:'',
+            funnelImage:''
         });
     }
     isValid() {
@@ -70,43 +72,88 @@ componentWillReceiveProps(nextProps){
             [name]: file
         });
     }
-
-  handleSUbmit(e) {
-     e.preventDefault();
-     if(!this.isValid()){
-       return ;
-     }
-    const {
+saveFunnel(cb){
+        const {
          title,
          price ,
          description ,
          industry,
           id
      } = this.state;
+     let data = {
+         title,
+         price,
+         description,
+         industry     };
+
         if(id){
-            const doc = Funnels.findOne({_id: id}),
-            data =  Object.assign({}, {
-               title,
-               price,
-               description,
-               industry
-           }, {
-               updatedAt: new Date()
-           });
-          Funnels.update(id, {$set: data});
+            data.updatedAt = new Date();
+            const doc = Funnels.findOne({_id: id});
+            
+          Funnels.update(id, {$set: data}, function(err, nbrow){
+              if(err){
+                return cb(err, null);
+              } else {
+                return cb(null, id)
+              }
+          });
         } else {
-             Funnels.insert(Object.assign({}, {
-            title,
-            price ,
-            description ,
-            industry
-        } , {createdAt: new Date()}))
-    }
-        this.closeModal();
+            data.createdAt = new Date();
+            data._id = toObjectId(null);
+             Funnels.insert(data, function (err, id) {
+             if (err) {
+                 return cb(err, null);
+             } else {
+                 return cb(null, id)
+             }
+             });
+        }
+}
+  handleSUbmit(e) {
+     e.preventDefault();
+     if(!this.isValid()){
+       return ;
+     }
+     this.saveFunnel((err, id)=>{
+        if(err){
+            console.log(err);
+        } else {
+        let uploads = [],
+        cursor =1;
+     if (this.state.descriptionImage) uploads.push('descriptionImage');
+     if (this.state.funnelImage) uploads.push('funnelImage');   
+     for (let i = 0; i < uploads.length; i++) {
+         const fieldName = uploads[i]; 
+         const file = this.state[fieldName]; 
+            const upload = Images.insert({
+            file: file,
+            streams: 'dynamic',
+            chunkSize: 'dynamic'
+        }, false);
+        upload.on('end', (err,fileObj)=> {
+            if (err) {
+                console.log('Error during upload: ' + error);
+            } else {
+                const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
+                const field = fieldName+'Url';
+                Funnels.update(id, {$set: {[field]: link}});
+                console.log('File "' + fileObj.name + '" successfully uploaded');
+                if (cursor < uploads.length){
+                    cursor++;
+                } else {
+                    this.closeModal();
+                } 
+            }
+        });
+        upload.start();
+     }  
+        }
+     })
   }
   render() {
 
       const {show, errors, title, price,industry, description, isLoading, id } = this.state;
+      const {descriptionImageUrl, funnelImageUrl} = this.props;
       const options = [{label: 'E-commerce', value: 'e-commerce'}, {label: 'B2B', value: 'b2b'}];
     return (            
 <Modal isOpen={show} className="modal-lg">
@@ -151,8 +198,8 @@ componentWillReceiveProps(nextProps){
                     <h2>Uploads</h2>
                     <br />
                     <div className="row">
-                    <Upload name="descriptionImage" label="Upload Description Image" />
-                    < Upload name="funnelImage" label = "Upload Funnel Image" />
+                    <Upload oldImage={descriptionImageUrl} setFile={(name,file)=>this.setFile(name, file)} name="descriptionImage" label="Upload Description Image" />
+                    < Upload oldImage={funnelImageUrl} setFile={(name, file)=>this.setFile(name, file)} name="funnelImage" label = "Upload Funnel Image" />
                     </div>
         </div>
     </ModalBody>

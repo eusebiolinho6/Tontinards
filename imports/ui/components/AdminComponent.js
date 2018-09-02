@@ -3,6 +3,12 @@ import FunnelModalForm from './Funnel-Modal-Form';
 import Input from './Input'
 import {Modal, Button} from 'react-bootstrap';
 // App component - represents the whole app
+var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+];
 class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
@@ -11,9 +17,20 @@ class FunnelLIstAdmin extends Component {
         price: '',
         description: '',
         industry: '',
+        descriptionImageUrl:'',
+        funnelImageUrl:'',
         id: '',
         show: false
     };
+}
+
+ formatDate(d) {
+     const date = new Date(d);
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
 
   handleInputChange(e) {
@@ -31,6 +48,8 @@ class FunnelLIstAdmin extends Component {
           title: funnel.title,
           industry: funnel.industry,
           id:funnel._id,
+          descriptionImageUrl: funnel.descriptionImageUrl,
+          funnelImageUrl: funnel.funnelImageUrl,
           show: true
       });
   }
@@ -41,6 +60,8 @@ class FunnelLIstAdmin extends Component {
           price: '',
           description: '',
           industry: '',
+          descriptionImageUrl:'',
+          funnelImageUrl: '',
           errors: {},
           id: '',
           isLoading: false,
@@ -48,7 +69,7 @@ class FunnelLIstAdmin extends Component {
   }
 
     render() {
-         const { show, price, title, description, industry,id } = this.state;
+         const { show, price, title, description, industry,id, descriptionImageUrl, funnelImageUrl } = this.state;
         const {funnels}=this.props;
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
@@ -64,7 +85,7 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm id={id} price={price} description={description} title={title} industry={industry} show={show} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm id={id} price={price} description={description} title={title} industry={industry} show={show} funnelImageUrl={funnelImageUrl} descriptionImageUrl={descriptionImageUrl} closeModal={()=>this.closeModal()} />
              </div>
             <div className="table-responsive">
                 <table className="table table-striped">
@@ -74,7 +95,7 @@ class FunnelLIstAdmin extends Component {
                         <th>Name </th>
                         <th>Industry </th>
                         <th>Price </th>
-                        <th>Date</th>
+                        <th>Created At</th>
                         <th className="pull-right">Action</th>
                     </tr>
                     </thead>
@@ -83,7 +104,7 @@ class FunnelLIstAdmin extends Component {
                         <td>{funnel.title}</td>
                         <td>{funnel.industry}</td>
                         <td>${funnel.price} </td>
-                        <td>Jul 14, 2013</td>
+                        <td>{this.formatDate(funnel.createdAt)} </td>
                         <td> <button onClick={() =>this.editFunnel(funnel)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
                     </tr>))}
                     

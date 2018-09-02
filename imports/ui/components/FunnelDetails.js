@@ -18,7 +18,7 @@ class FunnelDetails extends Component {
                     <div className="row">
                         <div className="col-md-5">
                                     <div className="image-imitation">
-                                        {funnel&&funnel.imageUrl ? <img src={funnel&&funnel.imageUrl} /> : '[ Image ]'}
+                                        {funnel&&funnel.descriptionImageUrl ? <img src={funnel&&funnel.descriptionImageUrl} /> : '[ Image ]'}
                                     </div>
                         </div>
                         <div className="col-md-7">

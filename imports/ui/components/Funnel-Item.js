@@ -11,15 +11,15 @@ export default class FunnelItem extends Component {
             <div className="ibox">
                 <div className="ibox-content product-box active">
 
-                    <div className="product-imitation">
-                        {funnel&&funnel.imageUrl ? <img src={funnel.imageUrl} /> : '[ Image ]'}
+                    <div className={!funnel.descriptionImageUrl?'product-imitation':''}>
+                        {funnel&&funnel.descriptionImageUrl ? <img width="100%" src={funnel.descriptionImageUrl} /> : '[ Image ]'}
                     </div>
                     <div className="product-desc">
                                 <span className="product-price">
                                     ${funnel&&funnel.price}
                                 </span>
                         <small className="text-muted">Category</small>
-                        <a href="#" className="product-name"> {funnel&&funnel.category}</a>
+                        <Link to={{pathname:'/funnels/'+funnel._id._str+'/details' }} className="product-name"> {funnel&&funnel.industry}</Link>
 
                         <div className="small m-t-xs">
                              {funnel&&funnel.description}

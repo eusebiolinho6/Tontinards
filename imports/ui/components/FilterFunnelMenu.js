@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 // App component - represents the whole app
 class FilterFunnelMenu extends Component {
@@ -11,13 +12,13 @@ class FilterFunnelMenu extends Component {
             <div className="ibox ">
                 <div className="ibox-content">
                     <div className="file-manager">
-                        <h5>Show:</h5>
+                       { /** <h5>Show:</h5>
                         <a href="#" className="file-control active">Ale</a>
                         <a href="#" className="file-control">Documents</a>
                         <a href="#" className="file-control">Audio</a>
-                        <a href="#" className="file-control">Images</a>
+                        <a href="#" className="file-control">Images</a>*/}
                         <div className="hr-line-dashed"></div>
-                        <button className="btn btn-primary btn-block">Upload Files</button>
+                        <Link to="/funnels/admin" className="btn btn-primary btn-block">Manage funnels</Link>
                         <div className="hr-line-dashed"></div>
                         <h5>Folders</h5>
                         <ul className="folder-list" style={{padding: 0}}>
