@@ -18,6 +18,7 @@ this.state = {
     price:props.price,
      description: props.description,
     industry: props.industry,
+    category: props.category,
     errors: {},
     isLoading: false,
     id: '',
@@ -27,8 +28,8 @@ this.state = {
     };
 }
 componentWillReceiveProps(nextProps){
-      const {show, title, price,industry, description, isLoading, id } = nextProps;
-      this.setState( {show, title, price,industry, description, isLoading, id });
+      const {show, title, price,industry, category, description, isLoading, id } = nextProps;
+      this.setState( {show, title, price,industry, category, description, isLoading, id });
 }
     closeModal(){
         this.props.closeModal({show: false});
@@ -37,6 +38,7 @@ componentWillReceiveProps(nextProps){
             price: '',
             description: '',
             industry: '',
+            category:'',
             errors: {},
             isLoading: false,
             id: '',
@@ -78,18 +80,20 @@ saveFunnel(cb){
          price ,
          description ,
          industry,
+         category,
           id
      } = this.state;
      let data = {
          title,
          price,
          description,
+         category,
          industry     };
-
+        
+        if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
+        if (data.category&&!data.category._str) data.category = toObjectId(data.category);
         if(id){
-            data.updatedAt = new Date();
-            const doc = Funnels.findOne({_id: id});
-            
+            data.updatedAt = new Date();  
           Funnels.update(id, {$set: data}, function(err, nbrow){
               if(err){
                 return cb(err, null);
@@ -121,7 +125,8 @@ saveFunnel(cb){
         let uploads = [],
         cursor =1;
      if (this.state.descriptionImage) uploads.push('descriptionImage');
-     if (this.state.funnelImage) uploads.push('funnelImage');   
+     if (this.state.funnelImage) uploads.push('funnelImage');  
+     if (!uploads.length) return this.closeModal();
      for (let i = 0; i < uploads.length; i++) {
          const fieldName = uploads[i]; 
          const file = this.state[fieldName]; 
@@ -152,9 +157,8 @@ saveFunnel(cb){
   }
   render() {
 
-      const {show, errors, title, price,industry, description, isLoading, id } = this.state;
-      const {descriptionImageUrl, funnelImageUrl} = this.props;
-      const options = [{label: 'E-commerce', value: 'e-commerce'}, {label: 'B2B', value: 'b2b'}];
+      const {show, errors, title, price,industry,category, description, isLoading, id } = this.state;
+      const {descriptionImageUrl, funnelImageUrl, industries, categories} = this.props;
     return (            
 <Modal isOpen={show} className="modal-lg">
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
@@ -174,6 +178,7 @@ saveFunnel(cb){
                 <Input
                     field="price"
                     label="Price"
+                    type="number"
                     value={price}
                     error={errors.price}
                     onChange={(event)=> this.handleInputChange(event)}
@@ -183,8 +188,17 @@ saveFunnel(cb){
                     field="industry"
                     label="Industry"
                     value={industry}
-                    options={options}
+                    options={industries}
                     error={errors.industry}
+                    onChange={(event)=> this.handleInputChange(event)}
+                    />
+
+                    <Select
+                    field="category"
+                    label="Category"
+                    value={category}
+                    options={categories}
+                    error={errors.category}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
                      

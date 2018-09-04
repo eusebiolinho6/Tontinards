@@ -1,13 +1,64 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-
+import IcheckCheckbox from './IcheckCheckbox'
 // App component - represents the whole app
 class FilterFunnelMenu extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            industry: {
+                b2b: false,
+                ecommerce:false,
+            }, category: {
+                lead: false,
+                sell: false,
+            }
+        }
+    }
+    setFilters(name, type){
+       let a=this.state[type];
+       a[name]=!a[name];
+       this.setState({[type]:a}); 
+       const path = this.buildPath();
     }
 
+    buildPath(){
+        let pathIndustry = 'all',
+        pathCategory = 'all';
+        const {industry, category}=this.state;
+
+        for (let key in category) {
+        // skip loop if the property is from prototype
+        if (!category.hasOwnProperty(key) || !category[key]) continue;
+        if(pathCategory=='all'){
+            pathCategory = key;
+        } else {
+            const str = key+'-'+pathCategory;
+            pathCategory=str;
+        }
+        } 
+
+        for (let key in industry) {
+            // skip loop if the property is from prototype
+            if (!industry.hasOwnProperty(key) || !industry[key]) continue;
+            if (pathIndustry=='all') {
+                pathIndustry = key;
+            } else {
+                const str = key + '-' + pathIndustry;
+                pathIndustry = str;
+            }
+        }
+        return '/'+pathIndustry+'/'+pathCategory
+
+    }
     render() {
+        const industries = [{
+            cname: 'E-commerce',
+            tname: 'ecommerce'
+        }, {
+            cname: 'B2B',
+            tname: 'b2b'
+        }];
         return (
             <div className="ibox ">
                 <div className="ibox-content">
@@ -20,26 +71,13 @@ class FilterFunnelMenu extends Component {
                         <div className="hr-line-dashed"></div>
                         <Link to="/funnels/admin" className="btn btn-primary btn-block">Manage funnels</Link>
                         <div className="hr-line-dashed"></div>
-                        <h5>Folders</h5>
+                        <h2>INDUSTRY</h2>
+                        <div className="col-md-2" />
+                        <div className = "col-md-10" >
                         <ul className="folder-list" style={{padding: 0}}>
-                            <li><a href=""><i className="fa fa-folder"></i> Files</a></li>
-                            <li><a href=""><i className="fa fa-folder"></i> Pictures</a></li>
-                            <li><a href=""><i className="fa fa-folder"></i> Web pages</a></li>
-                            <li><a href=""><i className="fa fa-folder"></i> Illustrations</a></li>
-                            <li><a href=""><i className="fa fa-folder"></i> Films</a></li>
-                            <li><a href=""><i className="fa fa-folder"></i> Books</a></li>
+                            {industries.map((industry, index)=>( <IcheckCheckbox key={index} name={industry.tname} type="industry" label={industry.cname} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
                         </ul>
-                        <h5 className="tag-title">Tags</h5>
-                        <ul className="tag-list" style={{padding: 0}}>
-                            <li><a href="">Family</a></li>
-                            <li><a href="">Work</a></li>
-                            <li><a href="">Home</a></li>
-                            <li><a href="">Children</a></li>
-                            <li><a href="">Holidays</a></li>
-                            <li><a href="">Music</a></li>
-                            <li><a href="">Photography</a></li>
-                            <li><a href="">Film</a></li>
-                        </ul>
+                        </div>
                         <div className="clearfix"></div>
                     </div>
                 </div>

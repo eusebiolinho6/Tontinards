@@ -7,25 +7,19 @@ import {
 import {
   check
 } from 'meteor/check';
-import {
-  FilesCollection
-} from 'meteor/ostrio:files';
+import {Funnels,Images} from './collections';
 
-export const Images = new FilesCollection({
-  collectionName: 'Images',
-  allowClientCode: false, // Disallow remove files from Client
-  storagePath: '../uploads/',
-  onBeforeUpload(file) {
-    // Allow upload files under 10MB, and only in png/jpg/jpeg formats
-    if (file.size <= 10485760 && /png|jpg|jpeg/i.test(file.extension)) {
-      return true;
-    }
-    return 'Please upload image, with size equal or less than 10MB';
-  }
-});
-export const Funnels = new Mongo.Collection('funnels');
+
 // This code only runs on the server
 // Only publish tasks that are public or belong to the current user
+Funnels.helpers({
+  category() {
+    return Categories.findOne(this.category);
+  },
+  industry() {
+    return Industries.findOne(this.industry);
+  }
+});
 
 if (Meteor.isServer) {
   Meteor.publish('funnels', function funnelsPublication() {
@@ -40,8 +34,8 @@ if (Meteor.isServer) {
   Meteor.publish('files.images.all', function () {
     return Images.find({}).cursor;
   });
-  
-  Funnels.allow({
+
+Funnels.allow({
     insert: function (doc) {
       return true;
     },
@@ -53,3 +47,5 @@ if (Meteor.isServer) {
     }
   });
 }
+
+exports.Funnels = Funnels;

@@ -3,7 +3,7 @@ import FunnelModalForm from './Funnel-Modal-Form';
 import Input from './Input'
 import {Modal, Button} from 'react-bootstrap';
 // App component - represents the whole app
-var monthNames = [
+const monthNames = [
     "January", "February", "March",
     "April", "May", "June", "July",
     "August", "September", "October",
@@ -17,6 +17,7 @@ class FunnelLIstAdmin extends Component {
         price: '',
         description: '',
         industry: '',
+        category:'',
         descriptionImageUrl:'',
         funnelImageUrl:'',
         id: '',
@@ -46,6 +47,7 @@ class FunnelLIstAdmin extends Component {
           price: funnel.price,
           description: funnel.description,
           title: funnel.title,
+          category: funnel.category,
           industry: funnel.industry,
           id:funnel._id,
           descriptionImageUrl: funnel.descriptionImageUrl,
@@ -60,6 +62,7 @@ class FunnelLIstAdmin extends Component {
           price: '',
           description: '',
           industry: '',
+          category: '',
           descriptionImageUrl:'',
           funnelImageUrl: '',
           errors: {},
@@ -69,8 +72,8 @@ class FunnelLIstAdmin extends Component {
   }
 
     render() {
-         const { show, price, title, description, industry,id, descriptionImageUrl, funnelImageUrl } = this.state;
-        const {funnels}=this.props;
+         const { show, price, title, description, industry,id, category, descriptionImageUrl, funnelImageUrl } = this.state;
+        const {funnels, industries,categories}=this.props;
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
    <div className="row">
@@ -85,24 +88,25 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm id={id} price={price} description={description} title={title} industry={industry} show={show} funnelImageUrl={funnelImageUrl} descriptionImageUrl={descriptionImageUrl} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} show={show} funnelImageUrl={funnelImageUrl} descriptionImageUrl={descriptionImageUrl} closeModal={()=>this.closeModal()} />
              </div>
-            <div className="table-responsive">
+            {funnels&&funnels.length?<div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
                     <tr>
-
-                        <th>Name </th>
-                        <th>Industry </th>
-                        <th>Price </th>
+                        <th>Name</th>
+                        <th>Industry</th>
+                        <th>Category</th>
+                        <th>Price</th>
                         <th>Created At</th>
                         <th className="pull-right">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                        {funnels&&funnels.map((funnel)=>(<tr key={funnel._id}>
+                        {funnels&&funnels.map((funnel, index)=>(<tr key={funnel._id}>
                         <td>{funnel.title}</td>
-                        <td>{funnel.industry}</td>
+                        <td>{'funnel.industry'}</td>
+                        <td>{funnel.category}</td>
                         <td>${funnel.price} </td>
                         <td>{this.formatDate(funnel.createdAt)} </td>
                         <td> <button onClick={() =>this.editFunnel(funnel)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
@@ -110,7 +114,7 @@ class FunnelLIstAdmin extends Component {
                     
                     </tbody>
                 </table>
-            </div>
+            </div>:''}
 
         </div>
     </div>

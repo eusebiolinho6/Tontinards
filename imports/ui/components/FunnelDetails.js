@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-
+import {Categories, Industries} from '../../api/funnels/methods';
 // App component - represents the whole app
 class FunnelDetails extends Component {
     constructor(props) {
@@ -8,6 +8,8 @@ class FunnelDetails extends Component {
 
     render() {
         const {funnel}= this.props;
+        const industry = Industries.findOne({_id:funnel&&funnel.industry}),
+            category = Categories.findOne({_id:funnel&&funnel.category});
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
     <div className="row">
@@ -31,20 +33,19 @@ class FunnelDetails extends Component {
                             </div>
                             <hr/>
 
-                            <h4>Product description</h4>
+                            <dl className="small m-t-md">
+                                <dt>Industry: {industry&&industry.name||'No industry'} </dt>
+                                <dd>A description list is perfect for defining terms.</dd>
+                                <dt>Category: {category&&category.name||'No category'} </dt>
+                                <dd>A description list is perfect for defining terms.</dd>
+                            </dl>
+
+                            <h4>Description</h4>
 
                             <div className="small text-muted">
                                {funnel&&funnel.description}
                             </div>
-                            <dl className="small m-t-md">
-                                <dt>Differents type of payments</dt>
-                                <dd>A description list is perfect for defining terms.</dd>
-                                <dt>Euismod</dt>
-                                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                                <dt>Malesuada porta</dt>
-                                <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                            </dl>
+                            
                             <hr />
 
                             <div>

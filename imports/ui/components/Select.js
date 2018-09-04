@@ -20,7 +20,7 @@ class Select extends Component {
             className="form-control"
         >
         <option value=''>Select one value</option>
-        {options.map((option, index) =>(<option key={index} value={option.value}>{option.label}</option>))}
+        {options.map((option, index) =>(<option key={option._id._str} value={option._id._str}>{option.name}</option>))}
  </select>
         {error && <span style={{color: '#ed5565'}} className="error-block">{error}</span>}
     </div> 

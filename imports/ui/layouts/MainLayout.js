@@ -28,8 +28,10 @@ class MainLayout extends Component {
 
 export default withTracker(()=>{
   Meteor.subscribe('funnels');
+  Meteor.subscribe('industries');
+    Meteor.subscribe('categories');
+
   return {
     funnels: Funnels.find({}).fetch()
-     
   }
 })(MainLayout)
