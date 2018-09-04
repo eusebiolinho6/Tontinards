@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import IcheckCheckbox from './IcheckCheckbox'
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import {Categories, Industries} from '../../api/funnels/methods'
+import {Categories, Industries, toObjectId} from '../../api/funnels/methods'
 import PropTypes from 'prop-types';
 
 // App component - represents the whole app
@@ -22,13 +22,13 @@ class FilterFunnelMenu extends Component {
     initObj(tab){
         let a= {};
        tab.forEach(element => {
-          a[element._id._str] = false;
+          a[element._id._str] ={value:false, devName:element.devName};
        }); 
        return a;
     }
-    setFilters(name, type){
+    setFilters(id, type){
        let a=this.state[type];
-       a[name]=!a[name];
+       a[id].value=!a[id].value;
        this.setState({[type]:a}); 
        const path = this.buildPath();
        console.log(path);
@@ -36,31 +36,35 @@ class FilterFunnelMenu extends Component {
 
     buildPath(){
         let pathIndustry = 'all',
-        pathCategory = 'all';
+        pathCategory = 'all',
+        listIdc =[],
+        listIdi=[];
         const {industries, categories}=this.state;
 
         for (let key in categories) {
         // skip loop if the property is from prototype
-        if (!categories.hasOwnProperty(key) || !categories[key]) continue;
+        if (!categories.hasOwnProperty(key) || !categories[key].value) continue;
+        listIdc.push(toObjectId(key));
         if(pathCategory=='all'){
-            pathCategory = key;
+            pathCategory = categories[key].devName;
         } else {
-            const str = key+'-'+pathCategory;
+            const str = categories[key].devName + '-' + pathCategory;
             pathCategory=str;
         }
         } 
 
         for (let key in industries) {
             // skip loop if the property is from prototype
-            if (!industries.hasOwnProperty(key) || !industries[key]) continue;
+            if (!industries.hasOwnProperty(key) || !industries[key].value) continue;
+            listIdi.push(toObjectId(key));
             if (pathIndustry=='all') {
-                pathIndustry = key;
+                pathIndustry = industries[key].devName;
             } else {
-                const str = key + '-' + pathIndustry;
+                const str = industries[key].devName + '-' + pathIndustry;
                 pathIndustry = str;
             }
         }
-        return '/'+pathIndustry+'/'+pathCategory
+        return {url:'/'+pathIndustry+'/'+pathCategory, listIdc:listIdc,listIdi:listIdi}
 
     }
     render() {
