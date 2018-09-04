@@ -22,14 +22,14 @@ import {Industries, getIndustry, Categories} from '../../api/funnels/methods'
                                 <span className="product-price">
                                     ${funnel&&funnel.price}
                                 </span>
-                        <Link to={{pathname:'/funnels/'+funnel._id._str+'/details' }} className="product-name"> {funnel.title}</Link>
+                        <Link to={{pathname:'/funnels/'+funnel._id._str +'/details/all'}} className="product-name"> {funnel.title}</Link>
                         <h5 className="text-muted">{industry&&industry.name||'No Industry'}, {category&&category.name||'No Category'}</h5>
                         <div className="small m-t-xs">
                              {funnel&&funnel.description}
                         </div>
                         <div className="m-t text-righ">
 
-                            <Link to={{pathname:'/funnels/'+funnel._id._str+'/details' }}className="btn btn-xs btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
+                            <Link to={{pathname:'/funnels/'+funnel._id._str+'/details/all' }}className="btn btn-xs btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
                         </div>
                     </div>
                 </div>

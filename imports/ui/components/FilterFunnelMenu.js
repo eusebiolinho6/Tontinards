@@ -1,35 +1,47 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import IcheckCheckbox from './IcheckCheckbox'
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import {Categories, Industries} from '../../api/funnels/methods'
+import PropTypes from 'prop-types';
+
 // App component - represents the whole app
 class FilterFunnelMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            industry: {
-                b2b: false,
-                ecommerce:false,
-            }, category: {
-                lead: false,
-                sell: false,
-            }
+            industries: {}
+            , categories: {}
         }
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({industries:this.initObj(nextProps.industries),
+             categories:this.initObj(nextProps.categories)})
+    }
+    initObj(tab){
+        let a= {};
+       tab.forEach(element => {
+          a[element._id._str] = false;
+       }); 
+       return a;
     }
     setFilters(name, type){
        let a=this.state[type];
        a[name]=!a[name];
        this.setState({[type]:a}); 
        const path = this.buildPath();
+       console.log(path);
     }
 
     buildPath(){
         let pathIndustry = 'all',
         pathCategory = 'all';
-        const {industry, category}=this.state;
+        const {industries, categories}=this.state;
 
-        for (let key in category) {
+        for (let key in categories) {
         // skip loop if the property is from prototype
-        if (!category.hasOwnProperty(key) || !category[key]) continue;
+        if (!categories.hasOwnProperty(key) || !categories[key]) continue;
         if(pathCategory=='all'){
             pathCategory = key;
         } else {
@@ -38,9 +50,9 @@ class FilterFunnelMenu extends Component {
         }
         } 
 
-        for (let key in industry) {
+        for (let key in industries) {
             // skip loop if the property is from prototype
-            if (!industry.hasOwnProperty(key) || !industry[key]) continue;
+            if (!industries.hasOwnProperty(key) || !industries[key]) continue;
             if (pathIndustry=='all') {
                 pathIndustry = key;
             } else {
@@ -52,13 +64,7 @@ class FilterFunnelMenu extends Component {
 
     }
     render() {
-        const industries = [{
-            cname: 'E-commerce',
-            tname: 'ecommerce'
-        }, {
-            cname: 'B2B',
-            tname: 'b2b'
-        }];
+        const {industries, categories}=this.props;
         return (
             <div className="ibox ">
                 <div className="ibox-content">
@@ -70,12 +76,23 @@ class FilterFunnelMenu extends Component {
                         <a href="#" className="file-control">Images</a>*/}
                         <div className="hr-line-dashed"></div>
                         <Link to="/funnels/admin" className="btn btn-primary btn-block">Manage funnels</Link>
+                        <Link to="/industries/admin" className="btn btn-primary btn-block">Manage industries</Link>
+                        <Link to="/categories/admin" className="btn btn-primary btn-block">Manage categories</Link>
                         <div className="hr-line-dashed"></div>
+                        { /**Industry here*/ }
                         <h2>INDUSTRY</h2>
                         <div className="col-md-2" />
                         <div className = "col-md-10" >
                         <ul className="folder-list" style={{padding: 0}}>
-                            {industries.map((industry, index)=>( <IcheckCheckbox key={index} name={industry.tname} type="industry" label={industry.cname} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
+                            {industries.map((industry)=>( <IcheckCheckbox key={industry._id} name={industry._id._str} type="industries" label={industry.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
+                        </ul>
+                        </div>
+                        {/**Category here*/}
+                        <h2>CATEGORY</h2>
+                        <div className="col-md-2" />
+                        <div className = "col-md-10" >
+                        <ul className="folder-list" style={{padding: 0}}>
+                            {categories.map((category)=>( <IcheckCheckbox key={category._id} name={category._id._str} type="categories" label={category.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
                         </ul>
                         </div>
                         <div className="clearfix"></div>
@@ -87,4 +104,12 @@ class FilterFunnelMenu extends Component {
     }
 }
 
-export default FilterFunnelMenu;
+export default withTracker(()=>{
+Meteor.subscribe('industries');
+Meteor.subscribe('categories');
+return {
+    industries: Industries.find({}).fetch(),
+    categories:Categories.find({}).fetch()
+}
+
+})(FilterFunnelMenu)

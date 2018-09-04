@@ -62,7 +62,7 @@ componentWillReceiveProps(nextProps){
      }
      let data = {};
      const {name, id}=this.state;
-     data.devName = name.trim().toLowerCase();
+     data.devName = name.toLowerCase().replace(/\s/g, '');
      data.name = name;
      if(id){
          data.updatedAt = new Date();

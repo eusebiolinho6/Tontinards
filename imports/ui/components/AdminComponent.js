@@ -106,7 +106,7 @@ class FunnelLIstAdmin extends Component {
                         {funnels&&funnels.map((funnel, index)=>(<tr key={funnel._id}>
                         <td>{funnel.title}</td>
                         <td>{'funnel.industry'}</td>
-                        <td>{funnel.category}</td>
+                        <td>{'funnel.category'}</td>
                         <td>${funnel.price} </td>
                         <td>{this.formatDate(funnel.createdAt)} </td>
                         <td> <button onClick={() =>this.editFunnel(funnel)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
