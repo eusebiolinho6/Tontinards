@@ -55,7 +55,8 @@ class FilterFunnelMenu extends Component {
     }
     setFilters(id, type){
        let a=this.state[type];
-      if(a[id]) a[id].value=!a[id].value;
+      if(!a[id]) return ;
+       a[id].value=!a[id].value;
        this.setState({[type]:a, path:this.buildPath()});
        this.setState({redirect:true});
     }
