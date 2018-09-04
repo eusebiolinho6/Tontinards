@@ -10,11 +10,12 @@ class Main extends Component {
     }
 
     render() {
+        const{params}=this.props;
         return (
                 <div className="wrapper wrapper-content">
                     <div className="row">
                         <div className="col-lg-3">
-                            <FilterFunnelMenu />
+                            <FilterFunnelMenu params={params} />
                         </div>
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">

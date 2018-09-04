@@ -15,11 +15,12 @@ class MainLayout extends Component {
     const location = {
       path: ['Home', 'Funnels'],
       title: 'List of funnels'
-    };
+    },
+    {params}=this.props;
     return (
       <Fragment>
         <Location location={location} />
-         <Main funnels={this.props.funnels} />
+         <Main params={params} funnels={this.props.funnels} />
       </Fragment>
     )
   }
@@ -31,8 +32,8 @@ export default withTracker((props)=>{
   Meteor.subscribe('categories');
   const industries = props.params.industries,
   categories = props.params.categories,
-  listc=categories.split('.'),
-  listi=industries.split('.');
+  listc=categories.split('-'),
+  listi=industries.split('-');
   let queryc = {},
   queryi={},
   listIdi=[],

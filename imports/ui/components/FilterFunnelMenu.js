@@ -20,22 +20,23 @@ class FilterFunnelMenu extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        const{industries, categories}=nextProps;
+        const{industries, categories, params}=nextProps;
         this.setState({
-            industries: this.initObj(industries),
-            categories: this.initObj(categories),
+            industries: this.initObj(industries, params.industries.split('-')),
+            categories: this.initObj(categories, params.categories.split('-')),
             path: '',
             redirect: false
         });
     }
 
     componentDidUpdate(prevProps) {
-        const{industries, categories}=prevProps;
+        const{industries, categories,params}=this.props;
+        const pi = params.industries.split('-'),
+        pc=params.categories.split('-');
         if(this.state.redirect){
-        const{industries, categories}=prevProps;
         this.setState({
-            industries: this.initObj(industries),
-            categories: this.initObj(categories),
+            industries: this.initObj(industries, pi),
+            categories: this.initObj(categories,pc),
              path: '',
             redirect: false
         });
@@ -44,10 +45,11 @@ class FilterFunnelMenu extends Component {
     }
     }
 
-    initObj(tab){
+    initObj(tab,p){
         let a= {};
        tab.forEach(element => {
-          a[element._id._str] ={value:false, devName:element.devName};
+           let value= p.indexOf('all')>-1?false:(p.indexOf(element.devName)>-1);
+          a[element._id._str] ={value:value, devName:element.devName};
        }); 
        return a;
     }
@@ -80,7 +82,7 @@ class FilterFunnelMenu extends Component {
             if (pathIndustry=='all') {
                 pathIndustry = industries[key].devName;
             } else {
-                const str = industries[key].devName + '.' + pathIndustry;
+                const str = industries[key].devName + '-' + pathIndustry;
                 pathIndustry = str;
             }
         }
@@ -88,7 +90,7 @@ class FilterFunnelMenu extends Component {
 
     }
     render() {
-        const {industries, categories}=this.props;
+        const {industries, categories,params}=this.props;
         const {path,redirect}=this.state;
         if(redirect){
             return <Redirect push to={path}/>
@@ -113,7 +115,7 @@ class FilterFunnelMenu extends Component {
                         <div className="col-md-2" />
                         <div className = "col-md-10" >
                         <ul className="folder-list" style={{padding: 0}}>
-                            {industries.map((industry)=>( <IcheckCheckbox key={industry._id} name={industry._id._str} type="industries" label={industry.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
+                            {industries.map((industry)=>( <IcheckCheckbox key={industry._id} name={industry._id._str} value={this.state.industries[industry._id._str]&&this.state.industries[industry._id._str].value} type="industries" label={industry.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
                         </ul>
                         </div>
                         {/**Category here*/}
@@ -121,7 +123,7 @@ class FilterFunnelMenu extends Component {
                         <div className="col-md-2" />
                         <div className = "col-md-10" >
                         <ul className="folder-list" style={{padding: 0}}>
-                            {categories.map((category)=>( <IcheckCheckbox key={category._id} name={category._id._str} type="categories" label={category.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
+                            {categories.map((category)=>( <IcheckCheckbox key={category._id} name={category._id._str} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
                         </ul>
                         </div>
                         <div className="clearfix"></div>
