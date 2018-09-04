@@ -55,7 +55,7 @@ class FilterFunnelMenu extends Component {
     }
     setFilters(id, type){
        let a=this.state[type];
-       a[id].value=!a[id].value;
+      if(a[id]) a[id].value=!a[id].value;
        this.setState({[type]:a, path:this.buildPath()});
        this.setState({redirect:true});
     }
@@ -123,7 +123,7 @@ class FilterFunnelMenu extends Component {
                         <div className="col-md-2" />
                         <div className = "col-md-10" >
                         <ul className="folder-list" style={{padding: 0}}>
-                            {categories.map((category)=>( <IcheckCheckbox key={category._id} name={category._id._str} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
+                            {categories.map((category,a=this.state)=>( <IcheckCheckbox key={category._id} name={category._id._str} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
                         </ul>
                         </div>
                         <div className="clearfix"></div>
