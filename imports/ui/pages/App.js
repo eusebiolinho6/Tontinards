@@ -21,7 +21,7 @@ class App extends Component {
                             </small>
                             <br />
                             <small>
-                              <Link to="/funnels">Check our Funnels here</Link>
+                              <Link to="/funnels/all/all">Check our Funnels here</Link>
                             </small>
                         </div>
                     </div>

@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-
 import FilterFunnelMenu from './FilterFunnelMenu'
 import FunnelList from './FunnelList'
 import Location from './Location'

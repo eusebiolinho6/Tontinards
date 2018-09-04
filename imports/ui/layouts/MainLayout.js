@@ -31,14 +31,14 @@ export default withTracker((props)=>{
   Meteor.subscribe('categories');
   const industries = props.params.industries,
   categories = props.params.categories,
-  listc=categories.split('-'),
-  listi=industries.split('-');
+  listc=categories.split('.'),
+  listi=industries.split('.');
   let queryc = {},
   queryi={},
   listIdi=[],
   listIdc=[];
-  if(categories !='all') queryc={name:{$in:listc}};
-  if(industries !='all') queryi={name:{$in:listi}};
+  if(categories !='all') queryc={devName:{$in:listc}};
+  if(industries !='all') queryi={devName:{$in:listi}};
   if (categories != 'all'){
       Categories.find(queryc).forEach((elt) => {
         listIdc.push(elt._id);
@@ -49,11 +49,12 @@ export default withTracker((props)=>{
        listIdi.push(elt._id);
      });
   }
-  let rc = ri = {};
+  let ra=[],q={};
 
-   if(categories !='all') rc = {category:{$in:listIdc}};
-    if(industries !='all') ri = {industry:{$in:listIdi}};
+   if(categories !='all') ra.push({category:{$in:listIdc}});
+    if(industries !='all') ra.push({industry:{$in:listIdi}});
+    if(ra.length) q['$or']=ra;
     return {
-    funnels: Funnels.find({$or:[rc,ri]}).fetch()
+    funnels: Funnels.find(q).fetch()
   }
 })(MainLayout)

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import {Link} from 'react-router-dom';
 import IcheckCheckbox from './IcheckCheckbox'
 import { withTracker } from 'meteor/react-meteor-data';
@@ -12,13 +13,37 @@ class FilterFunnelMenu extends Component {
         super(props);
         this.state = {
             industries: {}
-            , categories: {}
+            ,categories: {},
+            path:'',
+            redirect:false
         }
     }
+
     componentWillReceiveProps(nextProps){
-        this.setState({industries:this.initObj(nextProps.industries),
-             categories:this.initObj(nextProps.categories)})
+        const{industries, categories}=nextProps;
+        this.setState({
+            industries: this.initObj(industries),
+            categories: this.initObj(categories),
+            path: '',
+            redirect: false
+        });
     }
+
+    componentDidUpdate(prevProps) {
+        const{industries, categories}=prevProps;
+        if(this.state.redirect){
+        const{industries, categories}=prevProps;
+        this.setState({
+            industries: this.initObj(industries),
+            categories: this.initObj(categories),
+             path: '',
+            redirect: false
+        });
+    } else {
+        console.log('Nothing to do');
+    }
+    }
+
     initObj(tab){
         let a= {};
        tab.forEach(element => {
@@ -29,22 +54,18 @@ class FilterFunnelMenu extends Component {
     setFilters(id, type){
        let a=this.state[type];
        a[id].value=!a[id].value;
-       this.setState({[type]:a}); 
-       const path = this.buildPath();
-       console.log(path);
+       this.setState({[type]:a, path:this.buildPath()});
+       this.setState({redirect:true});
     }
 
     buildPath(){
         let pathIndustry = 'all',
-        pathCategory = 'all',
-        listIdc =[],
-        listIdi=[];
+        pathCategory = 'all';
         const {industries, categories}=this.state;
 
         for (let key in categories) {
         // skip loop if the property is from prototype
         if (!categories.hasOwnProperty(key) || !categories[key].value) continue;
-        listIdc.push(toObjectId(key));
         if(pathCategory=='all'){
             pathCategory = categories[key].devName;
         } else {
@@ -56,21 +77,25 @@ class FilterFunnelMenu extends Component {
         for (let key in industries) {
             // skip loop if the property is from prototype
             if (!industries.hasOwnProperty(key) || !industries[key].value) continue;
-            listIdi.push(toObjectId(key));
             if (pathIndustry=='all') {
                 pathIndustry = industries[key].devName;
             } else {
-                const str = industries[key].devName + '-' + pathIndustry;
+                const str = industries[key].devName + '.' + pathIndustry;
                 pathIndustry = str;
             }
         }
-        return {url:'/'+pathIndustry+'/'+pathCategory, listIdc:listIdc,listIdi:listIdi}
+        return '/funnels/'+pathIndustry+'/'+pathCategory;
 
     }
     render() {
         const {industries, categories}=this.props;
+        const {path,redirect}=this.state;
+        if(redirect){
+            return <Redirect push to={path}/>
+        }
         return (
             <div className="ibox ">
+
                 <div className="ibox-content">
                     <div className="file-manager">
                        { /** <h5>Show:</h5>
