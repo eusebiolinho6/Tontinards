@@ -16,11 +16,11 @@ class MainLayout extends Component {
       path: ['Home', 'Funnels'],
       title: 'List of funnels'
     },
-    {params}=this.props;
+    {params, funnels, industries, categories}=this.props;
     return (
       <Fragment>
         <Location location={location} />
-         <Main params={params} funnels={this.props.funnels} />
+         <Main params={params} funnels={funnels} industries={industries} categories={categories} />
       </Fragment>
     )
   }
@@ -56,6 +56,8 @@ export default withTracker((props)=>{
     if(industries !='all') ra.push({industry:{$in:listIdi}});
     if(ra.length) q['$or']=ra;
     return {
-    funnels: Funnels.find(q).fetch()
+    funnels: Funnels.find(q).fetch(),
+    industries: Industries.find({}).fetch(),
+    categories: Categories.find({}).fetch()
   }
 })(MainLayout)

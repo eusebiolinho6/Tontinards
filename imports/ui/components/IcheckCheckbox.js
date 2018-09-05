@@ -5,7 +5,8 @@ export default class IcheckCheckbox extends Component{
         super(props);
     }
     onChange(e){
-        this.props.setFilters(this.props.name, this.props.type);
+        const {id,type, devName}=this.props;
+        this.props.setFilters(id, type,devName);
     }
     render(){
         const {value}=this.props;

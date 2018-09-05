@@ -13,11 +13,14 @@ class Header extends Component {
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
                     <Link to="/" style={{display: 'inline-block', marginLeft: '10px', marginTop: '14px'}}>
-                        <img src="modules/core/client/img/assets/online performance logo.png" className="img-responsive" alt="logo homepage" style={{height: '31px'}}/>
+                        < img src = "https://foppro.com/modules/core/client/img/assets/online%20performance%20logo.png" height="40px"
+                        className = "img-responsive"
+                        alt = "logo homepage"
+                        />
                     </Link>
-                    <span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
+                    {/**<span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
                         Page Title
-                    </span>
+    </span>*/}
                     {/* Old form search
                     <form role="search" className="navbar-form-custom" method="post" action="views/search_results.html">
                         <div className="form-group">
