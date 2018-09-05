@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import FunnelModalForm from './Funnel-Modal-Form';
 import Input from './Input'
+import Tr from './Tr'
 import {Modal, Button} from 'react-bootstrap';
 // App component - represents the whole app
 const monthNames = [
@@ -103,14 +104,9 @@ class FunnelLIstAdmin extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                        {funnels&&funnels.map((funnel, index)=>(<tr key={funnel._id}>
-                        <td>{funnel.title}</td>
-                        <td>{'funnel.industry'}</td>
-                        <td>{'funnel.category'}</td>
-                        <td>${funnel.price} </td>
-                        <td>{this.formatDate(funnel.createdAt)} </td>
-                        <td> <button onClick={() =>this.editFunnel(funnel)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
-                    </tr>))}
+                        {funnels&&funnels.map((funnel, index)=>(
+                            <Tr key={funnel._id} funnel={funnel} editFunnel={(funnel)=>this.editFunnel(funnel)} formatDate={(date)=>this.formatDate(date)}/>
+                    ))}
                     
                     </tbody>
                 </table>
