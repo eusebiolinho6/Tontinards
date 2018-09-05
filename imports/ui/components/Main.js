@@ -10,16 +10,16 @@ class Main extends Component {
     }
 
     render() {
-        const{params}=this.props;
+        const{params, funnels, categories, industries}=this.props;
         return (
                 <div className="wrapper wrapper-content">
                     <div className="row">
                         <div className="col-lg-3">
-                            <FilterFunnelMenu params={params} />
+                            <FilterFunnelMenu funnels={funnels} params={params} industries={industries} categories={categories} />
                         </div>
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">
-                                <FunnelList funnels={this.props.funnels} />
+                                <FunnelList funnels={funnels} />
                             </div>
                         </div>
                     </div>

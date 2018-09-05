@@ -18,31 +18,30 @@ class FilterFunnelMenu extends Component {
             redirect:false
         }
     }
+    componentDidMount(){
+        const{industries, categories, params}=this.props;
+        if(industries&&categories&&industries.length&&categories.length){
+            this.setState({
+                industries: this.initObj(industries, params.industries.split('-')),
+                categories: this.initObj(categories, params.categories.split('-')),
+                path: '',
+                redirect: false
+            });
+        }
+    }
+
 
     componentWillReceiveProps(nextProps){
         const{industries, categories, params}=nextProps;
-        this.setState({
-            industries: this.initObj(industries, params.industries.split('-')),
-            categories: this.initObj(categories, params.categories.split('-')),
-            path: '',
-            redirect: false
-        });
-    }
-
-    componentDidUpdate(prevProps) {
-        const{industries, categories,params}=this.props;
-        const pi = params.industries.split('-'),
-        pc=params.categories.split('-');
-        if(this.state.redirect){
-        this.setState({
-            industries: this.initObj(industries, pi),
-            categories: this.initObj(categories,pc),
-             path: '',
-            redirect: false
-        });
-    } else {
-        console.log('Nothing to do');
-    }
+        const {redirect, path} = this.state;
+        if (industries && categories && industries.length && categories.length) {
+            this.setState({
+                industries: this.initObj(industries, params.industries.split('-')),
+                categories: this.initObj(categories, params.categories.split('-')),
+                path: '',
+                redirect: false
+            });
+        }
     }
 
     initObj(tab,p){
@@ -53,9 +52,10 @@ class FilterFunnelMenu extends Component {
        }); 
        return a;
     }
-    setFilters(id, type){
+    setFilters(id, type,devName){
        let a=this.state[type];
-      if(a[id]) a[id].value=!a[id].value;
+      if(!a[id]) a[id]={value:false, devName:devName};
+       a[id].value=!a[id].value;
        this.setState({[type]:a, path:this.buildPath()});
        this.setState({redirect:true});
     }
@@ -90,7 +90,7 @@ class FilterFunnelMenu extends Component {
 
     }
     render() {
-        const {industries, categories,params}=this.props;
+        const {industries, categories,params, funnels}=this.props;
         const {path,redirect}=this.state;
         if(redirect){
             return <Redirect push to={path}/>
@@ -111,21 +111,24 @@ class FilterFunnelMenu extends Component {
                         <Link to="/categories/admin" className="btn btn-primary btn-block">Manage categories</Link>
                         <div className="hr-line-dashed"></div>
                         { /**Industry here*/ }
-                        <h2>INDUSTRY</h2>
-                        <div className="col-md-2" />
-                        <div className = "col-md-10" >
-                        <ul className="folder-list" style={{padding: 0}}>
-                            {industries.map((industry)=>( <IcheckCheckbox key={industry._id} name={industry._id._str} value={this.state.industries[industry._id._str]&&this.state.industries[industry._id._str].value} type="industries" label={industry.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
-                        </ul>
-                        </div>
+                       {industries.length&&<div><h2>INDUSTRY</h2>
+                            <div className="col-md-2" />
+                            <div className = "col-md-10" >
+                            <ul className="folder-list" style={{padding: 0}}>
+                                {industries.map((industry)=>( <IcheckCheckbox key={industry._id} id={industry._id._str} devName={industry.devName} value={this.state.industries[industry._id._str]&&this.state.industries[industry._id._str].value} type="industries" label={industry.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} />)) }  
+                            </ul>
+                            </div>
+                        </div>} 
                         {/**Category here*/}
-                        <h2>CATEGORY</h2>
-                        <div className="col-md-2" />
-                        <div className = "col-md-10" >
-                        <ul className="folder-list" style={{padding: 0}}>
-                            {categories.map((category,a=this.state)=>( <IcheckCheckbox key={category._id} name={category._id._str} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(name,type)=> this.setFilters(name, type)} />)) }  
-                        </ul>
-                        </div>
+                        {categories.length&&<div>
+                            <h2>CATEGORY</h2>
+                            <div className="col-md-2" />
+                            <div className = "col-md-10" >
+                            <ul className="folder-list" style={{padding: 0}}>
+                                {categories.map((category,a=this.state)=>( <IcheckCheckbox key={category._id} id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} />)) }  
+                            </ul>
+                            </div>
+                        </div>}
                         <div className="clearfix"></div>
                     </div>
                 </div>
@@ -135,12 +138,4 @@ class FilterFunnelMenu extends Component {
     }
 }
 
-export default withTracker(()=>{
-Meteor.subscribe('industries');
-Meteor.subscribe('categories');
-return {
-    industries: Industries.find({}).fetch(),
-    categories:Categories.find({}).fetch()
-}
-
-})(FilterFunnelMenu)
+export default FilterFunnelMenu;
