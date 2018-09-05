@@ -6,9 +6,9 @@ class FunnelList extends Component {
         super(props);
     }
     renderFunnels(){
-        const {funnels} = this.props;
+        const {funnels, propclass} = this.props;
        return funnels.map((funnel)=>(
-            <FunnelItem key={funnel._id} funnel={funnel} />
+            <FunnelItem propclass={propclass} key={funnel._id} funnel={funnel} />
         ))
     }
     render() {

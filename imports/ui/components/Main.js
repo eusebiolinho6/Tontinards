@@ -19,7 +19,11 @@ class Main extends Component {
                         </div>
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">
-                                <FunnelList funnels={funnels} />
+                                {
+                                    funnels && funnels.length ? < FunnelList funnels = {
+                                        funnels
+                                    }
+                                    />:<h2 style={{display:'block', margin:'auto'}} >No funnels</h2 > }
                             </div>
                         </div>
                     </div>

@@ -7,7 +7,7 @@ class FunnelDetails extends Component {
     }
 
     render() {
-        const {funnel}= this.props;
+        const {funnel, funnels}= this.props;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
             category = Categories.findOne({_id:funnel&&funnel.category});
         return (

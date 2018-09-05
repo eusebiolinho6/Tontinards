@@ -50,11 +50,10 @@ export default withTracker((props)=>{
        listIdi.push(elt._id);
      });
   }
-  let ra=[],q={};
+  let q={};
 
-   if(categories !='all') ra.push({category:{$in:listIdc}});
-    if(industries !='all') ra.push({industry:{$in:listIdi}});
-    if(ra.length) q['$or']=ra;
+   if(categories !='all') q.category={$in:listIdc};
+    if(industries !='all') q.industry ={$in:listIdi};
     return {
     funnels: Funnels.find(q).fetch(),
     industries: Industries.find({}).fetch(),

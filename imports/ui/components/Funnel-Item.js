@@ -7,11 +7,12 @@ import {Industries, getIndustry, Categories} from '../../api/funnels/methods'
 // Task component - represents a single todo item
  export default class FunnelItem extends Component {
     render() {
-        const{funnel} = this.props;
+        const{funnel,propclass} = this.props;
         const industry = Industries.findOne({_id:funnel.industry}),
         category=Categories.findOne({_id:funnel.category});
     return ( 
-         <div className="col-md-4 subject-container">
+         <div className = {
+             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-4 subject-container'}>
             <div className="ibox">
                 <div className="ibox-content product-box active">
 
