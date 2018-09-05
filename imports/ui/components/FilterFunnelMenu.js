@@ -98,19 +98,6 @@ class FilterFunnelMenu extends Component {
             return <Redirect push to={path}/>
         }
         return (
-            <StickyContainer>
-               <Sticky distanceFromTop={10}>
-                   {
-                       ({
-                           style,
-
-                           // the following are also available but unused in this example
-                           isSticky,
-                           wasSticky,
-                           distanceFromTop,
-                           distanceFromBottom,
-                           calculatedHeight
-                       }) => ( 
                  <div className="ibox ">
                 <div className="ibox-content">
                     <div className="file-manager">
@@ -156,9 +143,7 @@ class FilterFunnelMenu extends Component {
                         <div className="clearfix"></div>
                     </div>
                 </div>
-            </div>)}
-               </Sticky> 
-            </StickyContainer>
+            </div>
  
 
         )
