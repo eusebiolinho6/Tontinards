@@ -50,9 +50,9 @@ class FunnelDetails extends Component {
 
                             <div>
                                 <div className="btn-group">
-                                    <button className="btn btn-primary btn-sm"><i className="fa fa-cart-plus"></i> Images</button>
-                                    <button className="btn btn-white btn-sm"><i className="fa fa-cart-plus"></i> Images and Pdf</button>
-                                    <button className="btn btn-white btn-sm"><i className="fa fa-cart-plus"></i> Images, Pdf and Videos</button>
+                                    <button style={{margin:'1px'}} className="btn btn-primary btn-sm"><i className="fa fa-cart-plus"></i> Images</button>
+                                    <button style={{margin:'1px'}} className="btn btn-primary btn-sm "><i className="fa fa-cart-plus"></i> Images and Pdf</button>
+                                    <button style={{margin:'1px'}} className="btn btn-primary btn-sm "><i className="fa fa-cart-plus"></i> Images, Pdf and Videos</button>
                                 </div>
                             </div>
 
