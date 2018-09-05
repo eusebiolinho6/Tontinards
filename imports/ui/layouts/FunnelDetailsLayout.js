@@ -20,7 +20,7 @@ class FunnelDetailsLayout extends Component {
         <Fragment>
             <Location location={location} />
             <FunnelDetails funnel={funnel} />
-            <FunnelList funnels={funnels} />
+            <FunnelList funnels={funnels}/>
         </Fragment>
       )
   }
@@ -33,6 +33,6 @@ export default withTracker(props=>{
   const funnel =Funnels.findOne({_id: toObjectId(props.funnelId)});
   return {
     funnel: funnel,
-    funnels:Funnels.find({$or:[{industry:funnel&&funnel.industry},{category:funnel&&funnel.category}]})
+    funnels:Funnels.find({$or:[{industry:funnel&&funnel.industry},{category:funnel&&funnel.category}],_id:{$ne:funnel&&funnel._id}})
   }
 })(FunnelDetailsLayout)
