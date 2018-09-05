@@ -4,7 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import Header from '../components/FunnelDetails';
 import Location from '../components/Location';
 import FunnelDetails from '../components/FunnelDetails';
-import FunnelList from '../components/FunnelList'
+import FunnelList from '../components/DetailsFunnelList'
 
 import {Funnels, toObjectId} from '../../api/funnels/methods';
 
@@ -20,13 +20,7 @@ class FunnelDetailsLayout extends Component {
         <Fragment>
             <Location location={location} />
             <FunnelDetails funnel={funnel} />
-         {funnels&&funnels.length?<div className="col-lg-12 animated fadeInRight">
-            <h2>Also check the following funnels</h2>
-             <hr />
-            <div className="row">
-                <FunnelList propclass="details" funnels={funnels} />
-            </div>
-        </div>:''}
+            <FunnelList funnels={funnels} />
         </Fragment>
       )
   }
