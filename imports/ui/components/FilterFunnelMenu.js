@@ -6,6 +6,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import {Categories, Industries, toObjectId} from '../../api/funnels/methods'
 import PropTypes from 'prop-types';
+import { StickyContainer, Sticky } from 'react-sticky';
+
 
 // App component - represents the whole app
 class FilterFunnelMenu extends Component {
@@ -97,7 +99,6 @@ class FilterFunnelMenu extends Component {
         }
         return (
             <div className="ibox ">
-
                 <div className="ibox-content">
                     <div className="file-manager">
                        { /** <h5>Show:</h5>
@@ -110,23 +111,32 @@ class FilterFunnelMenu extends Component {
                         <Link to="/industries/admin" className="btn btn-primary btn-block">Manage industries</Link>
                         <Link to="/categories/admin" className="btn btn-primary btn-block">Manage categories</Link>
                     <div className="hr-line-dashed"></div>*/}
+                <div className="input-group">
+                <input id="value" className="form-control inputgui ng-not-empty" style={{display: 'block'}}
+                    type="text" placeholder="search funnels" />
+                    <span className="input-group-addon">
+                    <i style={{cursor:'pointer'}} className="fa fa-search"></i>
+                    </span>
+              </div>
                     <div className="hr-line-dashed"></div>
                         { /**Industry here*/ }
-                       {industries.length?<div><h2>INDUSTRY</h2>
+                       {industries.length?<div><h5>INDUSTRY</h5>
                             <div className="col-md-2" />
                             <div className = "col-md-10" >
                             <ul className="folder-list" style={{padding: 0}}>
-                                {industries.map((industry)=>( <IcheckCheckbox key={industry._id} id={industry._id._str} devName={industry.devName} value={this.state.industries[industry._id._str]&&this.state.industries[industry._id._str].value} type="industries" label={industry.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} />)) }  
+                                {industries.map((industry)=>(
+                                    <li key={industry._id}><IcheckCheckbox id={industry._id._str} devName={industry.devName} value={this.state.industries[industry._id._str]&&this.state.industries[industry._id._str].value} type="industries" label={industry.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>
+                                    )) }  
                             </ul>
                             </div>
                         </div>:''} 
                         {/**Category here*/}
                         {categories.length?<div>
-                            <h2>CATEGORY</h2>
+                            <h5>CATEGORY</h5>
                             <div className="col-md-2" />
                             <div className = "col-md-10" >
                             <ul className="folder-list" style={{padding: 0}}>
-                                {categories.map((category,a=this.state)=>( <IcheckCheckbox key={category._id} id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} />)) }  
+                                {categories.map((category,a=this.state)=>(<li key={category._id} > <IcheckCheckbox key={category._id} id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>)) }  
                             </ul>
                             </div>
                         </div>:''}

@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import {Checkbox} from 'react-bootstrap';
 
 export default class IcheckCheckbox extends Component{
     constructor(props){
         super(props);
     }
-    onChange(e){
+    onClick(e){
+        e.preventDefault();
         const {id,type, devName}=this.props;
         this.props.setFilters(id, type,devName);
     }
     render(){
         const {value}=this.props;
         return (
-            < label className = "container-funnel-store" > {this.props.label}
-            <input onChange={(event) =>this.onChange(event)} checked={value} type="checkbox"/>
-                <span className="checkmark-funnel-store"></span>
-            </label>
+            <a href="" onClick={(event)=>this.onClick(event)} ><input type="checkbox" onChange={(event) =>{} } checked={value} /><span style={{marginLeft:'5px'}}>{this.props.label}</span></a>
         )
     }
 }

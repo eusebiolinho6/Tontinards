@@ -13,7 +13,7 @@ class FunnelList extends Component {
     }
     render() {
         return (
-    <div style={{width: '100%'}} className="wrapper wrapper-content animated fadeInRight">
+    <div style={{width: '100%', paddingTop: '0px'}} className="wrapper wrapper-content animated fadeInRight">
     <div className="row">
        {this.renderFunnels()}
     </div>

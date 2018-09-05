@@ -12,8 +12,8 @@ class Header extends Component {
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1045'}}>
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
-                    <Link to="/" style={{display: 'inline-block', marginLeft: '10px', marginTop: '14px'}}>
-                        < img src = "https://foppro.com/modules/core/client/img/assets/online%20performance%20logo.png" height="40px"
+                    <Link to="/" style={{display: 'inline-block', marginLeft: '10px'}}>
+                        < img src = "https://foppro.com/modules/core/client/img/assets/online%20performance%20logo.png" height="35px"
                         className = "img-responsive"
                         alt = "logo homepage"
                         />
