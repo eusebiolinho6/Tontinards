@@ -20,9 +20,8 @@ import {Industries, getIndustry, Categories} from '../../api/funnels/methods'
                         {funnel&&funnel.descriptionImageUrl ? <img width="100%" src={funnel.descriptionImageUrl} /> : '[ Image ]'}
                     </div>
                     <div className="product-desc">
-                                <span className="product-price">
-                                    ${funnel&&funnel.price}
-                                </span>
+                                {/**<span className="product-price">
+                                    ${funnel&&funnel.price}</span>*/}
                         <Link to={{pathname:'/funnels/'+funnel._id._str +'/details/all'}} className="product-name"> {funnel.title}</Link>
                         <h5 className="text-muted">{industry&&industry.name||'No Industry'}, {category&&category.name||'No Category'}</h5>
                         <div className="small m-t-xs">

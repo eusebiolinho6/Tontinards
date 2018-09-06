@@ -10,12 +10,12 @@ class Main extends Component {
     }
 
     render() {
-        const{params, funnels, categories, industries}=this.props;
+        const{params, funnels, search, categories, industries}=this.props;
         return (
                 <div className="wrapper wrapper-content">
                     <div className="row">
                         <div className="col-lg-3">
-                            <FilterFunnelMenu funnels={funnels} params={params} industries={industries} categories={categories} />
+                            <FilterFunnelMenu search={search} funnels={funnels} params={params} industries={industries} categories={categories} />
                         </div>
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">

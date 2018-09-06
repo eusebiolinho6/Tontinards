@@ -8,9 +8,9 @@ class FunnelList extends Component {
   }
 
   render() {
-    const {match} = this.props; 
+    const {match, location} = this.props; 
     return (
-        <MainLayout params={match.params} />
+        <MainLayout search={location.search} params={match.params} />
     )
   }
 }

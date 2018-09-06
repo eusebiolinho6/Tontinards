@@ -28,9 +28,9 @@ class FunnelDetails extends Component {
                             <h2 className="font-bold m-b-xs">
                                 {funnel&&funnel.title}
                             </h2>
-                            <div className="m-t-md">
+                            {/**<div className="m-t-md">
                                 <h2 className="product-main-price">${funnel&&funnel.price} <small className="text-muted">Exclude Tax</small> </h2>
-                            </div>
+                            </div>*/}
                             <hr/>
 
                             <dl className="small m-t-md">

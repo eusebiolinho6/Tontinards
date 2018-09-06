@@ -17,33 +17,54 @@ class FilterFunnelMenu extends Component {
             industries: {}
             ,categories: {},
             path:'',
-            redirect:false
+            redirect:false,
+            search:''
         }
     }
     componentDidMount(){
-        const{industries, categories, params}=this.props;
+        const{industries, categories, params}=this.props,
+        propSearch=this.props.search;
+            let search='';
+          if (propSearch) {
+              const tab = propSearch.split('search=');
+              if (tab.length == 2 && tab[0] == '?') search = tab[1];
+          }
         if(industries&&categories&&industries.length&&categories.length){
             this.setState({
                 industries: this.initObj(industries, params.industries.split('-')),
                 categories: this.initObj(categories, params.categories.split('-')),
                 path: '',
-                redirect: false
+                redirect: false,
+                search:search
             });
         }
     }
 
 
     componentWillReceiveProps(nextProps){
-        const{industries, categories, params}=nextProps;
+        const{industries, categories, params}=nextProps,
+            propSearch=nextProps.search;
+            let search='';
+          if (propSearch) {
+              const tab = propSearch.split('search=');
+              if (tab.length == 2 && tab[0] == '?') search = tab[1];
+          }
         const {redirect, path} = this.state;
         if (industries && categories && industries.length && categories.length) {
             this.setState({
                 industries: this.initObj(industries, params.industries.split('-')),
                 categories: this.initObj(categories, params.categories.split('-')),
                 path: '',
-                redirect: false
+                redirect: false,
+                search:search
             });
         }
+    }
+
+    searchChange(e){
+        this.setState({search:e.target.value});
+        this.setState({path:this.buildPath(e.target.value)});
+        this.setState({redirect:true});
     }
 
     initObj(tab,p){
@@ -58,13 +79,15 @@ class FilterFunnelMenu extends Component {
        let a=this.state[type];
       if(!a[id]) a[id]={value:false, devName:devName};
        a[id].value=!a[id].value;
-       this.setState({[type]:a, path:this.buildPath()});
+       this.setState({[type]:a});
+       this.setState({path:this.buildPath(this.state.search)});
        this.setState({redirect:true});
     }
 
-    buildPath(){
+    buildPath(r){
         let pathIndustry = 'all',
-        pathCategory = 'all';
+        pathCategory = 'all',
+        search = r;
         const {industries, categories}=this.state;
 
         for (let key in categories) {
@@ -88,12 +111,13 @@ class FilterFunnelMenu extends Component {
                 pathIndustry = str;
             }
         }
-        return '/funnels/'+pathIndustry+'/'+pathCategory;
+        if(search)  return '/funnels/'+pathIndustry+'/'+pathCategory+'?search='+search;
+        return '/funnels/' + pathIndustry + '/' + pathCategory;
 
     }
     render() {
         const {industries, categories,params, funnels}=this.props;
-        const {path,redirect}=this.state;
+        const {path,redirect,search}=this.state;
         if(redirect){
             return <Redirect push to={path}/>
         }
@@ -112,7 +136,7 @@ class FilterFunnelMenu extends Component {
                         <Link to="/categories/admin" className="btn btn-primary btn-block">Manage categories</Link>
                     <div className="hr-line-dashed"></div>*/}
                 <div className="input-group">
-                <input id="value" className="form-control inputgui ng-not-empty" style={{display: 'block'}}
+                <input autoFocus={true} id="value" value={search} onChange={(e)=>this.searchChange(e)} className="form-control inputgui ng-not-empty" style={{display: 'block'}}
                     type="text" placeholder="search funnels" />
                     <span className="input-group-addon">
                     <i style={{cursor:'pointer'}} className="fa fa-search"></i>
