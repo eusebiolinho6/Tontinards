@@ -12,7 +12,6 @@ const Funnel = () => (
     <Fragment>
       <HeaderLayout />
         <Route exact path='/funnels/:industries/:categories' component={FunnelList}/>
-        <Route exact path='/funnels/admin' component={AdminPage}/>
         <Route exact path='/funnels/:funnelId/details/all' component={FunnelDetailsPage}/>
     </Fragment>
   </Switch>
