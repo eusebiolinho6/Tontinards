@@ -1,11 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import {Categories, Industries} from '../../api/funnels/methods';
+import {Meteor} from 'meteor/meteor'
 // App component - represents the whole app
 class FunnelDetails extends Component {
     constructor(props) {
         super(props);
     }
 
+    subscribe(type){
+        Meteor.call('initsubscription', {billingPlanId: "P-0N261663DH732604WINRYZDY"}, function(res){
+            console.log(res);
+        });
+    }
     render() {
         const {funnel, funnels}= this.props;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
@@ -50,7 +56,7 @@ class FunnelDetails extends Component {
 
                             <div>
                                 <div className="btn-group">
-                                    <button style={{margin:'1px'}} className="btn btn-primary btn-sm"><i className="fa fa-cart-plus"></i> Images</button>
+                                    <button style={{margin:'1px'}} onClick={this.subscribe('images')} className="btn btn-primary btn-sm"><i className="fa fa-cart-plus"></i> Images</button>
                                     <button style={{margin:'1px'}} className="btn btn-primary btn-sm "><i className="fa fa-cart-plus"></i> Images and Pdf</button>
                                     <button style={{margin:'1px'}} className="btn btn-primary btn-sm "><i className="fa fa-cart-plus"></i> Images, Pdf and Videos</button>
                                 </div>

@@ -26,3 +26,4 @@ export const Images = new FilesCollection({
 export const Funnels = new Mongo.Collection('funnels');
 export const Categories = new Mongo.Collection('categories');
 export const Industries = new Mongo.Collection('industries');
+export const Payments = new Mongo.Collection('payments');
