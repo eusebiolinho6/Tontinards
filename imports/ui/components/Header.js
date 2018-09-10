@@ -1,12 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
+import {Meteor} from 'meteor/meteor'
 // App component - represents the whole app
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state={redirect:false};
   }
-
+logout(e){
+    e.preventDefault();
+    Meteor.logout();
+    this.setState({redirect: true});
+}
   render() {
+      const {redirect}=this.state;
+         if (redirect) return <Redirect to = "/" />
+         const {user}=this.props;
     return (
         <div className="row border-bottom">
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1045'}}>
@@ -31,9 +40,10 @@ class Header extends Component {
                 </div>
                 <ul className="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="/api/auth/signout" target="_self">
-                        <i className="fa fa-sign-out"></i> Log out</a>
-                    </li>  
+                       {user? <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>
+                       {user.profile.name} </a>:<Link to="/authentication/signin">
+                       <i className="fa fa-sign-in"></i> Log In</Link>}
+                    </li>
                 </ul>
             </nav>
         </div>

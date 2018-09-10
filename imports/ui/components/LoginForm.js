@@ -1,19 +1,26 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import {Link,Redirect} from 'react-router-dom';
 import Input from './Input';
 import validateInput from '../../api/funnels/validations/login.js';
+import {Meteor} from 'meteor/meteor'
 
 // App component - represents the whole app
 class LoginForm extends Component {
   constructor(props) {
     super(props);
 this.state = {
-    identifier: '',
+    email: '',
     password: '',
     errors: {},
-    isLoading: false
+    isLoading: false,
+    redirect:false
     };
 }
+/**componentDidMount(){
+    if(Meteor.loggingIn()){
+        this.setState({redirect:true});
+    }
+}*/
     isValid() {
         const {
             errors,
@@ -29,6 +36,7 @@ this.state = {
         return isValid;
     }
 
+
   handleInputChange(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -39,20 +47,28 @@ this.state = {
 
   handleSUbmit(e) {
      e.preventDefault();
+     const {email, password}=this.state;
      if(this.isValid()){
-            console.log(this.state);
+            Meteor.loginWithPassword(email, password, (err)=>{
+                if(err){
+                  this.setState({errors: {password: 'No user with this email & password'}});
+                } else {
+                 this.setState({redirect:true});
+                }
+            })
      }
       
   }
   render() {
-      const { errors, identifier, password, isLoading } = this.state;
+      const { errors, email, password, isLoading, redirect } = this.state;
+      if(redirect) return <Redirect to="/funnels/all/all" />
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
              <div className="row">
             <div className="col-md-2" />
             <div className="ibox col-md-8 float-e-margins">
                 <div className="ibox-title">
-                    <h5>Sign in to see all your funnels
+                    <h5>Sign in to see all our funnels
                     </h5>
                 </div>
                 <div className="ibox-content">
@@ -61,15 +77,16 @@ this.state = {
 
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
-                                    field="identifier"
-                                    label="Username/Email"
-                                    value={identifier}
-                                    error={errors.identifier}
+                                    field="email"
+                                    label="Email"
+                                    value={email}
+                                    error={errors.email}
                                     onChange={(event)=> this.handleInputChange(event) }
                                     />
                                 <Input
                                     field="password"
                                     label="Pasword"
+                                    type="password"
                                     value={password}
                                     error={errors.password}
                                     onChange={(event)=> this.handleInputChange(event)}
@@ -86,7 +103,7 @@ this.state = {
                             <p>Buy one our product and signed up</p>
 
                             <p className="text-center">
-                                <Link to="/funnels"><i className="fa fa-sign-in big-icon"></i></Link>
+                                <Link to="/authentication/signup"><i className="fa fa-sign-in big-icon"></i></Link>
                             </p>
                         </div>
                     </div>
