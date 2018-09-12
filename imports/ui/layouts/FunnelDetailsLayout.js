@@ -15,11 +15,11 @@ class FunnelDetailsLayout extends Component {
   }
   render () {
     const location = {path: ['Home', 'Funnels', 'detail'], title: 'Details' };
-    const {funnel, funnels} = this.props;
+    const {funnel, funnels, user} = this.props;
     return (
         <Fragment>
             <Location location={location} />
-            <FunnelDetails funnel={funnel} />
+            <FunnelDetails user={user} funnel={funnel} />
             <FunnelList funnels={funnels}/>
         </Fragment>
       )
@@ -32,6 +32,7 @@ export default withTracker(props=>{
   Meteor.subscribe('categories');
   const funnel =Funnels.findOne({_id: toObjectId(props.funnelId)});
   return {
+    user:Meteor.user(),
     funnel: funnel,
     funnels:Funnels.find({$or:[{industry:funnel&&funnel.industry},{category:funnel&&funnel.category}],_id:{$ne:funnel&&funnel._id}})
   }

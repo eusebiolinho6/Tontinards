@@ -4,6 +4,7 @@ import Input from './Input';
 import validateInput from '../../api/funnels/validations/signup';
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
+import { toObjectId } from '../../api/funnels/methods';
 
 // App component - represents the whole app
 class SignupForm extends Component {
@@ -47,7 +48,7 @@ class SignupForm extends Component {
       e.preventDefault();
       const {email, password,username,name} = this.state;
       if(this.isValid()){
-          Accounts.createUser(Object.assign({},{profile:{name:name}},{email,password,username}), (err)=>{
+          Accounts.createUser(Object.assign({roles: ['users'], _id:toObjectId(null) },{profile:{name:name}},{email,password,username}), (err)=>{
               if(err){
                this.setState({
                    errors: {reason: err.reason}

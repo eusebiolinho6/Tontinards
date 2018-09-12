@@ -13,6 +13,20 @@
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg') format('svg');
 }
 
+.product-desc .btn.btn-sm.btn-outline:hover .spec-span {
+color:white !important;
+}
+
+#overlay-paypal {
+position: fixed;
+top: 50%;
+left: 50%;
+margin: -75px 0 0 -75px;
+}
+#overlay-paypal .fa-spin{
+  font-size: 150px;
+}
+
 /* Customize the label (the container) */
 .container-funnel-store {
   display: block;
