@@ -19,8 +19,9 @@ class FunnelLIstAdmin extends Component {
         description: '',
         industry: '',
         category:'',
-        descriptionImageUrl:'',
-        funnelImageUrl:'',
+        document:'',
+        image:'',
+        video:'',
         id: '',
         show: false
     };
@@ -36,7 +37,6 @@ class FunnelLIstAdmin extends Component {
 }
 
   handleInputChange(e) {
-      console.log(e);
       const name = e.target.name;
       const value = e.target.value;
       this.setState({
@@ -51,8 +51,9 @@ class FunnelLIstAdmin extends Component {
           category: funnel.category,
           industry: funnel.industry,
           id:funnel._id,
-          descriptionImageUrl: funnel.descriptionImageUrl,
-          funnelImageUrl: funnel.funnelImageUrl,
+          document: funnel.document,
+          image: funnel.image,
+          video: funnel.video,
           show: true
       });
   }
@@ -64,8 +65,9 @@ class FunnelLIstAdmin extends Component {
           description: '',
           industry: '',
           category: '',
-          descriptionImageUrl:'',
-          funnelImageUrl: '',
+          document:'',
+          image: '',
+          video: '',
           errors: {},
           id: '',
           isLoading: false,
@@ -73,7 +75,7 @@ class FunnelLIstAdmin extends Component {
   }
 
     render() {
-         const { show, price, title, description, industry,id, category, descriptionImageUrl, funnelImageUrl } = this.state;
+         const { show, price, title, description, industry,id, category, document, image,video } = this.state;
         const {funnels, industries,categories}=this.props;
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
@@ -89,7 +91,7 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} show={show} funnelImageUrl={funnelImageUrl} descriptionImageUrl={descriptionImageUrl} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} video={video} show={show} image={image} document={document} closeModal={()=>this.closeModal()} />
              </div>
             {funnels&&funnels.length?<div className="table-responsive">
                 <table className="table table-striped">

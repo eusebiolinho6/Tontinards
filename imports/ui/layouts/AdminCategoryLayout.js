@@ -3,8 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 import Location from '../components/Location';
 import AdminCategory from '../components/AdminCategory';
-import {Categories} from '../../api/funnels/methods'
-
+import {Categories} from '../../api/collections/'
 // App component - represents the whole app
 class AdminCategoryLayout extends Component {
   constructor(props) {

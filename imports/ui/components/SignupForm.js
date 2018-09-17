@@ -4,8 +4,7 @@ import Input from './Input';
 import validateInput from '../../api/funnels/validations/signup';
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
-import { toObjectId } from '../../api/funnels/methods';
-
+import {toObjectId} from '../../utilities/'
 // App component - represents the whole app
 class SignupForm extends Component {
   constructor(props) {

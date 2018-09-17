@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import {asyncMethodCall} from '../../utilities/shared'
+import {asyncMethodCall} from '../../utilities/'
 import { withTracker } from 'meteor/react-meteor-data';
 import CustomAlert from '../components/CustomAlert';
 

@@ -5,9 +5,8 @@ import Header from '../components/FunnelDetails';
 import Location from '../components/Location';
 import FunnelDetails from '../components/FunnelDetails';
 import FunnelList from '../components/DetailsFunnelList'
-
-import {Funnels, toObjectId} from '../../api/funnels/methods';
-
+import {toObjectId} from '../../utilities/'
+import {Funnels} from '../../api/collections/'
 // App component - represents the whole app
 class FunnelDetailsLayout extends Component {
   constructor(props) {

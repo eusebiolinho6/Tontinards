@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import {Categories, Industries} from '../../api/funnels/methods';
-import {asyncMethodCall} from '../../utilities/shared'
+import {Categories, Industries} from '../../api/collections/'
+import {checkRole} from '../../utilities/'
 import {Meteor} from 'meteor/meteor'
 import CustomAlert from './CustomAlert';
 import DownloadComponent from './DownloadComponent'
+import ModalSubscription from './ModalSubscription';
 // App component - represents the whole app
 class FunnelDetails extends Component {
     constructor(props) {
@@ -11,19 +12,22 @@ class FunnelDetails extends Component {
         this.state={
             url:'',
             message:'',
-            type:'danger'
+            type:'danger',
+            show:false
         }
     }
     clearMessage(){
         this.setState({message:''});
     }
+    closeModal(e){
+        this.setState({show:false});
+    }
     downloadFile(e, field){
     e.preventDefault();
     const {funnel, user}= this.props;
-    if(!user) {
-       return this.setState({message:"You are not  authorized", type: 'danger'});
-    }
-    asyncMethodCall('checkRoles', {userId:user._id}).then((result)=>{
+    const userId = user&&user._id,
+    isAuthorized = checkRole(['admin','paid'], userId);
+    if(!isAuthorized) return this.setState({show:true});
     if (funnel[field]) {
         const file_path = funnel[field],
             a = document.createElement('A');
@@ -32,27 +36,20 @@ class FunnelDetails extends Component {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-    } else {
-        this.setState({
-            message: 'This field does not exists in funnel'
-        })
-     }
-    }).catch((er)=>{
-        return this.setState({
-            message: "You are not  authorized",
-            type: 'danger'
-        });
-    })
+    }
+   
     }
     render() {
         const {funnel, funnels,user}= this.props;
-        const {message,type, url}=this.state;
+        const {message,type, url, show}=this.state;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
             category = Categories.findOne({_id:funnel&&funnel.category});
         return (
-            <div className="wrapper wrapper-content animated fadeInRight">
+    <div className="wrapper wrapper-content animated fadeInRight">
+
     <div className="row">
          <div className="col-lg-12">
+            <ModalSubscription userId={user&&user._id} show={show} closeModal={()=>this.closeModal()} />
             <div className="ibox product-detail">
                 <div className="ibox-content">
 
@@ -100,11 +97,11 @@ class FunnelDetails extends Component {
                 </div>
                 <div className="ibox-footer">
                             <span className="pull-right">
-                                Full stock - <i className="fa fa-clock-o"></i> 14.04.2016 10:04 pm
+                               FOP Swipe - <i className="fa fa-clock-o"></i> September, 2018
                             </span>
-                    The generated Lorem Ipsum is therefore always free
+                   The best funnels of the market
                 </div>
-                {message&&<CustomAlert clearMessage={()=> this.clearMessage()} text={message} type={type} ttl={5} />}
+                {/**message&&<CustomAlert clearMessage={()=> this.clearMessage()} text={message} type={type} ttl={5} />*/}
             </div>
 
         </div>

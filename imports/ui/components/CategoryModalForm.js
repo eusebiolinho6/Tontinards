@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom';
 import Input from './Input';
 import Upload from './Upload';
 import validateInput from '../../api/funnels/validations/categories';
-import {toObjectId, Categories} from '../../api/funnels/methods'
+import {toObjectId} from '../../utilities/'
+import {Categories} from '../../api/collections/'
 
 // App component - represents the whole app
 class CategoryModalForm extends Component {

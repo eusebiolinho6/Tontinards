@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {Industries, Categories} from '../../api/funnels/methods'
-// App component - represents the whole app
+import {Categories, Industries} from '../../api/collections/'// App component - represents the whole app
 class Tr extends Component {
     constructor(props) {
         super(props);

@@ -7,8 +7,13 @@ import Textarea from './Textarea';
 import Select from './Select';
 import Upload from './Upload';
 import validateInput from '../../api/funnels/validations/funnel';
-import {Funnels, Images, toObjectId} from '../../api/funnels/methods'
-
+import {toObjectId} from '../../utilities/'
+import {Funnels, Images, Videos, Documents} from '../../api/collections/'
+const collections = {
+    documentFile: Documents,
+    imageFile: Images,
+    videoFile: Videos
+}
 // App component - represents the whole app
 class FunnelModalForm extends Component {
   constructor(props) {
@@ -23,8 +28,9 @@ this.state = {
     isLoading: false,
     id: '',
     show:false,
-    descriptionImage:'',
-    funnelImage:''
+    imageFile:'',
+    documentFile:'',
+    videoFile: ''
     };
 }
 componentWillReceiveProps(nextProps){
@@ -42,8 +48,9 @@ componentWillReceiveProps(nextProps){
             errors: {},
             isLoading: false,
             id: '',
-            descriptionImage:'',
-            funnelImage:''
+            imageFile:'',
+            documentFile:'',
+            videoFile:''
         });
     }
     isValid() {
@@ -88,7 +95,8 @@ saveFunnel(cb){
          price,
          description,
          category,
-         industry     };
+         industry 
+        };
         
         if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
         if (data.category&&!data.category._str) data.category = toObjectId(data.category);
@@ -118,37 +126,45 @@ saveFunnel(cb){
      if(!this.isValid()){
        return ;
      }
+     const {errors}=this.state;
+     this.setState({isLoading:true});
      this.saveFunnel((err, id)=>{
         if(err){
-            console.log(err);
+            
+            this.setState({errors: {errors,...{global:err.reason}}, isLoading:false});
         } else {
         let uploads = [],
         cursor =1;
-     if (this.state.descriptionImage) uploads.push('descriptionImage');
-     if (this.state.funnelImage) uploads.push('funnelImage');  
+     if (this.state.imageFile) uploads.push('imageFile');
+     if (this.state.videoFile) uploads.push('videoFile');
+     if (this.state.documentFile) uploads.push('documentFile');  
      if (!uploads.length) return this.closeModal();
      for (let i = 0; i < uploads.length; i++) {
          const fieldName = uploads[i]; 
+         let collection = collections[fieldName];
+         if(!collection) return console.log('IMPOSSIBLE ERROR BUT WE NEED TO BE SURE');
          const file = this.state[fieldName]; 
-            const upload = Images.insert({
+            const upload = collection.insert({
             file: file,
             streams: 'dynamic',
             chunkSize: 'dynamic'
         }, false);
         upload.on('end', (err,fileObj)=> {
             if (err) {
-                console.log('Error during upload: ' + error);
+                errors[fieldName]=err&&err.message;
+                this.setState({errors});
             } else {
                 const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
-                const field = fieldName+'Url';
+                let a = fieldName.split('File');
+                const field = a[0];
                 Funnels.update(id, {$set: {[field]: link}});
-                console.log('File "' + fileObj.name + '" successfully uploaded');
-                if (cursor < uploads.length){
-                    cursor++;
-                } else {
-                    this.closeModal();
-                } 
             }
+            if(!(cursor<uploads.length)){
+                this.setState({isLoading:false});
+                if (!errors) this.closeModal();
+                return;
+            } 
+            cursor++;                 
         });
         upload.start();
      }  
@@ -158,7 +174,7 @@ saveFunnel(cb){
   render() {
 
       const {show, errors, title, price,industry,category, description, isLoading, id } = this.state;
-      const {descriptionImageUrl, funnelImageUrl, industries, categories} = this.props;
+      const {image,video, document, industries, categories} = this.props;
     return (            
 <Modal isOpen={show} className="modal-lg">
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
@@ -212,15 +228,17 @@ saveFunnel(cb){
                     <h2>Uploads</h2>
                     <br />
                     <div className="row">
-                    <Upload oldImage={descriptionImageUrl} setFile={(name,file)=>this.setFile(name, file)} name="descriptionImage" label="Upload Description Image" />
-                    < Upload oldImage={funnelImageUrl} setFile={(name, file)=>this.setFile(name, file)} name="funnelImage" label = "Upload Funnel Image" />
+                    <Upload errors={errors} type="image" oldUrl={image} setFile={(name,file)=>this.setFile(name, file)} name="imageFile" label="Upload Funnel Image" />
+                    <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = "Upload Funnel Document" />
+                    <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Funnel Video" />
                     </div>
+                    {errors.global&& <span style={{color: '#ed5565', fontSize:'15px'}} className="error-block">{errors.global}</span>}
         </div>
     </ModalBody>
      
     <ModalFooter>
       <Button onClick={()=> this.closeModal()}>Close</Button>
-      <Button type="submit" bsStyle="primary">Save</Button>
+      <Button type="submit" disabled={isLoading} bsStyle="primary">Save {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
     </ModalFooter>
     </form>
   </Modal>

@@ -3,7 +3,6 @@ import isEmpty from 'lodash/isEmpty';
 
 export default function validateInput(data) {
     let errors = {};
-console.log('yeah');
     if (Validator.isEmpty(data.username)) {
         errors.username = 'This field is required';
     }

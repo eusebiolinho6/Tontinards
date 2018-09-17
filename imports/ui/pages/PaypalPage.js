@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Meteor} from 'meteor/meteor';
 import {Redirect} from 'react-router-dom'
 import { withTracker } from 'meteor/react-meteor-data';
-import {asyncMethodCall} from '../../utilities/shared'
+import {asyncMethodCall} from '../../utilities/'
 import CustomAlert from '../components/CustomAlert';
 
 // App component - represents the whole app

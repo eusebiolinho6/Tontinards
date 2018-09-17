@@ -2,8 +2,7 @@ import React, { Component} from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Link} from 'react-router-dom';
-import {Industries, getIndustry, Categories} from '../../api/funnels/methods'
-
+import {Categories,Industries} from '../../api/collections/'
 // Task component - represents a single todo item
  export default class FunnelItem extends Component {
     render() {

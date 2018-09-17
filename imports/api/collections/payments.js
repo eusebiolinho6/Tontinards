@@ -4,7 +4,7 @@ import {
 import {
   Mongo
 } from 'meteor/mongo';
-import {Payments} from './collections';
+export const Payments = new Mongo.Collection('payments');
 
 
 // This code only runs on the server

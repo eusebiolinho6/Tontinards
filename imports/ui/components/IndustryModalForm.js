@@ -7,7 +7,8 @@ import Textarea from './Textarea';
 import Select from './Select';
 import Upload from './Upload';
 import validateInput from '../../api/funnels/validations/industries';
-import {Industry, toObjectId, Industries} from '../../api/funnels/methods'
+import {toObjectId} from '../../utilities/'
+import {Industries} from '../../api/collections/'
 
 // App component - represents the whole app
 class IndustryModalForm extends Component {

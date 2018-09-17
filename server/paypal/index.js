@@ -1,6 +1,6 @@
 import paypal from 'paypal-rest-sdk';
 import {Meteor} from 'meteor/meteor';
-import {Payments} from '../../imports/api/funnels/server/collections'
+import {Payments} from '../../imports/api/collections/'
 import { EJSON } from 'meteor/ejson'
 const bound = Meteor.bindEnvironment((callback) => {callback();});
 const plans = [{
@@ -28,13 +28,9 @@ Meteor.methods({
              var isoDate = new Date();
              isoDate.setMonth(isoDate.getMonth() + 1);
              isoDate.toISOString().slice(0, 19) + 'Z';
-             var plan = plans.find((elt) => {
-                return data&&data.name&&elt.name == data.name
-                 }),
-                 name = plan&&plan.name,
-                 billingPlanId=plan&&plan.billingPlanId,
+               const billingPlanId = "P-64L377302M0040210ZYB6OAQ",
                  billingAgreementAttributes = {
-                     "name": "Subscription to "+name+" in FOPSwipe" ,
+                     "name": "Subscription to FOPSwipe " ,
                      "description": "An Agreement for billing on FOPSwipe",
                      "start_date": isoDate,
                      "plan": {
@@ -82,8 +78,8 @@ Meteor.methods({
     return new Promise(function(resolve, reject){
         paypal.billingAgreement.execute(data.token, {}, (error, billingAgreement)=>{
            bound(() => {
-              if (error) {
-               return reject(new Meteor.Error(error||'No Initiated Payment!'));
+              if (error||billingAgreement.state!='Active') {
+               return reject(new Meteor.Error(error||'No Suffiscient Funds to subscribe!'));
             } else {
                 let user = Meteor.users.findOne(data.userId),
                     roles = user&&user.roles || [];
@@ -92,13 +88,8 @@ Meteor.methods({
                 if (!payment) return reject(new Meteor.Error('No Initiated Payment!'));
                 if (payment.user !=user._id) return reject(new Meteor.Error('Not the same user who initiated the payment'));
                 Payments.update({_id:payment._id},{$set:{state:'confirmed', nextBillingDate:billingAgreement.agreement_details.next_billing_date, billingAgreementId:billingAgreement.id}});
-                const plan = plans.find((elt)=>{
-                    return payment.billingPlanId == elt.billingPlanId
-                }),
-                role=plan&&plan.name;
-                if (!role) return reject(new Meteor.Error('Can not get the returned plan!'));
-                roles=[role];
-                Meteor.users.update({_id:user._id}, {$set:{roles: roles}});
+                const role="PAID"
+                Meteor.users.update({_id:user._id}, {$set:{'profile.role':role}});
                return resolve(billingAgreement);
             }
            });

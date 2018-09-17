@@ -1,48 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import {Meteor} from 'meteor/meteor'
-import { asyncMethodCall } from '../../utilities/shared';
+import { checkRole } from '../../utilities/';
 // App component - represents the whole app
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state={redirect:false, subscribed:false};
+    this.state={redirect:false};
   }
 logout(e){
     e.preventDefault();
     Meteor.logout();
     this.setState({redirect: true});
 }
-componentWillReceiveProps(nextProps){
-    const userId= nextProps.user&&nextProps.user._id;
-        asyncMethodCall('checkRoles', {
-                userId: userId
-            }).then((result) => {
-                this.setState({subscribed:true});
-            }).catch(()=>{
-                this.setState({
-                    subscribed: false
-                })
-            })
-}
-componentDidMount() {
-    const userId = this.props.user && this.props.user._id;
-    asyncMethodCall('checkRoles', {
-        userId: userId
-    }).then((result) => {
-        this.setState({
-            subscribed: true
-        });
-    }).catch(() => {
-        this.setState({
-            subscribed: false
-        })
-    })
-}
   render() {
-      const {redirect, subscribed}=this.state;
+      const {redirect, hasAccount}=this.state;
          if (redirect) return <Redirect to = "/" />
          const {user}=this.props;
+         console.log(user&&user.profile);
     return (
         <div className="row border-bottom">
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1045'}}>
@@ -66,10 +41,6 @@ componentDidMount() {
                     */}
                 </div>
                 <ul className="nav navbar-top-links navbar-right">
-                <li>
-                    {!subscribed&&<Link className="btn btn-sm" to="/pricing">
-                       Subscribe Now</Link>}
-                </li>
                     <li>
                        {user? <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>
                        {user.profile.name} </a>:<Link to="/authentication/signin">

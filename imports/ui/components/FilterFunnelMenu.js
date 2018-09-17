@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom';
 import IcheckCheckbox from './IcheckCheckbox'
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import {Categories, Industries, toObjectId} from '../../api/funnels/methods'
+import {toObjectId} from '../../utilities/'
+import {Categories, Industries} from '../../api/collections/'
 import PropTypes from 'prop-types';
 import { StickyContainer, Sticky } from 'react-sticky';
 

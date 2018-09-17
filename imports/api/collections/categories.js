@@ -4,11 +4,24 @@ import {
 import {
   Mongo
 } from 'meteor/mongo';
-import {Categories} from './collections';
+import {checkRole} from '../../utilities/'
 
-
+export const Categories = new Mongo.Collection('categories');
 // This code only runs on the server
 // Only publish tasks that are public or belong to the current user
+
+Meteor.methods({
+  'categories.insert'(data) { 
+    Categories.insert(data);
+  },
+  'categories.update'(categoryId, doc) {
+   // const _id = new Mongo.ObjectID(categoryId);
+    Categories.update(categoryId, {$set: data}); 
+  }, 'categories.remove'(categoryId) {
+    // const _id = new Mongo.ObjectID(categoryId);
+    Categories.remove(categoryId);
+  }
+});
 
 if (Meteor.isServer) {
   Meteor.publish('categories', function categoriesPublication() {
@@ -22,15 +35,13 @@ if (Meteor.isServer) {
 
     Categories.allow({
       insert: function (doc) {
-        return true;
+        return checkRole(['admin']);
       },
       update: function (industryId, doc) {
-        return true;
+        return checkRole(['admin']);
       },
       remove: function (industryId) {
-        return true
+        return checkRole('admin')
       }
     });
 }
-
-exports.Categories= Categories;
