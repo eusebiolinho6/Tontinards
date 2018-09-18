@@ -15,12 +15,12 @@ import {Categories,Industries} from '../../api/collections/'
             <div className="ibox">
                 <div className="ibox-content product-box active">
 
-                    <div className={!funnel.descriptionImageUrl?'product-imitation':''}>
-                        {funnel&&funnel.descriptionImageUrl ? <img width="100%" src={funnel.descriptionImageUrl} /> : '[ Image ]'}
+                    <div className={!funnel.image?'product-imitation':''}>
+                        {funnel&&funnel.image ? <img width="100%" src={funnel.image} /> : '[ Image ]'}
                     </div>
                     <div className="product-desc">
-                                {/**<span className="product-price">
-                                    ${funnel&&funnel.price}</span>*/}
+                                {funnel&&!Number(funnel.price)&& <span className="product-price">
+                                   FREE</span>}
                         <Link to={{pathname:'/funnels/'+funnel._id._str +'/details/all'}} className="product-name"> {funnel.title}</Link>
                         <h5 className="text-muted">{industry&&industry.name||'No Industry'}, {category&&category.name||'No Category'}</h5>
                         <div className="small m-t-xs">

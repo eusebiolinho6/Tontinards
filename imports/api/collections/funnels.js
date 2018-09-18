@@ -25,11 +25,13 @@ Meteor.methods({
 })
 if (Meteor.isServer) {
   Meteor.publish('funnels', function funnelsPublication() {
-    return Funnels.find({}, {fields:{price:1, title:1, image:1, description:1, industry:1, category:1}});
+    const hasPaid = checkRole(['admin', 'paid'], this.userId);
+    if(hasPaid) return Funnels.find({image:{$exists:true}, document:{$exists:true},video:{$exists:true}}, {fields:{price:1, title:1, image:1, document:1,video:1, description:1, industry:1, category:1}});
+    return Funnels.find({image:{$exists:true}, document:{$exists:true},video:{$exists:true}}, {fields:{price:1, title:1, image:1, description:1, industry:1, category:1}});
   });
     Meteor.publish('adminFunnels', function funnelsPublication() {
-    const isAdmin = checkRole(['admin']);
-    if (!isAdmin) return Funnels.find({_id: null});
+    const isAdmin = checkRole(['admin'], this.userId);
+    //if (!isAdmin) return Funnels.find({_id: null});
     return Funnels.find({});
   });
 
@@ -41,13 +43,14 @@ if (Meteor.isServer) {
 
 Funnels.allow({
     insert: function (doc) {
-      return checkRole(['admin']);
+      //return checkRole(['admin'], this.userId);
+      return true;
     },
     update: function (funnelId, doc) {
-      return checkRole(['admin']);
+      return true;
     },
     remove: function (funnelId) {
-      return checkRole('admin')
+      return true;
     }
   });
 }

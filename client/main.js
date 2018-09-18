@@ -10,6 +10,7 @@ import '../imports/startup/accounts-config.js';
 import Authentication from '../imports/ui/routes/Authentication';
 import PaypalPage from '../imports/ui/pages/PaypalPage';
 import PagePlans from '../imports/ui/pages/PagePlans';
+import NotFoundPage from '../imports/ui/pages/NotFoundPage';
 
 Meteor.startup(() => {
   ['fixed-sidebar', 'mini-navbar', 'fixed-nav', 'pace-done', 'skin-1'].forEach(klass => document.body.classList.add(klass));
@@ -19,10 +20,11 @@ Meteor.startup(() => {
         <Switch>
           <Route exact path='/' component={App} />
           <Route path='/funnels' component={Funnel} />
-          <Route path='/pricing' component={PagePlans} />
+          {/**<Route path='/pricing' component={PagePlans} />*/}
           <Route exact path='/paypal' component={PaypalPage} />
           <Route path='/admin' component={Admin} />
           <Route path='/authentication' component={Authentication} />
+          <Route path="*" component={NotFoundPage} />
         </Switch>
     </div>
     

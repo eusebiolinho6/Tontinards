@@ -44,7 +44,6 @@ initSubscription(e) {
             type: 'danger',
             message: typeof er.error == "object" ? 'Initialisation fails, please try again' : er.error || 'Initialisation fails, please try again',
         });
-        console.log(er);
     });
 }
     render() {

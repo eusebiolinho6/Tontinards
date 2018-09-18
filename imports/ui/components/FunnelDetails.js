@@ -13,21 +13,29 @@ class FunnelDetails extends Component {
             url:'',
             message:'',
             type:'danger',
-            show:false
+            show:false,
+            field: ''
         }
     }
     clearMessage(){
         this.setState({message:''});
     }
-    closeModal(e){
+    closeModal(){
         this.setState({show:false});
     }
-    downloadFile(e, field){
-    e.preventDefault();
+    downloadFile(f){
     const {funnel, user}= this.props;
-    const userId = user&&user._id,
-    isAuthorized = checkRole(['admin','paid'], userId);
+    const userId = Meteor.userId();
+    let roles = ['admin'];
+    if(f=='image'){
+        roles = ['all'];
+    } else {
+        roles.push('paid');
+    }
+    const isAuthorized = checkRole(roles, userId);
+    if(f) this.setState({field:f});
     if(!isAuthorized) return this.setState({show:true});
+    let field = f||this.state.field;
     if (funnel[field]) {
         const file_path = funnel[field],
             a = document.createElement('A');
@@ -40,7 +48,7 @@ class FunnelDetails extends Component {
    
     }
     render() {
-        const {funnel, funnels,user}= this.props;
+        const {funnel,user}= this.props;
         const {message,type, url, show}=this.state;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
             category = Categories.findOne({_id:funnel&&funnel.category});
@@ -49,14 +57,14 @@ class FunnelDetails extends Component {
 
     <div className="row">
          <div className="col-lg-12">
-            <ModalSubscription userId={user&&user._id} show={show} closeModal={()=>this.closeModal()} />
+            <ModalSubscription downloadFile={()=>this.downloadFile()} userId={user&&user._id} show={show} closeModal={()=>this.closeModal()} />
             <div className="ibox product-detail">
                 <div className="ibox-content">
 
                     <div className="row">
                         <div className="col-md-5">
-                                    <div className={funnel&&!funnel.descriptionImageUrl?'image-imitation':''}>
-                                        {funnel&&funnel.descriptionImageUrl ? <img width='100%' src={funnel&&funnel.descriptionImageUrl} /> : '[ Image ]'}
+                                    <div className={funnel&&!funnel.image?'image-imitation':''}>
+                                        {funnel&&funnel.image ? <img width='100%' src={funnel&&funnel.image} /> : '[ Image ]'}
                                     </div>
                         </div>
                         <div className="col-md-7">
@@ -84,11 +92,11 @@ class FunnelDetails extends Component {
                             
                             <hr />
 
-                            <div>
+                            <div style={{position: 'absolute', bottom:'0px'}} >
                                 <div className="btn-group">
-                                    <button style={{margin:'1px'}} type="button" onClick={(e)=>this.downloadFile(e, 'funnelImageUrl')} className="btn btn-primary btn-sm"><i className="fa fa-download"></i> IMAGE</button>
-                                    <button style={{margin:'1px'}} type="button" onClick={(e)=>this.downloadFile(e,'funnelPdfUrl')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> PDF</button>
-                                    <button style={{margin:'1px'}} type="button" onClick={(e)=>this.downloadFile(e, 'funnelVideoUrl')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> VIDEO</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('image')} className="btn btn-primary btn-sm"><i className="fa fa-download"></i> IMAGE</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('document')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> PDF</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('video')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> VIDEO</button>
                                 </div>
                             </div>
                         </div>

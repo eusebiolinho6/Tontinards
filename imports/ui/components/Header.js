@@ -17,7 +17,6 @@ logout(e){
       const {redirect, hasAccount}=this.state;
          if (redirect) return <Redirect to = "/" />
          const {user}=this.props;
-         console.log(user&&user.profile);
     return (
         <div className="row border-bottom">
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1045'}}>

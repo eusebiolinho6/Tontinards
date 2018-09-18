@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from './Input';
-import {asyncMethodCall} from '../../utilities/'
+import {asyncMethodCall, checkRole} from '../../utilities/'
 import ValidateLogin from '../../api/funnels/validations/login';
 import ValidateSignup from '../../api/funnels/validations/signup';
 import {Meteor} from 'meteor/meteor'
@@ -31,9 +31,7 @@ this.state = {
     }
 }*/
 initSubscription() {
-    const {
-        userId
-    } = this.props;
+    const userId = Meteor.userId();
     let {isLoading}=this.state;
     if(!isLoading){
         isLoading=true;
@@ -76,9 +74,7 @@ toggleView(e){
     }
 
     closeModal() {
-        this.props.closeModal({
-            show: false
-        });
+        this.props.closeModal();
         this.setState({
             email:'',
             password: '',
@@ -100,17 +96,28 @@ toggleView(e){
 
   handleSUbmit(e) {
      e.preventDefault();
-    const {email, password,username,name, isLogin, errors} = this.state;
-    const {userId}=this.props;
-    return this.initSubscription();
+    const {email, password,username,name, isLogin} = this.state;
+    let {errors}=this.state;
+    let userId=Meteor.userId();
+    if(userId) return this.initSubscription();
      if(this.isValid()){
          this.setState({isLoading: true});
          if(isLogin){
             Meteor.loginWithPassword(email, password, (err)=>{
                 if(err){
-                  this.setState({errors: {password: 'No user with this email & password'}});
+                  errors.password ='No user with this email & password';
+                  this.setState({errors});
                 } else {
-                    this.initSubscription();
+                    userId=Meteor.userId();
+                      const isAuthorized = checkRole(['admin', 'paid'], userId);
+                      if (isAuthorized) {
+                          setTimeout(() => {
+                            this.props.downloadFile();
+                            return this.closeModal();
+                          }, 500);
+                      } else {
+                       return this.initSubscription();
+                      }
                 }
             })
          } else {
@@ -205,7 +212,7 @@ return (
         </ModalBody>
         
         <ModalFooter>
-        <Button onClick={()=> this.closeModal()}>Close</Button>
+        <Button disabled={isLoading} onClick={()=> this.closeModal()}>Close {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
         <Button type="submit" disabled={isLoading} bsStyle="primary">{userId? 'Purchase to FOPSwipe':(isLogin?'Login and Purchase':'Sign Up and Purchase')} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
         </ModalFooter>
         </form>

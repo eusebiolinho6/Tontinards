@@ -23,7 +23,7 @@ class AdminLayout extends Component {
 }
 
 export default withTracker(props=>{
-  Meteor.subscribe('funnels');
+  Meteor.subscribe('adminFunnels');
   Meteor.subscribe('industries');
   Meteor.subscribe('categories');
 

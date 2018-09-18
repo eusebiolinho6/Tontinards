@@ -41,9 +41,11 @@ Meteor.methods({
                      }
                  };
                  let user = Meteor.users.findOne(data.userId);
-                 if(!user) return reject(Meteor.Error('Signed in to purchase'));
-                 if (!billingPlanId) return reject(Meteor.Error('No Plan for this name'));
+
+                 if(!user) return reject(new Meteor.Error('Signed in to purchase'));
+                 if (!billingPlanId) return reject(new Meteor.Error('No Plan for this name'));
              // Use activated billing plan to create agreement
+
             paypal.billingAgreement.create(billingAgreementAttributes, (err, res) => {
                 bound(()=>{
                     if (err) {
@@ -66,7 +68,7 @@ Meteor.methods({
                             billingPlanId: billingPlanId,
                             billingAgreementId: tmpId,
                             user: user._id
-                        })
+                        });
                         return resolve(res);
 
                     }

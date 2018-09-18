@@ -15,14 +15,9 @@ exports.asyncMethodCall = (methodName, args) =>{
         });
     });
 }
-exports.checkRole = (roles, id)=>{
-    let userId="";
-    if(Meteor.isServer&&!id){
-        userId = this.userId;
-    } else {
-        userId = id
-    }
-
+exports.checkRole = (roles, userId)=>{
+    if(!Array.isArray(roles)) return false; 
+    if(roles.indexOf('all') !=-1) return true;
    let user= Meteor.users.findOne(userId);
    if(!user) return false;
     const currentRole = user.profile.role;

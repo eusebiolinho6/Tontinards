@@ -34,8 +34,8 @@ this.state = {
     };
 }
 componentWillReceiveProps(nextProps){
-      const {show, title, price,industry, category, description, isLoading, id } = nextProps;
-      this.setState( {show, title, price,industry, category, description, isLoading, id });
+      const {show, title, price,industry, category, description, id } = nextProps;
+      this.setState( {show, title, price,industry, category, description, id });
 }
     closeModal(){
         this.props.closeModal({show: false});
@@ -161,7 +161,7 @@ saveFunnel(cb){
             }
             if(!(cursor<uploads.length)){
                 this.setState({isLoading:false});
-                if (!errors) this.closeModal();
+                if (!Object.keys(errors).length) this.closeModal();
                 return;
             } 
             cursor++;                 
@@ -237,7 +237,7 @@ saveFunnel(cb){
     </ModalBody>
      
     <ModalFooter>
-      <Button onClick={()=> this.closeModal()}>Close</Button>
+      <Button disabled={isLoading} onClick={()=> this.closeModal()}>Close {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
       <Button type="submit" disabled={isLoading} bsStyle="primary">Save {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
     </ModalFooter>
     </form>

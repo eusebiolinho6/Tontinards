@@ -16,11 +16,11 @@ this.state = {
     redirect:false
     };
 }
-/**componentDidMount(){
-    if(Meteor.loggingIn()){
-        this.setState({redirect:true});
+    componentDidMount(){
+        if(Meteor.loggingIn()){
+            this.setState({redirect:true});
+        }
     }
-}*/
     isValid() {
         const {
             errors,
@@ -65,15 +65,15 @@ this.state = {
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
              <div className="row">
-            <div className="col-md-2" />
-            <div className="ibox col-md-8 float-e-margins">
+            <div className="col-md-3" />
+            <div className="ibox col-md-6 float-e-margins">
                 <div className="ibox-title">
-                    <h5>Sign in to see all our funnels
+                    <h5>Log In to FOPSwipe
                     </h5>
                 </div>
                 <div className="ibox-content">
                     <div className="row">
-                        <div className="col-sm-6 b-r"><h3 className="m-t-none m-b">Sign in</h3>
+                        <div className="col-sm-12"><h3 className="m-t-none m-b">Sign in</h3>
 
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
@@ -97,14 +97,6 @@ this.state = {
                                     <label> <input type="checkbox" /> Remember me </label>
                                 </div>
                             </form>
-                        </div>
-                        <div className="col-sm-6"><h4>Not a member?</h4>
-
-                            <p>Buy one our product and signed up</p>
-
-                            <p className="text-center">
-                                <Link to="/authentication/signup"><i className="fa fa-sign-in big-icon"></i></Link>
-                            </p>
                         </div>
                     </div>
                 </div>
