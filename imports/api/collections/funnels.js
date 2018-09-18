@@ -31,7 +31,7 @@ if (Meteor.isServer) {
   });
     Meteor.publish('adminFunnels', function funnelsPublication() {
     const isAdmin = checkRole(['admin'], this.userId);
-    //if (!isAdmin) return Funnels.find({_id: null});
+    if (!isAdmin) return Funnels.find({_id: null});
     return Funnels.find({});
   });
 
@@ -43,14 +43,13 @@ if (Meteor.isServer) {
 
 Funnels.allow({
     insert: function (doc) {
-      //return checkRole(['admin'], this.userId);
-      return true;
+      return checkRole(['admin'], this.userId);
     },
     update: function (funnelId, doc) {
-      return true;
+      return checkRole(['admin'], this.userId);
     },
     remove: function (funnelId) {
-      return true;
+      return checkRole(['admin'], this.userId);
     }
   });
 }
