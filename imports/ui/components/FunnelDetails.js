@@ -27,7 +27,7 @@ class FunnelDetails extends Component {
     const {funnel, user}= this.props;
     const userId = Meteor.userId();
     let roles = ['admin'];
-    if(f=='image'){
+    if (f == 'image' || !Number(funnel&&funnel.price)) {
         roles = ['all'];
     } else {
         roles.push('paid');

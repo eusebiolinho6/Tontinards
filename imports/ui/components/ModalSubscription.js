@@ -106,7 +106,7 @@ toggleView(e){
             Meteor.loginWithPassword(email, password, (err)=>{
                 if(err){
                   errors.password ='No user with this email & password';
-                  this.setState({errors});
+                  this.setState({errors:errors, isLoading:false});
                 } else {
                     userId=Meteor.userId();
                       const isAuthorized = checkRole(['admin', 'paid'], userId);
@@ -124,7 +124,8 @@ toggleView(e){
             Accounts.createUser({profile:{name:name, role:"FREE"}, email,password,username}, (err)=>{
               if(err){
                this.setState({
-                   errors: {reason: err.reason}
+                   errors: {reason: err.reason},
+                   isLoading:false
                });
               }else {
                   this.initSubscription();
