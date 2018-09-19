@@ -34,14 +34,14 @@ if (Meteor.isServer) {
   });
 
     Categories.allow({
-      insert: function (doc) {
-        return checkRole(['admin'], this.userId);
+      insert: function (userId) {
+     return checkRole(['admin'], userId);
       },
-      update: function (industryId, doc) {
-        return checkRole(['admin'], this.userId);
+      update: function (userId) {
+     return checkRole(['admin'], userId);
       },
-      remove: function (industryId) {
-        return checkRole(['admin'], this.userId)
+      remove: function (userId) {
+     return checkRole(['admin'], userId);
       }
     });
 }

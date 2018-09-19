@@ -28,14 +28,14 @@ export const Images = new FilesCollection({
 
 if (Meteor.isServer) {
   Images.allow({
-    insert: function() {
-      return checkRole(['admin'], this.userId);
+    insert: function(userId) {
+     return checkRole(['admin'], userId);
     },
     update: function() {
-      return checkRole(['admin'], this.userId);
+     return checkRole(['admin'], userId);
     },
     remove: function() {
-      return checkRole(['admin'], this.userId);
+     return checkRole(['admin'], userId);
     }
   });
 }

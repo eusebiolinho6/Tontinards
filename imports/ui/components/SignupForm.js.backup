@@ -50,7 +50,7 @@ class SignupForm extends Component {
           Accounts.createUser(Object.assign({roles: ['users'], _id:toObjectId(null) },{profile:{name:name}},{email,password,username}), (err)=>{
               if(err){
                this.setState({
-                   errors: {reason: err.reason}
+                   errors: {reason: err.error}
                });
               }else {
                   Meteor.loginWithPassword(email,password,(err)=>{
@@ -123,7 +123,7 @@ class SignupForm extends Component {
                                     
                                 <div>
                                     <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
-                                    {errors.reason && <span style={{color: '#ed5565'}} className="error-block">{errors.reason}</span>}
+                                    {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
                                 </div>
                             </form>
                     </div>

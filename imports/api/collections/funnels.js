@@ -29,9 +29,12 @@ if (Meteor.isServer) {
     if(hasPaid) return Funnels.find({image:{$exists:true}, document:{$exists:true},video:{$exists:true}}, {fields:{price:1, title:1, image:1, document:1,video:1, description:1, industry:1, category:1}});
     return Funnels.find({image:{$exists:true}, document:{$exists:true},video:{$exists:true}}, {fields:{price:1, title:1, image:1, description:1, industry:1, category:1}});
   });
+  Meteor.publish('freeFunnels', function funnelsFreePublication(){
+    return Funnels.find({price:'0'}, {fields:{price:1, title:1, image:1, document:1,video:1, description:1, industry:1, category:1}})
+  });
     Meteor.publish('adminFunnels', function funnelsPublication() {
     const isAdmin = checkRole(['admin'], this.userId);
-   //if (!isAdmin) return Funnels.find({_id: null});
+   if (!isAdmin) return Funnels.find({_id: null});
     return Funnels.find({});
   });
 
@@ -42,15 +45,14 @@ if (Meteor.isServer) {
   });
 
 Funnels.allow({
-    insert: function (doc) {
-      //return checkRole(['admin'], this.userId);
-     return checkRole(['admin'], this.userId);
+    insert: function (userId) {
+     return checkRole(['admin'], userId);
     },
-    update: function (funnelId, doc) {
-      return checkRole(['admin'], this.userId);
+    update: function (userId) {
+     return checkRole(['admin'], userId);
     },
-    remove: function (funnelId) {
-      return checkRole(['admin'], this.userId);
+    remove: function (userId) {
+     return checkRole(['admin'], userId);
     }
   });
 }

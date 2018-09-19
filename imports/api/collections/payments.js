@@ -19,15 +19,6 @@ if (Meteor.isServer) {
       _id: id
     });
   });
-
-Payments.allow({
-    insert: function (doc) {
-    return this.userId ? true:false
-    },
-    update: function (paymentId, doc) {
-    return this.userId ? true : false
-    }
-});
 }
 
 exports.Payments= Payments;

@@ -1,6 +1,6 @@
 import paypal from 'paypal-rest-sdk';
 import {Meteor} from 'meteor/meteor';
-import {Payments} from '../../imports/api/collections/'
+import {Payments, Funnels} from '../../imports/api/collections/'
 import { EJSON } from 'meteor/ejson'
 const bound = Meteor.bindEnvironment((callback) => {callback();});
 const plans = [{
@@ -74,6 +74,14 @@ Meteor.methods({
                     }
                 })
             });
+        })
+    },
+    'getFunnelLinks': (data)=>{
+        return new Promise((resolve, reject)=>{
+            if(!data||!data.funnelId) return reject(new Meteor.Error('User unauthorized'));
+           let funnel = Funnels.findOne({_id:data.funnelId});
+           if(funnel) return resolve({document:funnel.document, video:funnel.video});
+           return reject(new Meteor.Error('User unauthorized'));
         })
     },
 'subscribeToFunnel' : (data) => {

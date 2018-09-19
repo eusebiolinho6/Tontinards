@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Categories, Industries} from '../../api/collections/'
-import {checkRole} from '../../utilities/'
+import {checkRole, asyncMethodCall} from '../../utilities/'
 import {Meteor} from 'meteor/meteor'
 import CustomAlert from './CustomAlert';
 import DownloadComponent from './DownloadComponent'
@@ -17,8 +17,25 @@ class FunnelDetails extends Component {
             type:'danger',
             show:false,
             field: '',
-            showLink: false
+            showLink: false,
+            links: {}
         }
+    }
+    componentDidUpdate(){
+        const {funnel}=this.props;
+            if (!this.state.links.video && !this.state.links.document) {
+                if (!Number(funnel && funnel.price)) {
+                    asyncMethodCall('getFunnelLinks', {
+                        funnelId: funnel && funnel._id
+                    }).then((r) => {
+                        this.setState({
+                            links: r
+                        });
+                    }).catch((e) => {
+                        console.error(e.error, "error");
+                    })
+                }
+            }
     }
     clearMessage(){
         this.setState({message:''});
@@ -29,8 +46,9 @@ class FunnelDetails extends Component {
     downloadFile(f){
     const {funnel, user}= this.props;
     const userId = Meteor.userId();
+    const {links}= this.state;
     let roles = ['admin'];
-    if (f == 'image' || !Number(funnel&&funnel.price)) {
+    if (f == 'image' || !Number(funnel && funnel.price)) {
         roles = ['all'];
     } else {
         roles.push('paid');
@@ -39,12 +57,12 @@ class FunnelDetails extends Component {
     if(f) this.setState({field:f});
     if(!isAuthorized) return this.setState({show:true});
     let field = f||this.state.field;
-    if (funnel[field]) {
+    if (funnel[field]||links[field]) {
         this.setState({showLink:true});
         setTimeout(() => {
            this.setState({showLink:false}); 
         }, 10000);
-        const file_path = funnel[field],
+        const file_path = funnel[field]||links[field],
             a = document.createElement('A');
         a.href = file_path;
         a.download = file_path.substr(file_path.lastIndexOf('/') + 1);
@@ -56,7 +74,7 @@ class FunnelDetails extends Component {
     }
     render() {
         const {funnel,user}= this.props;
-        const {message,type, url, show, field, showLink}=this.state;
+        const {message, type, url, show, field, showLink}=this.state;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
             category = Categories.findOne({_id:funnel&&funnel.category});
         return (
@@ -67,9 +85,10 @@ class FunnelDetails extends Component {
             <ModalSubscription downloadFile={()=>this.downloadFile()} userId={user&&user._id} show={show} closeModal={()=>this.closeModal()} />
             <div className="ibox product-detail">
                 <div className="ibox-content">
-
                     <div className="row">
                         <div className="col-md-5">
+                        <span className="product-price">
+                                   FREE</span>
                                     <div className={funnel&&!funnel.image?'image-imitation':''}>
                                         {funnel&&funnel.image ? <img width='100%' src={funnel&&funnel.image} /> : '[ Image ]'}
                                     </div>

@@ -130,8 +130,8 @@ saveFunnel(cb){
      this.setState({isLoading:true});
      this.saveFunnel((err, id)=>{
         if(err){
-            
-            this.setState({errors: {errors,...{global:err.reason}}, isLoading:false});
+            const a ={global:err.error};
+            this.setState({errors: {...errors,...a}, isLoading:false});
         } else {
         let uploads = [],
         cursor =1;

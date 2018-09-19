@@ -62,7 +62,7 @@ initSubscription(arg) {
         }
     }).catch((er)=> {
         this.setState({
-            errors: {reason: er.reason}
+            errors: {reason: er.error}
         });
     });
 }
@@ -150,7 +150,7 @@ initSubscription(arg) {
             Accounts.createUser({profile:{name:name, role:"FREE"}, email,password,username}, (err)=>{
               if(err){
                this.setState({
-                   errors: {reason: err.reason},
+                   errors: {reason: err.error},
                    isLoading:false
                });
               }else {
@@ -240,7 +240,7 @@ return (
                 error={errors.confirmPassword}
                 onChange={(event)=> this.handleInputChange(event) }
                 />
-            {errors.reason && <span style={{color: '#ed5565'}} className="error-block">{errors.reason}</span>}
+            {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
           <span>Already member ? <a href="#" onClick={(e)=>this.toggleView(e, 0)}>Sign In</a></span>
                   
         </div>}

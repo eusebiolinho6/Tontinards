@@ -44,7 +44,7 @@ class PaypalPage extends Component {
        this.setState({
          isLoading: false,
          type: 'danger', 
-         message: typeof er.error == "object" ? 'Subscription fails, please check your connexion try again later' : er.error || 'SSubscription fails, please check your connexion try again later',
+         message: er.error
        });
     })
   }

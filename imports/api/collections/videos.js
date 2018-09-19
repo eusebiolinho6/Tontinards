@@ -29,14 +29,14 @@ export const Videos = new FilesCollection({
 
 if (Meteor.isServer) {
   Videos.allow({
-    insert: function() {
-      return checkRole(['admin'], this.userId);
+    insert: function(userId) {
+     return checkRole(['admin'], userId);
     },
-    update: function() {
-      return checkRole(['admin'], this.userId);
+    update: function(userId) {
+     return checkRole(['admin'], userId);
     },
-    remove: function() {
-      return checkRole(['admin'], this.userId);
+    remove: function(userId) {
+     return checkRole(['admin'], userId);
     }
   });
 }
