@@ -21,7 +21,7 @@ class PaypalPage extends Component {
   }
   returnLink(){
    let link= localStorage.getItem("currentFunnelUrl") || "/funnels/all/all";
-   localStorage.clear("currentFunnelUrl");
+   //localStorage.clear("currentFunnelUrl");
    return link;
   }
   subscribe(){
@@ -41,11 +41,12 @@ class PaypalPage extends Component {
         message: 'Subscription succeeds, welcome again.',
         
       });
-    }).catch((er)=>{
+    }).catch((err)=>{
+      console.error(err);
        this.setState({
          isLoading: false,
          type: 'danger', 
-         message: er.error
+         message: err.message||err.reason
        });
     })
   }

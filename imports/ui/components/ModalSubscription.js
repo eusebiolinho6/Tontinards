@@ -58,9 +58,9 @@ initSubscription(arg) {
                 } 
             });
         }
-    }).catch((er)=> {
+    }).catch((err)=> {
         this.setState({
-            errors: {reason: er.error}
+            errors: {error: err.message||err.reason}, isLoading:false
         });
     });
 }
@@ -147,12 +147,11 @@ initSubscription(arg) {
             Accounts.createUser({profile:{name:name, role:"FREE"}, email,password}, (err)=>{
               if(err){
                this.setState({
-                   errors: {reason: err.error},
-                   isLoading:false
-               });
+                    errors: {error: err.message||err.reason}, isLoading:false
+                });
               }else {
-                  this.setState({isNew:true});
-                  this.initSubscription('new');
+                    this.setState({isNew:true});
+                    this.initSubscription('new');
               }
           })
          }
@@ -171,7 +170,7 @@ return (
       {userId?<div><Alert style={{textAlign:'center'}} bsStyle='warning'>
                 Purchase to <strong>FOPSwipe</strong> and get access to <strong>all</strong> funnels : Images, Docs and Videos and more.
                 </Alert>
-                {step?<p>We will be redirect to paypal in 5 seconds... <br />Close the modal if you don't want to purchase</p>:''}
+                {step?<p>You will be redirect to paypal in 5 seconds... <br />Close the modal if you don't want to purchase</p>:''}
                 </div> :
                 <div>
                     <div className="btn-group col-md-12">
@@ -230,9 +229,9 @@ return (
                 error={errors.confirmPassword}
                 onChange={(event)=> this.handleInputChange(event) }
                 />
-            {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
           <span>Already member ? <a href="#" onClick={(e)=>this.toggleView(e, 0)}>Sign In</a></span>
-                  
+          <br />
+          {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
         </div>}
                 </div>
                 }  
