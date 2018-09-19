@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom'
 import { withTracker } from 'meteor/react-meteor-data';
 import {asyncMethodCall} from '../../utilities/'
 import CustomAlert from '../components/CustomAlert';
+import { Session } from 'meteor/session';
 
 // App component - represents the whole app
 class PaypalPage extends Component {
@@ -19,7 +20,9 @@ class PaypalPage extends Component {
   componentDidMount(){
     this.subscribe();
   }
-
+  returnLink(){
+   return Session.get("previousUrl") || "/funnels/all/all";
+  }
   subscribe(){
     let token = "";
     const {userId}=this.props;
@@ -48,7 +51,7 @@ class PaypalPage extends Component {
 
   render() {
     const {redirect, isLoading,message, type}=this.state;
-    if(redirect) return <Redirect to="/funnels/all/all" />
+    if(redirect) return <Redirect to={this.returnLink()} />
     return (
       <div>
          <div id="overlay-paypal">

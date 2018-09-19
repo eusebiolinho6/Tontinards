@@ -15,11 +15,11 @@ class MainLayout extends Component {
       path: ['Home', 'Funnels'],
       title: 'List of funnels'
     },
-    {params, funnels, search, industries, categories}=this.props;
+    {params, funnels, userId, search, industries, categories}=this.props;
     return (
       <Fragment>
         <Location location={location} />
-         <Main params={params} search={search} funnels={funnels} industries={industries} categories={categories} />
+         <Main params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
       </Fragment>
     )
   }
@@ -62,6 +62,7 @@ export default withTracker((props)=>{
     return {
     funnels: Funnels.find(q).fetch(),
     industries: Industries.find({}).fetch(),
-    categories: Categories.find({}).fetch()
+    categories: Categories.find({}).fetch(),
+    userId:Meteor.userId()
   }
 })(MainLayout)

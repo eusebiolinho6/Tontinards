@@ -11,7 +11,7 @@ import {
     FilesCollection
 } from 'meteor/ostrio:files';
 import {checkRole} from '../../utilities/'
-const uploadDir = Meteor.isDevelopment ? './uploads/' : '/uploads';
+const uploadDir = '/uploads';
 export const Images = new FilesCollection({
     collectionName: 'Images',
     allowClientCode: false, // Disallow remove files from Client
@@ -29,13 +29,13 @@ export const Images = new FilesCollection({
 if (Meteor.isServer) {
   Images.allow({
     insert: function() {
-      return checkRole('admin') ;
+      return checkRole(['admin'], this.userId);
     },
     update: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     },
     remove: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     }
   });
 }

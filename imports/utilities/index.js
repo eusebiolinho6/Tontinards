@@ -16,6 +16,9 @@ exports.asyncMethodCall = (methodName, args) =>{
     });
 }
 exports.checkRole = (roles, userId)=>{
+    if(Meteor.isServer){
+        console.log(userId, this.userId);
+    }
     if(!Array.isArray(roles)) return false; 
     if(roles.indexOf('all') !=-1) return true;
    let user= Meteor.users.findOne(userId);

@@ -11,7 +11,7 @@ import {
     FilesCollection
 } from 'meteor/ostrio:files';
 import {checkRole} from '../../utilities/'
-const uploadDir = Meteor.isDevelopment ? './uploads/' : '/uploads';
+const uploadDir = '/uploads';
 
 export const Videos = new FilesCollection({
     collectionName: 'Videos',
@@ -30,13 +30,13 @@ export const Videos = new FilesCollection({
 if (Meteor.isServer) {
   Videos.allow({
     insert: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     },
     update: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     },
     remove: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     }
   });
 }

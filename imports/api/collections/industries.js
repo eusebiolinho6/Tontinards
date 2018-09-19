@@ -36,13 +36,13 @@ if (Meteor.isServer) {
 
     Industries.allow({
       insert: function (doc) {
-       return checkRole(['admin']);
+       return checkRole(['admin'], this.userId);
       },
       update: function (industryId, doc) {
-        return checkRole(['admin']);
+        return checkRole(['admin'], this.userId);
       },
       remove: function (industryId) {
-        return checkRole('admin')
+        return checkRole('admin', this.userId)
       }
     });
 }

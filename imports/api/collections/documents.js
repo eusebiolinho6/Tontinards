@@ -12,7 +12,7 @@ import {
 } from 'meteor/ostrio:files';
 import {checkRole} from '../../utilities/'
 
-const uploadDir = Meteor.isDevelopment ? './uploads/' : '/uploads';
+const uploadDir = '/uploads';
 
 export const Documents = new FilesCollection({
     collectionName: 'Documents',
@@ -31,13 +31,13 @@ export const Documents = new FilesCollection({
 if (Meteor.isServer) {
   Documents.allow({
     insert: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     },
     update: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     },
     remove: function() {
-      return checkRole(['admin']);
+      return checkRole(['admin'], this.userId);
     }
   });
 }

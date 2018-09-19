@@ -8474,9 +8474,62 @@ body.landing-page {
     display: none;
   }
 }
+.box-offer h2 {
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.btn-details{
+  position: absolute;
+  bottom: 0px;
+}
+#templates .ibox-content {
+  background: 0 0;
+  border: none;
+}
+.img-optin {
+  display: inline-block;
+  width: 100%;
+  margin: auto;
+}
+.modal-subscription .modal-header .modal-title{
+  width: 100%;
+}
+.step-container {
+  display: block;
+  margin: auto;
+  width: 40%;
+  margin-left: 30%;
+}
+
+ul.horizontal-step-list {
+  list-style: none;
+  padding-top: 20px;
+  padding-left: 0px;
+}
+
+ul.horizontal-step-list li {
+  display: inline;
+}
+.box-offer {
+  padding:0px 30px;
+  margin-bottom: 30px;
+  background-color: #e4e7ea;
+}
 @media (min-width: 992px) {
-  .landing-page .featurette-heading {
-    margin-top: 120px;
+  .cells{
+        display: table;
+    }
+
+    .cell{
+        float: none;
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+@media(max-width:992px){
+  .btn-details {
+    position: unset;
   }
 }
 @media (max-width: 768px) {

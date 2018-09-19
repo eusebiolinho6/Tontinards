@@ -10,7 +10,7 @@ class Main extends Component {
     }
 
     render() {
-        const{params, funnels, search, categories, industries}=this.props;
+        const{params, funnels, search, categories,userId, industries}=this.props;
         return (
                 <div className="wrapper wrapper-content">
                     <div className="row">
@@ -20,10 +20,7 @@ class Main extends Component {
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">
                                 {
-                                    funnels && funnels.length ? < FunnelList funnels = {
-                                        funnels
-                                    }
-                                    />:<h2 style={{display:'block', margin:'auto'}} >No funnels</h2 > }
+                                    funnels && funnels.length ? <FunnelList userId={userId} funnels={funnels} />:<h2 style={{display:'block', margin:'auto'}} >No funnels</h2 >}
                             </div>
                         </div>
                     </div>

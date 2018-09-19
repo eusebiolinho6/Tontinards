@@ -5,6 +5,8 @@ import {Meteor} from 'meteor/meteor'
 import CustomAlert from './CustomAlert';
 import DownloadComponent from './DownloadComponent'
 import ModalSubscription from './ModalSubscription';
+import PropTypes from 'prop-types';
+
 // App component - represents the whole app
 class FunnelDetails extends Component {
     constructor(props) {
@@ -14,7 +16,8 @@ class FunnelDetails extends Component {
             message:'',
             type:'danger',
             show:false,
-            field: ''
+            field: '',
+            showLink: false
         }
     }
     clearMessage(){
@@ -37,6 +40,10 @@ class FunnelDetails extends Component {
     if(!isAuthorized) return this.setState({show:true});
     let field = f||this.state.field;
     if (funnel[field]) {
+        this.setState({showLink:true});
+        setTimeout(() => {
+           this.setState({showLink:false}); 
+        }, 10000);
         const file_path = funnel[field],
             a = document.createElement('A');
         a.href = file_path;
@@ -49,7 +56,7 @@ class FunnelDetails extends Component {
     }
     render() {
         const {funnel,user}= this.props;
-        const {message,type, url, show}=this.state;
+        const {message,type, url, show, field, showLink}=this.state;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
             category = Categories.findOne({_id:funnel&&funnel.category});
         return (
@@ -92,7 +99,8 @@ class FunnelDetails extends Component {
                             
                             <hr />
 
-                            <div style={{position: 'absolute', bottom:'0px'}} >
+                            <div className="btn-details" >
+                                {(showLink&&field)&&<div>The download doesn't starts immeditely ? click <a href={funnel&&funnel[field]}>Here</a> </div>}
                                 <div className="btn-group">
                                     <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('image')} className="btn btn-primary btn-sm"><i className="fa fa-download"></i> IMAGE</button>
                                     <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('document')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> PDF</button>

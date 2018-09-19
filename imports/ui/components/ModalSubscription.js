@@ -5,9 +5,11 @@ import {asyncMethodCall, checkRole} from '../../utilities/'
 import ValidateLogin from '../../api/funnels/validations/login';
 import ValidateSignup from '../../api/funnels/validations/signup';
 import {Meteor} from 'meteor/meteor'
+import {Session} from 'meteor/session'
 import { Button, Alert} from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Accounts } from 'meteor/accounts-base';
+import CircleStep from './CircleStep';
 
 // App component - represents the whole app
 class ModalSubscription extends Component {
@@ -22,15 +24,15 @@ this.state = {
     errors: {},
     isLoading: false,
     redirect:false,
-    isLogin:true
+    isLogin:true,
+    step: 0,
+    class0: 'btn-primary',
+    class1: 'btn-default',
+    isNew:false
     };
 }
-/**componentDidMount(){
-    if(Meteor.loggingIn()){
-        this.setState({redirect:true});
-    }
-}*/
-initSubscription() {
+
+initSubscription(arg) {
     const userId = Meteor.userId();
     let {isLoading}=this.state;
     if(!isLoading){
@@ -40,10 +42,22 @@ initSubscription() {
     asyncMethodCall('initsubscription', {
         userId:userId
     }).then((result) =>{
+        Session.set("previousUrl", location.pathname);
         let links = result && result.links || [];
         if (links) {
-            links.forEach(function (link) {
-                if (link.rel === "approval_url") window.location = link.href;
+            links.forEach((link)=> {
+                if (link.rel === "approval_url"){
+                    if(arg){
+                        this.setState({step:1});
+                        return setTimeout(() => {
+                            if(this.state.email){
+                              window.location = link.href;
+                            }
+                        }, 5000);
+                    } else {
+                        window.location = link.href;
+                    }
+                } 
             });
         }
     }).catch((er)=> {
@@ -52,12 +66,7 @@ initSubscription() {
         });
     });
 }
-toggleView(e){
-    e.preventDefault();
-    const isLogin = !this.state.isLogin,
-    errors={};
-    this.setState({isLogin, errors});
-}
+
     isValid() {
         let validate = this.state.isLogin?ValidateLogin:ValidateSignup;
         const {
@@ -72,7 +81,16 @@ toggleView(e){
         }
         return isValid;
     }
+    toggleView(e,nc){
+         e.preventDefault();
+        const isLogin = !this.state.isLogin,
+        errors={};
+        const c=(nc+1)%2,
+        current = 'class'+nc,
+        other = 'class'+c;
+        this.setState({isLogin:isLogin, errors:errors, [current]:'btn-primary', [other]:'btn-default'});
 
+    }
     closeModal() {
         this.props.closeModal();
         this.setState({
@@ -81,7 +99,12 @@ toggleView(e){
             errors: {},
             username: '',
             name: '',
-            confirmPassword:''
+            confirmPassword:'',
+            isLogin: true,
+            step: 0,
+            class0: 'btn-primary',
+            class1: 'btn-default',
+            isNew:false
         });
     }
 
@@ -111,12 +134,15 @@ toggleView(e){
                     userId=Meteor.userId();
                       const isAuthorized = checkRole(['admin', 'paid'], userId);
                       if (isAuthorized) {
-                          setTimeout(() => {
-                            this.props.downloadFile();
-                            return this.closeModal();
-                          }, 500);
+                          if (this.props.downloadFile){
+                            setTimeout(() => {
+                                this.props.downloadFile();
+                            }, 500);
+                          }
+                          return this.closeModal();    
                       } else {
-                       return this.initSubscription();
+                          this.setState({isNew:true});
+                       return this.initSubscription('new');
                       }
                 }
             })
@@ -128,26 +154,36 @@ toggleView(e){
                    isLoading:false
                });
               }else {
-                  this.initSubscription();
+                  this.setState({isNew:true});
+                  this.initSubscription('new');
               }
           })
          }
      }
   }
   render() {
-      const { errors, email, password, isLoading, redirect, isLogin, name,username,confirmPassword } = this.state;
+      const { errors, email, isNew, password, isLoading, redirect, isLogin, name,username,confirmPassword, step, class0, class1 } = this.state;
       const {show, userId} =this.props;
 return (
 <Modal isOpen={show} className="modal-md">
- <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
+ <form role="form" className="modal-subscription" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-     {userId?'Purchase':(isLogin?'Login and Purchase':'Sign Up and Purchase')}
+     {userId&&!isNew?'Purchase to FOPSwipe':<CircleStep step={step} />}
     </ModalHeader>
     <ModalBody>
-      {userId?<Alert style={{textAlign:'center'}} bsStyle='warning'>
+      {userId?<div><Alert style={{textAlign:'center'}} bsStyle='warning'>
                 Purchase to <strong>FOPSwipe</strong> and get access to <strong>all</strong> funnels : Images, Docs and Videos and more.
-                </Alert>:
-    (isLogin?<div className="col-md-12">
+                </Alert>
+                {step?<p>We will be redirect to paypal in 5 seconds... <br />Close the modal if you don't want to purchase</p>:''}
+                </div> :
+                <div>
+                    <div className="btn-group col-md-12">
+                    <div style={{width:'250px', display:'block', margin:'auto'}} >
+                    <button style={{width:'125px'}} onClick={(e)=>this.toggleView(e, 0)} type="button" className={"btn btn-sm "+class0}>Log In</button>
+                    <button style={{width:'125px'}} onClick={(e)=>this.toggleView(e, 1)} type="button" className={"btn btn-sm "+class1}>Register</button>
+                    </div>
+                    </div>
+                    {isLogin?<div className="col-md-12">
         <h2>Login Informations</h2>
             <Input
                 field="email"
@@ -164,7 +200,7 @@ return (
                 error={errors.password}
                 onChange={(event)=> this.handleInputChange(event)}
                 />
-                <span>Don't Yet have an account ? <a href="#" onClick={(e)=>this.toggleView(e)}>Sign Up</a></span>
+                <span>Don't Yet have an account ? <a href="#" onClick={(e)=>this.toggleView(e, 1)}>Sign Up</a></span>
         </div>:<div className="col-md-12">
         <h2>Sign Up Informations</h2>
             <Input          
@@ -205,16 +241,16 @@ return (
                 onChange={(event)=> this.handleInputChange(event) }
                 />
             {errors.reason && <span style={{color: '#ed5565'}} className="error-block">{errors.reason}</span>}
-          <span>Already member ? <a href="#" onClick={(e)=>this.toggleView(e)}>Sign In</a></span>
+          <span>Already member ? <a href="#" onClick={(e)=>this.toggleView(e, 0)}>Sign In</a></span>
                   
-        </div>)} 
-       
-        
-        </ModalBody>
-        
+        </div>}
+                </div>
+                }  
+        </ModalBody> 
         <ModalFooter>
-        <Button disabled={isLoading} onClick={()=> this.closeModal()}>Close {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
-        <Button type="submit" disabled={isLoading} bsStyle="primary">{userId? 'Purchase to FOPSwipe':(isLogin?'Login and Purchase':'Sign Up and Purchase')} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
+        {step?<Button onClick={()=> this.closeModal()}>Close</Button>:''}
+        {!step?<Button disabled={isLoading} onClick={()=> this.closeModal()}>Close {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>:''}
+        {!step?<Button type="submit" disabled={isLoading} bsStyle="primary">{userId? 'Purchase to FOPSwipe':(isLogin?'Login and Purchase':'Sign Up and Purchase')} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>:''}
         </ModalFooter>
         </form>
   </Modal>              
