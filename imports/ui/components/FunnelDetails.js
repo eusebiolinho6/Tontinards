@@ -87,8 +87,6 @@ class FunnelDetails extends Component {
                 <div className="ibox-content">
                     <div className="row">
                         <div className="col-md-5">
-                        <span className="product-price">
-                                   FREE</span>
                                     <div className={funnel&&!funnel.image?'image-imitation':''}>
                                         {funnel&&funnel.image ? <img width='100%' src={funnel&&funnel.image} /> : '[ Image ]'}
                                     </div>
@@ -97,6 +95,8 @@ class FunnelDetails extends Component {
 
                             <h2 className="font-bold m-b-xs">
                                 {funnel&&funnel.title}
+                                {!Number(funnel && funnel.price)&&<span style={{width:'100px'}} className="text-center product-price">
+                                   FREE</span>}
                             </h2>
                             {/**<div className="m-t-md">
                                 <h2 className="product-main-price">${funnel&&funnel.price} <small className="text-muted">Exclude Tax</small> </h2>

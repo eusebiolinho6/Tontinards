@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import {toObjectId} from '../../utilities/'
 import {Categories, Industries} from '../../api/collections/'
 import PropTypes from 'prop-types';
-import { StickyContainer, Sticky } from 'react-sticky';
+import Sticky from 'react-stickynode';
 
 
 // App component - represents the whole app
@@ -19,10 +19,13 @@ class FilterFunnelMenu extends Component {
             ,categories: {},
             path:'',
             redirect:false,
-            search:''
+            search:'',
+            enabled:true
         }
     }
     componentDidMount(){
+        this.handleResize();
+        window.addEventListener('resize',(event)=> this.handleResize(event))
         const{industries, categories, params}=this.props,
         propSearch=this.props.search;
             let search='';
@@ -41,6 +44,9 @@ class FilterFunnelMenu extends Component {
         }
     }
 
+    componentWillUnmount(){
+        window.removeEventListener('resize', (event)=> this.handleResize(event));
+    }
 
     componentWillReceiveProps(nextProps){
         const{industries, categories, params}=nextProps,
@@ -61,7 +67,16 @@ class FilterFunnelMenu extends Component {
             });
         }
     }
+    handleResize(e){
+        if(e)e.preventDefault();
+        if(window.innerWidth<992 && this.state.enabled){
+            this.setState({enabled:false});
+        }
+        if(!(window.innerWidth<992) && !this.state.enabled){
+            this.setState({enabled:true});
+        }
 
+    }
     searchChange(e){
         this.setState({search:e.target.value});
         this.setState({path:this.buildPath(e.target.value)});
@@ -118,12 +133,13 @@ class FilterFunnelMenu extends Component {
     }
     render() {
         const {industries, categories,params, funnels}=this.props;
-        const {path,redirect,search}=this.state;
+        const {path,redirect,search, enabled}=this.state;
         if(redirect){
             return <Redirect push to={path}/>
         }
         return (
-                 <div className="ibox ">
+            <Sticky enabled={enabled} top={80} bottomBoundary={1200}>
+            <div className="ibox ">
                 <div className="ibox-content">
                     <div className="file-manager">
                        { /** <h5>Show:</h5>
@@ -169,8 +185,7 @@ class FilterFunnelMenu extends Component {
                     </div>
                 </div>
             </div>
- 
-
+            </Sticky>
         )
     }
 }

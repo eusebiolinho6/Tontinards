@@ -4,7 +4,6 @@ import {Redirect} from 'react-router-dom'
 import { withTracker } from 'meteor/react-meteor-data';
 import {asyncMethodCall} from '../../utilities/'
 import CustomAlert from '../components/CustomAlert';
-import { Session } from 'meteor/session';
 
 // App component - represents the whole app
 class PaypalPage extends Component {
@@ -21,7 +20,9 @@ class PaypalPage extends Component {
     this.subscribe();
   }
   returnLink(){
-   return Session.get("previousUrl") || "/funnels/all/all";
+   let link= localStorage.getItem("currentFunnelUrl") || "/funnels/all/all";
+   localStorage.clear("currentFunnelUrl");
+   return link;
   }
   subscribe(){
     let token = "";

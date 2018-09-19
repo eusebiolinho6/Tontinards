@@ -5,7 +5,6 @@ import {asyncMethodCall, checkRole} from '../../utilities/'
 import ValidateLogin from '../../api/funnels/validations/login';
 import ValidateSignup from '../../api/funnels/validations/signup';
 import {Meteor} from 'meteor/meteor'
-import {Session} from 'meteor/session'
 import { Button, Alert} from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Accounts } from 'meteor/accounts-base';
@@ -19,7 +18,6 @@ this.state = {
     email: '',
     password: '',
     name:'',
-    username:'',
     confirmPassword: '',
     errors: {},
     isLoading: false,
@@ -42,7 +40,7 @@ initSubscription(arg) {
     asyncMethodCall('initsubscription', {
         userId:userId
     }).then((result) =>{
-        Session.set("previousUrl", location.pathname);
+        localStorage.setItem('currentFunnelUrl', location.pathname);
         let links = result && result.links || [];
         if (links) {
             links.forEach((link)=> {
@@ -97,7 +95,6 @@ initSubscription(arg) {
             email:'',
             password: '',
             errors: {},
-            username: '',
             name: '',
             confirmPassword:'',
             isLogin: true,
@@ -119,7 +116,7 @@ initSubscription(arg) {
 
   handleSUbmit(e) {
      e.preventDefault();
-    const {email, password,username,name, isLogin} = this.state;
+    const {email, password,name, isLogin} = this.state;
     let {errors}=this.state;
     let userId=Meteor.userId();
     if(userId) return this.initSubscription();
@@ -147,7 +144,7 @@ initSubscription(arg) {
                 }
             })
          } else {
-            Accounts.createUser({profile:{name:name, role:"FREE"}, email,password,username}, (err)=>{
+            Accounts.createUser({profile:{name:name, role:"FREE"}, email,password}, (err)=>{
               if(err){
                this.setState({
                    errors: {reason: err.error},
@@ -162,7 +159,7 @@ initSubscription(arg) {
      }
   }
   render() {
-      const { errors, email, isNew, password, isLoading, redirect, isLogin, name,username,confirmPassword, step, class0, class1 } = this.state;
+      const { errors, email, isNew, password, isLoading, redirect, isLogin, name,confirmPassword, step, class0, class1 } = this.state;
       const {show, userId} =this.props;
 return (
 <Modal isOpen={show} className="modal-md">
@@ -215,13 +212,6 @@ return (
                 label="Email"
                 value={email}
                 error={errors.email}
-                onChange={(event)=> this.handleInputChange(event) }
-                />
-                <Input
-                field="username"
-                label="Username"
-                value={username}
-                error={errors.username}
                 onChange={(event)=> this.handleInputChange(event) }
                 />
                 <Input
