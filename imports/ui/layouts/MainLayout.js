@@ -15,11 +15,11 @@ class MainLayout extends Component {
       path: ['Home', 'Funnels'],
       title: 'List of funnels'
     },
-    {params, funnels, userId, search, industries, categories}=this.props;
+    {params, isFree, funnels, userId, search, industries, categories}=this.props;
     return (
       <Fragment>
         <Location location={location} />
-         <Main params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
+         <Main {...this.props} params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
       </Fragment>
     )
   }
@@ -59,6 +59,7 @@ export default withTracker((props)=>{
    if(categories !='all') q.category={$in:listIdc};
     if(industries !='all') q.industry ={$in:listIdi};
     if(search) q.title ={$regex: search, $options: 'i'};
+    if(props.isFree) q.price='0';
     return {
     funnels: Funnels.find(q).fetch(),
     industries: Industries.find({}).fetch(),

@@ -8,6 +8,7 @@ import {toObjectId} from '../../utilities/'
 import {Categories, Industries} from '../../api/collections/'
 import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
+import ToggleButton from './ToggleButton'
 
 
 // App component - represents the whole app
@@ -21,7 +22,7 @@ class FilterFunnelMenu extends Component {
             redirect:false,
             search:'',
             enabled:true
-        }
+         }
     }
     componentDidMount(){
         this.handleResize();
@@ -77,6 +78,7 @@ class FilterFunnelMenu extends Component {
         }
 
     }
+
     searchChange(e){
         this.setState({search:e.target.value});
         this.setState({path:this.buildPath(e.target.value)});
@@ -152,6 +154,9 @@ class FilterFunnelMenu extends Component {
                         <Link to="/industries/admin" className="btn btn-primary btn-block">Manage industries</Link>
                         <Link to="/categories/admin" className="btn btn-primary btn-block">Manage categories</Link>
                     <div className="hr-line-dashed"></div>*/}
+                <div className="form-group">
+                    <ToggleButton {...this.props} />
+                </div>
                 <div className="input-group">
                 <input autoFocus={true} id="value" value={search} onChange={(e)=>this.searchChange(e)} className="form-control inputgui ng-not-empty" style={{display: 'block'}}
                     type="text" placeholder="search funnels" />

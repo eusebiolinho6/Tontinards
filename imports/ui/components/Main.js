@@ -15,7 +15,7 @@ class Main extends Component {
                 <div className="wrapper wrapper-content">
                     <div className="row">
                         <div className="col-lg-3">
-                            <FilterFunnelMenu search={search} funnels={funnels} params={params} industries={industries} categories={categories} />
+                            <FilterFunnelMenu {...this.props} search={search} funnels={funnels} params={params} industries={industries} categories={categories} />
                         </div>
                         <div className="col-lg-9 animated fadeInRight">
                             <div className="row">

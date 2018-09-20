@@ -12,7 +12,7 @@ const Funnel = () => (
     <Fragment>
       <HeaderLayout />
         <Route exact path='/funnels/:industries/:categories' component={FunnelList}/>
-        <Route exact path='/funnels/:funnelId/details/all' component={FunnelDetailsPage}/>
+        <Route exact path='/funnels/:funnelId' component={FunnelDetailsPage}/>
     </Fragment>
   </Switch>
 )
