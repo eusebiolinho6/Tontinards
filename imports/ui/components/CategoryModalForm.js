@@ -4,9 +4,9 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import Input from './Input';
 import Upload from './Upload';
-import validateInput from '../../api/funnels/validations/categories';
-import {toObjectId} from '../../utilities/'
-import {Categories} from '../../api/collections/'
+import validateInput from '../../validations/categories';
+import {toObjectId} from '../../utilities'
+import {Categories} from '../../api/collections'
 
 // App component - represents the whole app
 class CategoryModalForm extends Component {

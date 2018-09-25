@@ -6,9 +6,9 @@ import Input from './Input';
 import Textarea from './Textarea';
 import Select from './Select';
 import Upload from './Upload';
-import validateInput from '../../api/funnels/validations/funnel';
+import validateInput from '../../validations/funnel';
 import {toObjectId} from '../../utilities/'
-import {Funnels, Images, Videos, Documents} from '../../api/collections/'
+import {Funnels, Images, Videos, Documents} from '../../api/collections'
 const collections = {
     documentFile: Documents,
     imageFile: Images,

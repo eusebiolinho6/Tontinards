@@ -24,3 +24,7 @@ exports.checkRole = (roles, userId)=>{
     if (roles.indexOf(currentRole.toLowerCase()) != -1) return true;
     return false;
 }
+export function getMainPath(){
+    let path = Meteor.isDevelopment ? "/home/emma09/projects/meteor-app":"/home/ubuntu/projects/meteor-app";
+    return path;
+}

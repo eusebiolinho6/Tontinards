@@ -5,15 +5,11 @@ import {
     Mongo
 } from 'meteor/mongo';
 import {
-    check
-} from 'meteor/check';
-import {
     FilesCollection
 } from 'meteor/ostrio:files';
-import {checkRole} from '../../utilities/'
+import {getMainPath} from '../../../utilities/'
 
-const uploadDir = '/uploads';
-
+const uploadDir = getMainPath() +'/uploads/documents';
 export const Documents = new FilesCollection({
     collectionName: 'Documents',
     allowClientCode: false, // Disallow remove files from Client
@@ -27,17 +23,3 @@ export const Documents = new FilesCollection({
         }
     }
 });
-
-if (Meteor.isServer) {
-  Documents.allow({
-    insert: function(userId) {
-     return checkRole(['admin'], userId);
-    },
-    update: function(userId) {
-     return checkRole(['admin'], userId);
-    },
-    remove: function(userId) {
-     return checkRole(['admin'], userId);
-    }
-  });
-}

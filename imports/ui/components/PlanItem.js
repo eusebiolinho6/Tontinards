@@ -20,7 +20,7 @@ clearMessage() {
     });
 }
 
-initSubscription(e) {
+initiateAgreement(e) {
     e.preventDefault();
     const {
         userId,plan
@@ -28,7 +28,7 @@ initSubscription(e) {
     name = plan&&plan.name;
     if(!userId) return this.setState({message: 'Please log in to subscribe'});
     this.setState({isLoading:true});
-    asyncMethodCall('initsubscription', {
+    asyncMethodCall('initiateAgreement', {
         userId,
         name
     }).then((result) =>{
@@ -65,7 +65,7 @@ initSubscription(e) {
                              {plan&&plan.description}
                         </div>
                         <div className="m-t text-righ">
-                            <button disabled={isLoading} className="btn btn-sm btn-outline btn-primary" onClick={(e)=> this.initSubscription(e)}><span style={{color:"#1ab394"}} className="spec-span" >Subscribe{isLoading&&<i className="fa fa-spin fa-spinner"></i>} <i className="fa fa-long-arrow-right"></i></span> </button>
+                            <button disabled={isLoading} className="btn btn-sm btn-outline btn-primary" onClick={(e)=> this.initiateAgreement(e)}><span style={{color:"#1ab394"}} className="spec-span" >Subscribe{isLoading&&<i className="fa fa-spin fa-spinner"></i>} <i className="fa fa-long-arrow-right"></i></span> </button>
                         </div>
                     </div>
                 </div>

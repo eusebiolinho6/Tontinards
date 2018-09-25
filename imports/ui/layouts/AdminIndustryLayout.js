@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 import Location from '../components/Location';
 import AdminIndustry from '../components/AdminIndustry';
-import { Industries} from '../../api/collections/'
+import { Industries} from '../../api/collections'
 // App component - represents the whole app
 class AdminIndustryLayout extends Component {
   constructor(props) {

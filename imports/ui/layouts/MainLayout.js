@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import Location from '../components/Location'
 import Main from '../components/Main'
-import {Categories, Industries, Funnels} from '../../api/collections/'
+import {Categories, Industries, Funnels} from '../../api/collections'
 
 // App component - represents the whole app
 class MainLayout extends Component {

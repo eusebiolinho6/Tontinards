@@ -5,7 +5,7 @@ import IcheckCheckbox from './IcheckCheckbox'
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import {toObjectId} from '../../utilities/'
-import {Categories, Industries} from '../../api/collections/'
+import {Categories, Industries} from '../../api/collections'
 import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import ToggleButton from './ToggleButton'

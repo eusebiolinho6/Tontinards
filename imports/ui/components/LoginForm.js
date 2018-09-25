@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from './Input';
-import validateInput from '../../api/funnels/validations/login.js';
+import validateInput from '../../validations/login.js';
 import {Meteor} from 'meteor/meteor'
 
 // App component - represents the whole app

@@ -20,8 +20,8 @@ class PaypalPage extends Component {
     this.subscribe();
   }
   returnLink(){
-   let link= localStorage.getItem("currentFunnelUrl") || "/funnels/all/all";
-   //localStorage.clear("currentFunnelUrl");
+   let link= sessionStorage.getItem("currentFunnelUrl") || "/funnels/all/all";
+   sessionStorage.clear("currentFunnelUrl");
    return link;
   }
   subscribe(){
@@ -33,7 +33,7 @@ class PaypalPage extends Component {
     }
     if(!token) return;
     this.setState({isLoading: true});
-    asyncMethodCall('subscribeToFunnel',{token,userId}).then((r)=>{
+    asyncMethodCall('executeAgreement',{token,userId}).then((r)=>{
       this.setState({
         isLoading: false,
         redirect: true,
@@ -42,11 +42,12 @@ class PaypalPage extends Component {
         
       });
     }).catch((err)=>{
+      let e = err.message||err.reason;
       console.error(err);
        this.setState({
          isLoading: false,
          type: 'danger', 
-         message: err.message||err.reason
+         message: (typeof e =="string") ? e:'Error happens during operation, please try again.'
        });
     })
   }

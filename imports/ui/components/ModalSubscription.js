@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from './Input';
 import {asyncMethodCall, checkRole} from '../../utilities/'
-import ValidateLogin from '../../api/funnels/validations/login';
-import ValidateSignup from '../../api/funnels/validations/signup';
+import ValidateLogin from '../../validations/login';
+import ValidateSignup from '../../validations/signup';
 import {Meteor} from 'meteor/meteor'
 import { Button, Alert} from 'react-bootstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -30,17 +30,17 @@ this.state = {
     };
 }
 
-initSubscription(arg) {
+initiateAgreement(arg) {
     const userId = Meteor.userId();
     let {isLoading}=this.state;
     if(!isLoading){
         isLoading=true;
         this.setState({isLoading});
     }
-    asyncMethodCall('initsubscription', {
+    asyncMethodCall('initiateAgreement', {
         userId:userId
     }).then((result) =>{
-        localStorage.setItem('currentFunnelUrl', location.pathname);
+        sessionStorage.setItem('currentFunnelUrl', location.pathname);
         let links = result && result.links || [];
         if (links) {
             links.forEach((link)=> {
@@ -119,7 +119,7 @@ initSubscription(arg) {
     const {email, password,name, isLogin} = this.state;
     let {errors}=this.state;
     let userId=Meteor.userId();
-    if(userId) return this.initSubscription();
+    if(userId) return this.initiateAgreement();
      if(this.isValid()){
          this.setState({isLoading: true});
          if(isLogin){
@@ -139,7 +139,7 @@ initSubscription(arg) {
                           return this.closeModal();    
                       } else {
                           this.setState({isNew:true});
-                       return this.initSubscription('new');
+                       return this.initiateAgreement('new');
                       }
                 }
             })
@@ -151,7 +151,7 @@ initSubscription(arg) {
                 });
               }else {
                     this.setState({isNew:true});
-                    this.initSubscription('new');
+                    this.initiateAgreement('new');
               }
           })
          }
