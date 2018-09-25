@@ -4,3 +4,4 @@ meteor.error.log
 meteor.log
 nohup.out
 startup.sh
+uploads/
