@@ -70,10 +70,10 @@ class FilterFunnelMenu extends Component {
     }
     handleResize(e){
         if(e)e.preventDefault();
-        if(window.innerWidth<992 && this.state.enabled){
+        if(window.innerWidth<1200 && this.state.enabled){
             this.setState({enabled:false});
         }
-        if(!(window.innerWidth<992) && !this.state.enabled){
+        if(!(window.innerWidth<1200) && !this.state.enabled){
             this.setState({enabled:true});
         }
 
@@ -166,8 +166,7 @@ class FilterFunnelMenu extends Component {
               </div>
                     <div className="hr-line-dashed"></div>
                         { /**Industry here*/ }
-                       {industries.length?<div><h5>INDUSTRY</h5>
-                            <div className="col-md-2" />
+                       {industries.length?<div className="col-md-12" ><h5 style={{marginBottom:'0px'}} >INDUSTRY</h5>
                             <div className = "col-md-10" >
                             <ul className="folder-list" style={{padding: 0}}>
                                 {industries.map((industry)=>(
@@ -177,9 +176,9 @@ class FilterFunnelMenu extends Component {
                             </div>
                         </div>:''} 
                         {/**Category here*/}
-                        {categories.length?<div>
-                            <h5>CATEGORY</h5>
-                            <div className="col-md-2" />
+                        {
+                            categories.length ? < div className = "col-md-12" >
+                            <h5 style={{marginBottom:'0px'}}>CATEGORY</h5>
                             <div className = "col-md-10" >
                             <ul className="folder-list" style={{padding: 0}}>
                                 {categories.map((category,a=this.state)=>(<li key={category._id} > <IcheckCheckbox key={category._id} id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>)) }  

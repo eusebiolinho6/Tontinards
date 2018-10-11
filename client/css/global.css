@@ -1582,6 +1582,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     display: block !important;
   }
 }
+
+
 button:focus {
   outline: 0 !important;
 }
@@ -1917,7 +1919,6 @@ fieldset[disabled] .btn-white.active {
 .navbar-form-custom .form-control:hover,
 .open .btn.dropdown-toggle,
 .panel,
-.popover,
 .progress,
 .progress-bar {
   box-shadow: none;
@@ -2227,21 +2228,7 @@ button.dim:active:before {
   color: white;
 }
 /* TOOLTIPS */
-.tooltip-inner {
-  background-color: #2f4050;
-}
-.tooltip.top .tooltip-arrow {
-  border-top-color: #2f4050;
-}
-.tooltip.right .tooltip-arrow {
-  border-right-color: #2f4050;
-}
-.tooltip.bottom .tooltip-arrow {
-  border-bottom-color: #2f4050;
-}
-.tooltip.left .tooltip-arrow {
-  border-left-color: #2f4050;
-}
+
 /* EASY PIE CHART*/
 .easypiechart {
   position: relative;
@@ -3321,6 +3308,8 @@ select.form-control:not([size]):not([multiple]) {
   -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1);
 }
+/**Modal*/
+
 /**
 * Nestable Extras
 */
@@ -4548,66 +4537,6 @@ video {
   /* Only for demo */
   width: 24%;
 }
-/* Summernote text editor  */
-.note-editor {
-  height: auto !important;
-}
-.note-editor.fullscreen {
-  z-index: 2050;
-}
-.note-editor.note-frame.fullscreen {
-  z-index: 2020;
-}
-.note-editor.note-frame .note-editing-area .note-editable {
-  color: #676a6c;
-  padding: 15px;
-}
-.note-editor.note-frame {
-  border: none;
-}
-.note-editor.panel {
-  margin-bottom: 0;
-}
-/* MODAL */
-.modal-content {
-  background-clip: padding-box;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  outline: 0 none;
-  position: relative;
-}
-.modal-dialog {
-  z-index: 2200;
-}
-.modal-body {
-  padding: 20px 30px 30px 30px;
-}
-.inmodal .modal-body {
-  background: #f8fafb;
-}
-.inmodal .modal-header {
-  padding: 30px 15px;
-  text-align: center;
-  display: block;
-}
-.animated.modal.fade .modal-dialog {
-  -webkit-transform: none;
-  -ms-transform: none;
-  -o-transform: none;
-  transform: none;
-}
-.inmodal .modal-title {
-  font-size: 26px;
-}
-.inmodal .modal-icon {
-  font-size: 84px;
-  color: #e2e3e3;
-}
-.modal-footer {
-  margin-top: 0;
-}
 /* WRAPPERS */
 #wrapper {
   width: 100%;
@@ -5298,12 +5227,6 @@ a.close-canvas-menu:hover {
   width: 240px;
   float: left;
 }
-.modal-backdrop {
-  z-index: 2040 !important;
-}
-.modal {
-  z-index: 2050 !important;
-}
 .spiner-example {
   height: 200px;
   padding-top: 70px;
@@ -5638,9 +5561,7 @@ body.fullscreen-ibox-mode {
 .ibox.fullscreen .ibox-content {
   min-height: calc(100% - 48px);
 }
-body.modal-open {
-  padding-right: inherit !important;
-}
+
 _::-webkit-full-page-media,
 _:future,
 :root body.modal-open .wrapper-content.animated {
@@ -8480,8 +8401,8 @@ body.landing-page {
   margin-bottom: 20px;
 }
 .btn-details{
-  position: absolute;
-  bottom: 0px;
+  position: absolute !important;
+  bottom: 0px !important;
 }
 #templates .ibox-content {
   background: 0 0;
@@ -8491,9 +8412,6 @@ body.landing-page {
   display: inline-block;
   width: 100%;
   margin: auto;
-}
-.modal-subscription .modal-header .modal-title{
-  width: 100%;
 }
 .step-container {
   display: block;
@@ -9693,4 +9611,20 @@ body.md-skin {
 
 .ibox-title .float-right {
   margin-right: -75px;
+}
+/** Bootstrap updates*/
+
+
+.equal {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}
+.form-control{
+  font-size: unset
+}
+
+.modal-body{
+max-height: 70vh;
+overflow-y: auto
 }

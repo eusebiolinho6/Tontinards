@@ -7,7 +7,7 @@ import {
 import {
     FilesCollection
 } from 'meteor/ostrio:files';
-import {getMainPath} from '../../../utilities/'
+import {getMainPath, checkRole} from '../../../utilities/'
 
 const uploadDir = getMainPath() +'/uploads/videos';
 export const Videos = new FilesCollection({

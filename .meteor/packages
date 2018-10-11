@@ -24,3 +24,6 @@ accounts-password
 fortawesome:fontawesome
 aldeed:simple-schema
 dburles:collection-helpers
+jquery
+twbs:bootstrap
+summernote:summernote

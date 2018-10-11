@@ -13,6 +13,7 @@ class Select extends Component {
         <div className={classnames('form-group', { 'has-error': error })}>
             <label className="control-label">{label}</label>
             <select
+            style={{height:'unset'}}
             value={value}
             onChange={onChange}
             type={type}

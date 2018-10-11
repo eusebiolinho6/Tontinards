@@ -24,7 +24,7 @@ export default class Upload extends Component {
 
     return ( 
         <div className="col-md-6 subject-container">
-        <button type="button" className="btn btn-sm btn-primary" onClick={()=>this.inputElement.click()}>{label} </button>
+        <button type="button" className="btn btn-primary" onClick={()=>this.inputElement.click()}>{label} </button>
             <input style={{visibility:'hidden'}} accept={accept} onChange={(event) => this.preview(event)} ref={input => this.inputElement = input} type="file" />
             <div className="ibox">
                 <div className="ibox-content product-box active">

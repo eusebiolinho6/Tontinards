@@ -19,18 +19,18 @@ logout(e){
          const {user}=this.props;
     return (
         <div className="row border-bottom">
-            <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1045'}}>
+            <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
-                    <Link to="/" style={{display: 'inline-block', marginLeft: '10px'}}>
+                    <Link to="/" style={{display: 'block', margin: '12px'}}>
                         < img src = "https://foppro.com/modules/core/client/img/assets/online%20performance%20logo.png" height="35px"
-                        className = "img-responsive"
+                        className = ".logo-element"
                         alt = "logo homepage"
                         />
                     </Link>
                     {/**<span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
                         Page Title
-    </span>*/}
+                    </span>*/}
                     {/* Old form search
                     <form role="search" className="navbar-form-custom" method="post" action="views/search_results.html">
                         <div className="form-group">

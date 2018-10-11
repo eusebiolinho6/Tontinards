@@ -18,8 +18,18 @@ class FunnelDetails extends Component {
             show:false,
             field: '',
             showLink: false,
-            links: {}
+            links: {},
+            isMd:true
         }
+    }
+
+    componentDidMount() {
+        this.handleResize();
+        window.addEventListener('resize', (event) => this.handleResize(event));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', (event) => this.handleResize(event));
     }
     componentDidUpdate(){
         const {funnel}=this.props;
@@ -36,6 +46,16 @@ class FunnelDetails extends Component {
                     })
                 }
             }
+    }
+        handleResize(e){
+        if(e)e.preventDefault();
+        if(window.innerWidth<992 && this.state.isMd){
+            this.setState({isMd:false});
+        }
+        if(!(window.innerWidth<992) && !this.state.isMd){
+            this.setState({isMd:true});
+        }
+
     }
     clearMessage(){
         this.setState({message:''});
@@ -74,7 +94,7 @@ class FunnelDetails extends Component {
     }
     render() {
         const {funnel,user}= this.props;
-        const {message, type, url, show, field, showLink}=this.state;
+        const {message, type, url, show, field, showLink, isMd}=this.state;
         const industry = Industries.findOne({_id:funnel&&funnel.industry}),
             category = Categories.findOne({_id:funnel&&funnel.category});
         return (
@@ -85,7 +105,7 @@ class FunnelDetails extends Component {
             <ModalSubscription downloadFile={()=>this.downloadFile()} userId={user&&user._id} show={show} closeModal={()=>this.closeModal()} />
             <div className="ibox product-detail">
                 <div className="ibox-content">
-                    <div className="row">
+                    <div className={isMd?"row equal":"row"}>
                         <div className="col-md-5">
                                     <div className={funnel&&!funnel.image?'image-imitation':''}>
                                         {funnel&&funnel.image ? <img width='100%' src={funnel&&funnel.image} /> : '[ Image ]'}
@@ -102,7 +122,7 @@ class FunnelDetails extends Component {
                                 <h2 className="product-main-price">${funnel&&funnel.price} <small className="text-muted">Exclude Tax</small> </h2>
                             </div>*/}
                             <hr/>
-
+                            {/**    
                             <dl className="small m-t-md">
                                 <dt>Industry: {industry&&industry.name||'No industry'} </dt>
                                 <dd>A description list is perfect for defining terms.</dd>
@@ -110,20 +130,19 @@ class FunnelDetails extends Component {
                                 <dd>A description list is perfect for defining terms.</dd>
                             </dl>
 
-                            <h4>Description</h4>
+                            < h4 > Description < /h4> */
+                            }
 
-                            <div className="small text-muted">
-                               {funnel&&funnel.description}
-                            </div>
-                            
+                            <div dangerouslySetInnerHTML={{__html: funnel&&funnel.description}} />
+                                                           
                             <hr />
 
-                            <div className="btn-details" >
+                            <div className={isMd?"btn-details":""}>
                                 {(showLink&&field)&&<div>The download doesn't starts immeditely ? click <a href={funnel&&funnel[field]}>Here</a> </div>}
                                 <div className="btn-group">
-                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('image')} className="btn btn-primary btn-sm"><i className="fa fa-download"></i> IMAGE</button>
-                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('document')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> PDF</button>
-                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('video')} className="btn btn-primary btn-sm "><i className="fa fa-download"></i> VIDEO</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('image')} className="btn btn-primary "><i className="fa fa-download"></i> IMAGE</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('document')} className="btn btn-primary  "><i className="fa fa-download"></i> DCUMENT</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('video')} className="btn btn-primary  "><i className="fa fa-download"></i> VIDEO</button>
                                 </div>
                             </div>
                         </div>

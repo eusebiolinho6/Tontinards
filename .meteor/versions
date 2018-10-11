@@ -85,12 +85,14 @@ srp@1.0.10
 standard-minifier-css@1.4.1
 standard-minifier-js@2.3.4
 static-html@1.2.2
+summernote:summernote@0.8.1
 templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15
 templating-tools@1.1.2
 tmeasday:check-npm-versions@0.3.2
 tracker@1.2.0
+twbs:bootstrap@3.3.6
 underscore@1.0.10
 url@1.2.0
 webapp@1.6.1

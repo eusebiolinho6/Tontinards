@@ -23,12 +23,9 @@ import {Categories,Industries} from '../../api/collections'
                                    FREE</span>}
                         <Link to={{pathname:'/funnels/'+funnel._id._str}} className="product-name"> {funnel.title}</Link>
                         <h5 className="text-muted">{industry&&industry.name||'No Industry'}, {category&&category.name||'No Category'}</h5>
-                        <div className="small m-t-xs">
-                             {funnel&&funnel.description}
-                        </div>
                         <div className="m-t text-righ">
 
-                            <Link to={{pathname:'/funnels/'+funnel._id._str }} className="btn btn-xs btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
+                            <Link to={{pathname:'/funnels/'+funnel._id._str }} className="btn btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
                         </div>
                     </div>
                 </div>

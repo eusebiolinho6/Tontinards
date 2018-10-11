@@ -65,15 +65,14 @@ this.state = {
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
              <div className="row">
-            <div className="col-md-3" />
-            <div className="ibox col-md-6 float-e-margins">
+            <div className="ibox col-md-6 col-md-offset-3 float-e-margins">
                 <div className="ibox-title">
                     <h5>Log In to FOPSwipe
                     </h5>
                 </div>
                 <div className="ibox-content">
                     <div className="row">
-                        <div className="col-sm-12"><h3 className="m-t-none m-b">Sign in</h3>
+                        <div className="col-sm-12"><h3 className="m-t-none m-b">Log in</h3>
 
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
@@ -92,7 +91,7 @@ this.state = {
                                     onChange={(event)=> this.handleInputChange(event)}
                                     />
                                 <div>
-                                    <button className="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
+                                    <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
                                         in</strong></button>
                                     <label> <input type="checkbox" /> Remember me </label>
                                 </div>

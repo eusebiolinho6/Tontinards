@@ -89,7 +89,7 @@ class FunnelLIstAdmin extends Component {
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
             <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} video={video} show={show} image={image} document={document} closeModal={()=>this.closeModal()} />
              </div>

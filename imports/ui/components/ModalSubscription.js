@@ -5,8 +5,7 @@ import {asyncMethodCall, checkRole} from '../../utilities/'
 import ValidateLogin from '../../validations/login';
 import ValidateSignup from '../../validations/signup';
 import {Meteor} from 'meteor/meteor'
-import { Button, Alert} from 'react-bootstrap';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Button, Alert, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import { Accounts } from 'meteor/accounts-base';
 import CircleStep from './CircleStep';
 
@@ -161,7 +160,8 @@ initiateAgreement(arg) {
       const { errors, email, isNew, password, isLoading, redirect, isLogin, name,confirmPassword, step, class0, class1 } = this.state;
       const {show, userId} =this.props;
 return (
-<Modal isOpen={show} className="modal-md">
+<Modal bsSize="medium"
+        aria-labelledby="contained-modal-title-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" className="modal-subscription" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
      {userId&&!isNew?'Purchase to FOPSwipe':<CircleStep step={step} />}

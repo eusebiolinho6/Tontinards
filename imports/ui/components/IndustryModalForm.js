@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Button} from 'react-bootstrap';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import Input from './Input';
 import Textarea from './Textarea';
@@ -82,7 +81,8 @@ componentWillReceiveProps(nextProps){
 
       const {show, errors, name, isLoading, id } = this.state;
     return (            
-<Modal isOpen={show} className="modal-lg">
+<Modal bsSize="medium"
+        aria-labelledby="contained-modal-title-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
      {id ?'Edit Industry': ' Add Industry'}

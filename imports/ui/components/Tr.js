@@ -16,7 +16,7 @@ class Tr extends Component {
                         <td>{category&&category.name}</td>
                         <td>${funnel.price} </td>
                         <td>{this.props.formatDate(funnel.createdAt)} </td>
-                        <td> <button onClick={() =>this.props.editFunnel(funnel)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                        <td> <button onClick={() =>this.props.editFunnel(funnel)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
                         </tr>
         )
     }

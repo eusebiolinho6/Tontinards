@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-
+import os from 'os'
 exports.toObjectId = (id)=> {
     if (id) return new Mongo.ObjectID(id);
     return new Mongo.ObjectID();
@@ -25,6 +25,9 @@ exports.checkRole = (roles, userId)=>{
     return false;
 }
 export function getMainPath(){
-    let path = Meteor.isDevelopment ? "/home/emma09/projects/meteor-app":"/home/ubuntu/projects/meteor-app";
-    return path;
+    if(Meteor.isServer && !this.path){
+        let path = os&&os.userInfo().homedir+"/projects/meteor-app";
+        this.path = path;
+    }
+    return this.path;
 }

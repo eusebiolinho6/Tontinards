@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Button} from 'react-bootstrap';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import Input from './Input';
 import Textarea from './Textarea';
+import Summernote from './Summernote'
 import Select from './Select';
 import Upload from './Upload';
 import validateInput from '../../validations/funnel';
@@ -32,7 +32,8 @@ this.state = {
     documentFile:'',
     videoFile: ''
     };
-}
+}   
+
 componentWillReceiveProps(nextProps){
       const {show, title, price,industry, category, description, id } = nextProps;
       this.setState( {show, title, price,industry, category, description, id });
@@ -176,20 +177,20 @@ saveFunnel(cb){
       const {show, errors, title, price,industry,category, description, isLoading, id } = this.state;
       const {image,video, document, industries, categories} = this.props;
     return (            
-<Modal isOpen={show} className="modal-lg">
+        <Modal bsSize="large"
+        aria-labelledby="contained-modal-title-sm" show={this.state.show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
-    <ModalHeader>
-     {id ?'Edit Funnel': ' Add Funnel'}
+    <ModalHeader closeButton>
+    <h3 className="text-center" > {id ?'Edit Funnel': ' Add Funnel'}</h3>
     </ModalHeader>
     <ModalBody>
-        <div className="col-md-12">
-                <h2>Funnel Info</h2>
+        <h2>Funnel Informations</h2>
                 <Input
                     field="title"
-                    label="Title"
+                    label="Enter the title"
                     value={title}
                     error={errors.title}
-                    onChange={(event)=> this.handleInputChange(event) }
+                    onChange={(event)=> this.handleInputChange(event)}
                     />
                 <Input
                     field="price"
@@ -199,7 +200,6 @@ saveFunnel(cb){
                     error={errors.price}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
-
                     <Select
                     field="industry"
                     label="Industry"
@@ -217,10 +217,9 @@ saveFunnel(cb){
                     error={errors.category}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
-                     
-                    <Textarea
+                    <Summernote
                     field="description"
-                    label="Description"
+                    label="Enter the description"
                     value={description}
                     error={errors.description}
                     onChange={(event)=> this.handleInputChange(event)}
@@ -233,7 +232,6 @@ saveFunnel(cb){
                     <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Funnel Video" />
                     </div>
                     {errors.global&& <span style={{color: '#ed5565', fontSize:'15px'}} className="error-block">{errors.global}</span>}
-        </div>
     </ModalBody>
      
     <ModalFooter>
