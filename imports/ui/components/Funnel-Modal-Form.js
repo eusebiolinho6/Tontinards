@@ -178,7 +178,7 @@ saveFunnel(cb){
       const {image,video, document, industries, categories} = this.props;
     return (            
         <Modal bsSize="large"
-        aria-labelledby="contained-modal-title-sm" show={this.state.show} onHide={()=> this.closeModal()} backdrop={false} >
+        aria-labelledby="contained-modal-title-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader closeButton>
     <h3 className="text-center" > {id ?'Edit Funnel': ' Add Funnel'}</h3>
