@@ -176,7 +176,7 @@ class FilterFunnelMenu extends Component {
                             </div>
                         </div>:''} 
                         {/**Category here*/}
-                        {
+                        {/** 
                             categories.length ? < div className = "col-md-12" >
                             <h5 style={{marginBottom:'0px'}}>CATEGORY</h5>
                             <div className = "col-md-10" >
@@ -184,7 +184,8 @@ class FilterFunnelMenu extends Component {
                                 {categories.map((category,a=this.state)=>(<li key={category._id} > <IcheckCheckbox key={category._id} id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>)) }  
                             </ul>
                             </div>
-                        </div>:''}
+                        < /div>:''*/
+                        }
                         <div className="clearfix"></div>
                     </div>
                 </div>
