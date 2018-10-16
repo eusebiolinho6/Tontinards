@@ -16,13 +16,13 @@ import {Categories,Industries} from '../../api/collections'
                 <div className="ibox-content product-box active">
 
                     <div className={!funnel.image?'product-imitation':''}>
-                        {funnel&&funnel.image ? <img width="100%" src={funnel.image} /> : '[ Image ]'}
+                        {funnel&&funnel.image ? <img style={{borderBottom:'1px solid rgb(191, 194, 197)'}} width="100%" src={funnel.image} /> : '[ Image ]'}
                     </div>
                     <div className="product-desc">
                                 {funnel&&!Number(funnel.price)&& <span className="product-price">
                                    FREE</span>}
                         <Link to={{pathname:'/funnels/'+funnel._id._str}} className="product-name"> {funnel.title}</Link>
-                        <h5 className="text-muted">{industry&&industry.name||'No Industry'}, {category&&category.name||'No Category'}</h5>
+                        <h5 className="text-muted">{industry&&industry.name||'No Industry'}  {/**category&&category.name||'No Category'*/}</h5>
                         <div className="m-t text-righ">
 
                             <Link to={{pathname:'/funnels/'+funnel._id._str }} className="btn btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
