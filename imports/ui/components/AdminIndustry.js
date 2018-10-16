@@ -68,7 +68,7 @@ class AdminIndustry extends Component {
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New Industry</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Industry</button>
             </div>
             <IndustryModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>
@@ -87,7 +87,7 @@ class AdminIndustry extends Component {
                         <td>{industry.name}</td>
                         <td>{industry.devName}</td>
                         <td>{this.formatDate(industry.createdAt)} </td>
-                        <td> <button onClick={() =>this.editIndustry(industry)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                        <td> <button onClick={() =>this.editIndustry(industry)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
                     </tr>))}
                     
                     </tbody>

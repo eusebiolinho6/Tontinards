@@ -68,7 +68,7 @@ class AdminCategory extends Component {
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-sm btn-primary" onClick={()=> this.setState({show:true}) } > New category</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New category</button>
             </div>
             <CategoryModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>
@@ -87,7 +87,7 @@ class AdminCategory extends Component {
                         <td>{category.name}</td>
                         <td>{category.devName}</td>
                         <td>{this.formatDate(category.createdAt)} </td>
-                        <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-xs btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                        <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
                     </tr>))}
                     
                     </tbody>

@@ -11,20 +11,18 @@ export default function(ComposedComponent){
                 redirect: false
             }
         }
-        componentDidMount(){
+        /**componentDidMount(){
             if (checkRole(['admin'], Meteor.userId()) ) this.setState({redirect: true});
         }
 
         componentDidUpdate(){
             if (checkRole(['admin'], Meteor.userId()) ) this.setState({redirect: true});
-        }
+        }*/
 
         render(){
             const {redirect} = this.state;
             return(
-                <div>
-                {redirect ? <Redirect to='/authentication/signin' />:<ComposedComponent {...this.props} /> }
-                </div>
+                <ComposedComponent {...this.props} />
         )
         }
     }
