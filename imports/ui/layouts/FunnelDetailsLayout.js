@@ -39,6 +39,7 @@ export default withTracker(props=>{
   return {
     user:Meteor.user(),
     funnel: funnel,
-    funnels:Funnels.find({$or:[{industry:funnel&&funnel.industry},{category:funnel&&funnel.category}],_id:{$ne:funnel&&funnel._id}})
+    funnels:Funnels.find({industry:funnel&&funnel.industry, _id:{$ne:funnel&&funnel._id} })
+    /**funnels:Funnels.find({$or:[{industry:funnel&&funnel.industry},{category:funnel&&funnel.category}],_id:{$ne:funnel&&funnel._id}}) */
   }
 })(FunnelDetailsLayout)
