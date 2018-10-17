@@ -175,8 +175,8 @@ return (
                 <div>
                     <div className="btn-group col-md-12">
                     <div style={{width:'250px', display:'block', margin:'auto'}} >
-                    <button style={{width:'125px'}} onClick={(e)=>this.toggleView(e, 0)} type="button" className={"btn btn-sm "+class0}>Log In</button>
-                    <button style={{width:'125px'}} onClick={(e)=>this.toggleView(e, 1)} type="button" className={"btn btn-sm "+class1}>Register</button>
+                    <button style={{width:'125px'}} onClick={(e)=>this.toggleView(e, 0)} type="button" className={"btn btn-md "+class0}>Log In</button>
+                    <button style={{width:'125px'}} onClick={(e)=>this.toggleView(e, 1)} type="button" className={"btn btn-md "+class1}>Register</button>
                     </div>
                     </div>
                     {isLogin?<div className="col-md-12">
