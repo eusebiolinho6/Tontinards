@@ -23,8 +23,20 @@ top: 50%;
 left: 50%;
 margin: -75px 0 0 -75px;
 }
-#overlay-paypal .fa-spin{
-  font-size: 150px;
+
+#overlay-paypal .fa-gear{
+  font-size: 100px;
+}
+
+.overlay-funnels {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -50px 0 0 -50px;
+}
+
+.overlay-funnels .fa-gear {
+  font-size: 100px;
 }
 
 /* Customize the label (the container) */

@@ -29,9 +29,9 @@ class FunnelList extends Component {
         {!isAuthorized&&<div>
             <ModalSubscription userId={userId} show={show} closeModal={()=>this.closeModal()} />
         <div className="box-offer col-md-12">
-            <div className="row cells">
+            <div className="row">
               <div className="col-md-8 col-xs-12 cell">
-                <h2>PAY 7$ PER MONTH AND GET A FULL ACCESS</h2>
+                <h2>PAY 9$ PER MONTH AND GET A FULL ACCESS</h2>
                 <p>
                 Subscribe to our billing plan on <strong>PAYPAL</strong> with only 7$ per month and access to images, documents and videos of all funnels on the platform.
                 </p>

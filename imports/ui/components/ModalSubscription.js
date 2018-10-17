@@ -160,7 +160,7 @@ initiateAgreement(arg) {
       const { errors, email, isNew, password, isLoading, redirect, isLogin, name,confirmPassword, step, class0, class1 } = this.state;
       const {show, userId} =this.props;
 return (
-<Modal bsSize="medium"
+<Modal bsSize="md"
         aria-labelledby="contained-modal-title-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" className="modal-subscription" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>

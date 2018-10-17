@@ -58,7 +58,7 @@ class PaypalPage extends Component {
     return (
       <div>
          <div id="overlay-paypal">
-        {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</div>
+        {isLoading&&<i className="fa fa-gear fa-spinner"></i>}</div>
         {message&&<CustomAlert text={message} type={type} ttl={5} />}
       </div>
     )
