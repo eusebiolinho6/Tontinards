@@ -140,7 +140,7 @@ class FilterFunnelMenu extends Component {
             return <Redirect push to={path}/>
         }
         return (
-            <Sticky enabled={enabled} top={80} bottomBoundary={1200}>
+            <Sticky enabled={enabled} top={80} bottomBoundary={100}>
             <div className="ibox ">
                 <div className="ibox-content">
                     <div className="file-manager">
