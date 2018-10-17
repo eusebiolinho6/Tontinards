@@ -141,7 +141,7 @@ class FunnelDetails extends Component {
                                 {(showLink&&field)&&<div>The download doesn't starts immeditely ? click <a href={funnel&&funnel[field]}>Here</a> </div>}
                                 <div className="btn-group">
                                     <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('image')} className="btn btn-primary "><i className="fa fa-download"></i> IMAGE</button>
-                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('document')} className="btn btn-primary  "><i className="fa fa-download"></i> DCUMENT</button>
+                                    <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('document')} className="btn btn-primary  "><i className="fa fa-download"></i> DOCUMENT</button>
                                     <button style={{margin:'1px'}} type="button" onClick={()=>this.downloadFile('video')} className="btn btn-primary  "><i className="fa fa-download"></i> VIDEO</button>
                                 </div>
                             </div>
