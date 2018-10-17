@@ -13,6 +13,7 @@ class Main extends Component {
     }
 
     componentDidMount(){
+        console.log('mount');
         if (this.state.isLoading && this.props.funnels && Array.isArray(this.props.funnels)) {
             setTimeout(() => {
                 this.setState({ isLoading: false });
