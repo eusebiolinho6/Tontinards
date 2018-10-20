@@ -1,7 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import { Mongo} from 'meteor/mongo';
 import {checkRole} from '../../../utilities/'
-import {initiateAgreement, executeAgreement, sendMail} from '../../services/';
+import {initiateAgreement, executeAgreement, sendMail, createPlan} from '../../services/';
 import {Payments, Funnels} from '../../collections'
 const bound = Meteor.bindEnvironment((callback) => {callback();});
 
@@ -74,6 +74,21 @@ Meteor.methods({
         });
     })
     }
+    /**,
+    'createPlan': (data) => {
+        return new Promise(function (resolve, reject) {
+            createPlan(data, (error, billingPlan) => {
+                bound(() => {
+                    if (error) {
+                        return reject(new Meteor.Error(error));
+                    } else {
+                        console.log(billingPlan, "billingPlan");
+                        return resolve(billingPlan);
+                    }
+                });
+            });
+        })
+    }*/
 })
 if (Meteor.isServer) {
   Meteor.publish('funnels', function funnelsPublication() {

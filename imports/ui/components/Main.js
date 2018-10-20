@@ -13,19 +13,18 @@ class Main extends Component {
     }
 
     componentDidMount(){
-        console.log('mount');
-        if (this.state.isLoading && this.props.funnels && Array.isArray(this.props.funnels)) {
+        if (this.state.isLoading && Array.isArray(this.props.funnels) && this.props.funnels.length) {
             setTimeout(() => {
                 this.setState({ isLoading: false });
             }, 500);
         } 
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.state.isLoading && prevProps.funnels && Array.isArray(prevProps.funnels)) {
-                this.setState({
-                    isLoading: false
-                });
+    componentWillReceiveProps(nextProps) {
+        if (this.state.isLoading && Array.isArray(nextProps.funnels)&& nextProps.funnels.length ) {
+                setTimeout(() => {
+                this.setState({ isLoading: false });
+                }, 500);
         }
     }
 

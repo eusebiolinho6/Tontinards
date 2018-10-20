@@ -46,7 +46,7 @@ exports.initiateAgreement = (data, cb)=> {
             let isoDate = new Date();
             isoDate.setMonth(isoDate.getMonth() + 1);
             isoDate.toISOString().slice(0, 19) + 'Z';
-            const billingPlanId = "P-4K222005FR9505517CHDC7QQ",
+            const billingPlanId = "P-8PX11254GJ4936414SBYGFPQ",
              billingAgreementAttributes = {
                 "name": "Billing Agreement for billing in FOPSwipe",
                 "description": "This Agreement will give you a full access to funnels in the platform",

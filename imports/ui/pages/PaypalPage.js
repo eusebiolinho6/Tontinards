@@ -17,20 +17,28 @@ class PaypalPage extends Component {
     }
   }
   componentDidMount(){
-    this.subscribe();
+    let token = "";
+    if (location.search) {
+      const tab = location.search.split('token=');
+      if (tab.length == 2 && tab[0] == '?') token = tab[1];
+    }
+    if(!token || token =="0"){
+      this.setState({message: "Payment fails, please check your balance and try again"});
+      setTimeout(() => {
+        this.setState({redirect: true});
+      }, 5000);
+    } else {
+       this.subscribe(token);
+    }
   }
   returnLink(){
    let link= sessionStorage.getItem("currentFunnelUrl") || "/funnels/all/all";
    sessionStorage.clear("currentFunnelUrl");
    return link;
   }
-  subscribe(){
-    let token = "";
+  subscribe(token){
     const {userId}=this.props;
-    if (location.search) {
-      const tab = location.search.split('token=');
-      if (tab.length == 2 && tab[0] == '?') token = tab[1];
-    }
+    
     if(!token) return;
     this.setState({isLoading: true});
     asyncMethodCall('executeAgreement',{token,userId}).then((r)=>{
@@ -42,13 +50,14 @@ class PaypalPage extends Component {
         
       });
     }).catch((err)=>{
-      let e = err.message||err.reason;
       console.error(err);
        this.setState({
          isLoading: false,
-         type: 'danger', 
-         message: (typeof e =="string") ? e:'Error happens during operation, please try again.'
+         message: 'Error happens during operation, please try again.'
        });
+       setTimeout(() => {
+        this.setState({redirect: true});
+      }, 5000);
     })
   }
 
@@ -58,7 +67,7 @@ class PaypalPage extends Component {
     return (
       <div>
          <div id="overlay-paypal">
-        {isLoading&&<i className="fa fa-gear fa-spinner"></i>}</div>
+        {isLoading&&<i className="fa fa-gear fa-spin"></i>}</div>
         {message&&<CustomAlert text={message} type={type} ttl={5} />}
       </div>
     )
