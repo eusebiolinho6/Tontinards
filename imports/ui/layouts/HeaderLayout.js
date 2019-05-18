@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
+import { withTracker } from 'meteor/react-meteor-data';
 import Header from '../components/Header'
+import { Meteor } from 'meteor/meteor';
 
 // App component - represents the whole app
 class HeaderLayout extends Component {
@@ -9,10 +10,15 @@ class HeaderLayout extends Component {
   }
 
   render () {
+    const{user}=this.props;
       return (
-        <Header />
+        <Header user={user} />
       )
   }
 }
 
-export default HeaderLayout
+export default withTracker((props)=>{
+return {
+  user:Meteor.user()
+}
+})(HeaderLayout)
