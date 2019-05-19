@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from './Input';
-import validateInput from '../../api/funnels/validations/signup';
+import validateInput from '../../validations/signup';
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'
 import {toObjectId} from '../../utilities'
