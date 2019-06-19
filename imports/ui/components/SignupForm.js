@@ -9,15 +9,15 @@ import {toObjectId} from '../../utilities'
 class SignupForm extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-    email: '',
-    password: '',
-     username: '',
-     confirmPassword: '',
-    name: '',
-    errors: {},
-    redirect:false
-  }
+    this.state = {
+        email: '',
+        password: '',
+        username: '',
+        confirmPassword: '',
+        name: '',
+        errors: {},
+        redirect:false
+    }
   }
 
       isValid() {
