@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
-import Header from '../../components/FunnelDetails';
+import Header from '../../components/funnels/FunnelDetails';
 import Location from '../../components/Location';
-import FunnelDetails from '../../components/FunnelDetails';
-import FunnelList from '../../components/DetailsFunnelList'
-import {toObjectId} from '../../../utilities'
+import FunnelDetails from '../../components/funnels/FunnelDetails';
+import FunnelList from '../../components/funnels/DetailsFunnelList'
+import {toObjectId} from '../../../utilities/'
 import {Funnels} from '../../../api/collections'
 // App component - represents the whole app
 class FunnelDetailsLayout extends Component {
