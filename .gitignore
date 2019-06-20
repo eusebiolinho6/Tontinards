@@ -1,1 +1,8 @@
 node_modules/
+.meteor/local/build/programs/uploads/
+meteor.error.log
+meteor.log
+nohup.out
+startup.sh
+uploads/
+public/
