@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import Header from '../components/Header'
+import Header from '../../GlobalComponents/Header';
 import { Meteor } from 'meteor/meteor';
 
 // App component - represents the whole app

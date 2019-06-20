@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import {Meteor} from 'meteor/meteor'
 import { checkRole } from '../../utilities/';
+import HeaderLayout from '../GlobalComponents/layouts/HeaderLayout'
 // App component - represents the whole app
 class Header extends Component {
   constructor(props) {
@@ -23,10 +24,7 @@ logout(e){
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
                     <Link to="/" style={{display: 'block', margin: '12px'}}>
-                        < img src = "https://foppro.com/modules/core/client/img/assets/online%20performance%20logo.png" height="35px"
-                        className = ".logo-element"
-                        alt = "logo homepage"
-                        />
+                    <img border="0" height="25" hspace="0" src="/images/logo.png" width="100" />
                     </Link>
                     {/**<span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
                         Page Title

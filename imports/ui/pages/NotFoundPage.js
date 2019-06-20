@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {Redirect, Link} from 'react-router-dom'
 import { withTracker } from 'meteor/react-meteor-data';
 import {asyncMethodCall} from '../../utilities/'
-import CustomAlert from '../components/CustomAlert';
+import CustomAlert from '../GlobalComponents/CustomAlert';
 
 // App component - represents the whole app
 export default class NotFoundPage extends Component {

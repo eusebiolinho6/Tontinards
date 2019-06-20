@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import FilterFunnelMenu from './FilterFunnelMenu'
-import FunnelList from './FunnelList'
+import FilterFunnelMenu from '../components/FilterFunnelMenu'
+import FunnelList from '../components/FunnelList'
 import Location from './Location'
 
 // App component - represents the whole app

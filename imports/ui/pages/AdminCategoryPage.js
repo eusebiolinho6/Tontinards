@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import AdminCategoryLayout from '../layouts/AdminCategoryLayout';
-import Header from '../layouts/HeaderLayout'
+import Header from '../GlobalComponents/Header'
 // App component - represents the whole app
 class AdminCategoryPage extends Component {
   constructor(props) {

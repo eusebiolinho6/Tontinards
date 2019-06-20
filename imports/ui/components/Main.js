@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import FilterFunnelMenu from './FilterFunnelMenu'
 import FunnelList from './FunnelList'
-import Location from './Location'
+import Location from '../GlobalComponents/Location'
 
 // App component - represents the whole app
 class Main extends Component {

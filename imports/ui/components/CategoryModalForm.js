@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import Input from './Input';
-import Upload from './Upload';
+import Input from '../GlobalComponents/Input';
+import Upload from '../GlobalComponents/Upload';
 import validateInput from '../../validations/categories';
 import {toObjectId} from '../../utilities'
 import {Categories} from '../../api/collections'

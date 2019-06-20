@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import Input from './Input';
-import Textarea from './Textarea';
-import Select from './Select';
-import Upload from './Upload';
+import Input from '../GlobalComponents/Input';
+import Textarea from '../GlobalComponents/Textarea';
+import Select from '../GlobalComponents/Select';
+import Upload from '../GlobalComponents/Upload';
 import validateInput from '../../validations/industries';
 import {toObjectId} from '../../utilities/'
 import {Industries} from '../../api/collections'
