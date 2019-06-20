@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import FunnelModalForm from './Funnel-Modal-Form';
+import FunnelModalForm from './funnels/Funnel-Modal-Form';
 import Input from './Input'
 import Tr from './Tr'
 import {Modal, Button} from 'react-bootstrap';

@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-import {asyncMethodCall} from '../../utilities/'
+import {asyncMethodCall} from '../../../utilities/'
 import { withTracker } from 'meteor/react-meteor-data';
-import CustomAlert from '../components/CustomAlert';
+import CustomAlert from '../../components/CustomAlert';
 
 // Task component - represents a single todo item
  export default class PlanItem extends Component {

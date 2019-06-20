@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import FunnelItem from './Funnel-Item';
-import ModalSubscription from './ModalSubscription';
-import { checkRole } from '../../utilities';
+import ModalSubscription from './../payments/ModalSubscription';
+import { checkRole } from '../../../utilities';
 // App component - represents the whole app
 class FunnelList extends Component {
     constructor(props) {

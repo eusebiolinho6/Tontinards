@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Meteor} from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import Location from '../components/Location'
-import PlanItem from '../components/PlanItem';
+import PlanItem from '../components/payments/PlanItem';
 
 
 // App component - represents the whole app
