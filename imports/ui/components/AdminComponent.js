@@ -13,66 +13,68 @@ const monthNames = [
 class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
-     this.state = {
-        title: '',
-        price: '',
-        description: '',
-        industry: '',
-        category:'',
-        document:'',
-        image:'',
-        video:'',
-        id: '',
-        show: false
-    };
-}
+        this.state = {
+            title: '',
+            price: '',
+            description: '',
+            industry: '',
+            category:'',
+            document:'',
+            image:'',
+            video:'',
+            id: '',
+            show: false
+        };
+    }
 
- formatDate(d) {
-     const date = new Date(d);
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
+    formatDate(d) {
+        const date = new Date(d);
+        const day = date.getDate();
+        const monthIndex = date.getMonth();
+        const year = date.getFullYear();
 
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
-}
+        return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
 
-  handleInputChange(e) {
-      const name = e.target.name;
-      const value = e.target.value;
-      this.setState({
-          [name]: value
-      });
-  }
-  editFunnel(funnel){
-      this.setState({
-          price: funnel.price,
-          description: funnel.description,
-          title: funnel.title,
-          category: funnel.category,
-          industry: funnel.industry,
-          id:funnel._id,
-          document: funnel.document,
-          image: funnel.image,
-          video: funnel.video,
-          show: true
-      });
-  }
-  closeModal(){
-      this.setState({show:false});
-      this.setState({
-          title: '',
-          price: '',
-          description: '',
-          industry: '',
-          category: '',
-          document:'',
-          image: '',
-          video: '',
-          errors: {},
-          id: '',
-          isLoading: false,
-      })
-  }
+    handleInputChange(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    editFunnel(funnel){
+        this.setState({
+            price: funnel.price,
+            description: funnel.description,
+            title: funnel.title,
+            category: funnel.category,
+            industry: funnel.industry,
+            id:funnel._id,
+            document: funnel.document,
+            image: funnel.image,
+            video: funnel.video,
+            show: true
+        });
+    }
+
+    closeModal(){
+        this.setState({show:false});
+        this.setState({
+            title: '',
+            price: '',
+            description: '',
+            industry: '',
+            category: '',
+            document:'',
+            image: '',
+            video: '',
+            errors: {},
+            id: '',
+            isLoading: false,
+        })
+    }
 
     render() {
          const { show, price, title, description, industry,id, category, document, image,video } = this.state;

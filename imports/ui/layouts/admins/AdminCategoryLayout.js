@@ -4,7 +4,9 @@ import {Meteor} from 'meteor/meteor';
 import Location from '../../components/Location';
 import AdminCategory from '../../components/AdminCategory';
 import {Categories} from '../../../api/collections'
-// App component - represents the whole app
+
+// Type: section display component
+// Goal: displays the CRUD Category section
 class AdminCategoryLayout extends Component {
   constructor(props) {
     super(props);

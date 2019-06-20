@@ -4,7 +4,9 @@ import {Meteor} from 'meteor/meteor';
 import Location from '../../components/Location';
 import AdminIndustry from '../../components/AdminIndustry';
 import { Industries} from '../../../api/collections'
-// App component - represents the whole app
+
+// Type: section display component
+// Goal: displays the CRUD Industry section
 class AdminIndustryLayout extends Component {
   constructor(props) {
     super(props);
