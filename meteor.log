@@ -1,0 +1,61 @@
+[[[[[ ~/projects/meteor-app ]]]]]
+
+=> Started proxy.
+=> A patch (Meteor 1.7.0.5) for your current release is available!
+   Update this project now with 'meteor update --patch'.
+=> Started MongoDB.
+=> Started your app.
+
+=> App running at: http://localhost:3001
+=> Server modified -- restarting...                                   => Meteor server restarted
+=> Server modified -- restarting...                                   => Errors prevented startup:
+   
+   While building for web.browser:
+   imports/ui/components/Funnel-Modal-Form.js:130:12:
+   /home/emma09/projects/meteor-app/imports/ui/components/Funnel-Modal-Form.js:
+   Unexpected token, expected "," (130:12)
+   
+   128 |             const upload = Images.insert({
+   129 |             _id:toObjectId(null)
+   > 130 |             file: file,
+   |             ^
+   131 |             streams: 'dynamic',
+   132 |             chunkSize: 'dynamic'
+   133 |         }, false);
+   
+   While building for web.browser.legacy:
+   imports/ui/components/Funnel-Modal-Form.js:130:12:
+   /home/emma09/projects/meteor-app/imports/ui/components/Funnel-Modal-Form.js:
+   Unexpected token, expected "," (130:12)
+   
+   128 |             const upload = Images.insert({
+   129 |             _id:toObjectId(null)
+   > 130 |             file: file,
+   |             ^
+   131 |             streams: 'dynamic',
+   132 |             chunkSize: 'dynamic'
+   133 |         }, false);
+   
+=> Your application has errors. Waiting for file change.
+=> Modified -- restarting.
+[34mW20180902-21:43:07.575(1)? (STDERR) [39m[35mfs.js:646[39m
+[34mW20180902-21:43:08.563(1)? (STDERR) [39m[35m  return binding.open(pathModule._makeLong(path), stringToFlags(flags), mode);[39m
+[34mW20180902-21:43:08.563(1)? (STDERR) [39m[35m                 ^[39m
+[34mW20180902-21:43:08.563(1)? (STDERR) [39m[35m[39m
+[34mW20180902-21:43:08.563(1)? (STDERR) [39m[35mError: ENOENT: no such file or directory, open '/home/emma09/projects/meteor-app/.meteor/local/build-garbage-sq6mw9.7a00l/programs/server/config.json'[39m
+[34mW20180902-21:43:08.564(1)? (STDERR) [39m[35m    at Object.fs.openSync (fs.js:646:18)[39m
+[34mW20180902-21:43:08.564(1)? (STDERR) [39m[35m    at Object.fs.readFileSync (fs.js:551:33)[39m
+[34mW20180902-21:43:08.564(1)? (STDERR) [39m[35m    at Object.<anonymous> (/home/emma09/projects/meteor-app/.meteor/local/build/programs/server/boot.js:28:17)[39m
+[34mW20180902-21:43:08.564(1)? (STDERR) [39m[35m    at Module._compile (module.js:652:30)[39m
+[34mW20180902-21:43:08.564(1)? (STDERR) [39m[35m    at Object.Module._extensions..js (module.js:663:10)[39m
+[34mW20180902-21:43:08.565(1)? (STDERR) [39m[35m    at Module.load (module.js:565:32)[39m
+[34mW20180902-21:43:08.565(1)? (STDERR) [39m[35m    at tryModuleLoad (module.js:505:12)[39m
+[34mW20180902-21:43:08.565(1)? (STDERR) [39m[35m    at Function.Module._load (module.js:497:3)[39m
+[34mW20180902-21:43:08.565(1)? (STDERR) [39m[35m    at Module.require (module.js:596:17)[39m
+[34mW20180902-21:43:08.565(1)? (STDERR) [39m[35m    at require (internal/module.js:11:18)[39m
+=> Exited with code: 1
+=> Meteor server restarted
+[34mE20180902-21:45:58.086(1) (webapp_server.js:469) [39m[31mError serving static file Error: ENOENT: no such file or directory, stat '/home/emma09/projects/meteor-app/.meteor/local/build/programs/web.browser/fad9989c7b6eeae3a68e62f1016a25116f525b9e.js'[39m
+[34mE20180902-21:45:58.890(1) (webapp_server.js:469) [39m[31mError serving static file Error: ENOENT: no such file or directory, stat '/home/emma09/projects/meteor-app/.meteor/local/build/programs/web.browser/fad9989c7b6eeae3a68e62f1016a25116f525b9e.js'[39m
+[34mE20180902-21:47:58.527(1) (webapp_server.js:469) [39m[31mError serving static file Error: ENOENT: no such file or directory, stat '/home/emma09/projects/meteor-app/.meteor/local/build/programs/web.browser/fad9989c7b6eeae3a68e62f1016a25116f525b9e.js'[39m
+[34mE20180902-21:47:58.748(1) (webapp_server.js:469) [39m[31mError serving static file Error: ENOENT: no such file or directory, stat '/home/emma09/projects/meteor-app/.meteor/local/build/programs/web.browser/fad9989c7b6eeae3a68e62f1016a25116f525b9e.js'[39m

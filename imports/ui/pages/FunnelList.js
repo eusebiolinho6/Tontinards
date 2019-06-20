@@ -5,11 +5,20 @@ import MainLayout from '../layouts/MainLayout';
 class FunnelList extends Component {
   constructor(props) {
     super(props);
+    this.state={
+      isFree:false
+    }
   }
 
+    toggleFree(b) {
+      this.setState({isFree:b});
+    }
+
   render() {
+    const {match, location} = this.props; 
+    const {isFree}=this.state;
     return (
-        <MainLayout />
+        <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
     )
   }
 }

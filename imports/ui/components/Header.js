@@ -1,23 +1,36 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
+import {Meteor} from 'meteor/meteor'
+import { checkRole } from '../../utilities/';
 // App component - represents the whole app
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state={redirect:false};
   }
-
+logout(e){
+    e.preventDefault();
+    Meteor.logout();
+    this.setState({redirect: true});
+}
   render() {
+      const {redirect, hasAccount}=this.state;
+         if (redirect) return <Redirect to = "/" />
+         const {user}=this.props;
     return (
         <div className="row border-bottom">
-            <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0}}>
+            <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
-                    <Link to="/" style={{display: 'inline-block', marginLeft: '10px', marginTop: '14px'}}>
-                        <img src="modules/core/client/img/assets/online performance logo.png" className="img-responsive" alt="logo homepage" style={{height: '31px'}}/>
+                    <Link to="/" style={{display: 'block', margin: '12px'}}>
+                        < img src = "/images/logo_color.png" height="35px"
+                        className = ".logo-element"
+                        alt = "logo homepage"
+                        />
                     </Link>
-                    <span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
+                    {/**<span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
                         Page Title
-                    </span>
+                    </span>*/}
                     {/* Old form search
                     <form role="search" className="navbar-form-custom" method="post" action="views/search_results.html">
                         <div className="form-group">
@@ -28,9 +41,10 @@ class Header extends Component {
                 </div>
                 <ul className="nav navbar-top-links navbar-right">
                     <li>
-                        <a href="/api/auth/signout" target="_self">
-                        <i className="fa fa-sign-out"></i> Log out</a>
-                    </li>  
+                       {user? <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>
+                       {user.profile.name} </a>:<Link to="/authentication/signin">
+                       <i className="fa fa-sign-in"></i> Log In</Link>}
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -4,29 +4,42 @@ import {Meteor} from 'meteor/meteor';
 import Header from '../components/FunnelDetails';
 import Location from '../components/Location';
 import FunnelDetails from '../components/FunnelDetails';
-import {Funnels, toObjectId} from '../../api/funnels/methods';
-
+import FunnelList from '../components/DetailsFunnelList'
+import {toObjectId} from '../../utilities/'
+import {Funnels} from '../../api/collections'
 // App component - represents the whole app
 class FunnelDetailsLayout extends Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  componentDidUpdate(){
+    window.scrollTo(0, 0);
+  }
   render () {
     const location = {path: ['Home', 'Funnels', 'detail'], title: 'Details' };
+    const {funnel, funnels, user} = this.props;
     return (
         <Fragment>
             <Location location={location} />
-            <FunnelDetails funnel={this.props.funnel} />
+            <FunnelDetails user={user} funnel={funnel} />
+            <FunnelList funnels={funnels}/>
         </Fragment>
       )
   }
 }
 
 export default withTracker(props=>{
-  Meteor.subscribe('funnel');
-
+  Meteor.subscribe('funnels');
+  Meteor.subscribe('industries');
+  Meteor.subscribe('categories');
+  const funnel =Funnels.findOne({_id: toObjectId(props.funnelId)});
   return {
-    funnel: Funnels.findOne({_id: toObjectId(props.funnelId)})
-     
+    user:Meteor.user(),
+    funnel: funnel,
+    funnels:Funnels.find({industry:funnel&&funnel.industry, _id:{$ne:funnel&&funnel._id} })
+    /**funnels:Funnels.find({$or:[{industry:funnel&&funnel.industry},{category:funnel&&funnel.category}],_id:{$ne:funnel&&funnel._id}}) */
   }
 })(FunnelDetailsLayout)
