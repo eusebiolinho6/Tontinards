@@ -2,11 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
 import Location from '../../components/Location';
-import AdminIndustry from '../../components/AdminIndustry';
+import AdminIndustry from '../../components/admins/industries/AdminIndustry';
 import { Industries} from '../../../api/collections'
-
-// Type: section display component
-// Goal: displays the CRUD Industry section
+// App component - represents the whole app
 class AdminIndustryLayout extends Component {
   constructor(props) {
     super(props);

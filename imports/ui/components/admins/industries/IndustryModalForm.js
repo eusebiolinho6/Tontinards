@@ -1,14 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import Input from './Input';
-import Upload from './Upload';
-import validateInput from '../../validations/categories';
-import {toObjectId} from '../../utilities'
-import {Categories} from '../../api/collections'
+import Input from '../../Input';
+import Textarea from '../../Textarea';
+import Select from '../../Select';
+import Upload from '../../Upload';
+import validateInput from '../../../../validations/industries';
+import {toObjectId} from '../../../../utilities'
+import {Industries} from '../../../../api/collections'
 
 // App component - represents the whole app
-class CategoryModalForm extends Component {
+class IndustryModalForm extends Component {
   constructor(props) {
     super(props);
 this.state = {
@@ -66,11 +68,11 @@ componentWillReceiveProps(nextProps){
      data.name = name;
      if(id){
          data.updatedAt = new Date();
-         Categories.update(id, {$set:data});
+         Industries.update(id, {$set:data});
         } else {
         data.createdAt = new Date();
         data._id = toObjectId(null);
-        Categories.insert(data);
+        Industries.insert(data);
      }
      this.closeModal();
 
@@ -83,14 +85,14 @@ componentWillReceiveProps(nextProps){
         aria-labelledby="contained-modal-title-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-     {id ?'Edit Category': ' Add Category'}
+     {id ?'Edit Industry': ' Add Industry'}
     </ModalHeader>
     <ModalBody>
         <div className="col-md-12">
-                <h2>Category Info</h2>
+                <h2>Industry Info</h2>
                 <Input
                     field="name"
-                    label="Enter Category name"
+                    label="Enter Industry name"
                     value={name}
                     error={errors.name}
                     onChange={(event)=> this.handleInputChange(event) }
@@ -108,4 +110,4 @@ componentWillReceiveProps(nextProps){
   }
 }
 
-export default CategoryModalForm;
+export default IndustryModalForm;

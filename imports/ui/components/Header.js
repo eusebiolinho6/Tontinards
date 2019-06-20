@@ -24,7 +24,7 @@ logout(e){
                 <div className="navbar-header">
                     {/*<span minimalize-sidebar></span>*/}
                     <Link to="/" style={{display: 'block', margin: '12px'}}>
-                        < img src = "img/logo.png" height="35px"
+                        < img src = "/images/logo_color.png" height="35px"
                         className = ".logo-element"
                         alt = "logo homepage"
                         />
