@@ -1,6 +1,6 @@
 import React, { Fragment} from 'react'
 import { Switch, Route } from 'react-router-dom'
-import HeaderLayout from '../layouts/HeaderLayout'
+import HeaderLayout from '../GlobalComponents/layouts/HeaderLayout';
 import AdminPage from '../pages/admins/AdminPage';
 import AdminIndustryPage from '../pages/admins/AdminIndustryPage';
 import AdminCategoryPage from '../pages/admins/AdminCategoryPage';

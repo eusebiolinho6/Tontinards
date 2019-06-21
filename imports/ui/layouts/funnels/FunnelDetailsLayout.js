@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
-import Header from '../../components/funnels/FunnelDetails';
-import Location from '../../components/Location';
+import Header from '../../GlobalComponents/Header';
+import Location from '../../GlobalComponents/Location'
 import FunnelDetails from '../../components/funnels/FunnelDetails';
 import FunnelList from '../../components/funnels/DetailsFunnelList'
 import {toObjectId} from '../../../utilities/'

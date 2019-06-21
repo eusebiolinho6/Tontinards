@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import {Meteor} from 'meteor/meteor'
 import { checkRole } from '../../utilities/';
+import HeaderLayout from '../GlobalComponents/layouts/HeaderLayout'
 // App component - represents the whole app
 
 class Header extends Component {

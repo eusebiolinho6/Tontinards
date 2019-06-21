@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Meteor} from 'meteor/meteor';
-import Location from '../../components/Location';
+import Location from '../../GlobalComponents/Location';
 import AdminComponent from '../../components/admins/AdminComponent';
 import {Categories, Industries, Funnels} from '../../../api/collections'
 // App component - represents the whole app

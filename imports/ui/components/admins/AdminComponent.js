@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import FunnelModalForm from '../funnels/Funnel-Modal-Form';
-import Input from '../Input'
-import Tr from '../Tr'
+import FunnelModalForm from './../funnels/Funnel-Modal-Form';
+import Input from '../../GlobalComponents/Input'
+import Tr from '../../GlobalComponents/Tr'
 import {Modal, Button} from 'react-bootstrap';
 // App component - represents the whole app
 const monthNames = [

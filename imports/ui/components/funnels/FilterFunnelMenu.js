@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import {Link} from 'react-router-dom';
-import IcheckCheckbox from './../IcheckCheckbox'
+import IcheckCheckbox from '../../GlobalComponents/IcheckCheckbox'
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import {toObjectId} from '../../../utilities/'
 import {Categories, Industries} from '../../../api/collections'
 import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
-import ToggleButton from './../ToggleButton'
+import ToggleButton from '../../GlobalComponents/ToggleButton'
 
 
 // App component - represents the whole app

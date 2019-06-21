@@ -1,7 +1,7 @@
 import React, { Fragment} from 'react'
 import { Switch, Route } from 'react-router-dom'
 import FunnelList from '../pages/funnels/FunnelList'
-import HeaderLayout from '../layouts/HeaderLayout'
+import HeaderLayout from '../GlobalComponents/layouts/HeaderLayout'
 import FunnelDetailsPage from '../pages/funnels/FunnelsDetailsPage';
 import AdminPage from '../pages/admins/AdminPage';
 

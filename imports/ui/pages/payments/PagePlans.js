@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PlansLayout from '../../layouts/payments/PlansLayout';
-import HeaderLayout from '../../layouts/HeaderLayout';
+import HeaderLayout from '../../GlobalComponents/layouts/HeaderLayout';
 // App component - represents the whole app
 class PagePlans extends Component {
   constructor(props) {

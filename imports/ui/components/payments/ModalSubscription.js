@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
-import Input from './../Input';
+import Input from '../../GlobalComponents/Input';
 import {asyncMethodCall, checkRole} from '../../../utilities/'
 import ValidateLogin from '../../../validations/login';
 import ValidateSignup from '../../../validations/signup';
 import {Meteor} from 'meteor/meteor'
 import {Button, Alert, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
 import { Accounts } from 'meteor/accounts-base';
-import CircleStep from './../CircleStep';
+import CircleStep from '../../GlobalComponents/CircleStep';
 
 // App component - represents the whole app
 class ModalSubscription extends Component {
