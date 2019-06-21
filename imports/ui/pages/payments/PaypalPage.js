@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {Redirect} from 'react-router-dom'
 import { withTracker } from 'meteor/react-meteor-data';
 import {asyncMethodCall} from '../../../utilities/'
-import CustomAlert from '../../GlobalComponents/CustomAlert';
+import CustomAlert from '../../globalComponents/CustomAlert';
 
 // App component - represents the whole app
 class PaypalPage extends Component {

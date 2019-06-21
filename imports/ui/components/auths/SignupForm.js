@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
-import Input from '../../GlobalComponents/Input';
+import Input from '../../globalComponents/Input';
 import validateInput from '../../../validations/signup';
 import {Meteor} from 'meteor/meteor'
 import {Accounts} from 'meteor/accounts-base'

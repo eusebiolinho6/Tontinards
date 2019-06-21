@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import {Categories, Industries} from '../../../api/collections'
 import {checkRole, asyncMethodCall} from '../../../utilities/'
 import {Meteor} from 'meteor/meteor'
-import CustomAlert from '../../GlobalComponents/CustomAlert';
-import DownloadComponent from '../../GlobalComponents/DownloadComponent'
+import CustomAlert from '../../globalComponents/CustomAlert';
+import DownloadComponent from '../../globalComponents/DownloadComponent'
 import ModalSubscription from '../payments/ModalSubscription';
 import PropTypes from 'prop-types';
 
