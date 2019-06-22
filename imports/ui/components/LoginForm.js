@@ -91,9 +91,12 @@ this.state = {
                                     onChange={(event)=> this.handleInputChange(event)}
                                     />
                                 <div>
-                                    <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
-                                        in</strong></button>
-                                    <label> <input type="checkbox" /> Remember me </label>
+                                <div>
+                                    <span>Don't have an account? Register <a href="/authentication/signup"> here.</a></span>
+                                </div><br/>
+                                <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
+                                    in</strong></button>
+                                <label> <input type="checkbox" /> Remember me </label>
                                 </div>
                             </form>
                         </div>

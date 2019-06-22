@@ -18,7 +18,7 @@ class HeaderLayout extends Component {
 }
 
 export default withTracker((props)=>{
-return {
-  user:Meteor.user()
-}
+  return {
+    user:Meteor.user()
+  }
 })(HeaderLayout)

@@ -20,6 +20,12 @@ class SignupForm extends Component {
     }
   }
 
+    componentDidMount(){
+        if(Meteor.loggingIn()){
+            this.setState({redirect:true});
+        }
+    }
+
       isValid() {
           const {
               errors,
@@ -47,11 +53,12 @@ class SignupForm extends Component {
       e.preventDefault();
       const {email, password,username,name} = this.state;
       if(this.isValid()){
-          Accounts.createUser(Object.assign({roles: ['users'], _id:toObjectId(null) },{profile:{name:name}},{email,password,username}), (err)=>{
-              if(err){
-               this.setState({
+          Accounts.createUser(Object.assign({_id:toObjectId(null) },{profile:{name:name, role: "user"}},{email,password,username}), (err)=>{
+              if(err){ 
+                console.log(err)
+                this.setState({
                    errors: {reason: err.error}
-               });
+                });
               }else {
                   Meteor.loginWithPassword(email,password,(err)=>{
                       if(err){

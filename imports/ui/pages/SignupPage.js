@@ -8,7 +8,9 @@ class SignupPage extends Component {
 
   render() {
     return (
+      <div >
         <SignupLayout />
+      </div>
     )
   }
 }

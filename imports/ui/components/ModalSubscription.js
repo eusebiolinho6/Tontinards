@@ -29,16 +29,16 @@ this.state = {
     };
 }
 
-initiateAgreement(arg) {
+initiateAgreement(arg) { console.log("initiateAgreement CALLED")
     const userId = Meteor.userId();
     let {isLoading}=this.state;
-    if(!isLoading){
+    if(!isLoading){ console.log("IS LOADING")
         isLoading=true;
         this.setState({isLoading});
     }
     asyncMethodCall('initiateAgreement', {
         userId:userId
-    }).then((result) =>{
+    }).then((result) =>{ console.log(result)
         sessionStorage.setItem('currentFunnelUrl', location.pathname);
         let links = result && result.links || [];
         if (links) {
@@ -113,36 +113,37 @@ initiateAgreement(arg) {
       });
   }
 
-  handleSUbmit(e) {
+  handleSUbmit(e) { console.log("HANDLE SUBMIT")
      e.preventDefault();
     const {email, password,name, isLogin} = this.state;
     let {errors}=this.state;
-    let userId=Meteor.userId();
+    let userId=Meteor.userId(); console.log(userId)
     if(userId) return this.initiateAgreement();
-     if(this.isValid()){
+    if(this.isValid()){ console.log(1)
          this.setState({isLoading: true});
-         if(isLogin){
+         if(isLogin){console.log(11)
             Meteor.loginWithPassword(email, password, (err)=>{
-                if(err){
+                if(err){ console.log("meteor err")
                   errors.password ='No user with this email & password';
                   this.setState({errors:errors, isLoading:false});
-                } else {
+                } else { console.log(111)
                     userId=Meteor.userId();
                       const isAuthorized = checkRole(['admin', 'paid'], userId);
-                      if (isAuthorized) {
-                          if (this.props.downloadFile){
+                      console.log(isAuthorized);
+                      if (isAuthorized) { console.log("is authorized")
+                          if (this.props.downloadFile){ console.log("download File")
                             setTimeout(() => {
                                 this.props.downloadFile();
                             }, 500);
                           }
                           return this.closeModal();    
-                      } else {
+                      } else { console.log("is not authorized")
                           this.setState({isNew:true});
                        return this.initiateAgreement('new');
                       }
                 }
             })
-         } else {
+         } else {console.log(12)
             Accounts.createUser({profile:{name:name, role:"FREE"}, email,password}, (err)=>{
               if(err){
                this.setState({

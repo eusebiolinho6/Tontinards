@@ -6,7 +6,7 @@ if(Meteor.isServer){
     Accounts.onCreateUser((options, user)=>{
         if(options.profile) user.profile =options.profile;
         let replacements = {name:user.profile &&user.profile.name}
-        sendMail(options.email, 'fopswipe-welcome.html', replacements, 'Welcome to FOPSwipe');
+        // sendMail(options.email, 'fopswipe-welcome.html', replacements, 'Welcome to FOPSwipe');
         return user;
     })
 }

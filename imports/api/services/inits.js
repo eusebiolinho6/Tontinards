@@ -8,6 +8,8 @@ exports.startCron = ()=>{
     schedule.scheduleJob('0 0 * * * *', () => {
     bound(()=>{
         Payments.find({state: 'active', nextBillingDate: {$lt: new Date()}}).forEach((payment)=>{
+            console.log("THE ///////////////////////////////// payment")
+            console.log(payment)
             getAgreement(payment.billingAgreementId, (err, billingAgreement)=>{
                 bound(()=>{
                     if(err){
