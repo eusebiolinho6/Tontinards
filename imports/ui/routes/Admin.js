@@ -1,9 +1,9 @@
 import React, { Fragment, Component} from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import HeaderLayout from '../layouts/HeaderLayout'
-import AdminPage from '../pages/AdminPage';
-import AdminIndustryPage from '../pages/AdminIndustryPage';
-import AdminCategoryPage from '../pages/AdminCategoryPage';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import HeaderLayout from '../globalComponents/layouts/HeaderLayout';
+import AdminPage from '../pages/admins/AdminPage';
+import AdminIndustryPage from '../pages/admins/AdminIndustryPage';
+import AdminCategoryPage from '../pages/admins/AdminCategoryPage';
 import authenticate from '../../utilities/authenticate';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
@@ -41,7 +41,9 @@ class Admin extends Component {
       this.setState({
         user: res
       })
+    }).then(res => {
       this.renderUI();  
+      // console.log(res);
     })
   }
 
@@ -52,24 +54,24 @@ class Admin extends Component {
 
   renderUI(){
     this.setState({
-      wholePage: <div>
+      wholePage: <span>
         <Switch>
           <Fragment>
             <HeaderLayout />
             {this.state.user? 
               this.state.user.profile.role == "admin" ?
-              <div>
-                <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
+              <span>
                 <Route exact path='/admin/industries' component={authenticate(AdminIndustryPage)}/>
+                <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
-              </div> :
+              </span> :
               <Redirect to="/funnels/all/all" /> 
               :
             <Redirect to="/funnels/all/all" />
           }
           </Fragment>
         </Switch>
-      </div>
+      </span>
     })
   }
 
