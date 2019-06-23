@@ -6,19 +6,21 @@ import {Payments, Funnels} from '../../collections'
 const bound = Meteor.bindEnvironment((callback) => {callback();});
 
 Meteor.methods({
-'initiateAgreement' : (data)=> {
+'initiateAgreement' : (data)=> { console.log(data);
         return new Promise(function(resolve,reject){
                  let user = Meteor.users.findOne(data.userId);
+                 console.log(user);
                  if(!user) return reject(new Meteor.Error('Sign in to purchase'));
              // Use activated billing plan to create agreement
 
            initiateAgreement({}, (err, res) => {
                 bound(()=>{
-                    if (err) {
+                    if (err) { console.log(err);
                        return reject(new Meteor.Error(err))
                     } else {
                         let links = res && res.links || [],
                         tmpId ='';
+                        console.log(links);
                         if (links) {
                             links.forEach(function (link) {
                                 if (link.rel === "approval_url"){
