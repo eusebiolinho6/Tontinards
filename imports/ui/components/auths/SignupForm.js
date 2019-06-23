@@ -79,10 +79,10 @@ class SignupForm extends Component {
       const {name,username,email,password,confirmPassword,errors, redirect}=this.state;
       if(redirect) return <Redirect to="/funnels/all/all" />
     return (
-        <div className="wrapper wrapper-content animated fadeInRight">
+    <div className="wrapper wrapper-content animated fadeInRight">
     <div className="row">
-            <div className="col-md-3 col-sm-1" />
-            <div className="ibox col-md-6 col-sm-10 float-e-margins">
+            <div className="col-md-3 col-sm-1"></div>   
+            <div className="ibox col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1 float-e-margins">
                 <div className="ibox-title">
                     <h5>Sign up 
                     </h5>
@@ -90,7 +90,7 @@ class SignupForm extends Component {
                 <div className="ibox-content">
                     <div className="row">
                             <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
-                               <Input
+                            <Input
                                     field="name"
                                     label="Name"
                                     value={name}
