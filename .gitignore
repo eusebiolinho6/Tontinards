@@ -5,4 +5,3 @@ meteor.log
 nohup.out
 startup.sh
 uploads/
-public/

@@ -1,14 +1,14 @@
 import paypal from 'paypal-rest-sdk';
 
 paypal.configure({
-    'mode': 'live', //live
-    'client_id': 'AWaTia10DwG3tUQ33Qcazm2tduWEIj96sTjmQsJ3NvCf4hnmEbXQNd3dACSXQKT2lhRlHWKphRZjgIrd',
-    'client_secret': 'EMuAdOc0UwtAJXwBH0w-dAcGBAlgGl5eDv_hatusO_9Z0_SjMy7L9O1LOn_Qff1DFPb3mt6EG7MPupyh',
-    /** 
+    // 'mode': 'live', //live
+    // 'client_id': 'AWaTia10DwG3tUQ33Qcazm2tduWEIj96sTjmQsJ3NvCf4hnmEbXQNd3dACSXQKT2lhRlHWKphRZjgIrd',
+    // 'client_secret': 'EMuAdOc0UwtAJXwBH0w-dAcGBAlgGl5eDv_hatusO_9Z0_SjMy7L9O1LOn_Qff1DFPb3mt6EG7MPupyh',
+    
     'mode': 'sandbox', // sandbox
-    'client_id': 'AZjHaTGkB5JrepmNOt2HhxNq0sGvU8Ys12Rn8UUdNavKWDNM8Pwq8eis4tgCy7Dx59toVM6BEClUwIcA',
-    'client_secret': 'EKajPGuMXR1SE43qot6aAHdXMwVYzTc2N2stge01cP9NpzbIdM72eU6Tk5Vv3MlwwIWJ6RdgyKI6uIDS'   
-    */
+    'client_id': 'AYtW1IRrJzWqKtByJYlegQO4jL7hI0pNB_-O8JEVcyulqpb6DmKva4K47It09QiAwUg_FRjb1oyyjklp',
+    'client_secret': 'EEwdgNCQIRTH6XCWsVgLtAj1ZgcfIUyr0m5w2gdgUkLdf-VQCIaIxzMMSDQA2BmfuCmX0I6kcch46YE3'   
+    
 });
 
 exports.getAgreement = (billingAgreementId, cb) =>{
@@ -46,7 +46,7 @@ exports.initiateAgreement = (data, cb)=> {
             let isoDate = new Date();
             isoDate.setMonth(isoDate.getMonth() + 1);
             isoDate.toISOString().slice(0, 19) + 'Z';
-            const billingPlanId = "P-8PX11254GJ4936414SBYGFPQ",
+            const billingPlanId = "P-97G90215XE7101031OX3VZZQ", //PD-3AK949641E233373TOX3VZZQ
              billingAgreementAttributes = {
                 "name": "Billing Agreement for billing in FOPSwipe",
                 "description": "This Agreement will give you a full access to funnels in the platform",
@@ -60,6 +60,9 @@ exports.initiateAgreement = (data, cb)=> {
             };
             // Use activated billing plan to create agreement
             paypal.billingAgreement.create(billingAgreementAttributes, (error, response) => {
+                console.log("+++++++++++++++++++++++This is the Error");
+                console.log(error)
+                console.log(billingAgreementAttributes)
                 if (error) {
                     return cb(error, null);
                 } else {
@@ -109,6 +112,8 @@ exports.createPlan = (data, cb) =>{
         }
     }];
 
+    
+    
     paypal.billingPlan.update(billingPlan.id, billing_plan_update_attributes, (error, response)=> {
         if (error) {
             return cb(error, null);
