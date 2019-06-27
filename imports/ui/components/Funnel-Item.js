@@ -1,32 +1,32 @@
 import React, { Component} from 'react';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import {Link} from 'react-router-dom';
-
+import {Categories,Industries} from '../../api/collections'
 // Task component - represents a single todo item
-export default class FunnelItem extends Component {
+ export default class FunnelItem extends Component {
     render() {
-        const{funnel} = this.props;
+        const{funnel,propclass} = this.props;
+        const industry = Industries.findOne({_id:funnel.industry}),
+        category=Categories.findOne({_id:funnel.category});
     return ( 
-         <div className="col-md-4 subject-container">
+         <div className = {
+             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-4 subject-container'}>
             <div className="ibox">
                 <div className="ibox-content product-box active">
 
-                    <div className="product-imitation">
-                        {funnel&&funnel.imageUrl ? <img src={funnel.imageUrl} /> : '[ Image ]'}
+                    <div className={!funnel.image?'product-imitation':''}>
+                       <Link to={{pathname:'/funnels/'+funnel._id._str}}> {funnel&&funnel.image ? <img style={{borderBottom:'1px solid rgb(191, 194, 197)'}} width="100%" src={funnel.image} /> : '[ Image ]'}
+                        </Link>
                     </div>
                     <div className="product-desc">
-                                <span className="product-price">
-                                    ${funnel&&funnel.price}
-                                </span>
-                        <small className="text-muted">Category</small>
-                        <a href="#" className="product-name"> {funnel&&funnel.category}</a>
-
-                        <div className="small m-t-xs">
-                             {funnel&&funnel.description}
-                        </div>
+                                {funnel&&!Number(funnel.price)&& <span className="product-price">
+                                   FREE</span>}
+                        <Link to={{pathname:'/funnels/'+funnel._id._str}} className="product-name"> {funnel.title}</Link>
+                        <h5 className="text-muted">{industry&&industry.name||'No Industry'}  {/**category&&category.name||'No Category'*/}</h5>
                         <div className="m-t text-righ">
 
-                            <Link to={{pathname:'/funnels/'+funnel._id._str+'/details' }}className="btn btn-xs btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
+                            <Link to={{pathname:'/funnels/'+funnel._id._str }} className="btn btn-outline btn-primary">Details <i className="fa fa-long-arrow-right"></i> </Link>
                         </div>
                     </div>
                 </div>

@@ -1,21 +1,39 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom';
-
+import {Link,Redirect} from 'react-router-dom';
+import Input from './Input';
+import validateInput from '../../validations/signup';
+import {Meteor} from 'meteor/meteor'
+import {Accounts} from 'meteor/accounts-base'
+import {toObjectId} from '../../utilities'
 // App component - represents the whole app
-class AdminComponent extends Component {
+class SignupForm extends Component {
   constructor(props) {
     super(props);
       this.state = {
     email: '',
     password: '',
      username: '',
+     confirmPassword: '',
     name: '',
-    formErrors: {email: '', password: ''},
-    emailValid: false,
-    passwordValid: false,
-    formValid: false
+    errors: {},
+    redirect:false
   }
   }
+
+      isValid() {
+          const {
+              errors,
+              isValid
+          } = validateInput(this.state);
+
+          if (!isValid) {
+              this.setState({
+                  errors
+              });
+          }
+
+          return isValid;
+      }
 
   handleInputChange(e) {
       const name = e.target.name;
@@ -27,10 +45,32 @@ class AdminComponent extends Component {
 
   handleSUbmit(e){
       e.preventDefault();
-      console.log(this.state);
+      const {email, password,username,name} = this.state;
+      if(this.isValid()){
+          Accounts.createUser(Object.assign({roles: ['users'], _id:toObjectId(null) },{profile:{name:name}},{email,password,username}), (err)=>{
+              if(err){
+               this.setState({
+                   errors: {reason: err.error}
+               });
+              }else {
+                  Meteor.loginWithPassword(email,password,(err)=>{
+                      if(err){
+                      console.log(err);
+                      } else {
+                    this.setState({
+                        redirect: true
+                    });
+                      }
+                  })
+              }
+          })
+      }
+      
   }
 
   render() {
+      const {name,username,email,password,confirmPassword,errors, redirect}=this.state;
+      if(redirect) return <Redirect to="/funnels/all/all" />
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
     <div className="row">
@@ -43,20 +83,47 @@ class AdminComponent extends Component {
                 <div className="ibox-content">
                     <div className="row">
                             <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
-                                <div className="form-group"><label>Username</label> <input type="text" name="username"
-                                                                                    placeholder="Enter Username"
-                                                                                    className="form-control" value={this.state.username} onChange={(event) => this.handleInputChange(event)}/></div>
-                                <div className="form-group"><label>Name</label> <input type="text" name="name"
-                                                                                    placeholder="Enter Name"
-                                                                                    className="form-control" value={this.state.name} onChange={(event) => this.handleInputChange(event)}/></div>
-                                <div className="form-group"><label>Email</label> <input type="email" name="email"
-                                                                                    placeholder="Enter email"
-                                                                                    className="form-control" value={this.state.email} onChange={(event) => this.handleInputChange(event)}/></div>
-                                <div className="form-group"><label>Password</label> <input type="password" name="password"
-                                                                                       placeholder="Enter Password"
-                                                                                       className="form-control" value={this.state.password} onChange={(event) => this.handleInputChange(event)} /></div>
+                               <Input
+                                    field="name"
+                                    label="Name"
+                                    value={name}
+                                    error={errors.name}
+                                    onChange={(event)=> this.handleInputChange(event) }
+                                    />
+                                <Input
+                                    field="email"
+                                    label="Email"
+                                    value={email}
+                                    error={errors.email}
+                                    onChange={(event)=> this.handleInputChange(event) }
+                                    />
+                                    <Input
+                                    field="username"
+                                    label="Username"
+                                    value={username}
+                                    error={errors.username}
+                                    onChange={(event)=> this.handleInputChange(event) }
+                                    />
+                                    <Input
+                                    field="password"
+                                    label="Password"
+                                    type="password"
+                                    value={password}
+                                    error={errors.password}
+                                    onChange={(event)=> this.handleInputChange(event) }
+                                    />
+                                    <Input
+                                    field="confirmPassword"
+                                    label="Confirm Password"
+                                    type="password"
+                                    value={confirmPassword}
+                                    error={errors.confirmPassword}
+                                    onChange={(event)=> this.handleInputChange(event) }
+                                    />
+                                    
                                 <div>
                                     <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
+                                    {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
                                 </div>
                             </form>
                     </div>
@@ -68,4 +135,4 @@ class AdminComponent extends Component {
   }
 }
 
-export default AdminComponent;
+export default SignupForm;
