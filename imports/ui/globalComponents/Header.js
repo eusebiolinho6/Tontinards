@@ -28,7 +28,7 @@ class Header extends Component {
     return (
         <div className="row border-bottom">
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>
-                <div className="navbar-header">
+                <div className="navbar-header ranyl">
                     {/*<span minimalize-sidebar></span>*/}
                     <Link to="/" style={{display: 'block', margin: '12px'}}>
                         < img src = "/images/logo.png" height="35px"
