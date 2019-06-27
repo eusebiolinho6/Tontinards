@@ -1,0 +1,4 @@
+Warning: The --production flag should only be used to simulate production
+bundling for testing purposes. Use meteor build to create a bundle for
+production deployment. See: https://guide.meteor.com/deployment.html
+Node#moveTo was deprecated. Use Container#append.
