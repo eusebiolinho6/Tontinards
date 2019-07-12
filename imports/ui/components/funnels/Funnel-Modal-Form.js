@@ -20,6 +20,7 @@ class FunnelModalForm extends Component {
     super(props);
 this.state = {
     title: props.title,
+    onefoundRaiseAs: props.onefoundRaiseAs,
     price:props.price,
      description: props.description,
     industry: props.industry,
@@ -35,13 +36,14 @@ this.state = {
 }   
 
 componentWillReceiveProps(nextProps){
-      const {show, title, price,industry, category, description, id } = nextProps;
-      this.setState( {show, title, price,industry, category, description, id });
+      const {show, title, onefoundRaiseAs, price,industry, category, description, id } = nextProps;
+      this.setState( {show, title, onefoundRaiseAs, price,industry, category, description, id });
 }
     closeModal(){
         this.props.closeModal({show: false});
         this.setState({
             title: '',
+            onefoundRaiseAs: '',
             price: '',
             description: '',
             industry: '',
@@ -85,6 +87,7 @@ componentWillReceiveProps(nextProps){
 saveFunnel(cb){
         const {
          title,
+         onefoundRaiseAs,
          price ,
          description ,
          industry,
@@ -93,6 +96,7 @@ saveFunnel(cb){
      } = this.state;
      let data = {
          title,
+         onefoundRaiseAs,
          price,
          description,
          category,
@@ -101,6 +105,7 @@ saveFunnel(cb){
         
         if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
         if (data.category&&!data.category._str) data.category = toObjectId(data.category);
+        if (data.onefoundRaiseAs&&!data.onefoundRaiseAs._str) data.onefoundRaiseAs = toObjectId(data.onefoundRaiseAs);
         if(id){
             data.updatedAt = new Date();  
           Funnels.update(id, {$set: data}, function(err, nbrow){
@@ -174,8 +179,9 @@ saveFunnel(cb){
   }
   render() {
 
-      const {show, errors, title, price,industry,category, description, isLoading, id } = this.state;
-      const {image,video, document, industries, categories} = this.props;
+      const {show, errors, title, onefoundRaiseAs, price,industry,category, description, isLoading, id } = this.state;
+      const {image,video, document, industries, categories, foundRaiseAs} = this.props;
+      console.log(onefoundRaiseAs);
     return (            
         <Modal bsSize="large"
         aria-labelledby="contained-modal-title-sm" show={show} backdrop={false} >
@@ -215,6 +221,14 @@ saveFunnel(cb){
                     value={category}
                     options={categories}
                     error={errors.category}
+                    onChange={(event)=> this.handleInputChange(event)}
+                    />
+                    <Select
+                    field="foundRaiseAs"
+                    label="foundRaiseAs"
+                    value={onefoundRaiseAs}
+                    options={foundRaiseAs}
+                    error={errors.onefoundRaiseAs}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
                     <Summernote

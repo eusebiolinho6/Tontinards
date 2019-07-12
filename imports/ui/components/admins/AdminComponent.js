@@ -15,6 +15,7 @@ class FunnelLIstAdmin extends Component {
         super(props);
         this.state = {
             title: '',
+            onefoundRaiseAs: '',
             price: '',
             description: '',
             industry: '',
@@ -47,6 +48,7 @@ class FunnelLIstAdmin extends Component {
     editFunnel(funnel){
         this.setState({
             price: funnel.price,
+            onefoundRaiseAs: funnel.onefoundRaiseAs,
             description: funnel.description,
             title: funnel.title,
             category: funnel.category,
@@ -63,6 +65,7 @@ class FunnelLIstAdmin extends Component {
         this.setState({show:false});
         this.setState({
             title: '',
+            onefoundRaiseAs:'',
             price: '',
             description: '',
             industry: '',
@@ -77,8 +80,9 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-         const { show, price, title, description, industry,id, category, document, image,video } = this.state;
-        const {funnels, industries,categories}=this.props;
+         const { show, price, title, onefoundRaiseAs, description, industry,id, category, document, image,video } = this.state;
+        const {funnels, industries,categories, foundRaiseAs}=this.props;
+        
         return (
     <div className="wrapper wrapper-content animated fadeInRight">
    <div className="row">
@@ -93,13 +97,14 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} video={video} show={show} image={image} document={document} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} video={video} show={show} image={image} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} closeModal={()=>this.closeModal()} />
              </div>
             {funnels&&funnels.length?<div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>eusebio</th>
                         <th>Industry</th>
                         <th>Category</th>
                         <th>Price</th>

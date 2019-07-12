@@ -5,6 +5,7 @@ import {Categories} from './categories/collections/'
 import {Industries} from './industries/collections/'
 import {Funnels} from './funnels/collections/'
 import {Payments} from './payments/collections/'
+import {FoundRaiseAs} from './foundRaiseAs/collections/'
 
 exports.Images = Images;
 exports.Documents = Documents;
@@ -13,6 +14,7 @@ exports.Categories = Categories;
 exports.Industries = Industries;
 exports.Funnels = Funnels;
 exports.Payments = Payments;
+exports.FoundRaiseAs = FoundRaiseAs;
 
 
 
