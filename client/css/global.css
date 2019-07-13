@@ -9719,3 +9719,41 @@ overflow-y: auto;
   color: #150738 !important;
 }
 
+.no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mainText{
+  width: 60%;
+  margin-top: 200px;
+  font-size: 60px;
+  font-weight: bolder;
+
+}
+
+.bg-overlay {
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("/images/tontinard.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  height: 600px;
+  padding-top: 50px;
+
+}
+.addprojectBtn{
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px 50px 12px 50px;
+ }
+ .mainVideo{
+  margin: 75px 200px 50px 200px;
+ }
+ .mainVideo iframe{
+  height: 500px !important;
+ }
+.submainText{
+  text-align: center;
+  color: black;
+}
