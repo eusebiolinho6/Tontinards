@@ -9739,8 +9739,6 @@ overflow-y: auto;
   background-position: center center;
   color: #fff;
   height: 600px;
-  padding-top: 50px;
-
 }
 .addprojectBtn{
   font-size: 20px;
@@ -9748,12 +9746,35 @@ overflow-y: auto;
   padding: 12px 50px 12px 50px;
  }
  .mainVideo{
-  margin: 75px 200px 50px 200px;
+  margin: 75px 200px 0px 200px;
  }
  .mainVideo iframe{
   height: 500px !important;
  }
 .submainText{
-  text-align: center;
   color: black;
-}
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -200px;
+  margin-left: 200px !important;
+  margin-right: 200px !important;
+  width: 70% !important;
+ }
+ .projectContainer h1{
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: black;
+  font-size: 30px;
+  font-weight: bolder;
+  }
+ .projectContainer hr{
+   border:1px solid rgb(88, 86, 86);
+   width: 40%;
+ }
+ .projectContainer{
+  text-align: center;
+  margin-top: 30px;
+ }
+ 
+ /*-----------------Circular progress bar-----------------------------------*/
+ 

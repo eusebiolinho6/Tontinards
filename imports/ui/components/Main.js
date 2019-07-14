@@ -32,7 +32,12 @@ class Main extends Component {
         const { params, funnels, search, categories, userId, industries } = this.props;
         const { isLoading } = this.state;
         return (
-            <div className="wrapper wrapper-content">
+            <div className="wrapper wrapper-content container ">
+                <div className="projectContainer" >
+                <hr />
+                    <h1>Some Projects</h1>
+                </div>
+                <br/>
                 <div className="row">
                     <div className="col-lg-3">
                         <FilterFunnelMenu {...this.props} search={search} funnels={funnels} params={params} industries={industries} categories={categories} />

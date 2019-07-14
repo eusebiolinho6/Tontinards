@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
      <div className="wrapper wrapper-content animated fadeInRight">
-     {/* <Redirect to='/funnels/all/all' /> */}
+     <Redirect to='/funnels/all/all' />
         {/**<div className="row">
             <div className="col-lg-12">
                 <div className="text-center m-t-lg">
