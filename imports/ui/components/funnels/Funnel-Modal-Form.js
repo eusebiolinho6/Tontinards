@@ -21,8 +21,10 @@ class FunnelModalForm extends Component {
 this.state = {
     title: props.title,
     onefoundRaiseAs: props.onefoundRaiseAs,
+    oneForWhoFoundsRaise : props.oneForWhoFoundsRaise,
+    objectifAmount : props.objectifAmount,
     price:props.price,
-     description: props.description,
+    description: props.description,
     industry: props.industry,
     category: props.category,
     errors: {},
@@ -36,14 +38,16 @@ this.state = {
 }   
 
 componentWillReceiveProps(nextProps){
-      const {show, title, onefoundRaiseAs, price,industry, category, description, id } = nextProps;
-      this.setState( {show, title, onefoundRaiseAs, price,industry, category, description, id });
+      const {show, title, onefoundRaiseAs, oneForWhoFoundsRaise, price, objectifAmount,industry, category, description, id } = nextProps;
+      this.setState( {show, title, onefoundRaiseAs, oneForWhoFoundsRaise ,price, objectifAmount,industry, category, description, id });
 }
     closeModal(){
         this.props.closeModal({show: false});
         this.setState({
             title: '',
             onefoundRaiseAs: '',
+            oneForWhoFoundsRaise:'',
+            objectifAmount : '',
             price: '',
             description: '',
             industry: '',
@@ -74,6 +78,8 @@ componentWillReceiveProps(nextProps){
   handleInputChange(e) {
       const name = e.target.name;
       const value = e.target.value;
+      console.log(name);
+      console.log(value);
       this.setState({
           [name]: value
       });
@@ -88,6 +94,8 @@ saveFunnel(cb){
         const {
          title,
          onefoundRaiseAs,
+         oneForWhoFoundsRaise,
+         objectifAmount,
          price ,
          description ,
          industry,
@@ -97,6 +105,8 @@ saveFunnel(cb){
      let data = {
          title,
          onefoundRaiseAs,
+         oneForWhoFoundsRaise,
+         objectifAmount,
          price,
          description,
          category,
@@ -104,8 +114,9 @@ saveFunnel(cb){
         };
         
         if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
-        if (data.category&&!data.category._str) data.category = toObjectId(data.category);
+        if (data.category&&!data.category._str)  data.category = toObjectId(data.category);
         if (data.onefoundRaiseAs&&!data.onefoundRaiseAs._str) data.onefoundRaiseAs = toObjectId(data.onefoundRaiseAs);
+        if (data.oneForWhoFoundsRaise&&!data.oneForWhoFoundsRaise._str) data.oneForWhoFoundsRaise = toObjectId(data.oneForWhoFoundsRaise);
         if(id){
             data.updatedAt = new Date();  
           Funnels.update(id, {$set: data}, function(err, nbrow){
@@ -179,8 +190,8 @@ saveFunnel(cb){
   }
   render() {
 
-      const {show, errors, title, onefoundRaiseAs, price,industry,category, description, isLoading, id } = this.state;
-      const {image,video, document, industries, categories, foundRaiseAs} = this.props;
+      const {show, errors, title, onefoundRaiseAs, oneForWhoFoundsRaise, price, objectifAmount, industry,category, description, isLoading, id } = this.state;
+      const {image,video, document, industries, categories, foundRaiseAs , forWhoFoundsRaise} = this.props;
       console.log(onefoundRaiseAs);
     return (            
         <Modal bsSize="large"
@@ -206,6 +217,14 @@ saveFunnel(cb){
                     error={errors.price}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
+                <Input
+                    field="objectifAmount"
+                    label="objectifAmount"
+                    type="number"
+                    value={objectifAmount}
+                    error={errors.objectifAmount}
+                    onChange={(event)=> this.handleInputChange(event)}
+                    />
                     <Select
                     field="industry"
                     label="Industry"
@@ -224,11 +243,19 @@ saveFunnel(cb){
                     onChange={(event)=> this.handleInputChange(event)}
                     />
                     <Select
-                    field="foundRaiseAs"
+                    field="onefoundRaiseAs"
                     label="foundRaiseAs"
                     value={onefoundRaiseAs}
                     options={foundRaiseAs}
                     error={errors.onefoundRaiseAs}
+                    onChange={(event)=> this.handleInputChange(event)}
+                    />
+                    <Select
+                    field="oneForWhoFoundsRaise"
+                    label="oneForWhoFoundsRaise"
+                    value={oneForWhoFoundsRaise}
+                    options={forWhoFoundsRaise}
+                    error={errors.oneForWhoFoundsRaise}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
                     <Summernote

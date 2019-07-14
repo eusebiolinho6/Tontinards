@@ -5,6 +5,7 @@ import AdminPage from '../pages/admins/AdminPage';
 import AdminIndustryPage from '../pages/admins/AdminIndustryPage';
 import AdminCategoryPage from '../pages/admins/AdminCategoryPage';
 import AdminFoundRaiseAsPage from '../pages/admins/AdminFoundRaiseAsPage';
+import AdminForWhoFoundsRaisePage from '../pages/admins/AdminForWhoFoundsRaisePage'
 import authenticate from '../../utilities/authenticate';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
@@ -66,6 +67,7 @@ class Admin extends Component {
                 <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
                 <Route exact path='/admin/foundRaiseAs' component={authenticate(AdminFoundRaiseAsPage)}/>
+                <Route exact path='/admin/forWhoFoundsRaisePage' component={authenticate(AdminForWhoFoundsRaisePage)}/>
               </span> :
               <Redirect to="/funnels/all/all" /> 
               :
