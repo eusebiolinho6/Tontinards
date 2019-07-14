@@ -29,9 +29,11 @@ class FunnelList extends Component {
         </div>
         <div className="embed-responsive embed-responsive-16by9 mainVideo">
           <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-        <p className = "submainText">Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
-          typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding</p>
         </div>
+        <p className = "submainText">
+          Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
+          typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
+        </p>
 
         <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
       </div>
