@@ -10,7 +10,7 @@ class AdminLayout extends Component {
   constructor(props) {
     super(props);
   }
-
+  
   render () {
     const location = {path: ['Home', 'Funnels', 'Admin'], projectName: 'Administration' };
     const {funnels, industries, categories, foundRaiseAs, forWhoFoundsRaise} = this.props;

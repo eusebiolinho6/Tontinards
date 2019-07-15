@@ -3,6 +3,8 @@ import FunnelModalForm from './../funnels/Funnel-Modal-Form';
 import Input from '../../globalComponents/Input'
 import Tr from '../../globalComponents/Tr'
 import {Modal, Button} from 'react-bootstrap';
+import axios from 'axios';
+
 // App component - represents the whole app
 const monthNames = [
     "January", "February", "March",
@@ -26,8 +28,32 @@ class FunnelLIstAdmin extends Component {
             image:'',
             video:'',
             id: '',
+            country:'',
+            countries : [],
             show: false
         };
+    }
+    componentWillReceiveProps()
+    {
+        this.loadCountry();
+
+    }
+    async loadCountry() {
+        const countries = await axios.get('https://restcountries.eu/rest/v2/all')
+            .then(function (response) {
+                // handle success
+                return response;
+                console.log(this.state.category);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+            //console.log(countries.data[0].name);
+        this.setState({ countries: countries.data });
     }
 
     formatDate(d) {
@@ -61,6 +87,7 @@ class FunnelLIstAdmin extends Component {
             document: funnel.document,
             image: funnel.image,
             video: funnel.video,
+            country: funnel.country,
             show: true
         });
     }
@@ -81,12 +108,13 @@ class FunnelLIstAdmin extends Component {
             video: '',
             errors: {},
             id: '',
+            country:'',
             isLoading: false,
         })
     }
 
     render() {
-         const { show, zipCode, objectifAmount ,projectName, onefoundRaiseAs, oneForWhoFoundsRaise ,description, industry,id, category, document, image,video } = this.state;
+         const { show, zipCode, objectifAmount ,projectName, onefoundRaiseAs, oneForWhoFoundsRaise ,description, industry,id, category, document, image,video, country, countries } = this.state;
         const {funnels, industries,categories, foundRaiseAs, forWhoFoundsRaise }=this.props;
         
         return (
@@ -103,7 +131,7 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} zipCode={zipCode} description={description} projectName={projectName} industry={industry} forWhoFoundsRaise = {forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise}video={video} show={show} image={image} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount = {objectifAmount} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} zipCode={zipCode} description={description} projectName={projectName} industry={industry} forWhoFoundsRaise = {forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise}video={video} show={show} image={image} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount = {objectifAmount} country={country}  countries = {countries} closeModal={()=>this.closeModal()} />
              </div>
             {funnels&&funnels.length?<div className="table-responsive">
                 <table className="table table-striped">
