@@ -32,7 +32,7 @@ export default class Upload extends Component {
                     {!(url||oldUrl)? '[FILE]':'' }
                      {(url||oldUrl)&&type=="image"?<img src={url||oldUrl} accept={accept} style={{width:'100%'}} />:''}
                     
-                    {(url||oldUrl)&&type=="document"?<iframe src={url||oldUrl||''} title="Funnel PDF" align="top" width="100%" frameBorder="0" target="Message"><p>Your browser doesn't support Iframe. Here is
+                    {(url||oldUrl)&&type=="document"?<iframe src={url||oldUrl||''} projectName="Funnel PDF" align="top" width="100%" frameBorder="0" target="Message"><p>Your browser doesn't support Iframe. Here is
         a <a href={url||oldUrl} >link to the document</a> instead.</p> </iframe>:''}
 
                     {(url||oldUrl)&&type=="video"?<video src={url||oldUrl||''}  width="100%" controls><p>Your browser doesn't support HTML5 video. Here is

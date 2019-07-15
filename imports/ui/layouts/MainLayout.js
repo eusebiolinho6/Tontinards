@@ -13,7 +13,7 @@ class MainLayout extends Component {
   render () {
     const location = {
       path: ['Home', 'Funnels'],
-      title: 'List of funnels'
+      projectName: 'List of funnels'
     },
     {params, isFree, funnels, userId, search, industries, categories}=this.props;
     return (
@@ -58,8 +58,8 @@ export default withTracker((props)=>{
   }
    if(categories !='all') q.category={$in:listIdc};
     if(industries !='all') q.industry ={$in:listIdi};
-    if(search) q.title ={$regex: search, $options: 'i'};
-    if(props.isFree) q.price='0';
+    if(search) q.projectName ={$regex: search, $options: 'i'};
+    if(props.isFree) q.zipCode='0';
     return {
     funnels: Funnels.find(q).fetch(),
     industries: Industries.find({}).fetch(),

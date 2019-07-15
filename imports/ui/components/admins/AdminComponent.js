@@ -14,11 +14,11 @@ class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
+            projectName: '',
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
             objectifAmount : '',
-            price: '',
+            zipCode: '',
             description: '',
             industry: '',
             category:'',
@@ -49,12 +49,12 @@ class FunnelLIstAdmin extends Component {
 
     editFunnel(funnel){
         this.setState({
-            price: funnel.price,
+            zipCode: funnel.zipCode,
             objectifAmount : funnel.objectifAmount,
             onefoundRaiseAs: funnel.onefoundRaiseAs,
             oneForWhoFoundsRaise : funnel.oneForWhoFoundsRaise,
             description: funnel.description,
-            title: funnel.title,
+            projectName: funnel.projectName,
             category: funnel.category,
             industry: funnel.industry,
             id:funnel._id,
@@ -68,11 +68,11 @@ class FunnelLIstAdmin extends Component {
     closeModal(){
         this.setState({show:false});
         this.setState({
-            title: '',
+            projectName: '',
             onefoundRaiseAs:'',
             oneForWhoFoundsRaise : '',
             objectifAmount : '',
-            price: '',
+            zipCode: '',
             description: '',
             industry: '',
             category: '',
@@ -86,7 +86,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-         const { show, price, objectifAmount ,title, onefoundRaiseAs, oneForWhoFoundsRaise ,description, industry,id, category, document, image,video } = this.state;
+         const { show, zipCode, objectifAmount ,projectName, onefoundRaiseAs, oneForWhoFoundsRaise ,description, industry,id, category, document, image,video } = this.state;
         const {funnels, industries,categories, foundRaiseAs, forWhoFoundsRaise }=this.props;
         
         return (
@@ -95,7 +95,7 @@ class FunnelLIstAdmin extends Component {
 
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
-        <div className="ibox-title">
+        <div className="ibox-projectName">
             <h5>Funnel List</h5>
         </div>
         <div className="ibox-content">
@@ -103,7 +103,7 @@ class FunnelLIstAdmin extends Component {
              <div className="col-sm-3">
                     <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
             </div>
-            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} forWhoFoundsRaise = {forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise}video={video} show={show} image={image} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount = {objectifAmount} closeModal={()=>this.closeModal()} />
+            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} zipCode={zipCode} description={description} projectName={projectName} industry={industry} forWhoFoundsRaise = {forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise}video={video} show={show} image={image} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount = {objectifAmount} closeModal={()=>this.closeModal()} />
              </div>
             {funnels&&funnels.length?<div className="table-responsive">
                 <table className="table table-striped">
@@ -112,7 +112,7 @@ class FunnelLIstAdmin extends Component {
                         <th>Name</th>
                         <th>Industry</th>
                         <th>Category</th>
-                        <th>Price</th>
+                        <th>zipCode</th>
                         <th>Created At</th>
                         <th className="pull-right">Action</th>
                     </tr>

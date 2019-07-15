@@ -19,11 +19,11 @@ class FunnelModalForm extends Component {
   constructor(props) {
     super(props);
 this.state = {
-    title: props.title,
+    projectName: props.projectName,
     onefoundRaiseAs: props.onefoundRaiseAs,
     oneForWhoFoundsRaise : props.oneForWhoFoundsRaise,
     objectifAmount : props.objectifAmount,
-    price:props.price,
+    zipCode:props.zipCode,
     description: props.description,
     industry: props.industry,
     category: props.category,
@@ -33,22 +33,23 @@ this.state = {
     show:false,
     imageFile:'',
     documentFile:'',
-    videoFile: ''
+    videoFile: '',
+    location: ''
     };
 }   
 
 componentWillReceiveProps(nextProps){
-      const {show, title, onefoundRaiseAs, oneForWhoFoundsRaise, price, objectifAmount,industry, category, description, id } = nextProps;
-      this.setState( {show, title, onefoundRaiseAs, oneForWhoFoundsRaise ,price, objectifAmount,industry, category, description, id });
+      const {show, projectName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount,industry, category, description, id, location} = nextProps;
+      this.setState( {show, projectName, onefoundRaiseAs, oneForWhoFoundsRaise ,zipCode, objectifAmount,industry, category, description, id, location});
 }
     closeModal(){
         this.props.closeModal({show: false});
         this.setState({
-            title: '',
+            projectName: '',
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise:'',
             objectifAmount : '',
-            price: '',
+            zipCode: '',
             description: '',
             industry: '',
             category:'',
@@ -57,7 +58,8 @@ componentWillReceiveProps(nextProps){
             id: '',
             imageFile:'',
             documentFile:'',
-            videoFile:''
+            videoFile:'',
+            location: '',
         });
     }
     isValid() {
@@ -92,28 +94,30 @@ componentWillReceiveProps(nextProps){
     }
 saveFunnel(cb){
         const {
-         title,
+         projectName,
          onefoundRaiseAs,
          oneForWhoFoundsRaise,
          objectifAmount,
-         price ,
+         zipCode ,
          description ,
          industry,
          category,
+         location,
           id
      } = this.state;
      let data = {
-         title,
+         projectName,
          onefoundRaiseAs,
          oneForWhoFoundsRaise,
          objectifAmount,
-         price,
+         zipCode,
          description,
          category,
-         industry 
+         industry,
+         location,
         };
         
-        if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
+        //if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
         if (data.category&&!data.category._str)  data.category = toObjectId(data.category);
         if (data.onefoundRaiseAs&&!data.onefoundRaiseAs._str) data.onefoundRaiseAs = toObjectId(data.onefoundRaiseAs);
         if (data.oneForWhoFoundsRaise&&!data.oneForWhoFoundsRaise._str) data.oneForWhoFoundsRaise = toObjectId(data.oneForWhoFoundsRaise);
@@ -190,12 +194,13 @@ saveFunnel(cb){
   }
   render() {
 
-      const {show, errors, title, onefoundRaiseAs, oneForWhoFoundsRaise, price, objectifAmount, industry,category, description, isLoading, id } = this.state;
+      const {show, errors, projectName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, industry,category, description, isLoading, id, location } = this.state;
       const {image,video, document, industries, categories, foundRaiseAs , forWhoFoundsRaise} = this.props;
-      console.log(onefoundRaiseAs);
+      const locations = ["Portugal", "Cameroun"];
+      console.log(location);
     return (            
         <Modal bsSize="large"
-        aria-labelledby="contained-modal-title-sm" show={show} backdrop={false} >
+        aria-labelledby="contained-modal-projectName-sm" show={show} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
     <h3 className="text-center" > {id ?'Edit Funnel': ' Add Funnel'}</h3>
@@ -203,75 +208,82 @@ saveFunnel(cb){
     <ModalBody>
         <h2>Funnel Informations</h2>
                 <Input
-                    field="title"
-                    label="Enter the title"
-                    value={title}
-                    error={errors.title}
+                    field="projectName"
+                    label="Project Name"
+                    value={projectName}
+                    error={errors.projectName}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
                 <Input
-                    field="price"
-                    label="Price"
+                    field="zipCode"
+                    label="Zip Code"
                     type="number"
-                    value={price}
-                    error={errors.price}
+                    value={zipCode}
+                    error={errors.zipCode}
                     onChange={(event)=> this.handleInputChange(event)}
                     />
                 <Input
                     field="objectifAmount"
-                    label="objectifAmount"
+                    label="Objectif Amount"
                     type="number"
                     value={objectifAmount}
                     error={errors.objectifAmount}
                     onChange={(event)=> this.handleInputChange(event)}
-                    />
-                    <Select
+                />
+                <Select
+                    field="location"
+                    label="Location"
+                    value={location}
+                    options={locations}
+                    error={errors.location}
+                    onChange={(event)=> this.handleInputChange(event)}
+                />
+                <Select
                     field="industry"
                     label="Industry"
                     value={industry}
                     options={industries}
                     error={errors.industry}
                     onChange={(event)=> this.handleInputChange(event)}
-                    />
-
-                    <Select
+                />
+                <Select
                     field="category"
                     label="Category"
                     value={category}
                     options={categories}
                     error={errors.category}
                     onChange={(event)=> this.handleInputChange(event)}
-                    />
-                    <Select
+                />
+                <Select
                     field="onefoundRaiseAs"
-                    label="foundRaiseAs"
+                    label="Found Raise As"
                     value={onefoundRaiseAs}
                     options={foundRaiseAs}
                     error={errors.onefoundRaiseAs}
                     onChange={(event)=> this.handleInputChange(event)}
-                    />
-                    <Select
+                />
+                <Select
                     field="oneForWhoFoundsRaise"
-                    label="oneForWhoFoundsRaise"
+                    label="For Who Founds Raise"
                     value={oneForWhoFoundsRaise}
                     options={forWhoFoundsRaise}
                     error={errors.oneForWhoFoundsRaise}
                     onChange={(event)=> this.handleInputChange(event)}
-                    />
-                    <Summernote
+                />
+                <Summernote
                     field="description"
                     label="Enter the description"
                     value={description}
                     error={errors.description}
                     onChange={(event)=> this.handleInputChange(event)}
-                    />
-                    <h2>Uploads</h2>
-                    <br />
-                    <div className="row">
-                    <Upload errors={errors} type="image" oldUrl={image} setFile={(name,file)=>this.setFile(name, file)} name="imageFile" label="Upload Funnel Image" />
-                    <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = "Upload Funnel Document" />
-                    <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Funnel Video" />
-                    </div>
+                />
+                <h2>Uploads</h2>
+                <br />
+                <div className="row">
+                <Upload errors={errors} type="image" oldUrl={image} setFile={(name,file)=>this.setFile(name, file)} name="imageFile" label="Upload Funnel Image" />
+                <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = "Upload Funnel Document" />
+                <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Funnel Video" />
+                </div>
                     {errors.global&& <span style={{color: '#ed5565', fontSize:'15px'}} className="error-block">{errors.global}</span>}
     </ModalBody>
      

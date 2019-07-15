@@ -20,9 +20,9 @@ import {Categories,Industries} from '../../../api/collections'
                         </Link>
                     </div>
                     <div className="product-desc">
-                                {funnel&&!Number(funnel.price)&& <span className="product-price">
+                                {funnel&&!Number(funnel.zipCode)&& <span className="product-zipCode">
                                    FREE</span>}
-                        <Link to={{pathname:'/funnels/'+funnel._id._str}} className="product-name"> {funnel.title}</Link>
+                        <Link to={{pathname:'/funnels/'+funnel._id._str}} className="product-name"> {funnel.projectName}</Link>
                         <h5 className="text-muted">{industry&&industry.name||'No Industry'}  {/**category&&category.name||'No Category'*/}</h5>
                         <div className="m-t text-righ">
 
