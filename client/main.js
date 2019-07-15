@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import App from '../imports/ui/pages/App';
 import Funnel from '../imports/ui/routes/Funnel';
+import Project from '../imports/ui/routes/Project';
 import Admin from '../imports/ui/routes/Admin';
 import '../imports/startup/accounts-config.js';
 import Authentication from '../imports/ui/routes/Authentication';
@@ -20,6 +21,7 @@ Meteor.startup(() => {
         <Switch>
           <Route exact path='/' component={App} />
           <Route path='/funnels' component={Funnel} />
+          <Route path='/projects' component={Project} />
           {/**<Route path='/pricing' component={PagePlans} />*/}
           <Route exact path='/paypal' component={PaypalPage} />
           <Route path='/admin' component={Admin} />

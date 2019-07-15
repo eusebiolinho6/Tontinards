@@ -1583,7 +1583,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 @media (min-width: 992px) {
   .menu-visible-md {
-    display: block !important;
+    /* display: block !important; */
   }
 }
 @media (max-width: 767px) {
@@ -9831,3 +9831,46 @@ overflow-y: auto;
   font-weight: bold;
   padding: 12px 50px 12px 50px;
  }
+
+ /*------------------------- PROJECTS PAGE ----------------------------*/
+ .projectsPageHeader{
+   padding: 1px 3%;
+ }
+
+ .projectsPageHeader h1{
+   font-size: 2.2em;
+   font-weight: 800;
+ }
+
+ 
+ .projectsPageHeader hr{
+   border: 0.5px solid rgb(170, 164, 164);
+  }
+  
+.pendingProjectsConatiner, .validatedProjectsConatiner{
+   padding: 5px 2%;
+}
+ 
+.pendingProjectsConatiner h2, .validatedProjectsConatiner h2{
+  font-size: 1.9em;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.viewMoreProjectsBtn{
+  padding: 5px 50px;
+  font-size: 1.7em;
+}
+
+.projects{
+  padding: 10px 0;
+}
+
+.validatedProjectsConatiner{
+  margin-top: 50px;
+}
+
+.validatedProjectsConatiner hr{
+  border: 0.5px solid rgb(170, 164, 164);
+  width: 50%;
+}

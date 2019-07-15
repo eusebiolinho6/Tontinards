@@ -78,7 +78,7 @@ class FunnelList extends Component {
         </div>}
         
         <div id="funnelListkamer" className="row">
-        {this.renderFunnels()}
+          {this.renderFunnels()}
         </div>
 
 </div>
