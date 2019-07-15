@@ -32,17 +32,19 @@ class Main extends Component {
         const { params, funnels, search, categories, userId, industries } = this.props;
         const { isLoading } = this.state;
         return (
-            <div className="wrapper wrapper-content container ">
-                <div className="projectContainer" >
-                <hr />
+            <div className="wrapper wrapper-content">
+                <div className="projectContainer">
+                    <hr/>
                     <h1>Some Projects</h1>
+                    <br/>
+                    <br/>
+
                 </div>
-                <br/>
                 <div className="row">
-                    <div className="col-lg-3">
+                    {/* <div className="col-lg-3">
                         <FilterFunnelMenu {...this.props} search={search} funnels={funnels} params={params} industries={industries} categories={categories} />
-                    </div>
-                    <div className="col-lg-9 animated fadeInRight">
+                    </div> */}
+                    <div className="col-lg-12 animated fadeInRight">
                         {isLoading ?
                             <div style={{ minHeight: '200px' }} > <div className="overlay-funnels" ><i className="fa fa-gear fa-spin"></i></div></div>
                             :

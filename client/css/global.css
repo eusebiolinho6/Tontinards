@@ -105,7 +105,7 @@ margin: -75px 0 0 -75px;
   transform: rotate(45deg);
 }
 .subject-container:nth-child(3n+1) {
-  clear: left;
+  /* clear: left; */
 }
 .glyphicon {
   position: relative;
@@ -5157,7 +5157,11 @@ table.table-mail tr td {
   color: #ed5565 !important;
 }
 .text-muted {
+  margin-top: 5px;
+  margin-bottom: 5px;
   color: #888888 !important;
+  overflow: hidden !important;
+  height: 32px;
 }
 .text-white {
   color: #ffffff;
@@ -6516,6 +6520,7 @@ del {
 .product-desc {
   padding: 20px;
   position: relative;
+  height: 250px;
 }
 .ecommerce .tag-list {
   padding: 0;
@@ -6547,8 +6552,10 @@ table.shoping-cart-table tr td:last-child {
   font-size: 16px;
   font-weight: 600;
   color: #676a6c;
+  overflow: hidden !important;
   display: block;
   margin: 2px 0 5px 0;
+  height: 43px;
 }
 .product-name:hover,
 .product-name:focus {
@@ -9755,26 +9762,87 @@ overflow-y: auto;
   color: black;
   font-size: 20px;
   font-weight: bold;
-  margin-top: -200px;
-  margin-left: 200px !important;
-  margin-right: 200px !important;
+  margin: -200px 200px 0 200px !important;
   width: 70% !important;
- }
- .projectContainer h1{
-  margin-top: 40px;
-  margin-bottom: 20px;
-  color: black;
-  font-size: 30px;
-  font-weight: bolder;
-  }
- .projectContainer hr{
-   border:1px solid rgb(88, 86, 86);
-   width: 40%;
- }
- .projectContainer{
+}
+
+.projectContainer{
   text-align: center;
   margin-top: 30px;
+}
+
+.projectContainer h1{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: rgb(63, 58, 58);
+  font-size: 30px;
+  font-weight: bolder;
+} 
+
+.projectContainer hr{
+  border: 0.5px solid rgb(155, 148, 148);
+  width: 40%;
+}
+
+/*------------------------CIRCULAR PROGRESS BAR -----------------------------*/
+.bigProgressBarContainer{
+  text-align: center;
+  width: 100%;
+  
+}
+
+.circularProgessBarContainer{
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*---------------------------------------------------------------------------------*/
+.projetImage{
+  height: 210px;
+}
+
+.projectTitle{
+  vertical-align: baseline !important;
+  padding-top: auto;
+  padding-bottom: auto; 
+}
+
+.viewMoreBtn{
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin-left: -2px;
+}
+
+.viewMoreBtn, .donateBtn{
+  padding: 5px 25px;
+  font-size: 1.2em;
+}
+
+.donateBtn{
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px
+}
+
+.addprojectBtn{
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px 50px 12px 50px;
  }
- 
- /*-----------------Circular progress bar-----------------------------------*/
- 
+.AdminProjectHr{
+  border: 0.5px solid rgb(155, 148, 148);
+  width: 100%;
+}
+.AdminProjectH2{
+margin-left: 12px;
+font-size: 20px;
+font-weight: bold;
+color: green;
+}
+.AdminProjectH1{
+  font-size: 25px;
+  font-weight: bold;
+  }
+  .AdminProjectSHr{
+  border: 0.5px solid rgb(155, 148, 148);
+  width: 40%;
+  }

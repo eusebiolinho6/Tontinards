@@ -24,7 +24,7 @@ class Header extends Component {
     const {redirect, hasAccount}=this.state;
     if (redirect) return <Redirect to = "/" />
     const {user}=this.props;
-    console.log(user);
+    // console.log(user);
     return (
         <div className="row border-bottom">
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>

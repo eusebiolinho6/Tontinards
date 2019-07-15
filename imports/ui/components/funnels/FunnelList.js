@@ -15,9 +15,39 @@ class FunnelList extends Component {
     }
     renderFunnels(){
         const {funnels, propclass} = this.props;
-       return funnels.map((funnel)=>(
-            <FunnelItem key={funnel._id} funnel={funnel} />
+        const fakeProjects = [
+          {
+            "img": "/images/img4.PNG",
+            "projectTitle": "Project Number One Project Number One Project Number One Project Number One Project Number One",
+            "currentAmount": "200000",
+            "goal": "10000000"
+          },
+          {
+            "img": "/images/img4.PNG",
+            "projectTitle": "Project Number Two",
+            "currentAmount": "50000",
+            "goal": "500000"
+          },
+          {
+            "img": "/images/img4.PNG",
+            "projectTitle": "Project Number Three",
+            "currentAmount": "2100000",
+            "goal": "2000000"
+          },
+          {
+            "img": "/images/img4.PNG",
+            "projectTitle": "Project Number Four",
+            "currentAmount": "17500975",
+            "goal": "63000000"
+          }
+        ]
+
+       return fakeProjects.map((project, index)=>(
+            <FunnelItem key={index} project={project} />
         ))
+      //  return funnels.map((funnel)=>(
+      //       <FunnelItem key={funnel._id} funnel={funnel} />
+      //   ))
     }
     render() {
         const {show}=this.state;

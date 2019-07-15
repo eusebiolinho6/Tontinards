@@ -19,7 +19,7 @@ class MainLayout extends Component {
     return (
       <Fragment>
         {/* <Location location={location} /> */}
-         <Main  {...this.props} params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
+         <Main {...this.props} params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
       </Fragment>
     )
   }
