@@ -26,3 +26,5 @@ fortawesome:fontawesome
 jquery
 twbs:bootstrap
 summernote:summernote
+accounts-google
+service-configuration

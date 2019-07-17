@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from '../../globalComponents/Input';
 import validateInput from '../../../validations/login.js';
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
 
 // App component - represents the whole app
 class LoginForm extends Component {
@@ -13,7 +13,7 @@ this.state = {
     password: '',
     errors: {},
     isLoading: false,
-    redirect:false
+    redirect:false,
     };
 }
     componentDidMount(){
@@ -45,6 +45,25 @@ this.state = {
       });
   }
 
+  loginGoogle = () =>{
+     
+      Meteor.loginWithGoogle(
+        {
+            forceApprovalPrompt: true,
+            requestPermissions: ['profile','email'],
+        }, 
+        (error) =>{
+            if (error) {
+                console.log(error); //If there is any error, will get error here
+            }else{
+                this.setState({redirect: true})
+                console.log(Meteor.user());// If there is successful login, you will get login details here
+               
+            }
+        }
+      );
+  }
+
   handleSUbmit(e) {
      e.preventDefault();
      const {email, password}=this.state;
@@ -53,11 +72,11 @@ this.state = {
                 if(err){
                   this.setState({errors: {password: 'No user with this email & password'}});
                 } else {
-                 this.setState({redirect:true});
+                    this.setState({redirect: true})
                 }
             })
      }
-      
+   
   }
   render() {
       const { errors, email, password, isLoading, redirect } = this.state;
@@ -71,9 +90,14 @@ this.state = {
                     </h5>
                 </div>
                 <div className="ibox-content">
-                    <div className="row">
-                        <div className="col-sm-12"><h3 className="m-t-none m-b">Log in</h3>
+                    <div className='col'>
+                         <button className="btn btn-lg btn-danger" onClick={this.loginGoogle} >Login with Google</button>
+                    </div>
 
+                    <div className="row">
+                   
+                        <div className="col-sm-12"><h3 className="m-t-none m-b">Log in</h3>
+                           
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
                                     field="email"

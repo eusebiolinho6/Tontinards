@@ -41,6 +41,25 @@ class SignupForm extends Component {
           return isValid;
       }
 
+  signupWithGoogle(){
+
+    Meteor.loginWithGoogle(
+        {
+            forceApprovalPrompt: true,
+            requestPermissions: ['profile','email',  "gender"],
+        }, 
+        (error) =>{
+            if (error) {
+                console.log(error); //If there is any error, will get error here
+            }else{
+                this.setState({redirect: true})
+                console.log(Meteor.user());// If there is successful login, you will get login details here
+               
+            }
+        }
+      );
+  } 
+
   handleInputChange(e) {
       const name = e.target.name;
       const value = e.target.value;
@@ -87,7 +106,9 @@ class SignupForm extends Component {
                     <h5>Sign up 
                     </h5>
                 </div>
+                
                 <div className="ibox-content">
+                <button className="btn btn-lg btn-danger" onClick={this.signupWithGoogle} >Signup with Google</button>   
                     <div className="row">
                             <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
                             <Input
