@@ -17,7 +17,7 @@ import 'react-circular-progressbar/dist/styles.css';
         category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
-             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
+             propclass == 'whenDonating' ? 'col-md-12 subject-container' : 'col-md-3 subject-container'}>
             <div className="ibox text-center">
                 <div className="ibox-content product-box active">
                     <div className="imageContainer">
@@ -63,8 +63,11 @@ import 'react-circular-progressbar/dist/styles.css';
                         </div>
                         <h4 className="text-muted">Raised: {project.currentAmount} Fcfa / Goal: {project.goal} Fcfa </h4>
                         <div className="m-t text-righ">
-
-                            <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Manage Campaign </Link>
+                            {
+                                propclass ? 
+                                '' : 
+                                <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Manage Campaign </Link>
+                            }
                             {/* <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link> */}
                         </div>
                     </div>

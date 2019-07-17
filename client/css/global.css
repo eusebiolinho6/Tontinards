@@ -9874,3 +9874,20 @@ overflow-y: auto;
   border: 0.5px solid rgb(170, 164, 164);
   width: 50%;
 }
+
+/*------------------- DONATION PAGE ------------------------------*/
+.donationInput{
+  height: 100px;
+  width: 80%;
+  margin-right: 1% !important;
+  text-align: right;
+}
+
+.donationPageContent{
+  padding: 1px 5% ;
+  margin-right: 1%;
+}
+
+.inputContainer{
+  font-size: 4.2em;
+}
