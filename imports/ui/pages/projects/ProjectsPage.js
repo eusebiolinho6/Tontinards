@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import FunnelItem from '../../components/funnels/Funnel-Item';
+import PendingProjectItem from '../../components/projects/Pending-Project-Item';
+import ValidatedProjectItem from '../../components/projects/Validated-Project-Item'
 
 const fakePendingProjects = [
     {
@@ -32,7 +33,7 @@ const fakeValidatedProjects = [
     {
       "img": "/images/img5.PNG",
       "projectTitle": "Project Number One Project Number One Project Number One Project Number One Project Number One",
-      "currentAmount": "200000",
+      "currentAmount": "20000",
       "goal": "750000"
     },
     {
@@ -92,11 +93,17 @@ class ProjectsPage extends Component {
     }
   }
 
-  renderProjects(projects){
-        return projects.map((project, index)=>(
-            <FunnelItem key={index} project={project} />
-        ))
-   }
+  renderValidatedProjects(projects){
+    return projects.map((project, index)=>(
+      <ValidatedProjectItem key={index} project={project} />
+    ))
+  }
+
+  renderPendingOrRejectedProjects(projects){
+    return projects.map((project, index)=>(
+      <PendingProjectItem key={index} project={project} />
+    ))
+  }
 
    pushMoreProjects(state, initialArray ){
     for (let i=0; i<4; i++){
@@ -119,7 +126,7 @@ class ProjectsPage extends Component {
         <div className="row text-center pendingProjectsConatiner">
             <h2>Pending Projects</h2>
             <div className="projects">
-                {this.renderProjects(this.state.pendingProjects)}
+                {this.renderPendingOrRejectedProjects(this.state.pendingProjects)}
             </div>
             <br/>
             <br/>
@@ -130,7 +137,7 @@ class ProjectsPage extends Component {
             <hr/>
             <h2>Validated Projects</h2>
             <div className="projects">
-                {this.renderProjects(this.state.validatedProjects)}
+                {this.renderValidatedProjects(this.state.validatedProjects)}
             </div>
             <br/>
             <br/>
@@ -141,7 +148,7 @@ class ProjectsPage extends Component {
             <hr/>
             <h2>Rejected Projects</h2>
             <div className="projects">
-                {this.renderProjects(this.state.rejectedProjects)}
+                {this.renderPendingOrRejectedProjects(this.state.rejectedProjects)}
             </div>
             <br/>
             <br/>

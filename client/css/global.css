@@ -6520,7 +6520,7 @@ del {
 .product-desc {
   padding: 20px;
   position: relative;
-  height: 250px;
+  height: auto;
 }
 .ecommerce .tag-list {
   padding: 0;
