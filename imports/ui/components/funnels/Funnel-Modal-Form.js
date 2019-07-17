@@ -12,7 +12,8 @@ import { Funnels, Images, Videos, Documents } from '../../../api/collections'
 
 const collections = {
     documentFile: Documents,
-    imageFile: Images,
+    projectImage: Images,
+    teamImage: Images,
     videoFile: Videos
 }
 // App component - represents the whole app
@@ -26,13 +27,16 @@ class FunnelModalForm extends Component {
             objectifAmount: props.objectifAmount,
             zipCode: props.zipCode,
             description: props.description,
-            industry: props.industry,
             category: props.category,
             errors: {},
             isLoading: false,
             id: '',
             show: false,
-            imageFile: '',
+            projectImage: '',
+            teamName: props.teamName,
+            projectState: props.projectState,
+            currentAmount: props.currentAmount,
+            teamImage: '',
             documentFile: '',
             videoFile: '',
             country: props.country
@@ -40,25 +44,28 @@ class FunnelModalForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { show, projectName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, industry, category, description, id, country } = nextProps;
-        this.setState({ show, projectName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, industry, category, description, id, country });
+        const { show, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country } = nextProps;
+        this.setState({ show, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country });
         /*  this.loadCountry(); */
     }
     closeModal() {
         this.props.closeModal({ show: false });
         this.setState({
             projectName: '',
+            projectState: '',
+            currentAmount: '',
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
             objectifAmount: '',
             zipCode: '',
             description: '',
-            industry: '',
             category: '',
             errors: {},
             isLoading: false,
             id: '',
-            imageFile: '',
+            projectImage: '',
+            teamName: '',
+            teamImage: '',
             documentFile: '',
             videoFile: '',
             country: ''
@@ -71,6 +78,7 @@ class FunnelModalForm extends Component {
         } = validateInput(this.state);
 
         if (!isValid) {
+            console.log(errors);
             this.setState({
                 errors
             });
@@ -97,33 +105,35 @@ class FunnelModalForm extends Component {
     saveFunnel(cb) {
         const {
             projectName,
+            projectState,
+            currentAmount,
+            teamName,
             onefoundRaiseAs,
             oneForWhoFoundsRaise,
             objectifAmount,
             zipCode,
             description,
-            industry,
             category,
             country,
             id
         } = this.state;
         let data = {
             projectName,
+            projectState,
+            currentAmount,
+            teamName,
             onefoundRaiseAs,
             oneForWhoFoundsRaise,
             objectifAmount,
             zipCode,
             description,
             category,
-            industry,
             country,
         };
 
-        //if (data.industry &&!data.industry._str) data.industry = toObjectId(data.industry);
         if (data.category && !data.category._str) data.category = toObjectId(data.category);
         if (data.onefoundRaiseAs && !data.onefoundRaiseAs._str) data.onefoundRaiseAs = toObjectId(data.onefoundRaiseAs);
         if (data.oneForWhoFoundsRaise && !data.oneForWhoFoundsRaise._str) data.oneForWhoFoundsRaise = toObjectId(data.oneForWhoFoundsRaise);
-        console.log(data);
         if (id) {
             data.updatedAt = new Date();
             Funnels.update(id, { $set: data }, function (err, nbrow) {
@@ -164,6 +174,7 @@ class FunnelModalForm extends Component {
     } */
     handleSUbmit(e) {
         e.preventDefault();
+        console.log(this.isValid());
         if (!this.isValid()) {
             return;
         }
@@ -176,7 +187,8 @@ class FunnelModalForm extends Component {
             } else {
                 let uploads = [],
                     cursor = 1;
-                if (this.state.imageFile) uploads.push('imageFile');
+                if (this.state.projectImage) uploads.push('projectImage');
+                if (this.state.teamImage) uploads.push('teamImage');
                 if (this.state.videoFile) uploads.push('videoFile');
                 if (this.state.documentFile) uploads.push('documentFile');
                 if (!uploads.length) return this.closeModal();
@@ -214,8 +226,8 @@ class FunnelModalForm extends Component {
     }
     render() {
 
-        const { show, errors, projectName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, industry, category, description, isLoading, id, country } = this.state;
-        const { image, video, document, industries, categories, foundRaiseAs, forWhoFoundsRaise, countries } = this.props;
+        const { show, errors, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, isLoading, id, country } = this.state;
+        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries } = this.props;
         return (
             <Modal bsSize="large"
                 aria-labelledby="contained-modal-projectName-sm" show={show} backdrop={false} >
@@ -248,6 +260,7 @@ class FunnelModalForm extends Component {
                             error={errors.objectifAmount}
                             onChange={(event) => this.handleInputChange(event)}
                         />
+
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
                             <option>Select one value</option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
@@ -283,10 +296,21 @@ class FunnelModalForm extends Component {
                             error={errors.description}
                             onChange={(event) => this.handleInputChange(event)}
                         />
+                        <h2>Team Informations</h2>
+                        <Input
+                            field="teamName"
+                            label="Team Name"
+                            value={teamName}
+                            error={errors.teamName}
+                            onChange={(event) => this.handleInputChange(event)}
+                        />
+                        <div className="row">
+                            <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
+                        </div>
                         <h2>Uploads</h2>
                         <br />
                         <div className="row">
-                            <Upload errors={errors} type="image" oldUrl={image} setFile={(name, file) => this.setFile(name, file)} name="imageFile" label="Upload Funnel Image" />
+                            <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name, file) => this.setFile(name, file)} name="projectImage" label="Upload Project Image" />
                             <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file) => this.setFile(name, file)} name="documentFile" label="Upload Funnel Document" />
                             <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file) => this.setFile(name, file)} name="videoFile" label="Upload Funnel Video" />
                         </div>

@@ -7,12 +7,10 @@ class Tr extends Component {
 
     render() {
         const{funnel}=this.props;
-        const industry=Industries.findOne({_id:funnel.industry}),
-        category=Categories.findOne({_id:funnel.category});
+        const category=Categories.findOne({_id:funnel.category});
         return (
                 <tr key={funnel._id}>
                         <td>{funnel.projectName}</td>
-                        <td>{industry&&industry.name}</td>
                         <td>{category&&category.name}</td>
                         <td>${funnel.zipCode} </td>
                         <td>{this.props.formatDate(funnel.createdAt)} </td>

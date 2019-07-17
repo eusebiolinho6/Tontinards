@@ -9,11 +9,8 @@ export default function validateInput(data) {
     if (Validator.isEmpty(data.projectName)) {
         errors.projectName = 'This field is required';
     }
-   /** if (!data.category) {
+    if (!data.category) {
         errors.category = 'This field is required';
-    }*/
-    if (!data.industry) {
-        errors.industry = 'This field is required';
     }
     if (Validator.isEmpty(data.description)) {
         errors.description = 'This field is required';
