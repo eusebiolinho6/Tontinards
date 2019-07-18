@@ -93,15 +93,15 @@ class ProjectsPage extends Component {
     }
   }
 
-  renderValidatedProjects(projects){
+  /**
+   * 
+   * @param {Array} projects is the array of projects we will map to display each of them
+   * @param {*} Component the corresponding Component to be rendrered
+   * returns a rendered Component 
+   */
+  renderProjects(projects, Component){
     return projects.map((project, index)=>(
-      <ValidatedProjectItem key={index} project={project} />
-    ))
-  }
-
-  renderPendingOrRejectedProjects(projects){
-    return projects.map((project, index)=>(
-      <PendingProjectItem key={index} project={project} />
+      <Component key={index} project={project} />
     ))
   }
 
@@ -126,7 +126,7 @@ class ProjectsPage extends Component {
         <div className="row text-center pendingProjectsConatiner">
             <h2>Pending Projects</h2>
             <div className="projects">
-                {this.renderPendingOrRejectedProjects(this.state.pendingProjects)}
+                {this.renderProjects(this.state.pendingProjects, PendingProjectItem)}
             </div>
             <br/>
             <br/>
@@ -137,7 +137,7 @@ class ProjectsPage extends Component {
             <hr/>
             <h2>Validated Projects</h2>
             <div className="projects">
-                {this.renderValidatedProjects(this.state.validatedProjects)}
+                {this.renderProjects(this.state.validatedProjects, ValidatedProjectItem)}
             </div>
             <br/>
             <br/>
@@ -148,7 +148,7 @@ class ProjectsPage extends Component {
             <hr/>
             <h2>Rejected Projects</h2>
             <div className="projects">
-                {this.renderPendingOrRejectedProjects(this.state.rejectedProjects)}
+                {this.renderProjects(this.state.rejectedProjects, PendingProjectItem)}
             </div>
             <br/>
             <br/>
