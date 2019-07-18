@@ -59,6 +59,19 @@ this.state = {
      }
       
   }
+
+  loginWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
+      });
+  }
+
   render() {
       const { errors, email, password, isLoading, redirect } = this.state;
       if(redirect) return <Redirect to="/funnels/all/all" />
@@ -99,6 +112,9 @@ this.state = {
                                 <label> <input type="checkbox" /> Remember me </label>
                                 </div>
                             </form>
+                        </div>
+                        <div className="col-sm-12 mt-3">
+                            <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Login with Twitter</strong></button>
                         </div>
                     </div>
                 </div>

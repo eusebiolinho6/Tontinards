@@ -33,7 +33,7 @@ exports.checkRole = (roles, userId)=>{
     return false;
 }
 export function getMainPath(){
-    if(Meteor.isServer && !this.path){
+    if(Meteor.isServer && !this.path) {
         let path = os&&os.userInfo().homedir+"/projects/meteor-app";
         this.path = path;
     }

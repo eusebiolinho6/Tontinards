@@ -49,6 +49,18 @@ class SignupForm extends Component {
       });
   }
 
+  loginWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
+      });
+  }
+
   handleSUbmit(e){
       e.preventDefault();
       const {email, password,username,name} = this.state;
@@ -133,6 +145,9 @@ class SignupForm extends Component {
                                     {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
                                 </div>
                             </form>
+                                <div className="col-sm-12 mt-3">
+                                    <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Signup with Twitter</strong></button>
+                                </div>
                     </div>
                 </div>
             </div>
