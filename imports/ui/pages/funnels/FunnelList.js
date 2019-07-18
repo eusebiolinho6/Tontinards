@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
+import AdminDashboard from './AdminDashboard';
+import FunnelDetailsPage from './FunnelsDetailsPage'
+import {Link} from 'react-router-dom';
 
 // App component - represents the whole app
 class FunnelList extends Component {
@@ -24,11 +27,11 @@ class FunnelList extends Component {
             <h1 className="mainText container text-center">Get Funding and Develop your Business</h1>
             <br/>
             <br/>
-            <a  href="/projects" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
+            <a  href="funnels/adminDashboard" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
           </div>
         </div>
         <div className="embed-responsive embed-responsive-16by9 mainVideo">
-          <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+          <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" ></iframe>
         </div>
         <p className = "submainText">
           Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
@@ -36,6 +39,8 @@ class FunnelList extends Component {
         </p>
 
         <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
+        <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
+
       </div>
     )
   }
