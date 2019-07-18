@@ -150,6 +150,8 @@ class FunnelLIstAdmin extends Component {
                                                 <th>Name</th>
                                                 <th>Category</th>
                                                 <th>zipCode</th>
+                                                <th>Objectif Amount</th>
+                                                <th>Current Amount</th>
                                                 <th>Created At</th>
                                                 <th className="pull-right">Action</th>
                                             </tr>
