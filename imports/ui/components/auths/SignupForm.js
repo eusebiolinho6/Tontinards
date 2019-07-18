@@ -46,7 +46,7 @@ class SignupForm extends Component {
     Meteor.loginWithGoogle(
         {
             forceApprovalPrompt: true,
-            requestPermissions: ['profile','email',  "gender"],
+            requestPermissions: ['profile','email'],
         }, 
         (error) =>{
             if (error) {
@@ -59,6 +59,37 @@ class SignupForm extends Component {
         }
       );
   } 
+
+  signupFacebook = () =>{
+     
+    Meteor.loginWithFacebook(
+      {
+          forceApprovalPrompt: true,
+          requestPermissions: ['user_friends', 'public_profile', "email"],
+      }, 
+      (error) =>{
+          if (error) {
+              console.log(error); //If there is any error, will get error here
+          }else{
+              this.setState({redirect: true})
+              console.log(Meteor.user());// If there is successful login, you will get login details here
+             
+          }
+      }
+    );
+}
+
+  signupWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
+      });
+  }
 
   handleInputChange(e) {
       const name = e.target.name;
@@ -108,7 +139,7 @@ class SignupForm extends Component {
                 </div>
                 
                 <div className="ibox-content">
-                <button className="btn btn-lg btn-danger" onClick={this.signupWithGoogle} >Signup with Google</button>   
+                  
                     <div className="row">
                             <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
                             <Input
@@ -154,6 +185,11 @@ class SignupForm extends Component {
                                     {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
                                 </div>
                             </form>
+                            <div className="col-sm-12 mt-12">
+                                <button className="btn btn-md btn-danger mt-3" onClick={this.signupWithGoogle} ><strong>Signup with Google</strong></button><br/>
+                                <button className="btn btn-md btn-default mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br/>
+                                <button className="btn btn-md btn-info mt-3" onClick={this.signupWIthTwitter} ><strong>Signup with Twitter</strong></button><br/>
+                            </div>
                     </div>
                 </div>
             </div>

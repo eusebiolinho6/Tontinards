@@ -64,6 +64,37 @@ this.state = {
       );
   }
 
+  loginFacebook = () =>{
+     
+    Meteor.loginWithFacebook(
+      {
+          forceApprovalPrompt: true,
+          requestPermissions: ['user_friends', 'public_profile', "email"],
+      }, 
+      (error) =>{
+          if (error) {
+              console.log(error); //If there is any error, will get error here
+          }else{
+              this.setState({redirect: true})
+              console.log(Meteor.user());// If there is successful login, you will get login details here
+             
+          }
+      }
+    );
+}
+
+  loginWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
+      });
+  }
+
   handleSUbmit(e) {
      e.preventDefault();
      const {email, password}=this.state;
@@ -78,6 +109,8 @@ this.state = {
      }
    
   }
+
+
   render() {
       const { errors, email, password, isLoading, redirect } = this.state;
       if(redirect) return <Redirect to="/funnels/all/all" />
@@ -90,9 +123,6 @@ this.state = {
                     </h5>
                 </div>
                 <div className="ibox-content">
-                    <div className='col'>
-                         <button className="btn btn-lg btn-danger" onClick={this.loginGoogle} >Login with Google</button>
-                    </div>
 
                     <div className="row">
                    
@@ -123,6 +153,11 @@ this.state = {
                                 <label> <input type="checkbox" /> Remember me </label>
                                 </div>
                             </form>
+                        </div>
+                        <div className="col-sm-12 mt-3">
+                            <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>Login with Google</strong></button>
+                            <button className="btn btn-md btn-default mt-3" onClick={this.loginFacebook}><strong>Login with Facebook</strong></button>
+                            <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>Login with Twitter</strong></button>
                         </div>
                     </div>
                 </div>
