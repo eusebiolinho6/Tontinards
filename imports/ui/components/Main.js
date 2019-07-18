@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import FilterFunnelMenu from './funnels/FilterFunnelMenu'
 import FunnelList from './funnels/FunnelList'
+import ProjectsList from './projects/ProjectsList'
 import Location from '../globalComponents/Location'
 
 // App component - represents the whole app
@@ -49,7 +50,8 @@ class Main extends Component {
                             <div style={{ minHeight: '200px' }} > <div className="overlay-funnels" ><i className="fa fa-gear fa-spin"></i></div></div>
                             :
                             <div className="row">
-                                <FunnelList funnels={this.props.funnels} />
+                                {/* <ProjectsList funnels={this.props.funnels} /> */}
+                                <ProjectsList  />
                             </div>
                         }
                     </div>

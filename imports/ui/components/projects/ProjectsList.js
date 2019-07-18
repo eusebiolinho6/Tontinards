@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import FunnelItem from './Funnel-Item';
-import ValidatedProjectItem from '../projects/Validated-Project-Item';
-import ModalSubscription from './../payments/ModalSubscription';
+import ValidatedProjectItem from './Validated-Project-Item';
+import ModalSubscription from '../payments/ModalSubscription';
 import { checkRole } from '../../../utilities';
 // App component - represents the whole app
-class FunnelList extends Component {
+class ProjectsList extends Component {
     constructor(props) {
         super(props);
         this.state={show:false}
@@ -59,7 +58,7 @@ class FunnelList extends Component {
         return (
         <div style={{width: '100%', paddingTop: '0px'}} className="wrapper wrapper-content animated fadeInRight">
         {!isAuthorized&&<div>
-            <ModalSubscription userId={userId} show={show} closeModal={()=>this.closeModal()} />
+            {/* <ModalSubscription userId={userId} show={show} closeModal={()=>this.closeModal()} /> */}
         {/* <div className="box-offer col-md-12">
             <div className="row">
               <div className="col-md-8 col-xs-12 cell">
@@ -88,4 +87,4 @@ class FunnelList extends Component {
     }
 }
 
-export default FunnelList;
+export default ProjectsList;

@@ -105,14 +105,23 @@ class ProjectsPage extends Component {
     ))
   }
 
-   pushMoreProjects(state, initialArray ){
-    for (let i=0; i<4; i++){
-      this.setState({
-        state: initialArray.push(fakeValidatedProjects[i])
-      })
-    } 
-    
-   }
+  /**
+   * 
+   * @param {state} state: it is a state of the component, since component is automatically
+   * redrawn when state changes, we actually use states to render projects in order to
+   * display more projects without refreshing the page  
+   * @param {Array} initialArray: this is the array of rendred projects before more projects
+   * are loaded
+   * returns nothing, just sets the state to it new value
+   */
+  pushMoreProjects(state, initialArray ){
+  for (let i=0; i<4; i++){
+    this.setState({
+      state: initialArray.push(fakeValidatedProjects[i])
+    })
+  } 
+  
+  }
 
 
 
@@ -123,6 +132,7 @@ class ProjectsPage extends Component {
             <h1>Projects List</h1>
             <hr/>
         </div>
+        {/*---- Begining zone of Pending Projects------*/}
         <div className="row text-center pendingProjectsConatiner">
             <h2>Pending Projects</h2>
             <div className="projects">
@@ -132,7 +142,9 @@ class ProjectsPage extends Component {
             <br/>
             <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a>
         </div>
+        {/*---- End zone of Pending Projects ------*/}
 
+        {/*---- Begining zone of Validated Projects ------*/}
         <div className="row text-center validatedProjectsConatiner">
             <hr/>
             <h2>Validated Projects</h2>
@@ -143,7 +155,9 @@ class ProjectsPage extends Component {
             <br/>
             <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a>
         </div>
+        {/*---- End zone of Validated Projects ------*/}
 
+        {/*---- Begining zone of Rejected Projects ------*/}
         <div className="row text-center validatedProjectsConatiner">
             <hr/>
             <h2>Rejected Projects</h2>
@@ -154,6 +168,7 @@ class ProjectsPage extends Component {
             <br/>
             <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a>
         </div>
+        {/*---- End zone of Rejected Projects ------*/}
         
 
       </div>

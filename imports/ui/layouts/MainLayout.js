@@ -20,12 +20,14 @@ class MainLayout extends Component {
       <Fragment>
         {/* <Location location={location} /> */}
          <Main {...this.props} params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
+         {/* <Main  /> */}
       </Fragment>
     )
   }
 }
 
 export default withTracker((props)=>{
+  
   Meteor.subscribe('funnels');
   Meteor.subscribe('industries');
   Meteor.subscribe('categories');

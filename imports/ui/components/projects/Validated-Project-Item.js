@@ -64,9 +64,16 @@ import 'react-circular-progressbar/dist/styles.css';
                         <h4 className="text-muted">Raised: {project.currentAmount} Fcfa / Goal: {project.goal} Fcfa </h4>
                         <div className="m-t text-righ">
                             {
-                                propclass ? 
-                                '' : 
-                                <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Manage Campaign </Link>
+                                propclass == "whenDonating" ?  
+                                '' 
+                                : 
+                                    propclass == "onPorjectsList" ? 
+                                    <span>
+                                        <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Donate </Link>
+                                        <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
+                                    </span>
+                                    :
+                                    <Link to={{pathname:'#'}} className="btn btn-primary donateBtn">Manage Campaign </Link>
                             }
                             {/* <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link> */}
                         </div>
