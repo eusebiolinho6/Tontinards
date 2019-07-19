@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from '../../globalComponents/Input';
 import validateInput from '../../../validations/login.js';
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
 
 // App component - represents the whole app
 class LoginForm extends Component {
@@ -13,7 +13,7 @@ this.state = {
     password: '',
     errors: {},
     isLoading: false,
-    redirect:false
+    redirect:false,
     };
 }
     componentDidMount(){
@@ -45,6 +45,56 @@ this.state = {
       });
   }
 
+  loginGoogle = () =>{
+     
+      Meteor.loginWithGoogle(
+        {
+            forceApprovalPrompt: true,
+            requestPermissions: ['profile','email'],
+        }, 
+        (error) =>{
+            if (error) {
+                console.log(error); //If there is any error, will get error here
+            }else{
+                this.setState({redirect: true})
+                console.log(Meteor.user());// If there is successful login, you will get login details here
+               
+            }
+        }
+      );
+  }
+
+  loginFacebook = () =>{
+     
+    Meteor.loginWithFacebook(
+      {
+          forceApprovalPrompt: true,
+          requestPermissions: ['user_friends', 'public_profile', "email"],
+      }, 
+      (error) =>{
+          if (error) {
+              console.log(error); //If there is any error, will get error here
+          }else{
+              this.setState({redirect: true})
+              console.log(Meteor.user());// If there is successful login, you will get login details here
+             
+          }
+      }
+    );
+}
+
+  loginWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
+      });
+  }
+
   handleSUbmit(e) {
      e.preventDefault();
      const {email, password}=this.state;
@@ -53,11 +103,11 @@ this.state = {
                 if(err){
                   this.setState({errors: {password: 'No user with this email & password'}});
                 } else {
-                 this.setState({redirect:true});
+                    this.setState({redirect: true})
                 }
             })
      }
-      
+   
   }
 
   loginWIthTwitter = () => {
@@ -84,9 +134,11 @@ this.state = {
                     </h5>
                 </div>
                 <div className="ibox-content">
-                    <div className="row">
-                        <div className="col-sm-12"><h3 className="m-t-none m-b">Log in</h3>
 
+                    <div className="row">
+                   
+                        <div className="col-sm-12"><h3 className="m-t-none m-b">Log in</h3>
+                           
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
                                     field="email"
@@ -114,7 +166,10 @@ this.state = {
                             </form>
                         </div>
                         <div className="col-sm-12 mt-3">
-                            <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Login with Twitter</strong></button>
+                            {/* <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Login with Twitter</strong></button> */}
+                            <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>Login with Google</strong></button>
+                            <button className="btn btn-md btn-default mt-3" onClick={this.loginFacebook}><strong>Login with Facebook</strong></button>
+                            <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>Login with Twitter</strong></button>
                         </div>
                     </div>
                 </div>
