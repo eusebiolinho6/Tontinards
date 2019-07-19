@@ -24,7 +24,7 @@ class Header extends Component {
     const {redirect, hasAccount}=this.state;
     if (redirect) return <Redirect to = "/" />
     const {user}=this.props;
-    console.log(user);
+    // console.log(user);
     return (
         <div className="row border-bottom">
             <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>
@@ -55,7 +55,8 @@ class Header extends Component {
                                     <a className="dropbtn" className="menuLink" href="#">Admin <i className="fa fa-angle-down"></i> </a>
                                     <div className="dropdown-content">
                                     <a id="dropbtn" href="/admin/categories">Categories</a>
-                                    <a id="dropbtn" href="/admin/industries">Industries</a>
+                                    <a id="dropbtn" href="/admin/foundRaiseAs">Found Raise As</a>
+                                    <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">For Who Founds Raise</a>
                                     <a id="dropbtn" href="/admin/funnels">Funnels</a>
                                 </div>
                                 </div>
