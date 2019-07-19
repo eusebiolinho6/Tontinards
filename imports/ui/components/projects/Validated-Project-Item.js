@@ -13,8 +13,8 @@ import 'react-circular-progressbar/dist/styles.css';
         const{project,propclass} = this.props;
         const percentage = Math.floor((project.currentAmount / project.goal)* 100);
         console.log(percentage);
-        const industry = Industries.findOne({_id:project.industry}),
-        category=Categories.findOne({_id:project.category});
+        // const industry = Industries.findOne({_id:project.industry}),
+        // category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
              propclass == 'whenDonating' ? 'col-md-12 subject-container' : 'col-md-3 subject-container'}>

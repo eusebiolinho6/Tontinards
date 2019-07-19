@@ -17,7 +17,7 @@ export const Documents = new FilesCollection({
         if(checkRole(['admin', 'paid'], this.userId)) return true;
         const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
         let funnel = Funnels.findOne({document: link});
-        if(funnel&&!Number(funnel.price)) return true;
+        if(funnel&&!Number(funnel.zipCode)) return true;
         return false
     },
     allowClientCode: false, // Disallow remove files from Client

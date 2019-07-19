@@ -3,20 +3,20 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstr
 import {Link} from 'react-router-dom';
 import Input from '../../../globalComponents/Input';
 import Upload from '../../../globalComponents/Upload';
-import validateInput from '../../../../validations/categories';
-import {toObjectId} from '../../../../utilities'
-import {Categories} from '../../../../api/collections'
+import validateInput from '../../../../validations/foundRaiseAs';
+import {toObjectId} from '../../../../utilities';
+import {FoundRaiseAs} from '../../../../api/collections';
 
 // App component - represents the whole app
-class CategoryModalForm extends Component {
+class FoundRaiseAsModalForm extends Component {
   constructor(props) {
     super(props);
-this.state = {
-    name: props.name,
-    errors: {},
-    isLoading: false,
-    id: '',
-    show:false,
+    this.state = {
+        name: props.name,
+        errors: {},
+        isLoading: false,
+        id: '',
+        show:false,
     };
 }
 componentWillReceiveProps(nextProps){
@@ -66,11 +66,11 @@ componentWillReceiveProps(nextProps){
      data.name = name;
      if(id){
          data.updatedAt = new Date();
-         Categories.update(id, {$set:data});
+         FoundRaiseAs.update(id, {$set:data});
         } else {
         data.createdAt = new Date();
         data._id = toObjectId(null);
-        Categories.insert(data);
+        FoundRaiseAs.insert(data);
      }
      this.closeModal();
 
@@ -83,14 +83,14 @@ componentWillReceiveProps(nextProps){
         aria-labelledby="contained-modal-projectName-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-     {id ?'Edit Category': ' Add Category'}
+     {id ?'Edit FoundRaiseAs': ' Add FoundRaiseAs'}
     </ModalHeader>
     <ModalBody>
         <div className="col-md-12">
-                <h2>Category Info</h2>
+                <h2>FoundRaiseAs Info</h2>
                 <Input
                     field="name"
-                    label="Enter Category name"
+                    label="Enter FoundRaiseAs name"
                     value={name}
                     error={errors.name}
                     onChange={(event)=> this.handleInputChange(event) }
@@ -108,4 +108,4 @@ componentWillReceiveProps(nextProps){
   }
 }
 
-export default CategoryModalForm;
+export default FoundRaiseAsModalForm;

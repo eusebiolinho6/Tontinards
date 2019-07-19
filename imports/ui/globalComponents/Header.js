@@ -36,8 +36,8 @@ class Header extends Component {
                         alt = "logo homepage"
                         />
                     </Link>
-                    {/**<span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm title-heading">
-                        Page Title
+                    {/**<span  style={{marginLeft: '10px'}} className="hidden-xs hidden-sm projectName-heading">
+                        Page projectName
                     </span>*/}
                     {/* Old form search
                     <form role="search" className="navbar-form-custom" method="post" action="views/search_results.html">
