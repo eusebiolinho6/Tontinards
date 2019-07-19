@@ -7,7 +7,8 @@ import AdminCategoryPage from '../pages/admins/AdminCategoryPage';
 import authenticate from '../../utilities/authenticate';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import AdminDashboard from '../pages/funnels/AdminDashboard'
+import AdminDashboard from '../pages/admins/AdminDashboard';
+import ProjectDetails from '../components/funnels/ProjectDetails';
 
 
 // The Roster component matches one of two different routes
@@ -67,6 +68,7 @@ class Admin extends Component {
                 <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
                 <Route exact path='/admin/admindashboard' component={AdminDashboard}/>
+                <Route exact path='/admin/projectdetails' component={ProjectDetails}/>
 
               </span> :
               <Redirect to="/funnels/all/all" /> 

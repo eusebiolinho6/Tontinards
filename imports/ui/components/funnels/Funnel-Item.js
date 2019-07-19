@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {Categories,Industries} from '../../../api/collections'
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import projectdetails from './ProjectDetails';
 
 // const percentage = 60;
 // Task component - represents a single todo item
@@ -65,7 +66,7 @@ import 'react-circular-progressbar/dist/styles.css';
                         <div className="m-t text-righ">
 
                             <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Donate </Link>
-                            <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
+                            <Link to={{pathname:'/admin/projectdetails'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                         </div>
                     </div>
                 </div>

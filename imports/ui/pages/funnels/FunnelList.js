@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import AdminDashboard from './AdminDashboard';
+import AdminDashboard from '../admins/AdminDashboard';
 import FunnelDetailsPage from './FunnelsDetailsPage'
 import {Link} from 'react-router-dom';
 
@@ -28,6 +28,7 @@ class FunnelList extends Component {
             <br/>
             <br/>
             <a  href="funnels/adminDashboard" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
+            {/* <a  href="/projects" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a> */}
           </div>
         </div>
         <div className="embed-responsive embed-responsive-16by9 mainVideo">
