@@ -79,7 +79,7 @@ this.state = {
         <div className="wrapper wrapper-content animated fadeInRight">
              <div className="row">
             <div className="ibox col-md-6 col-md-offset-3 float-e-margins">
-                <div className="ibox-title">
+                <div className="ibox-projectName">
                     <h5>Log In to FOPSwipe
                     </h5>
                 </div>

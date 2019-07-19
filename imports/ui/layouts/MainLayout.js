@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import Location from '../globalComponents/Location'
 import Main from '../components/Main'
-import {Categories, Industries, Funnels} from '../../api/collections'
+import {Categories, Funnels} from '../../api/collections'
 
 // App component - represents the whole app
 class MainLayout extends Component {
@@ -13,13 +13,13 @@ class MainLayout extends Component {
   render () {
     const location = {
       path: ['Home', 'Funnels'],
-      title: 'List of funnels'
+      projectName: 'List of funnels'
     },
-    {params, isFree, funnels, userId, search, industries, categories}=this.props;
+    {params, isFree, funnels, userId, search, categories}=this.props;
     return (
       <Fragment>
         <Location location={location} />
-         <Main {...this.props} params={params} userId={userId} search={search} funnels={funnels} industries={industries} categories={categories} />
+         <Main {...this.props} params={params} userId={userId} search={search} funnels={funnels} categories={categories} />
       </Fragment>
     )
   }
@@ -27,29 +27,20 @@ class MainLayout extends Component {
 
 export default withTracker((props)=>{
   Meteor.subscribe('funnels');
-  Meteor.subscribe('industries');
   Meteor.subscribe('categories');
-  const industries = props.params.industries,
   categories = props.params.categories,
   propSearch=props.search,
-  listc=categories.split('-'),
-  listi=industries.split('-');
+  listc=categories.split('-');
   let queryc = {},
   queryi={},
   listIdi=[],
   listIdc=[],
   search = '';
   if(categories !='all') queryc={devName:{$in:listc}};
-  if(industries !='all') queryi={devName:{$in:listi}};
   if (categories != 'all'){
       Categories.find(queryc).forEach((elt) => {
         listIdc.push(elt._id);
       });
-  }
-  if(industries!='all'){
-     Industries.find(queryi).forEach((elt) => {
-       listIdi.push(elt._id);
-     });
   }
   let q={};
   if(propSearch){
@@ -57,12 +48,10 @@ export default withTracker((props)=>{
     if(tab.length==2 && tab[0]=='?') search=tab[1];
   }
    if(categories !='all') q.category={$in:listIdc};
-    if(industries !='all') q.industry ={$in:listIdi};
-    if(search) q.title ={$regex: search, $options: 'i'};
-    if(props.isFree) q.price='0';
+    if(search) q.projectName ={$regex: search, $options: 'i'};
+    if(props.isFree) q.zipCode='0';
     return {
     funnels: Funnels.find(q).fetch(),
-    industries: Industries.find({}).fetch(),
     categories: Categories.find({}).fetch(),
     userId:Meteor.userId()
   }

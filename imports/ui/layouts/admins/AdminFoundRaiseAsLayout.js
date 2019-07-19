@@ -11,7 +11,7 @@ class AdminFoundRaiseAsLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'FoundRaiseAs', 'Admin'], title: 'Administration' };
+    const location = {path: ['Home', 'FoundRaiseAs', 'Admin'], projectName: 'Administration' };
     const {foundRaiseAs} = this.props;
     return (
       <Fragment>

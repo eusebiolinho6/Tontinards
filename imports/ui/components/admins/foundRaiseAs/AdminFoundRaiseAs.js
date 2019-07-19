@@ -62,7 +62,7 @@ class AdminFoundRaiseAs extends Component {
 
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
-        <div className="ibox-title">
+        <div className="ibox-projectName">
             <h5>Found Raise As List</h5>
         </div>
         <div className="ibox-content">

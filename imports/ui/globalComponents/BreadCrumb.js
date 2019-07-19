@@ -9,10 +9,10 @@ class BreadCrumb extends Component {
     }
 
     render() {
-        const {title, link } = this.props;
+        const {projectName, link } = this.props;
         return (
             <li className="breadcrumb-item">
-                <NavLink to={link} activeClassName="active">{title}</NavLink>
+                <NavLink to={link} activeClassName="active">{projectName}</NavLink>
             </li>
         )
     }

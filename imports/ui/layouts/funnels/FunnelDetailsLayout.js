@@ -19,7 +19,7 @@ class FunnelDetailsLayout extends Component {
     window.scrollTo(0, 0);
   }
   render () {
-    const location = {path: ['Home', 'Funnels', 'detail'], title: 'Details' };
+    const location = {path: ['Home', 'Funnels', 'detail'], projectName: 'Details' };
     const {funnel, funnels, user} = this.props;
     return (
         <Fragment>

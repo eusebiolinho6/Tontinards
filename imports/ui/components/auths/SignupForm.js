@@ -95,7 +95,7 @@ class SignupForm extends Component {
     <div className="row">
             <div className="col-md-3 col-sm-1"></div>   
             <div className="ibox col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1 float-e-margins">
-                <div className="ibox-title">
+                <div className="ibox-projectName">
                     <h5>Sign up 
                     </h5>
                 </div>
