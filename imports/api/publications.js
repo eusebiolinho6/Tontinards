@@ -1,7 +1,6 @@
 import './users/server'
 import './funnels/server/'
 import './categories/server/'
-import './messages/server/'
 import './images/server/'
 import './documents/server/'
 import './videos/server/'

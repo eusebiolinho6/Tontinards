@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import PendingProjectItem from '../../components/projects/Pending-Project-Item';
 import ValidatedProjectItem from '../../components/projects/Validated-Project-Item'
-import { MessageModalForm } from '../../components/projects/Messages'
 
 const fakePendingProjects = [
     {

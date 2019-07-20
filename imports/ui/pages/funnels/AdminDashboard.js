@@ -4,7 +4,6 @@ import FunnelDetailsPage from './FunnelsDetailsPage'
 import {Link} from 'react-router-dom';
 import AdminProjectPending from '../../components/funnels/AdminProjectPending';
 import AdminProjectValidated from '../../components/funnels/AdminProjectValidated';
-import  MessageForm  from '../../components/projects/Messages'
 
 // App component - represents the whole app
 class AdminDshb extends Component {
@@ -46,12 +45,7 @@ class AdminDshb extends Component {
             <br/> 
             <AdminProjectPending />
           </div>
-          <div>
-            <hr className = "AdminProjectSHr"/>
-            <h2 className = "AdminProjectH2">Coments </h2>
-            <br/> 
-            <MessageForm />
-          </div>
+       
       </div>
     )
   }

@@ -45,7 +45,7 @@ class FunnelModalForm extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { show, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country } = nextProps;
-        this.setState({ show, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country });
+        this.setState({ show, projectName, projectState, currentAmount,  teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country });
         /*  this.loadCountry(); */
     }
     closeModal() {

@@ -6,12 +6,17 @@ import {Meteor} from 'meteor/meteor'
 import TextArea from '../../globalComponents/Textarea';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import {toObjectId} from '../../../utilities';
+import { Funnels }  from '../../../api/collections'
+
 
 // App component - represents the whole app
 class ProjectDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            message: '',
+            messages: [],
             story: true
         }
     }
@@ -20,11 +25,27 @@ class ProjectDetails extends Component {
         
     }
 
+    saveComment=()=>{
+        const {message}=this.state;
+        let data = {message};
+        data._id = toObjectId(null);
+        console.log(Funnels);
+        Funnels.update({_id: toObjectId("ea3896f3a9ee73b2a6e7c0f9") },{$set: { messages: [data.message]}});
+        
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.saveComment();
+    }
+
     toggleContent = () => {
         this.setState({story: !this.state.story})
     }
 
     render() {
+        const {funnels} = this.props;
+
         return (
             <div className="container" id="projectdetails">
                 <div className="row">
@@ -80,10 +101,12 @@ class ProjectDetails extends Component {
                                 </div>
                             </div>
                             <div className="form-content">
+                             <form className="input__form" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
-                                    <textarea placeholder="Enter your message" className="form-control" id="textmessage" rows="3"></textarea>
+                                    <textarea placeholder="Enter your message" className="form-control" onChange={(e) => this.setState({message: e.target.value})} id="textmessage" rows="3"></textarea>
                                 </div>
-                                <button className="btn send-btn">Send</button>
+                                <button className="btn send-btn" type="submit">Send</button>
+                             </form>
                             </div>
                         </div>
                     </div>
@@ -175,5 +198,4 @@ class ProjectDetails extends Component {
         )
     }
 }
-
 export default ProjectDetails;
