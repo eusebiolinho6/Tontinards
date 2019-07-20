@@ -9906,3 +9906,312 @@ color: green;
   border: 0.5px solid rgb(155, 148, 148);
   width: 40%;
   }
+
+/* DROPDOWN BUTTON ON HEADER */
+.dropbtn {
+  color: inherit;
+  padding: 16px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: inherit ;
+  padding: 8px 12px !important;
+  min-height: 0 !important;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #eee;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {color: #3e8e41;}
+
+
+/* PROJECT DETAILS PAGE */
+#projectdetails  {
+  margin-top: 2rem;
+}
+#projectdetails .left {
+  padding: 2rem;
+}
+#projectdetails .left .aws-sld__content {
+  background-color: transparent !important;
+}
+#projectdetails .left .aws-sld {
+  margin-bottom: 3rem !important;
+}
+#projectdetails .left .aws-sld__bullets {
+  bottom: -1rem !important;
+}
+
+#projectdetails .right {
+  padding: 2rem;
+}
+
+#projectdetails .left img{
+  height: 40rem;
+  width: 100%;
+}
+
+#projectdetails .left .infos{
+  background-color: white;
+  border: solid 1px #eee;
+}
+
+#projectdetails .left .otherinfos{
+  padding: 0 2rem 2rem 2rem;
+}
+#projectdetails .left .founds{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#projectdetails .left h2{
+  font-weight: 600;
+  font-size: 23px;
+  color: #333;
+}
+
+
+#projectdetails .left .socialBtn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: auto;
+}
+#projectdetails .left .shareButtons{
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+#projectdetails .left .fb{
+  margin-right: 1.5rem;
+  background-color: #3C5999;
+  color: white;
+}
+#projectdetails .left .tw{
+  background-color: #00acee;
+  color: white;
+}
+#projectdetails .left .moreinfos{
+  margin-top: -2rem;
+}
+#projectdetails .left .moreinfos .headers{
+    display: flex;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+#projectdetails .left .moreinfos .btn1{
+    flex: 1;
+    padding: 0 0 1.5rem 0;
+    text-align: center;
+    cursor: pointer;
+    color: #18a689;
+    background-color: white;
+    border-radius: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#projectdetails .left .moreinfos .btn1:active{
+    outline: 0px solid black !important;  
+}
+
+#projectdetails .left .moreinfos .active-content{
+    border-bottom: solid 3px #18a689;
+}
+
+#projectdetails .left .moreinfos .content{
+  padding: 3rem;justify-content:
+}
+#projectdetails .left .form-content {
+  padding: 0 2rem 2rem 2rem;
+}
+#projectdetails .left .reviews p {
+  border-bottom: solid 1px #eee;
+  padding-bottom: 1.5rem;
+}
+#projectdetails .left .send-btn{
+  background-color: #18a689;
+  margin-left: auto;
+  display: block;
+  color: white;
+  min-width: 12rem;
+}
+
+#projectdetails .right .infos{
+  background-color: white;
+  border: solid 1px #eee;
+}
+
+#projectdetails .right .infos .otherinfos {
+  padding: 2rem;
+  background-color: white;
+}
+#projectdetails .right .infos h4 strong{
+  color: #333;
+}
+#projectdetails .right .infos h4{
+  font-size: 1.6rem;
+}
+
+#projectdetails .right .progress {
+  width: 50%;
+  height: 10rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+}
+.CircularProgressbar {
+  height: 100% !important;
+  background-color: white !important;
+}
+
+#projectdetails .right h3 strong{
+  color: #333;
+  font-size: 2rem;
+}
+
+#projectdetails .right .socialBtn {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+#projectdetails .right .socialBtn .st{
+  margin-top: 1.5rem;
+  background-color: #18a689;
+  color: white;
+  font-size: 1.8rem;
+}
+#projectdetails .right .socialBtn .fb{
+  margin-top: 1.5rem;
+  background-color:  #3C5999;
+  color: white;
+}
+
+#projectdetails .right .date{
+  padding: 2rem 2rem 0rem 2rem;
+}
+
+#projectdetails .right .profile{
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start
+}
+
+#projectdetails .right .profile-infos{
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#projectdetails .right .profile-infos p{
+  margin-bottom: .2rem !important;
+  color: #18a689;
+  font-size: 1.2rem;
+}
+
+#projectdetails .right .profile img{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+}
+
+#projectdetails .right .dons{
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  background-color: #fff;
+  border: solid 1px #eee;
+  display: flex;
+  flex-direction: column;
+}
+#projectdetails .right .dons .alldons{
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  border: solid 1px #eee;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+#projectdetails .right .dons h5{
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+#projectdetails .right .dons h4{
+  margin-bottom: 0 !important;
+}
+
+#projectdetails .right .messages{
+  margin-top: 2rem;
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  background-color: #fff;
+  border: solid 1px #eee;
+  display: flex;
+  flex-direction: column;
+}
+#projectdetails .right .messages .allmessages{
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  border: solid 1px #eee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+  cursor: pointer;
+}
+
+#projectdetails .right .messages .messages-items{
+  max-height: 15rem;
+  overflow-y: scroll;
+}
+#projectdetails .right .video{
+  margin-top: 2rem;
+}
+#projectdetails .right .messages h4{
+  margin-bottom: 0 !important;
+}
+#projectdetails .right .messages span{
+  background-color: orangered;
+  color: white;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 50%;
+}
+
+#projectdetails .right .messages .messages-item{
+  padding: .5rem 1rem;
+  margin-bottom: .2rem;
+  border-bottom: solid 1px #eee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
