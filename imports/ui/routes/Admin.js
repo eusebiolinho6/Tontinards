@@ -65,13 +65,12 @@ class Admin extends Component {
             {this.state.user? 
               this.state.user.profile.role == "admin" ?
               <span>
-                <Route exact path='/admin/industries' component={authenticate(AdminIndustryPage)}/>
                 <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
-                <Route exact path='/admin/admindashboard' component={AdminDashboard}/>
-
                 <Route exact path='/admin/foundRaiseAs' component={authenticate(AdminFoundRaiseAsPage)}/>
                 <Route exact path='/admin/forWhoFoundsRaisePage' component={authenticate(AdminForWhoFoundsRaisePage)}/>
+                <Route exact path='/admin/admindashboard' component={AdminDashboard}/>
+
               </span> :
               <Redirect to="/funnels/all/all" /> 
               :

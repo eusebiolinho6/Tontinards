@@ -41,11 +41,73 @@ class SignupForm extends Component {
           return isValid;
       }
 
+  signupWithGoogle(){
+
+    Meteor.loginWithGoogle(
+        {
+            forceApprovalPrompt: true,
+            requestPermissions: ['profile','email'],
+        }, 
+        (error) =>{
+            if (error) {
+                console.log(error); //If there is any error, will get error here
+            }else{
+                this.setState({redirect: true})
+                console.log(Meteor.user());// If there is successful login, you will get login details here
+               
+            }
+        }
+      );
+  } 
+
+  signupFacebook = () =>{
+     
+    Meteor.loginWithFacebook(
+      {
+          forceApprovalPrompt: true,
+          requestPermissions: ['user_friends', 'public_profile', "email"],
+      }, 
+      (error) =>{
+          if (error) {
+              console.log(error); //If there is any error, will get error here
+          }else{
+              this.setState({redirect: true})
+              console.log(Meteor.user());// If there is successful login, you will get login details here
+             
+          }
+      }
+    );
+}
+
+  signupWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
+      });
+  }
+
   handleInputChange(e) {
       const name = e.target.name;
       const value = e.target.value;
       this.setState({
           [name]: value
+      });
+  }
+
+  loginWIthTwitter = () => {
+    Meteor.loginWithTwitter({
+        requestPermissions: ['basic']
+      }, (error) => {
+        if (error) {
+          console.log(error)
+        } else {
+            this.setState({redirect:true});
+        }
       });
   }
 
@@ -87,7 +149,9 @@ class SignupForm extends Component {
                     <h5>Sign up 
                     </h5>
                 </div>
+                
                 <div className="ibox-content">
+                  
                     <div className="row">
                             <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
                             <Input
@@ -133,6 +197,14 @@ class SignupForm extends Component {
                                     {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
                                 </div>
                             </form>
+                               {/*  <div className="col-sm-12 mt-3">
+                                    <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Signup with Twitter</strong></button>
+                                </div> */}
+                            <div className="col-sm-12 mt-12">
+                                <button className="btn btn-md btn-danger mt-3" onClick={this.signupWithGoogle} ><strong>Signup with Google</strong></button><br/>
+                                <button className="btn btn-md btn-default mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br/>
+                                <button className="btn btn-md btn-info mt-3" onClick={this.signupWIthTwitter} ><strong>Signup with Twitter</strong></button><br/>
+                            </div>
                     </div>
                 </div>
             </div>

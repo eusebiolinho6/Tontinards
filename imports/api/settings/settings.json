@@ -1,0 +1,27 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "ROOT_URL": "https://127.0.0.1:3000",
+      "MONGO_URL": "mongodb://127.0.0.1:3001/meteor"
+    }
+  },
+    "private": {},
+    "oAuth": {
+      "facebook": {
+        "appId": "376967996293786",
+        "secret": "a07e1ebfceff785d1ca92e8565114f6d"
+      },
+      "google": {
+        "clientId": "798248306616-63c0d02sa5f28ukmf7ldtgarv2n2ufuf.apps.googleusercontent.com",
+        "secret": "0uqUPSc1CrGJT2JFIZY2E8pc"
+      },
+      "twitter": {
+        "consumerKey": "MeicUZo7EgAZlIbmzw2A9gmVW",
+        "secret": "T8Y1ThL9b5c8hkRWGAZ6VCxxsBeq62nArgPDTqnAw2ZkMfvawa"
+      },
+      "github": {
+        "clientId": "yourClientID",
+        "secret": "yourSecret"
+      }
+    }
+  }

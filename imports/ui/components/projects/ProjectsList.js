@@ -59,7 +59,8 @@ class ProjectsList extends Component {
         <div style={{width: '100%', paddingTop: '0px'}} className="wrapper wrapper-content animated fadeInRight">
         {!isAuthorized&&<div>
             {/* <ModalSubscription userId={userId} show={show} closeModal={()=>this.closeModal()} /> */}
-        {/* <div className="box-offer col-md-12">
+        {
+          /* <div className="box-offer col-md-12">
             <div className="row">
               <div className="col-md-8 col-xs-12 cell">
                 <h2>PAY 9$ PER MONTH AND GET A FULL ACCESS</h2>
@@ -75,7 +76,8 @@ class ProjectsList extends Component {
                 <button type="button" onClick={()=> this.setState({show:true})} className="btn btn-primary">Subscribe</button>
               </div>
             </div>
-          </div> */}
+          </div> */
+          }
         </div>}
         
         <div id="funnelListkamer" className="row">
