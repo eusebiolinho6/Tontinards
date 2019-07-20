@@ -28,6 +28,8 @@ twbs:bootstrap
 summernote:summernote
 email
 meteorhacks:ssr
-accounts-twitter
 gadicc:blaze-react-component
-http
+accounts-google
+service-configuration
+accounts-twitter
+accounts-facebook
