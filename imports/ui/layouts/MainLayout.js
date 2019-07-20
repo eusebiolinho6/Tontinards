@@ -20,7 +20,7 @@ class MainLayout extends Component {
     // console.log(categories);
     return (
       <Fragment>
-        <Location location={location} />
+        {/* <Location location={location} /> */}
          <Main {...this.props} params={params} userId={userId} search={search} funnels={funnels} categories={categories} />
       </Fragment>
     )

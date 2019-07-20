@@ -27,7 +27,7 @@ class FunnelList extends Component {
             <h1 className="mainText container text-center">Get Funding and Develop your Business</h1>
             <br/>
             <br/>
-            <a  href="funnels/adminDashboard" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
+            <a  href="/admin/funnels" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
           </div>
         </div>
         <div className="embed-responsive embed-responsive-16by9 mainVideo">
