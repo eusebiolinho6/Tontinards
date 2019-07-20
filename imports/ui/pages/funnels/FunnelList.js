@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import AdminDashboard from './AdminDashboard';
+import AdminDashboard from '../admins/AdminDashboard';
 import FunnelDetailsPage from './FunnelsDetailsPage'
 import {Link} from 'react-router-dom';
 

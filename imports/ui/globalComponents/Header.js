@@ -31,7 +31,7 @@ class Header extends Component {
                 <div className="navbar-header ranyl">
                     {/*<span minimalize-sidebar></span>*/}
                     <Link to="/" style={{display: 'block', margin: '12px'}}>
-                        < img src = "/images/logo.png" height="35px"
+                        < img src = "/images/tontinardsLogo.png" height="35px"
                         className = ".logo-element"
                         alt = "logo homepage"
                         />

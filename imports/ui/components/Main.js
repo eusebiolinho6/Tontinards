@@ -30,6 +30,7 @@ class Main extends Component {
 
     render() {
         const { params, funnels, search, categories, userId, industries } = this.props;
+        // console.log(funnels);
         const { isLoading } = this.state;
         return (
             <div className="wrapper wrapper-content">
@@ -54,7 +55,7 @@ class Main extends Component {
                             </div>
                         } */} 
                         <div className="row">
-                            <FunnelList funnels={this.props.funnels} />
+                            <FunnelList funnels={funnels} />
                         </div>
                         
                     </div>
