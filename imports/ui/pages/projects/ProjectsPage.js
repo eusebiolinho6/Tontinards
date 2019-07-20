@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import PendingProjectItem from '../../components/projects/Pending-Project-Item';
 import ValidatedProjectItem from '../../components/projects/Validated-Project-Item'
+import { MessageModalForm } from '../../components/projects/Messages'
 
 const fakePendingProjects = [
     {
@@ -121,6 +122,7 @@ class ProjectsPage extends Component {
       <div className="container-fluid no-padding">
         <div className="row projectsPageHeader">
             <h1>Projects List</h1>
+            
             <hr/>
         </div>
         <div className="row text-center pendingProjectsConatiner">
@@ -132,7 +134,7 @@ class ProjectsPage extends Component {
             <br/>
             <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a>
         </div>
-
+     
         <div className="row text-center validatedProjectsConatiner">
             <hr/>
             <h2>Validated Projects</h2>

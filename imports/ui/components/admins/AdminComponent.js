@@ -32,6 +32,7 @@ class FunnelLIstAdmin extends Component {
             video: '',
             id: '',
             country: '',
+            message: [],
             countries: [],
             show: false
         };

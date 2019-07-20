@@ -4,6 +4,7 @@ import FunnelDetailsPage from './FunnelsDetailsPage'
 import {Link} from 'react-router-dom';
 import AdminProjectPending from '../../components/funnels/AdminProjectPending';
 import AdminProjectValidated from '../../components/funnels/AdminProjectValidated';
+import  MessageForm  from '../../components/projects/Messages'
 
 // App component - represents the whole app
 class AdminDshb extends Component {
@@ -22,6 +23,7 @@ class AdminDshb extends Component {
     const {match, location} = this.props; 
     const {isFree}=this.state;
     return (
+      
         <div className="container-fluid no-padding">
           <br/>
           <div>
@@ -43,6 +45,12 @@ class AdminDshb extends Component {
             <h2 className = "AdminProjectH2">Refused Projects </h2>
             <br/> 
             <AdminProjectPending />
+          </div>
+          <div>
+            <hr className = "AdminProjectSHr"/>
+            <h2 className = "AdminProjectH2">Coments </h2>
+            <br/> 
+            <MessageForm />
           </div>
       </div>
     )
