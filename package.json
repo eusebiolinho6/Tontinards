@@ -21,6 +21,7 @@
     "nodemailer": "^4.6.8",
     "paypal-rest-sdk": "^1.8.1",
     "react": "^16.4.2",
+    "react-awesome-slider": "^1.0.1",
     "react-bootstrap": "^0.32.3",
     "react-bootstrap-modal": "^4.1.1",
     "react-circular-progressbar": "^2.0.1",
@@ -28,6 +29,8 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-stickynode": "^2.0.1",
+    "react-switch": "^5.0.1",
+    "react-toggle-button": "^2.2.0",
     "reactstrap": "^6.4.0",
     "validator": "^10.7.0"
   },

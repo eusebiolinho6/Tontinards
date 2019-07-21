@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import LoginForm from '../../components/auths/LoginForm';
-import Location from '../../globalComponents/Location'
+import Location from '../../globalComponents/Location';
+
 // App component - represents the whole app
 class LoginLayout extends Component {
   constructor(props) {
