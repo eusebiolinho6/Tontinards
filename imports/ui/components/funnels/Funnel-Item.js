@@ -14,7 +14,7 @@ import projectdetails from './ProjectDetails';
         const{project,propclass} = this.props;
         const percentage = Math.floor((project.currentAmount / project.goal)* 100);
         console.log(percentage);
-        category=Categories.findOne({_id:project.category});
+        const category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
              propclass == 'whenDonating' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>

@@ -12,8 +12,7 @@ class Tr extends Component {
             <tr key={funnel._id}>
                 <td>{funnel.projectName}</td>
                 <td>{category && category.name}</td>
-                <td>{funnel.zipCode} </td>
-                <td>{funnel.email} </td>
+                <td>{funnel.phoneNumber} </td>
                 <td>$ {funnel.objectifAmount} </td>
                 <td>$ {funnel.currentAmount} </td>
                 <td>{this.props.formatDate(funnel.createdAt)} </td>

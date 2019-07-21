@@ -34,7 +34,7 @@ class FunnelDetails extends Component {
     componentDidUpdate(){
         const {funnel}=this.props;
             if (!this.state.links.video && !this.state.links.document) {
-                if (!Number(funnel && funnel.zipCodezipCode)) {
+                if (!Number(funnel && funnel.phoneNumberphoneNumber)) {
                     asyncMethodCall('getFunnelLinks', {
                         funnelId: funnel && funnel._id
                     }).then((r) => {
@@ -68,7 +68,7 @@ class FunnelDetails extends Component {
     const userId = Meteor.userId();
     const {links}= this.state;
     let roles = ['admin'];
-    if (f == 'image' || !Number(funnel && funnel.zipCode)) {
+    if (f == 'image' || !Number(funnel && funnel.phoneNumber)) {
         roles = ['all'];
     } else {
         roles.push('paid');
@@ -115,11 +115,11 @@ class FunnelDetails extends Component {
 
                             <h2 className="font-bold m-b-xs">
                                 {funnel&&funnel.projectName}
-                                {!Number(funnel && funnel.zipCode)&&<span style={{width:'100px'}} className="text-center product-zipCode">
+                                {!Number(funnel && funnel.phoneNumber)&&<span style={{width:'100px'}} className="text-center product-phoneNumber">
                                    FREE</span>}
                             </h2>
                             {/**<div className="m-t-md">
-                                <h2 className="product-main-zipCode">${funnel&&funnel.zipCode} <small className="text-muted">Exclude Tax</small> </h2>
+                                <h2 className="product-main-phoneNumber">${funnel&&funnel.phoneNumber} <small className="text-muted">Exclude Tax</small> </h2>
                             </div>*/}
                             <hr/>
                             {/**    
