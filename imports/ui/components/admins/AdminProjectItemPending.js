@@ -5,10 +5,44 @@ import {Link} from 'react-router-dom';
 import {Categories} from '../../../api/collections'
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-
+import Switch from "react-switch";
+import Child from './Child';
 // const percentage = 60;
 // Task component - represents a single todo item
  export default class AdminProjectItem extends Component {
+    
+    constructor() {
+        super();
+        this.state = { 
+            checked: false,
+            active: true,
+         };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+    
+    
+   /**
+ * 
+  * @param {} checked is the object that permit to activate or desactivate toggle
+  * @param {} checked is the object that permit to show or hide child component
+
+ */
+    handleChange(checked) {
+        this.setState({ 
+            checked,
+            active: !this.state.active
+         });
+      }
+
+    // handleClick() {
+    //     this.setState({
+    //         active: !this.state.active
+    //     });
+    // }
+    
+
+
     render() {
         const{project,propclass} = this.props;
         const percentage = Math.floor((project.currentAmount / project.goal)* 100);
@@ -30,6 +64,24 @@ import 'react-circular-progressbar/dist/styles.css';
                         <div className="projectTitle">
                             <Link to={{pathname:'/funnels/'}} className="product-name"> {project.projectTitle}</Link>
                         </div>
+                       
+                        <label htmlFor="normal-switch">
+                                {this.state.active && <Child />}
+                                <Switch
+                                    onChange={this.handleChange}
+                                    checked={this.state.checked}
+                                    id="normal-switch"
+                                />
+                            </label>
+
+                        {/* <div>
+                            {this.state.active && <Child />}
+
+                            <button type="button" onClick={this.handleClick}>
+                                Toggle
+                            </button>
+
+                         </div> */}
                         {/* <h4 className="text-muted">Raised: {project.currentAmount} Fcfa / Goal: {project.goal} Fcfa </h4> */}
                         {/* <div className="m-t text-righ">
 

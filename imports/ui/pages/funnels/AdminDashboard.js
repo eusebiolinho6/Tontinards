@@ -22,6 +22,7 @@ class AdminDshb extends Component {
     const {match, location} = this.props; 
     const {isFree}=this.state;
     return (
+      
         <div className="container-fluid no-padding">
           <br/>
           <div>
@@ -44,6 +45,7 @@ class AdminDshb extends Component {
             <br/> 
             <AdminProjectPending />
           </div>
+       
       </div>
     )
   }
