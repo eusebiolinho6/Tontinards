@@ -6561,7 +6561,7 @@ table.shoping-cart-table tr td:last-child {
 .product-name:focus {
   color: #1ab394;
 }
-.product-zipCode {
+.product-phoneNumber {
   font-size: 14px;
   font-weight: 600;
   color: #ffffff;
@@ -6579,7 +6579,7 @@ table.shoping-cart-table tr td:last-child {
   text-align: center;
   padding: 200px 0;
 }
-.product-main-zipCode small {
+.product-main-phoneNumber small {
   font-size: 10px;
 }
 .product-images {
@@ -8200,7 +8200,7 @@ body.landing-page {
   text-align: center;
   color: #aeaeae;
 }
-.landing-page .pricing-plan .pricing-zipCode span {
+.landing-page .pricing-plan .pricing-phoneNumber span {
   font-weight: 700;
   color: #1ab394;
 }
