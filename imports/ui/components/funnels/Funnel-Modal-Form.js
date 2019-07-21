@@ -236,7 +236,7 @@ class FunnelModalForm extends Component {
                         <h3 className="text-center" > {id ? 'Edit Funnel' : ' Add Funnel'}</h3>
                     </ModalHeader>
                     <ModalBody>
-                        <h2>Funnel Informations</h2>
+                        <h2>Project Informations</h2>
                         <Input
                             field="projectName"
                             label="Project Name"
@@ -261,6 +261,7 @@ class FunnelModalForm extends Component {
                             onChange={(event) => this.handleInputChange(event)}
                         />
 
+                        <label>Country</label>
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
                             <option>Select one value</option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}

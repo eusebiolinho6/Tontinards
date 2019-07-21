@@ -30,6 +30,7 @@ class Main extends Component {
 
     render() {
         const { params, funnels, search, categories, userId, industries } = this.props;
+        // console.log(funnels);
         const { isLoading } = this.state;
         return (
             <div className="wrapper wrapper-content">
@@ -49,11 +50,12 @@ class Main extends Component {
                             <div style={{ minHeight: '200px' }} > <div className="overlay-funnels" ><i className="fa fa-gear fa-spin"></i></div></div>
                             :
                             <div className="row">
-                                <FunnelList funnels={this.props.funnels} />
+                                {/* <ProjectsList funnels={this.props.funnels} /> */}
+                                {/* <ProjectsList  />
                             </div>
-                        } */}
+                        } */} 
                         <div className="row">
-                            <FunnelList funnels={this.props.funnels} />
+                            <FunnelList funnels={funnels} />
                         </div>
                         
                     </div>

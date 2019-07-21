@@ -33,7 +33,7 @@ import 'react-circular-progressbar/dist/styles.css';
                         <h4 className="text-muted">Raised: {project.currentAmount} Fcfa / Goal: {project.goal} Fcfa </h4>
                         <div className="m-t text-righ">
 
-                            <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Manage Your Campaign </Link>
+                            <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Start Campaign </Link>
                             {/* <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link> */}
                         </div>
                     </div>
