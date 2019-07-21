@@ -1,3 +1,4 @@
+    
 import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom'
 import {Meteor} from 'meteor/meteor'
@@ -30,10 +31,10 @@ class Header extends Component {
             <div className="row">
                 <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>
                     <div className="container">
-                        <div className="navbar-header ranyl">
+                        <div className="navbar-header row ranyl">
                             {/*<span minimalize-sidebar></span>*/}
                             <Link to="/" style={{display: 'block', margin: '12px'}}>
-                                < img src = "/images/logo.png" height="35px"
+                                < img src = "/images/tontinardsLogo.png" height="35px"
                                 className = ".logo-element"
                                 alt = "logo homepage"
                                 />
@@ -59,7 +60,7 @@ class Header extends Component {
                                             <a id="dropbtn" href="/admin/categories">Categories</a>
                                             <a id="dropbtn" href="/admin/foundRaiseAs">Found Raise As</a>
                                             <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">For Who Founds Raise</a>
-                                            <a id="dropbtn" href="/admin/funnels">Funnels</a>
+                                            <a id="dropbtn" href="/admin/funnels">Projects</a>
                                         </div>
                                         </div>
                                     </div> : 
@@ -75,11 +76,11 @@ class Header extends Component {
                             {
                                 user?
                                 <div class="dropdown">
-                                        <p class="dropbtn">Account</p>
+                                        <p class="dropbtn">{user.profile.name}</p>
                                         <div class="dropdown-content">
-                                            <a href="#">My Campaigns</a>
+                                            <a href="/projects/all">My Campaigns</a>
                                             <a href="/authentication/profile">Profile</a>
-                                            <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{user.profile.name} </a>
+                                            <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
                                         </div>
                                     </div>
                                     :<Link to="/authentication/signin"><i className="fa fa-sign-in"></i> Log In</Link>

@@ -133,12 +133,12 @@ class FunnelLIstAdmin extends Component {
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
                             <div className="ibox-projectName">
-                                <h5>Funnel List</h5>
+                                <h5>Projects</h5>
                             </div>
                             <div className="ibox-content">
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <button type="button" className="btn btn-primary" onClick={() => this.setState({ show: true })} > New Funnel</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => this.setState({ show: true })} > New Project</button>
                                     </div>
                                     <FunnelModalForm categories={categories} id={id} category={category} zipCode={zipCode} description={description} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
                                 </div>

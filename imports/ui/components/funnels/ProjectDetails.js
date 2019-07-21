@@ -8,21 +8,21 @@ import 'react-circular-progressbar/dist/styles.css';
 
 // const percentage = 60;
 // Task component - represents a single todo item
- export default class ValidatedProjectItem extends Component {
+ export default class FunnelItem extends Component {
     render() {
         const{project,propclass} = this.props;
         const percentage = Math.floor((project.currentAmount / project.goal)* 100);
         console.log(percentage);
-        // const industry = Industries.findOne({_id:project.industry}),
-        // category=Categories.findOne({_id:project.category});
+        const industry = Industries.findOne({_id:project.industry}),
+        category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
-             propclass == 'whenDonating' ? 'col-md-12 subject-container' : 'col-md-3 subject-container'}>
+             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
             <div className="ibox text-center">
                 <div className="ibox-content product-box active">
                     <div className="imageContainer">
                         <div className={!project.img?'product-imitation':''}>
-                        <Link to={{pathname:'/funnels/'}}> {project&&project.img ? <img className="projetImage" style={{borderBottom:'1px solid rgb(191, 194, 197)'}} width="100%" src={project.img} /> : '[     ]'}
+                        <Link to={{pathname:'/funnels/'}}> {project&&project.img ? <img className="projetImage" style={{borderBottom:'1px solid rgb(191, 194, 197)'}} width="50%" src={project.img} /> : '[     ]'}
                             </Link>
                         </div>
                     </div>
@@ -63,24 +63,13 @@ import 'react-circular-progressbar/dist/styles.css';
                         </div>
                         <h4 className="text-muted">Raised: {project.currentAmount} Fcfa / Goal: {project.goal} Fcfa </h4>
                         <div className="m-t text-righ">
-                            {
-                                propclass == "whenDonating" ?  
-                                '' 
-                                : 
-                                    propclass == "onPorjectsList" ? 
-                                    <span>
-                                        <Link to={{pathname:'/funnels/'}} className="btn btn-primary donateBtn">Donate </Link>
-                                        <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
-                                    </span>
-                                    :
-                                    <Link to={{pathname:'#'}} className="btn btn-primary donateBtn">Manage Campaign </Link>
-                            }
-                            {/* <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link> */}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         );
+        
     }
 }

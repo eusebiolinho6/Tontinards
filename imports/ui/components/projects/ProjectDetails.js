@@ -17,6 +17,7 @@ class ProjectDetails extends Component {
         this.state = {
             message: '',
             messages: [],
+            isSubmit: false,
             story: true
         }
     }
@@ -30,13 +31,19 @@ class ProjectDetails extends Component {
         let data = {message};
         data._id = toObjectId(null);
         console.log(Funnels);
-        Funnels.update({_id: toObjectId("ea3896f3a9ee73b2a6e7c0f9") },{$set: { messages: [data.message]}});
-        
+        this.setState({
+            isSubmit: false,
+        })
+        Funnels.update({_id: toObjectId("2da8702903647de2fc13ed6c") }, { $push: { messages:  data.message } });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.saveComment();
+
+        this.setState({
+            isSubmit: true,
+        })
     }
 
     toggleContent = () => {
@@ -52,12 +59,12 @@ class ProjectDetails extends Component {
                     <div className="col-sm-12 col-md-8 left">
                         <div className="infos">
                             {/* For Team */}
-                            <AwesomeSlider>
-                                <div data-src="/images/img1.png" />
+                            {/* <AwesomeSlider>
                                 <div data-src="/images/img2.png" />
-                            </AwesomeSlider>
+                                <div data-src="/images/img5.PNG" />
+                            </AwesomeSlider> */}
                             {/* For Team */}
-                            <img src="/images/img1.png" />
+                            <img src="/images/img5.PNG" />
                             <div className="otherinfos">
                                 <h2>Project title here</h2>
                                 <h4>Project Category</h4>

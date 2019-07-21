@@ -35,7 +35,7 @@ export default withTracker(props=>{
   Meteor.subscribe('funnels');
   Meteor.subscribe('industries');
   Meteor.subscribe('categories');
-  const funnel =Funnels.findOne({_id: toObjectId(props.funnelId)});
+  const funnel = Funnels.findOne({_id: toObjectId(props.funnelId)});
   return {
     user:Meteor.user(),
     funnel: funnel,
