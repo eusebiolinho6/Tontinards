@@ -11,9 +11,9 @@ class AdminCategoryLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'Categories', 'Admin'], title: 'Administration' };
+    const location = {path: ['Home', 'Categories', 'Admin'], projectName: 'Administration' };
     const {categories} = this.props;
-    
+    console.log(this.props);
     return (
       <Fragment>
           <Location location={location} />

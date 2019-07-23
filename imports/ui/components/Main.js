@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import FilterFunnelMenu from './funnels/FilterFunnelMenu'
 import FunnelList from './funnels/FunnelList'
-import Location from '../globalComponents/Location'
+import Location from '../globalComponents/Location';
 
 // App component - represents the whole app
 class Main extends Component {
@@ -45,13 +45,17 @@ class Main extends Component {
                         <FilterFunnelMenu {...this.props} search={search} funnels={funnels} params={params} industries={industries} categories={categories} />
                     </div> */}
                     <div className="col-lg-12 animated fadeInRight">
-                        {isLoading ?
+                       {/*  {isLoading ?
                             <div style={{ minHeight: '200px' }} > <div className="overlay-funnels" ><i className="fa fa-gear fa-spin"></i></div></div>
                             :
                             <div className="row">
                                 <FunnelList funnels={this.props.funnels} />
                             </div>
-                        }
+                        } */}
+                        <div className="row">
+                            <FunnelList funnels={this.props.funnels} />
+                        </div>
+                        
                     </div>
                 </div>
             </div>

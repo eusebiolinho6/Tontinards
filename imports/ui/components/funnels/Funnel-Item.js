@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Link} from 'react-router-dom';
-import {Categories,Industries} from '../../../api/collections'
+import {Categories} from '../../../api/collections'
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import projectdetails from './ProjectDetails';
@@ -14,11 +14,10 @@ import projectdetails from './ProjectDetails';
         const{project,propclass} = this.props;
         const percentage = Math.floor((project.currentAmount / project.goal)* 100);
         console.log(percentage);
-        const industry = Industries.findOne({_id:project.industry}),
         category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
-             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
+             propclass == 'whenDonating' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
             <div className="ibox text-center">
                 <div className="ibox-content product-box active">
                     <div className="imageContainer">
