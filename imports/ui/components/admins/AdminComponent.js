@@ -17,7 +17,7 @@ class FunnelLIstAdmin extends Component {
         super(props);
         this.state = {
             projectName: '',
-            projectState: 0,
+            projectState: '',
             currentAmount: 0,
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
