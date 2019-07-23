@@ -11,7 +11,7 @@ class AdminCategoryPage extends Component {
     return (
       <Fragment>
       {/* <Header /> */}
-        <ProjectDetailsLayout />
+        <ProjectDetailsLayout projectId={this.props.match.params.projectId}/>
       </Fragment>
     )
   }

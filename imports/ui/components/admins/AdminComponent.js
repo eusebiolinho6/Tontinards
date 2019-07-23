@@ -34,6 +34,7 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             countries: [],
+            city: '',
             show: false
         };
         console.log(this.props.user._id);
@@ -45,7 +46,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     async loadCountry() {
-        const countries = await axios.get('https://restcountries.eu/rest/v2/all')
+        const countries = await axios.get('https://restcountries.eu/rest/v2/regionalbloc/au')
             .then(function (response) {
                 // handle success
                 return response;
@@ -97,6 +98,7 @@ class FunnelLIstAdmin extends Component {
             teamImage: funnel.teamImage,
             video: funnel.video,
             country: funnel.country,
+            city: funnel.city,
             show: true
         });
     }
@@ -106,6 +108,7 @@ class FunnelLIstAdmin extends Component {
         this.setState({
             projectName: '',
             userId: '',
+            city: '',
             projectState: '',
             currentAmount: '',
             onefoundRaiseAs: '',
@@ -127,7 +130,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-        const { show, phoneNumber, userId, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, video, country, countries } = this.state;
+        const { show,city, phoneNumber, userId, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, video, country, countries } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
         //console.log(user);
         return (
@@ -144,7 +147,7 @@ class FunnelLIstAdmin extends Component {
                                     <div className="col-sm-3">
                                         <button type="button" className="btn btn-primary" onClick={() => this.setState({ show: true })} > New Project</button>
                                     </div>
-                                    <FunnelModalForm userId={userId} categories={categories} id={id} category={category} phoneNumber={phoneNumber} description={description} user={user} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
+                                    <FunnelModalForm userId={userId} city={city} categories={categories} id={id} category={category} phoneNumber={phoneNumber} description={description} user={user} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
                                 </div>
                                 {funnels && funnels.length ? <div className="table-responsive">
                                     <table className="table table-striped">
