@@ -18,14 +18,28 @@ class ProjectDetails extends Component {
             message: '',
             messages: [],
             isSubmit: false,
-            story: true
+            story: true,
+            user: null,
+            project: null
         }
     }
 
     componentDidUpdate(prevProps) {
-        
+        if(prevProps.user != this.props.user && prevProps.project != this.props.project){
+            this.setState({
+                user: prevProps.user,
+                project: prevProps.project
+            })
+        }
+      
     }
 
+    /**
+ * 
+ * @goal submit comments about the current project
+ * @returns void
+ * @Author Ranyl
+ */
     saveComment=()=>{
         const {message}=this.state;
         let data = {message};
@@ -46,12 +60,25 @@ class ProjectDetails extends Component {
         })
     }
 
+    setProjectState = ()=>{
+        console.log(this.state.project.projectState)
+        if(this.state.user.profile.role == 'admin' && this.state.project.projectState == ''){
+            console.log('Ranolf est dans la place')
+            this.state.project.update({ $set: {projectState: "START CAMPAIGN"}})  
+         }else{
+             console.log('all right reserved the admin')
+            return 'all right reserved the admin';
+        }
+        // console.log(this.state.project.find({_id: toObjectId('f02cc6615f5dda1c480dd25d')}))
+
+    }
+
     toggleContent = () => {
         this.setState({story: !this.state.story})
     }
 
     render() {
-        const {funnels} = this.props;
+      
 
         return (
             <div className="container" id="projectdetails">
@@ -115,7 +142,19 @@ class ProjectDetails extends Component {
                                 <button className="btn send-btn" type="submit">Send</button>
                              </form>
                             </div>
+                            <div>
+                            {/* {console.log(user)} */}
+                            {/* {
+                              user.profile.role == 'admin' ?
+                                 <button className="btn send-btn" >validate</button> 
+                                :
+                                 '' 
+                              } */}
+                               <button className="fb btn" onClick={()=>this.setProjectState()}>Start campaign</button> 
+                            
                         </div>
+                        </div>
+                       
                     </div>
 
                     <div className="col-sm-12 col-md-4 right">

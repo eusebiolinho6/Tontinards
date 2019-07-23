@@ -13,7 +13,7 @@ class ProjectDetailsLayout extends Component {
     const{user}=this.props;
     return (
         <Fragment>
-            <ProjectDetails user={user}  />
+            <ProjectDetails user={user} funnels={funnels} />
         </Fragment>
     )
   }
