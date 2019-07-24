@@ -18,7 +18,7 @@ class AdminDashboardLayout extends Component {
  */
   renderProjects(projects, sop){
     return projects.map((project, index)=>(
-        <ProjectItem key={index} project={project} stateOfProject={sop} user="admin"/>
+        <ProjectItem key={index} project={project} projectState={sop} user="admin"/>
     ))
   }
 
@@ -40,18 +40,17 @@ class AdminDashboardLayout extends Component {
 
   render() {
     const {funnels, userId} = this.props;
-    // console.log(funnels);
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
     const campaigns = [];
     funnels.map((project) => {
       project.projectState ? 
-        project.projectState == "VALIDATED" ? validatedProjects.push(project) :
+        project.projectState == "VALID" ? validatedProjects.push(project) :
         project.projectState == "REFUSED" ? refusedProjects.push(project) :
-        project.projectState == "START CAMPAIGN" ? campaigns.push(project): ""
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): pendingProjects.push(project)
       : 
-      pendingProjects.push(project);
+      ''
     })
     
     return (
@@ -64,7 +63,7 @@ class AdminDashboardLayout extends Component {
           <h2 className = "AdminProjectH2">Pending Projects </h2>
           <br/>
           <div className="projects">
-              {this.renderProjects(pendingProjects, "pending")}
+              {this.renderProjects(pendingProjects, "PENDING")}
           </div>
           <br/>
           {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}

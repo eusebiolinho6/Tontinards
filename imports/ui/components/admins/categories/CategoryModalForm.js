@@ -55,6 +55,7 @@ componentWillReceiveProps(nextProps){
           [name]: value
       });
   }
+  
   handleSUbmit(e) {
      e.preventDefault();
      if(!this.isValid()){

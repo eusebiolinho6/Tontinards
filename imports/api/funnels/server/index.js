@@ -43,6 +43,7 @@ Meteor.methods({
             });
         })
     },
+
     'getFunnelLinks': (data)=>{
         return new Promise((resolve, reject)=>{
             if(!data||!data.funnelId) return reject(new Meteor.Error('User unauthorized'));
@@ -110,6 +111,7 @@ if (Meteor.isServer) {
 
   Meteor.publish('funnel', function funnelPublication(funnelId) {
     return Funnels.findOne({
+        
       _id: funnelId
     });
   });

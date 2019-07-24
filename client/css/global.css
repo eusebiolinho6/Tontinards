@@ -10229,3 +10229,63 @@ color: green;
   justify-content: space-between;
   cursor: pointer;
 }
+
+/* -------------------- RESPONSIVE MENU --------------------------*/
+
+
+.Navbar__Link {
+  padding-right: 8px;
+}
+
+.Navbar__Items {
+  display: flex;
+}
+
+
+.Navbar__Link-toggle {
+  display: none;
+  font-size: 2.5em;
+  text-align: center;
+  margin-left: -90%;
+  margin-top: 55px;
+
+}
+
+@media only screen and (max-width: 588px) {
+  .Navbar__Items,
+  .menuDiv {
+    flex-direction: column;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    -webkit-transform: translate3d(0, 10%, 0);
+    -ms-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+  .Navbar__Items {
+    display:none;
+  }
+  .Navbar__ToggleShow {
+    display: flex;
+  }
+  .Navbar__Items{
+    margin-left: -17%;
+    margin-top: 80px;
+    /* margin-left: -118% !important; */
+    /* width: 200%; */
+  }
+  .Navbar__Link-toggle {
+    align-self: flex-end;
+    display: initial;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  .s-header{
+    min-height: 120px;
+  }
+
+  .description{
+    overflow-wrap: break-word;
+  }
+
+}
