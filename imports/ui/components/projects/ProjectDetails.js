@@ -24,12 +24,18 @@ class ProjectDetails extends Component {
     componentDidUpdate = ()=>{
         
     }
-
+/**
+ * 
+ * @param none stands for State Of Projects, is the state of the projects ("pending", "valid")
+ * @description this method update field projectState in collection funnel that have value PENDING to VALID if profile role is admin
+ * @returns none 
+ * @Author roland
+ */
     stateProjectUpdate = ()=>{
         
         if(this.state.profilRole == "admin" && this.state.projectState == "PENDING"){
 
-            Funnels.update({_id:toObjectId(this.state.idProject)},{$set:{projectState: "VALIDATED"}});
+            Funnels.update({_id:toObjectId(this.state.idProject)},{$set:{projectState: "VALID"}});
 
          }
          else{
