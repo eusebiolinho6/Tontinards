@@ -118,6 +118,9 @@ class ProjectDetails extends Component {
                                 <div className="socialBtn">
                                     <button className="st btn btn-lg">Je soutiens</button>
                                     <button className="fb btn">Partager sur Facebook</button>
+                                    {/* For the admin */}
+                                    <button className="st btn btn-lg">Valider</button>
+                                    {/* End For the admin */}
                                 </div>
                             </div>
                         </div>

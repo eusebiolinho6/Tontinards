@@ -65,7 +65,7 @@ class FunnelList extends Component {
       render() {
         const {show}=this.state;
         const{funnels, userId}=this.props,
-        isAuthorized = checkRole(['admin', 'paid'], userId);
+        isAuthorized = checkRole(['user'], userId);
         console.log(funnels);
 
         return (

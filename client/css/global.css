@@ -1099,6 +1099,11 @@ h5 {
   background-color: #2f4050;
   background-image: url("patterns/header-profile.png");
 }
+#validate-btn-admin {
+  background-color: #18a689;
+  color: white;
+  margin-right: 1.5rem;
+}
 .caret {
   display: inline-block;
   width: 0;
