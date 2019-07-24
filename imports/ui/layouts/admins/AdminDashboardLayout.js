@@ -20,7 +20,7 @@ class AdminDashboardLayout extends Component {
     return projects.map((project, index)=>(
         <ProjectItem key={index} project={project} stateOfProject={sop} user="admin"/>
     ))
-  }
+  } 
 
 /**
  * 
@@ -46,20 +46,21 @@ class AdminDashboardLayout extends Component {
     const refusedProjects = [];
     const campaigns = [];
     funnels.map((project) => {
-      project.currentState ? 
-        project.currentState == "validated" ? validatedProjects.push(project) :
-        project.currentState == "refused" ? refusedProjects.push(project) :
-        project.currentState == "campaigns" ? campaigns.push(project): ""
+      project.projectState ? 
+        project.projectState == "VALID" ? validatedProjects.push(project) :
+        project.projectState == "REFUSED" ? refusedProjects.push(project) :
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): ""
       : 
       pendingProjects.push(project);
     })
     
     return (
-      <div className="container-fluid row no-padding">
+      <div className="container-fluid row">
+        <div className="col-sm-8 col-md-12">
         <br/>
         <h1 className = "AdminProjectH1">Projects List </h1>
         <hr className = "AdminProjectHr"/>
-        <div className="row text-center pendingProjectsConatiner">
+        <div className="row text-center pendingProjectsContainer">
           <br/>
           <h2 className = "AdminProjectH2">Pending Projects </h2>
           <br/>
@@ -79,7 +80,7 @@ class AdminDashboardLayout extends Component {
             <hr className = "AdminProjectSHr"/>
             <h2 className = "AdminProjectH2">Valided Projects </h2>
             <div className="projects">
-                {this.renderProjects(this.state.validatedProjects, "validated")}
+                {this.renderProjects(validatedProjects, "VALID")}
             </div>
             <br/>
             {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -88,14 +89,14 @@ class AdminDashboardLayout extends Component {
          }
 
         {
-          validatedProjects.length == 0 ? 
+          campaigns.length == 0 ? 
           "" 
           :
           <div className="row text-center validatedProjectsConatiner">
             <hr className = "AdminProjectSHr"/>
             <h2 className = "AdminProjectH2">Campaigns </h2>
             <div className="projects">
-              {this.renderProjects(this.state.refusedProjects, "campaign")}
+              {this.renderProjects(campaigns, "START CAMPAIGN")}
             </div>
             <br/>
             {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -103,7 +104,7 @@ class AdminDashboardLayout extends Component {
           </div>
         }
         </div>
-        
+      </div>   
     )
   }
 }

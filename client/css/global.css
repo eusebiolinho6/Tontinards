@@ -986,6 +986,7 @@ h5 {
 }
 .navbar {
   border: 0;
+  padding: 0 5%;
 }
 .navbar-default {
   background-color: transparent;
@@ -1298,7 +1299,6 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: fixed;
   right: 0;
   left: 0;
-  padding: 0;
   top:0
 }
 .navbar-fixed-top .navbar-form-custom .form-control { height: 50px}
@@ -1568,7 +1568,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 @media (max-width: 768px) {
   .top-navigation .navbar-header {
-    display: block;
+    /* display: block; */
     float: none;
   }
 }
@@ -10246,14 +10246,13 @@ color: green;
   }
   
  .ibox-content {
-    /* margin-right: 5px; */
     width: 80%;
     display: inline-block;
   }
 }
 
 /*---------------------------------------responsive-Tablet-----------------------------*/
-@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   [class*="col-"] {
     width: 100%;
   }
@@ -10265,7 +10264,7 @@ color: green;
   
  .ibox-content {
     /* margin-right: 5px; */
-    width: 40%;
+    width: 50%;
     display: inline-flex;
     flex-direction: column;
     align-content: center;

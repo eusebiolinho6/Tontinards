@@ -40,14 +40,15 @@ class FunnelModalForm extends Component {
             teamImage: '',
             documentFile: '',
             videoFile: '',
+            email: '',
+            feedback: props.feedback,
             country: props.country
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        const { show, userId, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, objectifAmount, category, description, id, country } = nextProps;
-        this.setState({ show, userId, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, objectifAmount, category, description, id, country });
-        console.log(this.state.userId);
+        const { show, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, email, category, description, id, country, feedback } = nextProps;
+        this.setState({ show, projectName, projectState, currentAmount,  teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, email, category, description, id, country, feedback });
         /*  this.loadCountry(); */
     }
     closeModal() {
@@ -71,7 +72,9 @@ class FunnelModalForm extends Component {
             teamImage: '',
             documentFile: '',
             videoFile: '',
-            country: ''
+            email: '',
+            country: '',
+            feedback: ''
         });
     }
     isValid() {
@@ -119,7 +122,9 @@ class FunnelModalForm extends Component {
             description,
             category,
             country,
-            id
+            email,
+            id,
+            feedback
         } = this.state;
         let data = {
             projectName,
@@ -133,7 +138,9 @@ class FunnelModalForm extends Component {
             phoneNumber,
             description,
             category,
+            email,
             country,
+            feedback
         };
 
         if (data.userId && !data.userId._str) data.userId = toObjectId(data.userId);
@@ -231,9 +238,8 @@ class FunnelModalForm extends Component {
     }
     render() {
 
-        const { show, errors, projectName, userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, objectifAmount, category, description, isLoading, id, country } = this.state;
-        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user } = this.props;
-        console.log(user);
+        const { show, errors, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, email, isLoading, id, country } = this.state;
+        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries } = this.props;
         return (
             <Modal bsSize="large"
                 aria-labelledby="contained-modal-projectName-sm" show={show} backdrop={false} >
@@ -258,7 +264,17 @@ class FunnelModalForm extends Component {
                             value={phoneNumber}
                             error={errors.phoneNumber}
                             onChange={(event) => this.handleInputChange(event)}
-                        />projectName
+                        />
+
+                        <Input
+                            field="email"
+                            label="Email"
+                            type="email"
+                            value={email}
+                            error={errors.email}
+                            onChange={(event) => this.handleInputChange(event)}
+                        />
+
                         <Input
                             field="objectifAmount"
                             label="Objectif Amount"
@@ -271,7 +287,8 @@ class FunnelModalForm extends Component {
                         <label>Country</label>
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
                             <option>Select one value</option>
-                            {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
+                            {console.log(countries)}
+                            {/* {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))} */}
                         </select>
                         <Select
                             field="category"

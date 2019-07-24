@@ -129,7 +129,6 @@ class ProjectDonation extends Component {
             {this.renderSelectedProject(fakeValidatedProjects)}
         </div>
         
-
       </div>
     )
   }

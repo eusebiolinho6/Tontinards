@@ -23,7 +23,7 @@ import 'react-circular-progressbar/dist/styles.css';
                     <div className="imageContainer">
                         <div className={!project.img?'product-imitation':''}>
                         {/**Link to details */}
-                        <Link to={{pathname:'/projects/details'}}> {project&&project.projectImage ? <img className="projetImage" style={{borderBottom:'1px solid rgb(191, 194, 197)'}} width="100%" src={project.projectImage} /> : '[     ]'}
+                        <Link to={{pathname:'/projects/'+project._id._str}}> {project&&project.projectImage ? <img className="projetImage" style={{borderBottom:'1px solid rgb(191, 194, 197)'}} width="100%" src={project.projectImage} /> : '[     ]'}
                             </Link>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ import 'react-circular-progressbar/dist/styles.css';
                         </div>
                         <div className="projectTitle">
                             {/**Link to details */}
-                            <Link to={{pathname:'/projects/details'}} className="product-name"> {project.projectName} </Link>
+                            <Link to={{pathname:'/projects/'+project._id._str}} className="product-name"> {project.projectName} </Link>
                         </div>
                         {stateOfProject=="campaign"?
                             <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
@@ -78,26 +78,21 @@ import 'react-circular-progressbar/dist/styles.css';
                                 stateOfProject == "refused" ?
                                     <span>POUBELLE</span> 
                                 :
-                                    <Link to={{pathname:'/projects/details'}} className="btn btn-primary">Details</Link>
+                                    <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details</Link>
                             :
                             user == "admin" ?
                                 stateOfProject == "validated" ?
                                     <Link to={{pathname:'#'}} className="btn btn-warning">Edit</Link>
                                 :
                                     //this leads to the page where admin will validate or reject project
-                                    <Link to={{pathname:'/projects/details'}} className="btn btn-primary">Details </Link>
+                                    <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>
                             :
                                 <span>
                                     <Link to={{pathname:'/project/donate'}} className="btn btn-primary donateBtn">Donate </Link>
-                                    <Link to={{pathname:'/projects/details'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
+                                    <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                                 </span>
                             }
-
-                            {/* <Link to={{pathname:'#'}} className="btn btn-primary">Details </Link> */}
-
-                            
-                            {/* <Link to={{pathname:'/funnels/'}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link> */}
-                        </div>
+            </div>
                     </div>
                 </div>
             </div>
