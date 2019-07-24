@@ -1,9 +1,13 @@
     
 import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom'
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { checkRole } from '../../utilities/';
-// App component - represents the whole app
+
+const toogleMenu = <FontAwesomeIcon icon={faBars}/>
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -40,11 +44,11 @@ class Header extends Component {
                                 />
                             </Link>
                         </div>
-                        <div className="Navbar__Link Navbar__Link-toggle" onClick={this.classToggle}>
-                            <i >M</i>
+                        <div className="Navbar__Link Navbar__Link-toggle menuDiv" onClick={this.classToggle}>
+                            <i >{toogleMenu}</i>
                         </div>
                         <div class="Navbar__Items col-md-10">
-                            <div className="col-md-10 col-sm-7 col-xs-7">
+                            <div className="col-md-10 col-sm-7 col-xs-9">
                                 {user ?
                                     <span>
                                         {user.profile.role == "admin" ?
@@ -67,7 +71,7 @@ class Header extends Component {
                                 }
                             </div>
                             
-                            <div className="col-md-2 col-sm-5 col-xs-5">
+                            <div className="col-md-2 col-sm-5 col-xs-3">
                                 <ul className="nav navbar-top-links navbar-right logoutMenu">
                                     <li>
                                     {

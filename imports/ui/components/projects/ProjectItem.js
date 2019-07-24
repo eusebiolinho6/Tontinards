@@ -17,7 +17,7 @@ import 'react-circular-progressbar/dist/styles.css';
         // category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
-             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
+             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 col-sm-6 subject-container'}>
             <div className="ibox text-center">
                 <div className="ibox-content product-box active">
                     <div className="imageContainer">
