@@ -56,7 +56,6 @@ class FunnelModalForm extends Component {
         this.props.closeModal({ show: false });
         this.setState({
             projectName: '',
-            userId: '',
             projectState: '',
             currentAmount: '',
             onefoundRaiseAs: '',
@@ -144,7 +143,7 @@ class FunnelModalForm extends Component {
             feedback
         };
 
-        if (data.userId && !data.userId._str) data.userId = toObjectId(data.userId);
+        //if (data.userId && !data.userId._str) data.userId = toObjectId(data.userId);
         if (data.category && !data.category._str) data.category = toObjectId(data.category);
         if (data.onefoundRaiseAs && !data.onefoundRaiseAs._str) data.onefoundRaiseAs = toObjectId(data.onefoundRaiseAs);
         if (data.oneForWhoFoundsRaise && !data.oneForWhoFoundsRaise._str) data.oneForWhoFoundsRaise = toObjectId(data.oneForWhoFoundsRaise);

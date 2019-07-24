@@ -107,7 +107,6 @@ class FunnelLIstAdmin extends Component {
         this.setState({ show: false });
         this.setState({
             projectName: '',
-            userId: '',
             projectState: '',
             currentAmount: '',
             onefoundRaiseAs: '',
