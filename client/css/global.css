@@ -10279,4 +10279,8 @@ color: green;
     min-height: 120px;
   }
 
+  .description{
+    overflow-wrap: break-word;
+  }
+
 }
