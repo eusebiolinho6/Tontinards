@@ -47,9 +47,9 @@ class AdminDashboardLayout extends Component {
     const campaigns = [];
     funnels.map((project) => {
       project.projectState ? 
-        project.projectState == "validated" ? validatedProjects.push(project) :
-        project.projectState == "refused" ? refusedProjects.push(project) :
-        project.projectState == "campaigns" ? campaigns.push(project): ""
+        project.projectState == "VALID" ? validatedProjects.push(project) :
+        project.projectState == "REFUSED" ? refusedProjects.push(project) :
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): ""
       : 
       pendingProjects.push(project);
     })
@@ -79,7 +79,7 @@ class AdminDashboardLayout extends Component {
             <hr className = "AdminProjectSHr"/>
             <h2 className = "AdminProjectH2">Valided Projects </h2>
             <div className="projects">
-                {this.renderProjects(this.state.validatedProjects, "validated")}
+                {this.renderProjects(validatedProjects, "VALID")}
             </div>
             <br/>
             {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -88,14 +88,14 @@ class AdminDashboardLayout extends Component {
          }
 
         {
-          validatedProjects.length == 0 ? 
+          campaigns.length == 0 ? 
           "" 
           :
           <div className="row text-center validatedProjectsConatiner">
             <hr className = "AdminProjectSHr"/>
             <h2 className = "AdminProjectH2">Campaigns </h2>
             <div className="projects">
-              {this.renderProjects(this.state.refusedProjects, "campaign")}
+              {this.renderProjects(campaigns, "START CAMPAIGN")}
             </div>
             <br/>
             {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}

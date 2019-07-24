@@ -138,7 +138,7 @@ class ProjectDetails extends Component {
                             <div>
 
                             {
-                              user.profile.role == 'admin' ?
+                              user.profile.role == 'admin'&& project.projectState == 'VALID' ?
                                <button className="fb btn" onClick={()=>this.setProjectState()}>Start campaign</button> 
                                 :
                                  '' 
