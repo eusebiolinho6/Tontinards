@@ -45,7 +45,7 @@ class ProjectsLayout extends Component {
 
   render() {
     const {funnels, userId} = this.props;
-    // console.log(funnels);
+    console.log(funnels);
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];

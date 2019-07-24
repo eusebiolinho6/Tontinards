@@ -17,7 +17,7 @@ class FunnelLIstAdmin extends Component {
         super(props);
         this.state = {
             projectName: '',
-            userId: this.props.user._id,
+            userId: this.props.user,
             projectState: 'PENDING',
             currentAmount: 0,
             onefoundRaiseAs: '',
@@ -129,7 +129,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-        const { show, phoneNumber, userId, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, video, country, countries } = this.state;
+        const { show, phoneNumber, userId, feedback, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, video, country, email, countries } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
         //console.log(user);
         return (
@@ -146,7 +146,7 @@ class FunnelLIstAdmin extends Component {
                                     <div className="col-sm-3">
                                         <button type="button" className="btn btn-primary" onClick={() => this.setState({ show: true })} > New Project</button>
                                     </div>
-                                    <FunnelModalForm userId={userId} categories={categories} id={id} category={category} phoneNumber={phoneNumber} description={description} user={user} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
+                                    <FunnelModalForm email={email} userId={userId} feedback={feedback} categories={categories} id={id} category={category} phoneNumber={phoneNumber} description={description} user={user} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
                                 </div>
                                 {funnels && funnels.length ? <div className="table-responsive">
                                     <table className="table table-striped">
