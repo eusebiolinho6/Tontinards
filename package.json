@@ -8,7 +8,7 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-beta.55",
+    "@babel/runtime": "^7.5.5",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
@@ -21,6 +21,7 @@
     "nodemailer": "^4.6.8",
     "paypal-rest-sdk": "^1.8.1",
     "react": "^16.4.2",
+    "react-awesome-slider": "^1.0.1",
     "react-bootstrap": "^0.32.3",
     "react-bootstrap-modal": "^4.1.1",
     "react-circular-progressbar": "^2.0.1",

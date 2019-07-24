@@ -6,7 +6,6 @@ import { HTTP } from 'meteor/http'
 
 Meteor.methods({
   FoundCountries: function() {
-
     if (1==1) {
       try {
         // fill in the blanks here with params, timeout, etc.
@@ -20,24 +19,24 @@ Meteor.methods({
   }
 });
 
-    Meteor.publish('foundRaiseAs', function foundRaiseAsPublication() {
-        return FoundRaiseAs.find({});
-    });
+Meteor.publish('foundRaiseAs', function foundRaiseAsPublication() {
+    return FoundRaiseAs.find({});
+});
 
-    Meteor.publish('onefoundRaiseAs', function oneFoundRaiseAsPublication(id) {
-      return FoundRaiseAs.findOne({
-        _id: id
-      });
-    });
-  
-    FoundRaiseAs.allow({
-      insert: function (userId) {
-      return checkRole(['admin'], userId);
-      },
-      update: function (userId) {
-      return checkRole(['admin'], userId);
-      },
-      remove: function (userId) {
-      return checkRole(['admin'], userId);
-      }
-    });
+Meteor.publish('onefoundRaiseAs', function oneFoundRaiseAsPublication(id) {
+  return FoundRaiseAs.findOne({
+    _id: id
+  });
+});
+
+FoundRaiseAs.allow({
+  insert: function (userId) {
+  return checkRole(['admin'], userId);
+  },
+  update: function (userId) {
+  return checkRole(['admin'], userId);
+  },
+  remove: function (userId) {
+  return checkRole(['admin'], userId);
+  }
+});

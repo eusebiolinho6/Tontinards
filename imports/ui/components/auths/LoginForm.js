@@ -130,7 +130,7 @@ this.state = {
              <div className="row">
             <div className="ibox col-md-6 col-md-offset-3 float-e-margins">
                 <div className="ibox-projectName">
-                    <h5>Log In to FOPSwipe
+                    <h5>Log In to Tontinards
                     </h5>
                 </div>
                 <div className="ibox-content">

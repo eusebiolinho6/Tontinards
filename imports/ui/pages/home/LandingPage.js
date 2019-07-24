@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import AdminDashboard from '../admins/AdminDashboard';
-import FunnelDetailsPage from './FunnelsDetailsPage'
 import {Link} from 'react-router-dom';
 
 // App component - represents the whole app
-class FunnelList extends Component {
+class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -13,9 +11,9 @@ class FunnelList extends Component {
     }
   }
 
-    toggleFree(b) {
-      this.setState({isFree:b});
-    }
+  toggleFree(b) {
+    this.setState({isFree:b});
+  }
 
   render() {
     const {match, location} = this.props; 
@@ -27,7 +25,7 @@ class FunnelList extends Component {
             <h1 className="mainText container text-center">Get Funding and Develop your Business</h1>
             <br/>
             <br/>
-            <a  href="/admin/funnels" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
+            <a  href="funnels/adminDashboard" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
           </div>
         </div>
         <div className="embed-responsive embed-responsive-16by9 mainVideo">
@@ -38,7 +36,11 @@ class FunnelList extends Component {
           typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
         </p>
 
-        <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
+        {/*---- Previous One ----*/}
+        {/* <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} /> */}
+        
+        <MainLayout  />
+
         <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
 
       </div>
@@ -46,4 +48,4 @@ class FunnelList extends Component {
   }
 }
 
-export default FunnelList;
+export default LandingPage;

@@ -22,10 +22,11 @@ class FunnelModalForm extends Component {
         super(props);
         this.state = {
             projectName: props.projectName,
+            userId: props.user,
             onefoundRaiseAs: props.onefoundRaiseAs,
             oneForWhoFoundsRaise: props.oneForWhoFoundsRaise,
             objectifAmount: props.objectifAmount,
-            zipCode: props.zipCode,
+            phoneNumber: props.phoneNumber,
             description: props.description,
             category: props.category,
             errors: {},
@@ -44,20 +45,22 @@ class FunnelModalForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { show, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country } = nextProps;
-        this.setState({ show, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, id, country });
+        const { show, userId, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, objectifAmount, category, description, id, country } = nextProps;
+        this.setState({ show, userId, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, objectifAmount, category, description, id, country });
+        console.log(this.state.userId);
         /*  this.loadCountry(); */
     }
     closeModal() {
         this.props.closeModal({ show: false });
         this.setState({
             projectName: '',
+            userId: '',
             projectState: '',
             currentAmount: '',
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
             objectifAmount: '',
-            zipCode: '',
+            phoneNumber: '',
             description: '',
             category: '',
             errors: {},
@@ -105,13 +108,14 @@ class FunnelModalForm extends Component {
     saveFunnel(cb) {
         const {
             projectName,
+            userId,
             projectState,
             currentAmount,
             teamName,
             onefoundRaiseAs,
             oneForWhoFoundsRaise,
             objectifAmount,
-            zipCode,
+            phoneNumber,
             description,
             category,
             country,
@@ -119,18 +123,20 @@ class FunnelModalForm extends Component {
         } = this.state;
         let data = {
             projectName,
+            userId,
             projectState,
             currentAmount,
             teamName,
             onefoundRaiseAs,
             oneForWhoFoundsRaise,
             objectifAmount,
-            zipCode,
+            phoneNumber,
             description,
             category,
             country,
         };
 
+        if (data.userId && !data.userId._str) data.userId = toObjectId(data.userId);
         if (data.category && !data.category._str) data.category = toObjectId(data.category);
         if (data.onefoundRaiseAs && !data.onefoundRaiseAs._str) data.onefoundRaiseAs = toObjectId(data.onefoundRaiseAs);
         if (data.oneForWhoFoundsRaise && !data.oneForWhoFoundsRaise._str) data.oneForWhoFoundsRaise = toObjectId(data.oneForWhoFoundsRaise);
@@ -174,7 +180,6 @@ class FunnelModalForm extends Component {
     } */
     handleSUbmit(e) {
         e.preventDefault();
-        console.log(this.isValid());
         if (!this.isValid()) {
             return;
         }
@@ -226,8 +231,9 @@ class FunnelModalForm extends Component {
     }
     render() {
 
-        const { show, errors, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, isLoading, id, country } = this.state;
-        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries } = this.props;
+        const { show, errors, projectName, userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, objectifAmount, category, description, isLoading, id, country } = this.state;
+        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user } = this.props;
+        console.log(user);
         return (
             <Modal bsSize="large"
                 aria-labelledby="contained-modal-projectName-sm" show={show} backdrop={false} >
@@ -236,22 +242,23 @@ class FunnelModalForm extends Component {
                         <h3 className="text-center" > {id ? 'Edit Funnel' : ' Add Funnel'}</h3>
                     </ModalHeader>
                     <ModalBody>
-                        <h2>Funnel Informations</h2>
+                        <h2>Project Informations</h2>
                         <Input
                             field="projectName"
                             label="Project Name"
+                            type="text"
                             value={projectName}
                             error={errors.projectName}
                             onChange={(event) => this.handleInputChange(event)}
                         />
                         <Input
-                            field="zipCode"
-                            label="Zip Code"
+                            field="phoneNumber"
+                            label="Phone Number"
                             type="number"
-                            value={zipCode}
-                            error={errors.zipCode}
+                            value={phoneNumber}
+                            error={errors.phoneNumber}
                             onChange={(event) => this.handleInputChange(event)}
-                        />
+                        />projectName
                         <Input
                             field="objectifAmount"
                             label="Objectif Amount"
@@ -261,6 +268,7 @@ class FunnelModalForm extends Component {
                             onChange={(event) => this.handleInputChange(event)}
                         />
 
+                        <label>Country</label>
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
                             <option>Select one value</option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
@@ -303,6 +311,7 @@ class FunnelModalForm extends Component {
                             value={teamName}
                             error={errors.teamName}
                             onChange={(event) => this.handleInputChange(event)}
+                            size={250}
                         />
                         <div className="row">
                             <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
