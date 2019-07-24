@@ -293,8 +293,7 @@ class FunnelModalForm extends Component {
                         <label>Country</label>
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
                             <option>Select one value</option>
-                            {console.log(countries)}
-                            {/* {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))} */}
+                            {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
                         </select>
                         
                         <Input

@@ -73,7 +73,6 @@ class Header extends Component {
 
                         <ul className="nav navbar-top-links navbar-right logoutMenu">
                             {/* Vilidate Button for admin */}
-                            <li><button className="st btn" id="validate-btn-admin">Valider</button></li>
                             {/* End Vilidate Button for admin */}
                             <li>
                             {

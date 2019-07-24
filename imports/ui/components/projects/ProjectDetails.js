@@ -43,7 +43,7 @@ class ProjectDetails extends Component {
      * 
      * @goal change the projectState of the current project 
      * @returns void
-     * @Author Ranyl
+     * @Author Ranyl & roland
      */
     setProjectState = ()=>{
         const {project,user}= this.props;
@@ -83,25 +83,8 @@ class ProjectDetails extends Component {
     editProject=()=>{
         console.log('this project has been edited !!')
     }
-/**
- * 
- * @param none stands for State Of Projects, is the state of the projects ("pending", "valid")
- * @description this method update field projectState in collection funnel that have value PENDING to VALID if profile role is admin
- * @returns none 
- * @Author roland
- */
-    stateProjectUpdate = ()=>{
-        
-        if(this.state.profilRole == "admin" && this.state.projectState == "PENDING"){
 
-            Funnels.update({_id:toObjectId(this.state.idProject)},{$set:{projectState: "VALID"}});
 
-         }
-         else{
-
-            return 'all right reserved the admin';
-        }
-    }
 
 
 
@@ -181,38 +164,6 @@ class ProjectDetails extends Component {
                              </form>
                             </div>
                             <div>
-
-
-                            {
-                              user.profile.role == 'admin'&& project.projectState == 'PENDING' 
-                              ?                               
-                               <button className="fb btn" onClick={()=>this.setProjectState()}>Validate</button>                                
-                                :
-                                 '' 
-                              }
-                            {
-                              user.profile.role == 'admin'&& project.projectState == 'PENDING'  
-                               ?
-                                <button className="btn btn-danger" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
-                                :
-                                 '' 
-                              }
-
-                            {
-                              user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
-                              ?
-                               <button className="fb btn" onClick={()=>this.setProjectState()}>Start campaign</button> 
-                                :
-                                 '' 
-                              }
-
-                            {
-                              user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
-                              ?
-                               <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
-                                :
-                                 '' 
-                              }
                               
                         </div>
                         </div>
@@ -249,9 +200,36 @@ class ProjectDetails extends Component {
                                 <div className="socialBtn">
                                     <button className="st btn btn-lg">Je soutiens</button>
                                     <button className="fb btn">Partager sur Facebook</button>
-                                    {/* For the admin */}
-                                    <button className="st btn btn-lg" onClick={()=>this.stateProjectUpdate()}>Valider</button>
-                                    {/* End For the admin */}
+                                             {
+                              user.profile.role == 'admin'&& project.projectState == 'PENDING' 
+                              ?                               
+                               <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Validate</button>                                
+                                :
+                                 '' 
+                              }
+                            {
+                              user.profile.role == 'admin'&& project.projectState == 'PENDING'  
+                               ?
+                                <button className="btn btn-danger" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
+                                :
+                                 '' 
+                              }
+
+                            {
+                              user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
+                              ?
+                               <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Start campaign</button> 
+                                :
+                                 '' 
+                              }
+
+                            {
+                              user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
+                              ?
+                               <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
+                                :
+                                 '' 
+                              }
                                 </div>
                             </div>
                         </div>
