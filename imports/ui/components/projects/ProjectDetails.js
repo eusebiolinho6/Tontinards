@@ -6,38 +6,46 @@ import {Meteor} from 'meteor/meteor'
 import TextArea from '../../globalComponents/Textarea';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections';
 import {toObjectId} from '../../../utilities/';
-import {Categories, FoundRaiseAs, ForWhoFoundsRaise} from '../../../api/collections'
-
 // App component - represents the whole app
 class ProjectDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            story: true
+            story: true,
+            idProject: this.props.project._id._str,
+            projectState: this.props.project.projectState,
+            profilRole: this.props.user.profile.role
         }
     }
 
-    componentDidUpdate(prevProps) {
+   
+    componentDidUpdate = ()=>{
         
     }
+
+    stateProjectUpdate = ()=>{
+        
+        if(this.state.profilRole == "admin" && this.state.projectState == "PENDING"){
+
+            Funnels.update({_id:toObjectId(this.state.idProject)},{$set:{projectState: "VALIDATED"}});
+
+         }
+         else{
+
+            return 'all right reserved the admin';
+        }
+    }
+
+
 
     toggleContent = () => {
         this.setState({story: !this.state.story})
     }
 
     render() {
-        const {project,user}= this.props;
-        const category = Categories.findOne({_id:project&&project.category}); 
-        if(project.currentAmount=="") project.currentAmount = 0;
-        const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
-        // foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs._str)});
-        // foundRaiseAs = FoundRaiseAs.findOne({_id:project&&project.onefoundRaiseAs});
-        // const forWhoFoundsRaise = ForWhoFoundsRaise.findOne({_id:project&&project.oneForWhoFoundsRaise});
         console.log(this.props);
-        console.log(Categories.find({}));
-        console.log(project.onefoundRaiseAs._str);
-        console.log(FoundRaiseAs.findOne({_id: project.onefoundRaiseAs._str}));
         return (
             <div className="container" id="projectdetails">
                 <div className="row">
@@ -49,10 +57,10 @@ class ProjectDetails extends Component {
                                 <div data-src="/images/img5.PNG" />
                             </AwesomeSlider> */}
                             {/* For Team */}
-                            <img src={project.projectImage} />
+                            <img src="/images/img5.PNG" />
                             <div className="otherinfos">
-                                <h2>{project.projectName}</h2>
-                                <h4>{category.name}</h4>
+                                <h2>Project title here</h2>
+                                <h4>Project Category</h4>
                                 <hr/>
                                 <div className="founds">
                                     <h4>Found Raise As</h4>
@@ -82,7 +90,7 @@ class ProjectDetails extends Component {
                                     {
                                         this.state.story ?
                                         <div className="text">
-                                            <div dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                            <p>Rien n'est previsible dans cettte vie quand vous croyez etre les  maitres du monde il faut que certains certaines choses nous arrrive pour comprendre que d'une minuiite a l'autre on peut s'eteindre a jamais .mon histoiire rien a dire juste un malaise frequent que l'hopital a conclut que le rein est abimer donc il faut enlever</p>
                                         </div>:
                                         <div className="reviews">
                                             <p>Rien n'est previsible dans cettte vie quand vous croyez etre les maitres du monde il faut que certains certaines choses nous arrrive pour comprendre...</p>
@@ -106,14 +114,14 @@ class ProjectDetails extends Component {
                             <div className="otherinfos">
                                 <div className="d-flex flex-row justify-content-center align-items-center">
                                     <div>
-                                        <h3><strong>Objective: </strong> {project.objectifAmount}</h3>
-                                        <h4><strong>Current Amount: </strong> {project.currentAmount}</h4>
-                                        {/* <p>Campagne crée depuis {project.createdAt}</p> */}
+                                        <h3><strong>Objectives: </strong> 1 000 000 FCFA</h3>
+                                        <h4><strong>Current Amount: </strong> 100 000 FCFA</h4>
+                                        <p>Campagne crée depuis 10 jours</p>
                                     </div>
                                     <div className="progress">
                                         <CircularProgressbar
-                                            value={percentage}
-                                            text={`${percentage}%`}
+                                            value={10}
+                                            text={`10%`}
                                             strokeWidth = {15}
                                             styles={buildStyles({
                                                 rotation: 0,
@@ -131,12 +139,15 @@ class ProjectDetails extends Component {
                                 <div className="socialBtn">
                                     <button className="st btn btn-lg">Je soutiens</button>
                                     <button className="fb btn">Partager sur Facebook</button>
+                                    {/* For the admin */}
+                                    <button className="st btn btn-lg" onClick={()=>this.stateProjectUpdate()}>Valider</button>
+                                    {/* End For the admin */}
                                 </div>
                             </div>
                         </div>
                         <div className="video">
                             <video width="100%" height="100%" poster="/images/img2.png" controls>
-                                <source src={project.video} type="video/mp4"></source>
+                                <source src="movie.mp4" type="video/mp4"></source>
                                 <source src="movie.ogg" type="video/ogg"></source>
                             </video>
                         </div>
@@ -148,7 +159,7 @@ class ProjectDetails extends Component {
                             <div className="profile-infos">
                                 <div>
                                     <p>Owner Name</p>
-                                    <p>{project.country}</p>
+                                    <p>Country</p>
                                 </div>
                                 <div>
                                     <p>Phone Number</p>

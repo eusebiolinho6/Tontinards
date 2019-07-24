@@ -986,7 +986,6 @@ h5 {
 }
 .navbar {
   border: 0;
-  padding: 0 5%;
 }
 .navbar-default {
   background-color: transparent;
@@ -1099,6 +1098,11 @@ h5 {
   padding: 33px 25px;
   background-color: #2f4050;
   background-image: url("patterns/header-profile.png");
+}
+#validate-btn-admin {
+  background-color: #18a689;
+  color: white;
+  margin-right: 1.5rem;
 }
 .caret {
   display: inline-block;
@@ -1299,6 +1303,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: fixed;
   right: 0;
   left: 0;
+  padding: 0;
   top:0
 }
 .navbar-fixed-top .navbar-form-custom .form-control { height: 50px}
@@ -1568,7 +1573,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 @media (max-width: 768px) {
   .top-navigation .navbar-header {
-    /* display: block; */
+    display: block;
     float: none;
   }
 }
@@ -6561,7 +6566,7 @@ table.shoping-cart-table tr td:last-child {
 .product-name:focus {
   color: #1ab394;
 }
-.product-phoneNumber {
+.product-zipCode {
   font-size: 14px;
   font-weight: 600;
   color: #ffffff;
@@ -6579,7 +6584,7 @@ table.shoping-cart-table tr td:last-child {
   text-align: center;
   padding: 200px 0;
 }
-.product-main-phoneNumber small {
+.product-main-zipCode small {
   font-size: 10px;
 }
 .product-images {
@@ -8200,7 +8205,7 @@ body.landing-page {
   text-align: center;
   color: #aeaeae;
 }
-.landing-page .pricing-plan .pricing-phoneNumber span {
+.landing-page .pricing-plan .pricing-zipCode span {
   font-weight: 700;
   color: #1ab394;
 }
@@ -10223,60 +10228,4 @@ color: green;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-}
-
-/* -------------------- RESPONSIVE MENU --------------------------*/
-
-
-.Navbar__Link {
-  padding-right: 8px;
-}
-
-.Navbar__Items {
-  display: flex;
-}
-
-
-.Navbar__Link-toggle {
-  display: none;
-  font-size: 2.5em;
-  text-align: center;
-  margin-left: -90%;
-  margin-top: 55px;
-
-}
-
-@media only screen and (max-width: 588px) {
-  .Navbar__Items,
-  .menuDiv {
-    flex-direction: column;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    -webkit-transform: translate3d(0, 10%, 0);
-    -ms-transform: translate3d(0, 10%, 0);
-    transform: translate3d(0, 10%, 0);
-  }
-  .Navbar__Items {
-    display:none;
-  }
-  .Navbar__ToggleShow {
-    display: flex;
-  }
-  .Navbar__Items{
-    margin-left: -17%;
-    margin-top: 80px;
-    /* margin-left: -118% !important; */
-    /* width: 200%; */
-  }
-  .Navbar__Link-toggle {
-    align-self: flex-end;
-    display: initial;
-    position: absolute;
-    cursor: pointer;
-  }
-
-  .s-header{
-    min-height: 120px;
-  }
-
 }
