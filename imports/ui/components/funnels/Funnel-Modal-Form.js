@@ -42,13 +42,14 @@ class FunnelModalForm extends Component {
             videoFile: '',
             email: '',
             feedback: props.feedback,
-            country: props.country
+            country: props.country,
+            phoneNumber : props.phoneNumber,
         };
     }
 
     componentWillReceiveProps(nextProps) {
-        const { show, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, email, category, description, id, country, feedback } = nextProps;
-        this.setState({ show, projectName, projectState, currentAmount,  teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, email, category, description, id, country, feedback });
+        const { show, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, email, category, description, id, country, feedback, phoneNumber} = nextProps;
+        this.setState({ show, projectName, projectState, currentAmount,  teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, email, category, description, id, country, feedback,phoneNumber });
         /*  this.loadCountry(); */
     }
     closeModal() {
@@ -238,7 +239,7 @@ class FunnelModalForm extends Component {
     }
     render() {
 
-        const { show, errors, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, email, isLoading, id, country } = this.state;
+        const { show, errors, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, zipCode, objectifAmount, category, description, email, isLoading, id, country,phoneNumber } = this.state;
         const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries } = this.props;
         return (
             <Modal bsSize="large"

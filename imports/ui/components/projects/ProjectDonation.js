@@ -38,14 +38,16 @@ class ProjectDonation extends Component {
             <hr/>
         </div>
         
-        <div className="row donationPageContent col-md-7">
+        <div className="row donationPageContent col-md-7 col-sm-9">
             <h3>Enter your Investment</h3>
 
             <form>
-                <div class="form-group inputContainer">
-                    <input type="number" className="donationInput" required /> Fcfa
-                    {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
-                </div>
+                  <div>
+                    <div className="form-group inputContainer">
+                        <input type="number" className="donationInput " required /> Fcfa
+                        {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                    </div>
+                  </div>
                 <div className="form-group">
                     <label for="firstNameInput">First Name</label>
                     <input type="text" className="form-control" required id="firstNameInput" placeholder="Enter your first name"/>

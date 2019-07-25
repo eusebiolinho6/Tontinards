@@ -9,7 +9,8 @@ import 'react-circular-progressbar/dist/styles.css';
 
  export default class ProjectItem extends Component {
     render() {
-        const{project, propclass, stateOfProject, user} = this.props;
+        const{project, propclass, user} = this.props,
+        projectState = project.projectState; 
         console.log(project);
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
@@ -30,9 +31,9 @@ import 'react-circular-progressbar/dist/styles.css';
                     <div className="product-desc">
                         <div className="bigProgressBarContainer">
                             <div className="circularProgessBarContainer">
-                                {/**When the project is in stage of campaign, we display the funds progress bar
-                                   * When it is in stage of pending or refused or validated, we don't display */}
-                                {stateOfProject == "START CAMPAIGN" ?
+                                {/**When the project is in stage of START CAMPAIGN, we display the funds progress bar
+                                   * When it is in stage of pending or REFUSED or VALID, we don't display */}
+                                {projectState == "START CAMPAIGN" ?
                                     <CircularProgressbar
                                         value={percentage}
                                         text={`${percentage}%`}
@@ -69,20 +70,21 @@ import 'react-circular-progressbar/dist/styles.css';
                             {/**Link to details */}
                             <Link to={{pathname:'/projects/'+project._id._str}} className="product-name"> {project.projectName} </Link>
                         </div>
-                        {stateOfProject=="campaign"?
+                        {projectState=="START CAMPAIGN"?
                             <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
                             :""
                         }
                         <div className="m-t text-righ">
                             {user == "simpleUser" ?
-                                stateOfProject == "refused" ?
+                                projectState == "REFUSED" ?
                                     <span>POUBELLE</span> 
                                 :
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details</Link>
                             :
                             user == "admin" ?
-                                stateOfProject == "validated" ?
-                                    <Link to={{pathname:'#'}} className="btn btn-warning">Edit</Link>
+                                projectState == "VALID" ?
+                                    // <Link to={{pathname:'#'}} className="btn btn-warning">Edit</Link>
+                                    <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-warning">Edit</Link>
                                 :
                                     //this leads to the page where admin will validate or reject project
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>

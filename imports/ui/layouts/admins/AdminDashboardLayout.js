@@ -16,9 +16,9 @@ class AdminDashboardLayout extends Component {
  * @returns rendered Components 
  * @Author Cindy and Junior
  */
-  renderProjects(projects, sop){
+  renderProjects(projects){
     return projects.map((project, index)=>(
-        <ProjectItem key={index} project={project} stateOfProject={sop} user="admin"/>
+        <ProjectItem key={index} project={project} user="admin"/>
     ))
   } 
 
@@ -40,7 +40,6 @@ class AdminDashboardLayout extends Component {
 
   render() {
     const {funnels, userId} = this.props;
-    // console.log(funnels);
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
@@ -49,61 +48,66 @@ class AdminDashboardLayout extends Component {
       project.projectState ? 
         project.projectState == "VALID" ? validatedProjects.push(project) :
         project.projectState == "REFUSED" ? refusedProjects.push(project) :
-        project.projectState == "START CAMPAIGN" ? campaigns.push(project): ""
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): pendingProjects.push(project)
       : 
-      pendingProjects.push(project);
+      ''
     })
     
     return (
       <div className="container-fluid row">
-        <div className="col-sm-8 col-md-12">
-        <br/>
-        <h1 className = "AdminProjectH1">Projects List </h1>
-        <hr className = "AdminProjectHr"/>
-        <div className="row text-center pendingProjectsContainer">
-          <br/>
-          <h2 className = "AdminProjectH2">Pending Projects </h2>
-          <br/>
-          <div className="projects">
-              {this.renderProjects(pendingProjects, "pending")}
-          </div>
-          <br/>
-          {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-          <br/>
-        </div>
+          <div className="col-sm-8 col-md-12">
+            <br/>
+            <h1 className = "AdminProjectH1">Projects List </h1>
+            <hr className = "AdminProjectHr"/>
+            {
+                pendingProjects.length == 0 ? 
+                "" 
+                :
+              <div className="row text-center pendingProjectsContainer">
+                <br/>
+                <h2 className = "AdminProjectH2">Pending Projects </h2>
+                <br/>
+                <div className="projects">
+                    {this.renderProjects(pendingProjects)}
+                </div>
+                <br/>
+                {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                <br/>
+              </div>
+            }
 
-         {
-          validatedProjects.length == 0 ? 
-          "" 
-          :
-         <div className="row text-center validatedProjectsConatiner">
-            <hr className = "AdminProjectSHr"/>
-            <h2 className = "AdminProjectH2">Valided Projects </h2>
-            <div className="projects">
-                {this.renderProjects(validatedProjects, "VALID")}
-            </div>
-            <br/>
-            {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-            <br/>
-          </div>
-         }
+            {
+              validatedProjects.length == 0 ? 
+              "" 
+              :
+              <div className="row text-center validatedProjectsConatiner">
+                <hr className = "AdminProjectSHr"/>
+                <h2 className = "AdminProjectH2">Valided Projects </h2>
+                <div className="projects">
+                    {this.renderProjects(validatedProjects)}
+                </div>
+                <br/>
+                {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                <br/>
+              </div>
+            }
 
-        {
-          campaigns.length == 0 ? 
-          "" 
-          :
-          <div className="row text-center validatedProjectsConatiner">
-            <hr className = "AdminProjectSHr"/>
-            <h2 className = "AdminProjectH2">Campaigns </h2>
-            <div className="projects">
-              {this.renderProjects(campaigns, "START CAMPAIGN")}
-            </div>
-            <br/>
-            {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-            <br/>
+            {
+              campaigns.length == 0 ? 
+              "" 
+              :
+              <div className="row text-center validatedProjectsConatiner">
+                <hr className = "AdminProjectSHr"/>
+                <h2 className = "AdminProjectH2">Campaigns </h2>
+                <div className="projects">
+                  {this.renderProjects(campaigns)}
+                </div>
+                <br/>
+                {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                <br/>
+              </div>
+            }
           </div>
-        }
-        </div>
       </div>   
     )
   }

@@ -1,36 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import FunnelItem from './Funnel-Item';
-import ValidatedProjectItem from '../projects/Validated-Project-Item';
 import ModalSubscription from './../payments/ModalSubscription';
 import { checkRole } from '../../../utilities';
 import ProjectItem from '../projects/ProjectItem';
-
-const fakeProjects = [
-  {
-    "img": "/images/img4.PNG",
-    "projectTitle": "Project Number One Project Number One Project Number One Project Number One Project Number One",
-    "currentAmount": "200000",
-    "goal": "10000000"
-  },
-  {
-    "img": "/images/img4.PNG",
-    "projectTitle": "Project Number Two",
-    "currentAmount": "50000",
-    "goal": "500000"
-  },
-  {
-    "img": "/images/img4.PNG",
-    "projectTitle": "Project Number Three",
-    "currentAmount": "2100000",
-    "goal": "2000000"
-  },
-  {
-    "img": "/images/img4.PNG",
-    "projectTitle": "Project Number Four",
-    "currentAmount": "17500975",
-    "goal": "63000000"
-  }
-]
 
 
 // App component - represents the whole app
@@ -39,7 +10,6 @@ class FunnelList extends Component {
         super(props);
         this.state={
           show:false,
-          fakeProjects:fakeProjects
         }
 
     }
@@ -56,9 +26,15 @@ class FunnelList extends Component {
  * @returns rendered Components 
  * @Author Cindy and Junior
  */
-  renderProjects(projects, sop){
+  renderProjects(projects){
     return projects.map((project, index)=>(
-        <ProjectItem key={index} project={project} stateOfProject={sop} user="guest"/>
+      <div>
+          { project.projectState != "START CAMPAIGN"?
+          ""
+            :
+            <ProjectItem key={index} project={project}  user="guest"/>
+          }
+      </div>
     ))
   }
 
@@ -76,7 +52,7 @@ class FunnelList extends Component {
         </div>}
         
         <div id="funnelListkamer" className="row">
-          {this.renderProjects(funnels,"campaign")}
+          {this.renderProjects(funnels)}
         </div>
 
 </div>

@@ -10305,7 +10305,18 @@ color: green;
   }
   .projectsPageHeader h1{
     text-align: center
+  }
 
+  .description{
+    overflow-wrap: break-word;
+  }
+  .inputContainer{
+    right: 20px;
+    color:black;
+     }
+  
+  .donationPageContent h3{
+    text-align: center
   }
 
 }

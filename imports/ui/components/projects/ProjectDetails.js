@@ -17,6 +17,7 @@ class ProjectDetails extends Component {
             message: '',
             messages: [],
             story: true,
+            hideButton: true
         }
     }
 
@@ -31,10 +32,6 @@ class ProjectDetails extends Component {
         const {message}=this.state;
         let data = {message};
         data._id = toObjectId(null);
-        console.log(Funnels);
-        this.setState({
-            isSubmit: false,
-        })
         Funnels.update({_id: toObjectId(project._id._str) }, { $push: { messages:  data.message } });
     }
 
@@ -43,12 +40,40 @@ class ProjectDetails extends Component {
         this.saveComment()
     }
 
+            /**
+     * 
+     * @goal change the projectState of the current project 
+     * @returns void
+     * @Author Ranyl
+     */
     setProjectState = ()=>{
         const {project,user}= this.props;
+        if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
 
-        if(user.profile.role == 'admin' && project.projectState == 'VALID'){
+            this.setState({
+                hideButton: false,
+            })
+            Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}})
 
+         }else if(user.profile.role == 'admin' && project.projectState == 'VALID'){
+
+            this.setState({
+                hideButton: true,
+            })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "START CAMPAIGN"}})
+
+         }else{
+
+            return 'all right reserved to admin';
+        }
+    }
+
+
+    setProjectStateToRefused = ()=>{
+        const {project,user}= this.props;
+        if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
+           
+            Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "REFUSED"}})
 
          }else{
 
@@ -117,7 +142,7 @@ class ProjectDetails extends Component {
                                     {
                                         this.state.story ?
                                         <div className="text">
-                                            <div dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                            <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
                                         </div>:
                                         <div className="reviews">
                                             <p>Rien n'est previsible dans cettte vie quand vous croyez etre les maitres du monde il faut que certains certaines choses nous arrrive pour comprendre...</p>
@@ -137,15 +162,33 @@ class ProjectDetails extends Component {
                             </div>
                             <div>
 
+
                             {
-                              user.profile.role == 'admin'&& project.projectState == 'VALID' ?
+                              user.profile.role == 'admin'&& project.projectState == 'PENDING' 
+                              ?                               
+                               <button className="fb btn" onClick={()=>this.setProjectState()}>Validate</button>                                
+                                :
+                                 '' 
+                              }
+                            {
+                              user.profile.role == 'admin'&& project.projectState == 'PENDING'  
+                               ?
+                                <button className="btn btn-danger" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
+                                :
+                                 '' 
+                              }
+
+                            {
+                              user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
+                              ?
                                <button className="fb btn" onClick={()=>this.setProjectState()}>Start campaign</button> 
                                 :
                                  '' 
                               }
 
                             {
-                              user.profile.role == 'admin' && project.projectState == 'VALID' ?
+                              user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
+                              ?
                                <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
                                 :
                                  '' 
@@ -196,7 +239,7 @@ class ProjectDetails extends Component {
                             </video>
                         </div>
                         <div className="date">
-                            <p>Date de création : 15 juillet 2019</p>
+                            <p>Date de création : <b>15 juillet 2019</b></p>
                         </div>
                         <div className="profile">
                             <img src="/images/user.png" />
@@ -215,7 +258,7 @@ class ProjectDetails extends Component {
                             <div className="alldons">
                                 <h4>Donations</h4>
                             </div>
-                            <h5>Aucun don pour l'instant. Participez au lancement de cette campagne et <a href="">devenez le premier donateur.</a></h5>
+                            <h5>Aucun don pour l'instant. Participez au lancement de cette campagne et <a href="#">devenez le premier donateur.</a></h5>
                         </div>
                         <div className="messages">
                             <div className="allmessages">
