@@ -17,8 +17,8 @@ import 'react-circular-progressbar/dist/styles.css';
         // category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
-             propclass == 'details' ? 'col-md-3 col-sm-6 subject-container' : 'col-md-3 col-sm-5 subject-container'}>
-            <div className="ibox text-center projectContainer">
+             propclass == 'donation' ? 'col-md-9 subject-container' : 'col-md-3 col-sm-6 subject-container'}>
+            <div className="ibox text-center">
                 <div className="ibox-content product-box active">
                     <div className="imageContainer">
                         <div className={!project.img?'product-imitation':''}>
@@ -32,7 +32,7 @@ import 'react-circular-progressbar/dist/styles.css';
                             <div className="circularProgessBarContainer">
                                 {/**When the project is in stage of campaign, we display the funds progress bar
                                    * When it is in stage of pending or refused or validated, we don't display */}
-                                {stateOfProject == "campaign" ?
+                                {stateOfProject == "START CAMPAIGN" ?
                                     <CircularProgressbar
                                         value={percentage}
                                         text={`${percentage}%`}
@@ -88,7 +88,7 @@ import 'react-circular-progressbar/dist/styles.css';
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>
                             :
                                 <span>
-                                    <Link to={{pathname:'/project/donate'}} className="btn btn-primary donateBtn">Donate </Link>
+                                    <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary donateBtn">Donate </Link>
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                                 </span>
                             }
