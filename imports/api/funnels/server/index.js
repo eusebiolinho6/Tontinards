@@ -43,6 +43,7 @@ Meteor.methods({
             });
         })
     },
+
     'getFunnelLinks': (data)=>{
         return new Promise((resolve, reject)=>{
             if(!data||!data.funnelId) return reject(new Meteor.Error('User unauthorized'));
@@ -103,15 +104,17 @@ if (Meteor.isServer) {
     //return Funnels.find({zipCode:'0'}, {fields:{zipCode:1, projectName:1, image:1, document:1,video:1, description:1, industry:1, category:1}})
     return Funnels.find({});
     });
-    Meteor.publish('adminFunnels', function funnelsPublication() {
+
+Meteor.publish('adminFunnels', function funnelsPublication() {
     const isAdmin = checkRole(['admin'], this.userId);
-    console.log(this.userId)
-   if (!isAdmin) return Funnels.find();
-    return Funnels.find({});
+    console.log(isAdmin)
+   if (!isAdmin) return Funnels.find({"userId._id": this.userId});
+    return Funnels.find();
   });
 
   Meteor.publish('funnel', function funnelPublication(funnelId) {
     return Funnels.findOne({
+        
       _id: funnelId
     });
   });

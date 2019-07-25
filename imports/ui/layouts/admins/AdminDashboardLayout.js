@@ -46,10 +46,10 @@ class AdminDashboardLayout extends Component {
     const refusedProjects = [];
     const campaigns = [];
     funnels.map((project) => {
-      project.currentState ? 
-        project.currentState == "validated" ? validatedProjects.push(project) :
-        project.currentState == "refused" ? refusedProjects.push(project) :
-        project.currentState == "campaigns" ? campaigns.push(project): ""
+      project.projectState ? 
+        project.projectState == "validated" ? validatedProjects.push(project) :
+        project.projectState == "refused" ? refusedProjects.push(project) :
+        project.projectState == "campaigns" ? campaigns.push(project): ""
       : 
       pendingProjects.push(project);
     })
