@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 import ProjectItem from '../../components/projects/ProjectItem';
 import { withTracker } from 'meteor/react-meteor-data';
-import {Categories, Funnels} from '../../../api/collections';
+import {Categories, Funnels, ForWhoFoundsRaise, FoundRaiseAs} from '../../../api/collections';
 
 class AdminDashboardLayout extends Component {
   constructor(props) {
@@ -18,7 +18,10 @@ class AdminDashboardLayout extends Component {
  */
   renderProjects(projects, sop){
     return projects.map((project, index)=>(
-        <ProjectItem key={index} project={project} stateOfProject={sop} user="admin"/>
+        <ProjectItem key={index} project={project} 
+          foundRaiseAs={this.props.foundRaiseAs}
+          forWhoFoundsRaise={this.props.forWhoFoundsRaise}
+          projectState={sop} categories={this.props.categories} user="admin" />
     ))
   }
 
@@ -40,18 +43,17 @@ class AdminDashboardLayout extends Component {
 
   render() {
     const {funnels, userId} = this.props;
-    // console.log(funnels);
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
     const campaigns = [];
     funnels.map((project) => {
       project.projectState ? 
-        project.projectState == "validated" ? validatedProjects.push(project) :
-        project.projectState == "refused" ? refusedProjects.push(project) :
-        project.projectState == "campaigns" ? campaigns.push(project): ""
+        project.projectState == "VALID" ? validatedProjects.push(project) :
+        project.projectState == "REFUSED" ? refusedProjects.push(project) :
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): pendingProjects.push(project)
       : 
-      pendingProjects.push(project);
+      ''
     })
     
     return (
@@ -64,7 +66,7 @@ class AdminDashboardLayout extends Component {
           <h2 className = "AdminProjectH2">Pending Projects </h2>
           <br/>
           <div className="projects">
-              {this.renderProjects(pendingProjects, "pending")}
+              {this.renderProjects(pendingProjects, "PENDING")}
           </div>
           <br/>
           {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -79,7 +81,7 @@ class AdminDashboardLayout extends Component {
             <hr className = "AdminProjectSHr"/>
             <h2 className = "AdminProjectH2">Valided Projects </h2>
             <div className="projects">
-                {this.renderProjects(this.state.validatedProjects, "validated")}
+                {this.renderProjects(validatedProjects, "VALID")}
             </div>
             <br/>
             {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -88,14 +90,14 @@ class AdminDashboardLayout extends Component {
          }
 
         {
-          validatedProjects.length == 0 ? 
+          campaigns.length == 0 ? 
           "" 
           :
           <div className="row text-center validatedProjectsConatiner">
             <hr className = "AdminProjectSHr"/>
             <h2 className = "AdminProjectH2">Campaigns </h2>
             <div className="projects">
-              {this.renderProjects(this.state.refusedProjects, "campaign")}
+              {this.renderProjects(campaigns, "START CAMPAIGN")}
             </div>
             <br/>
             {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -111,10 +113,13 @@ class AdminDashboardLayout extends Component {
 export default withTracker((props)=>{
   Meteor.subscribe('funnels');
   Meteor.subscribe('categories');  
+  Meteor.subscribe('forWhoFoundsRaise');  
+  Meteor.subscribe('foundRaiseAs');  
   let q={};
   return {
     funnels: Funnels.find(q).fetch(),
     categories: Categories.find({}).fetch(),
-    userId:Meteor.userId()
+    foundRaiseAs: ForWhoFoundsRaise.find({}).fetch(),
+    forWhoFoundsRaise: FoundRaiseAs.find({}).fetch()
   }
 })(AdminDashboardLayout);

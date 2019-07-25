@@ -4,20 +4,78 @@ import { withTracker } from 'meteor/react-meteor-data';
 import {Link} from 'react-router-dom';
 import {Categories,Industries} from '../../../api/collections'
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
+import FunnelModalForm from '../funnels/Funnel-Modal-Form';
+import axios from 'axios';
 import 'react-circular-progressbar/dist/styles.css';
 
 
  export default class ProjectItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+            countries: []
+        };
+    }
+
+    componentWillReceiveProps() {
+        this.loadCountry();
+    }
+
+    async loadCountry() {
+        const countries = await axios.get('https://restcountries.eu/rest/v2/regionalbloc/au')
+            .then(function (response) {
+                // handle success
+                return response;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+        //console.log(countries.data[0].name);
+        this.setState({ countries: countries.data });
+    }
+
+    editFunnel = () => {
+        this.setState({
+            showModal: true
+        });
+    }
+
+    closeModal = () => {
+        this.setState({
+            showModal: false
+        })
+    }
+
     render() {
-        const{project, propclass, stateOfProject, user} = this.props;
-        console.log(project);
+        const{project, propclass, projectState, user} = this.props;
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
-        // const industry = Industries.findOne({_id:project.industry}),
-        // category=Categories.findOne({_id:project.category});
+        const { city, phoneNumber, userId, objectifAmount, projectName, 
+            currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, 
+            description, _id, category, document, projectImage, teamImage, email,
+            feedback, video, country } = project;
     return ( 
-         <div className = {
-             propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
+         <div className = {propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
+            <FunnelModalForm 
+                userId={userId} isReview={true}
+                feedback={feedback} city={city} 
+                categories={this.props.categories} id={_id} 
+                category={category} phoneNumber={phoneNumber} 
+                description={description} user={userId} 
+                projectName={projectName} projectState={this.props.projectState} 
+                currentAmount={currentAmount} teamName={teamName} 
+                forWhoFoundsRaise={this.props.forWhoFoundsRaise} 
+                oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
+                video={video} show={this.state.showModal} projectImage={projectImage} 
+                teamImage={teamImage} document={document} 
+                foundRaiseAs={this.props.foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} 
+                email={email} objectifAmount={objectifAmount} country={country} 
+                countries={this.state.countries} closeModal={this.closeModal} />
             <div className="ibox text-center">
                 <div className="ibox-content product-box active">
                     <div className="imageContainer">
@@ -30,9 +88,9 @@ import 'react-circular-progressbar/dist/styles.css';
                     <div className="product-desc">
                         <div className="bigProgressBarContainer">
                             <div className="circularProgessBarContainer">
-                                {/**When the project is in stage of campaign, we display the funds progress bar
-                                   * When it is in stage of pending or refused or validated, we don't display */}
-                                {stateOfProject == "campaign" ?
+                                {/**When the project is in stage of START CAMPAIGN, we display the funds progress bar
+                                   * When it is in stage of pending or REFUSED or VALID, we don't display */}
+                                {projectState == "START CAMPAIGN" ?
                                     <CircularProgressbar
                                         value={percentage}
                                         text={`${percentage}%`}
@@ -59,9 +117,7 @@ import 'react-circular-progressbar/dist/styles.css';
                                         trailColor: '#d6d6d6',
                                         backgroundColor: '#3e98c7',
                                         })}
-                                    />
-                                    :
-                                    ""
+                                    /> : ""
                                 }
                             </div>
                         </div>
@@ -69,20 +125,20 @@ import 'react-circular-progressbar/dist/styles.css';
                             {/**Link to details */}
                             <Link to={{pathname:'/projects/'+project._id._str}} className="product-name"> {project.projectName} </Link>
                         </div>
-                        {stateOfProject=="campaign"?
+                        {projectState=="START START CAMPAIGN"?
                             <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
                             :""
                         }
                         <div className="m-t text-righ">
                             {user == "simpleUser" ?
-                                stateOfProject == "refused" ?
+                                projectState == "REFUSED" ?
                                     <span>POUBELLE</span> 
                                 :
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details</Link>
                             :
                             user == "admin" ?
-                                stateOfProject == "validated" ?
-                                    <Link to={{pathname:'#'}} className="btn btn-warning">Edit</Link>
+                                projectState == "VALID" ?
+                                    <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
                                 :
                                     //this leads to the page where admin will validate or reject project
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>
@@ -92,7 +148,7 @@ import 'react-circular-progressbar/dist/styles.css';
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                                 </span>
                             }
-            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -45,16 +45,15 @@ class ProjectsLayout extends Component {
 
   render() {
     const {funnels, userId} = this.props;
-    console.log(funnels);
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
     const campaigns = [];
     funnels.map((project) => {
-      project.currentState ? 
-        project.currentState == "validated" ? validatedProjects.push(project) :
-        project.currentState == "refused" ? refusedProjects.push(project) :
-        project.currentState == "campaigns" ? campaigns.push(project): ""
+      project.projectState ? 
+        project.projectState == "VALID" ? validatedProjects.push(project) :
+        project.projectState == "REFUSED" ? refusedProjects.push(project) :
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): ""
       : 
       pendingProjects.push(project);
     })
@@ -69,7 +68,7 @@ class ProjectsLayout extends Component {
             <h2>Pending Projects</h2>
             <div className="projects">
 
-              {this.renderProjects(pendingProjects, "pending")}
+              {this.renderProjects(pendingProjects, "PENDING")}
             </div>
             <br/>
             <br/>
@@ -86,7 +85,7 @@ class ProjectsLayout extends Component {
             <hr/>
             <h2>Validated Projects</h2>
             <div className="projects">
-                {this.renderProjects(validatedProjects, "validated")}
+                {this.renderProjects(validatedProjects, "VALID")}
             </div>
             <br/>
             <br/>
@@ -104,7 +103,7 @@ class ProjectsLayout extends Component {
             <hr/>
             <h2>Rejected Projects</h2>
             <div className="projects">
-                {this.renderProjects(refusedProjects, "refused")}
+                {this.renderProjects(refusedProjects, "REFUSED")}
             </div>
             <br/>
             <br/>
@@ -122,7 +121,7 @@ class ProjectsLayout extends Component {
             <hr/>
             <h2>Campaigns</h2>
             <div className="projects">
-                {this.renderProjects(campaigns, "campaign")}
+                {this.renderProjects(campaigns, "START CAMPAIGN")}
             </div>
             <br/>
             <br/>
