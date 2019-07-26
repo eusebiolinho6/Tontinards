@@ -18,7 +18,7 @@ class AdminDashboardLayout extends Component {
  */
   renderProjects(projects, sop){
     return projects.map((project, index)=>(
-        <ProjectItem key={index} project={project} stateOfProject={sop} propclass="onDashboard" user="admin"/>
+        <ProjectItem key={index} project={project} projectState={sop} propclass="onDashboard" user="admin"/>
     ))
   }
 
@@ -40,18 +40,17 @@ class AdminDashboardLayout extends Component {
 
   render() {
     const {funnels, userId} = this.props;
-    // console.log(funnels);
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
     const campaigns = [];
     funnels.map((project) => {
-      project.currentState ? 
-        project.currentState == "validated" ? validatedProjects.push(project) :
-        project.currentState == "refused" ? refusedProjects.push(project) :
-        project.currentState == "campaigns" ? campaigns.push(project): ""
+      project.projectState ? 
+        project.projectState == "VALID" ? validatedProjects.push(project) :
+        project.projectState == "REFUSED" ? refusedProjects.push(project) :
+        project.projectState == "START CAMPAIGN" ? campaigns.push(project): pendingProjects.push(project)
       : 
-      pendingProjects.push(project);
+      ''
     })
     
     return (
@@ -60,11 +59,12 @@ class AdminDashboardLayout extends Component {
         <h1 className = "AdminProjectH1">Projects List </h1>
         <hr className = "AdminProjectHr"/>
 
+
         {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
         <div className="col-md-3">
           <h2>FILTER</h2>
         </div>
-        
+
         {/*------------------------ PROJECTS CONATINER -------------------------*/}
         <div className = "col-md-9">
           <div className="row text-center pendingProjectsConatiner">
@@ -72,7 +72,20 @@ class AdminDashboardLayout extends Component {
             <h2 className = "AdminProjectH2">Pending Projects </h2>
             <br/>
             <div className="projects">
-                {this.renderProjects(pendingProjects, "pending")}
+                {this.renderProjects(pendingProjects, "PENDING")}
+            </div>
+            <br/>
+            {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+            <br/>
+          </div>
+
+        
+          <div className="row text-center pendingProjectsConatiner">
+            <br/>
+            <h2 className = "AdminProjectH2">Validated Projects </h2>
+            <br/>
+            <div className="projects">
+                {this.renderProjects(validatedProjects, "VALID")}
             </div>
             <br/>
             {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
@@ -84,17 +97,28 @@ class AdminDashboardLayout extends Component {
             "" 
             :
           <div className="row text-center validatedProjectsConatiner">
-              <hr className = "AdminProjectSHr"/>
-              <h2 className = "AdminProjectH2">Valided Projects </h2>
-              <div className="projects">
-                  {this.renderProjects(this.state.validatedProjects, "validated")}
-              </div>
-              <br/>
-              {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-              <br/>
+            <hr className = "AdminProjectSHr"/>
+            <h2 className = "AdminProjectH2">Valided Projects </h2>
+            <div className="projects">
+                {this.renderProjects(this.state.validatedProjects, "validated")}
             </div>
+            <br/>
+            {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+            <br/>
+          </div>
           }
-
+        {
+          campaigns.length == 0 ? 
+          "" 
+          :
+          <div className="row text-center validatedProjectsConatiner">
+            <hr className = "AdminProjectSHr"/>
+            <h2 className = "AdminProjectH2">Campaigns </h2>
+            <div className="projects">
+              {this.renderProjects(campaigns, "START CAMPAIGN")}
+            </div>
+          </div>
+          }
           {
             validatedProjects.length == 0 ? 
             "" 

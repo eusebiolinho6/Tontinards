@@ -10302,4 +10302,8 @@ color: green;
 
 #funnelListkamer{
   text-align: center;
+  .description{
+    overflow-wrap: break-word;
+  }
+
 }
