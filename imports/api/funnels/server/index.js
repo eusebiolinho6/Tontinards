@@ -76,7 +76,24 @@ Meteor.methods({
            });
         });
     })
-    }
+    },
+
+    'makeDonate': (data, projectId) => {
+        let currentProject = Funnels.findOne(projectId);
+        // Get the previous amount add to the new
+        let newAmount = parseInt(currentProject.currentAmount) + data.amount;
+        // Save the new value
+        Funnels.update(projectId, { $set: { currentAmount: newAmount } });
+        // Save the new donator
+        return new Promise((resolve, reject) => {
+            const query = {$push: {"donators": data}}
+            let project = Funnels.update({_id: projectId}, query);
+            // Send Email to Donator
+            Meteor.call('sendEmail', data.email, "Tontinards@gmail.com", "Dons pour Tontinards", currentProject, "donation.html")
+            if (project) return resolve(project);
+            return reject();
+        })
+    },
     /**,
     'createPlan': (data) => {
         return new Promise(function (resolve, reject) {

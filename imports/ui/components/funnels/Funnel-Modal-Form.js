@@ -43,7 +43,8 @@ class FunnelModalForm extends Component {
             videoFile: '',
             email: '',
             feedback: props.feedback,
-            country: props.country
+            country: props.country,
+            phoneNumber : props.phoneNumber,
         };
     }
 

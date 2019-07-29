@@ -1,9 +1,13 @@
     
 import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom'
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { checkRole } from '../../utilities/';
-// App component - represents the whole app
+
+const toogleMenu = <FontAwesomeIcon icon={faBars}/>
+
 class Header extends Component {
     constructor(props) {
         super(props);

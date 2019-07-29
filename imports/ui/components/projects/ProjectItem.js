@@ -52,13 +52,13 @@ import 'react-circular-progressbar/dist/styles.css';
     }
 
     render() {
-        const{project, propclass, projectState, user} = this.props;
+        const{project, propclass, user} = this.props;
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
         const { city, phoneNumber, userId, objectifAmount, projectName, 
             currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, 
             description, _id, category, document, projectImage, teamImage, email,
-            feedback, video, country } = project;
+            feedback, video, country, projectState } = project;
     return ( 
          <div className = {propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
             <FunnelModalForm 
@@ -67,7 +67,7 @@ import 'react-circular-progressbar/dist/styles.css';
                 categories={this.props.categories} id={_id} 
                 category={category} phoneNumber={phoneNumber} 
                 description={description} user={userId} 
-                projectName={projectName} projectState={this.props.projectState} 
+                projectName={projectName} projectState={projectState} 
                 currentAmount={currentAmount} teamName={teamName} 
                 forWhoFoundsRaise={this.props.forWhoFoundsRaise} 
                 oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
@@ -125,7 +125,7 @@ import 'react-circular-progressbar/dist/styles.css';
                             {/**Link to details */}
                             <Link to={{pathname:'/projects/'+project._id._str}} className="product-name"> {project.projectName} </Link>
                         </div>
-                        {projectState=="START START CAMPAIGN"?
+                        {projectState=="START CAMPAIGN"?
                             <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
                             :""
                         }
@@ -138,13 +138,16 @@ import 'react-circular-progressbar/dist/styles.css';
                             :
                             user == "admin" ?
                                 projectState == "VALID" ?
-                                    <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
+                                    <div id="wrap-btn">
+                                        <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
+                                        <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>
+                                    </div>
                                 :
                                     //this leads to the page where admin will validate or reject project
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>
                             :
                                 <span>
-                                    <Link to={{pathname:'/project/donate'}} className="btn btn-primary donateBtn">Donate </Link>
+                                    <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary donateBtn">Donate </Link>
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                                 </span>
                             }
