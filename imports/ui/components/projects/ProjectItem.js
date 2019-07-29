@@ -9,7 +9,8 @@ import 'react-circular-progressbar/dist/styles.css';
 
  export default class ProjectItem extends Component {
     render() {
-        const{project, propclass, projectState, user} = this.props;
+        const{project, propclass, user} = this.props,
+        projectState = project.projectState; 
         console.log(project);
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
@@ -17,7 +18,7 @@ import 'react-circular-progressbar/dist/styles.css';
         // category=Categories.findOne({_id:project.category});
     return ( 
          <div className = {
-             propclass == 'details' ? 'col-md-3 subject-container' : 
+             propclass == 'donation' ? 'col-md-3 subject-container' : 
              propclass == "onDashboard" ? 'col-md-4 col-sm-6 subject-container' : 'col-md-3 col-sm-6 subject-container'}>
             <div className="ibox text-center">
                 <div className="ibox-content product-box active">
@@ -70,7 +71,7 @@ import 'react-circular-progressbar/dist/styles.css';
                             {/**Link to details */}
                             <Link to={{pathname:'/projects/'+project._id._str}} className="product-name"> {project.projectName} </Link>
                         </div>
-                        {projectState=="START START CAMPAIGN"?
+                        {projectState=="START CAMPAIGN"?
                             <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
                             :""
                         }
@@ -83,13 +84,14 @@ import 'react-circular-progressbar/dist/styles.css';
                             :
                             user == "admin" ?
                                 projectState == "VALID" ?
-                                    <Link to={{pathname:'#'}} className="btn btn-warning">Edit</Link>
+                                    // <Link to={{pathname:'#'}} className="btn btn-warning">Edit</Link>
+                                    <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-warning">Edit</Link>
                                 :
                                     //this leads to the page where admin will validate or reject project
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-primary">Details </Link>
                             :
                                 <span>
-                                    <Link to={{pathname:'/project/donate'}} className="btn btn-primary donateBtn">Donate </Link>
+                                    <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary donateBtn">Donate </Link>
                                     <Link to={{pathname:'/projects/'+project._id._str}} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                                 </span>
                             }

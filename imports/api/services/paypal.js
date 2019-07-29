@@ -83,14 +83,14 @@ exports.createPlan = (data, cb) =>{
             "return_url": data.successUrl,
             "setup_fee": {
                 "currency": "USD",
-                "value": data.zipCode
+                "value": data.phoneNumber
             }
         },
         "name": "FULL ACCESS TO FOPSwipe",
         "payment_definitions": [{
             "amount": {
                 "currency": "USD",
-                "value": data.zipCode
+                "value": data.phoneNumber
             },
             "frequency": "MONTH",
             "frequency_interval": "1",

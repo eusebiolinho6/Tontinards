@@ -22,7 +22,7 @@ class FunnelLIstAdmin extends Component {
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
             objectifAmount: '',
-            zipCode: '',
+            phoneNumber: '',
             description: '',
             category: '',
             document: '',
@@ -36,6 +36,7 @@ class FunnelLIstAdmin extends Component {
             show: false,
             feedback: ''
         };
+        console.log(this.props.user._id);
     }
 
     componentWillReceiveProps() {
@@ -80,7 +81,7 @@ class FunnelLIstAdmin extends Component {
 
     editFunnel(funnel) {
         this.setState({
-            zipCode: funnel.zipCode,
+            phoneNumber: funnel.phoneNumber,
             objectifAmount: funnel.objectifAmount,
             onefoundRaiseAs: funnel.onefoundRaiseAs,
             oneForWhoFoundsRaise: funnel.oneForWhoFoundsRaise,
@@ -105,12 +106,13 @@ class FunnelLIstAdmin extends Component {
         this.setState({ show: false });
         this.setState({
             projectName: '',
+            userId: '',
             projectState: '',
             currentAmount: '',
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
             objectifAmount: '',
-            zipCode: '',
+            phoneNumber: '',
             description: '',
             category: '',
             document: '',

@@ -17,16 +17,16 @@ class PlansLayout extends Component {
       projectName: 'Our plans'
     }, plans=[
         {name: "BASIC",
-         zipCode: 1,
+         phoneNumber: 1,
         description: "With this Plan you can download all funnel images in FOPSwipe."  
         },
 {
     name: "PRO",
-    zipCode: 2    ,
+    phoneNumber: 2    ,
     description: "With this Plan you can download all our funnel images and pdfs in FOPSwipe."
 }, {
     name: "ULTIMATE",
-    zipCode: 3,
+    phoneNumber: 3,
     description: "With this Plan you can download all our funnel images, pdfs and videos in FOPSwipe."
 }];
     return (

@@ -96,8 +96,8 @@ Meteor.methods({
 if (Meteor.isServer) {
   Meteor.publish('funnels', function funnelsPublication() {
     const hasPaid = checkRole(['admin', 'paid'], this.userId);
-    // if(hasPaid) return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{zipCode:1, projectName:1, image:1, document:1,video:1, description:1, industry:1, category:1}});
-    // return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{zipCode:1, projectName:1, image:1, description:1, industry:1, category:1}});
+    // if(hasPaid) return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{phoneNumber:1, projectName:1, image:1, document:1,video:1, description:1, industry:1, category:1}});
+    // return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{phoneNumber:1, projectName:1, image:1, description:1, industry:1, category:1}});
     return Funnels.find({});
   });
   Meteor.publish('freeFunnels', function funnelsFreePublication(){
