@@ -10289,3 +10289,33 @@ color: green;
   }
 
 }
+
+/* ================= Composant Menu ================= */
+.vertical-menu {
+  width: 30%; /* Set a width if you like */
+  margin-top: 100px;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+
+.vertical-menu a {
+  background-color: #eee; /* Grey background color */
+  color: black; /* Black text color */
+  display: block; /* Make the links appear below each other */
+  padding: 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50; /* Add a green color to the "active/current" link */
+  color: white;
+}
+
+/* ================= Conposant AdminDashboard ================= */
+.flex-container {
+  display: flex;
+}

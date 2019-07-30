@@ -163,12 +163,12 @@ class FilterFunnelMenu extends Component {
               </div>
                     <div className="hr-line-dashed"></div>
                         { /**Industry here*/ }
-                        {categories.length?<div className="col-md-12" ><h5 style={{marginBottom:'0px'}} >CATEGORY</h5>
+                        {/* categories.length */1==1?<div className="col-md-12" ><h5 style={{marginBottom:'0px'}} >CATEGORY</h5>
                             <div className = "col-md-10" >
                             <ul className="folder-list" style={{padding: 0}}>
-                                {categories.map((category)=>(
+                                {/* categories.map((category)=>(
                                     <li key={category._id}><IcheckCheckbox id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>
-                                    )) }  
+                                    ))  */}  
                             </ul>
                             </div>
                         </div>:''} 
