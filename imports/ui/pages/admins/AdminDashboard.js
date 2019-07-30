@@ -13,7 +13,6 @@ class AdminDashboard extends Component {
   render() {
     return (
       <div className="flex-container container-fluid row no-padding">
-        <Menu />
         <AdminDashboardLayout />
       </div>
     )

@@ -28,7 +28,6 @@ exports.checkRole = (roles, userId)=>{
     console.log(currentRole);
     console.log("-------------------this is the roles");
     console.log(roles);
-    console.log(roles.indexOf(currentRole.toLowerCase()));
     if (roles.indexOf(currentRole.toLowerCase()) != -1) return true;
     return false;
 }

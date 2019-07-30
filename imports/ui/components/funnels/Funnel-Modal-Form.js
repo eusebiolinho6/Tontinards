@@ -43,7 +43,8 @@ class FunnelModalForm extends Component {
             videoFile: '',
             email: '',
             feedback: props.feedback,
-            country: props.country
+            country: props.country,
+            phoneNumber : props.phoneNumber,
         };
     }
 
@@ -167,7 +168,7 @@ class FunnelModalForm extends Component {
                 if (err) {
                     return cb(err, null);
                 } else {
-                    return cb(null, id)
+                    console.log("Updated")
                 }
             });
         }
@@ -242,7 +243,7 @@ class FunnelModalForm extends Component {
     }
     render() {
 
-        const { show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country } = this.state;
+        const { show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback } = this.state;
         const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user } = this.props;
 
        return (
@@ -333,6 +334,15 @@ class FunnelModalForm extends Component {
                             error={errors.description}
                             onChange={(event) => this.handleInputChange(event)}
                         />
+                        {
+                            this.props.isReview ? 
+                            <Summernote
+                                field="feedback"
+                                label="Enter the review"
+                                value={feedback}
+                                error={errors.feedback}
+                                onChange={(event) => this.handleInputChange(event)} />: null
+                        }
                         <h2>Team Informations</h2>
                         <Input
                             field="teamName"

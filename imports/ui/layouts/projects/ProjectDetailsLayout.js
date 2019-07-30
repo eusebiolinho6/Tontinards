@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import ProjectDetails from '../../components/projects/ProjectDetails';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from "meteor/meteor";
 import {toObjectId} from '../../../utilities/';
 import {Funnels, FoundRaiseAs, ForWhoFoundsRaise} from '../../../api/collections';
 
@@ -27,7 +28,8 @@ export default withTracker((props)=>{
   Meteor.subscribe('foundRaiseAs');
   Meteor.subscribe('onefoundRaiseAs');
   Meteor.subscribe('forWhoFoundsRaise');
-  const project = Funnels.findOne({_id: toObjectId(props.projectId)});
+  console.log(Meteor.user())
+  const project = Funnels.findOne({"userId": Meteor.user()});
   // const foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs)});
   // console.log(foundRaiseAs);
   console.log(project);

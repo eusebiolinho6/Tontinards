@@ -30,16 +30,19 @@ class FunnelList extends Component {
             <a  href="/admin/funnels" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
           </div>
         </div>
-        <div className="embed-responsive embed-responsive-16by9 mainVideo">
+        <div className="embed-responsive embed-responsive-16by9 text-center mainVideo">
           <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" ></iframe>
         </div>
-        <p className = "submainText">
-          Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
-          typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
-        </p>
-
-        <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
-        <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
+        <div className="col-md-12 submainTextContainer">
+          <p className = "submainText">
+            Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
+            typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
+          </p>
+        </div>
+        <div className="col-md-12">
+          <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
+          <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
+        </div>
 
       </div>
     )

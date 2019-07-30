@@ -2,7 +2,7 @@ import { Meteor} from 'meteor/meteor';
 import { Email } from 'meteor/email'
 
 Meteor.methods({
-    sendEmail(to, from, subject, templateName) {
+    sendEmail(to, from, subject, otherData, templateName) {
         // Make sure that all arguments are strings.
         // check([to, from, subject, text], [String]);
 
@@ -12,10 +12,6 @@ Meteor.methods({
 
         SSR.compileTemplate('htmlEmail', Assets.getText(templateName));
 
-        let emailData = {
-            username: "John Smith"
-        };
-
-        Email.send({ to, from, subject, html: SSR.render('htmlEmail', emailData) });
+        Email.send({ to, from, subject, html: SSR.render('htmlEmail', otherData) });
     }
 });

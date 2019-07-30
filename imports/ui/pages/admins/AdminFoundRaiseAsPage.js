@@ -3,7 +3,7 @@ import AdminFoundRaiseAsLayout from '../../layouts/admins/AdminFoundRaiseAsLayou
 import Header from '../../globalComponents/Header'
 // App component - represents the whole app
 class AdminFoundRaiseAsPage extends Component {
-  constructor(props) {
+  constructor(props) { 
     super(props);
   }
 

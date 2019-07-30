@@ -2,7 +2,7 @@ import React, { Fragment} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProjectsPage from '../pages/projects/ProjectsPage';
 import ProjectsDetailsPage from '../pages/projects/ProjectDetailsPage';
-import ProjectDonation from '../pages/projects/ProjectDonation';
+import ProjectDonationPage from '../pages/projects/ProjectDonationPage';
 import HeaderLayout from '../globalComponents/layouts/HeaderLayout';
 import FunnelDetailsPage from '../pages/funnels/FunnelsDetailsPage';
 import AdminPage from '../pages/admins/AdminPage';
@@ -17,7 +17,7 @@ const Project = () => (
         {/*---- The route '/projects/all' leads to the lists of all the projects a user has got ----*/}
         <Route exact path='/projects/all' component={ProjectsPage}/>
         <Route exact path='/projects/:projectId' component={ProjectsDetailsPage}/>
-        <Route exact path='/projects/donate' component={ProjectDonation}/>
+        <Route exact path='/projects/donate/:projectId' component={ProjectDonationPage}/>
       </div>
     </Fragment>
   </Switch>
