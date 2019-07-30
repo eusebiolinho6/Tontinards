@@ -3,10 +3,19 @@ import {Link} from 'react-router-dom';
 import ProjectItem from '../../components/projects/ProjectItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import {Categories, Funnels, ForWhoFoundsRaise, FoundRaiseAs} from '../../../api/collections';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
+
+const emptyIcon = <FontAwesomeIcon icon={faBan} size="3x"/>
 
 class AdminDashboardLayout extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      displayPendingProjects: true,
+      displayValidatedProjects: false,
+      displayCampaings: false,
+    }
   }
 
 /**
@@ -38,14 +47,36 @@ class AdminDashboardLayout extends Component {
     } 
   }
 
+  filterProjects = (projectsToDisplay) =>{
+    projectsToDisplay == "PENDING" ?
+      this.setState({
+        displayPendingProjects: true,
+        displayValidatedProjects: false,
+        displayCampaings: false
+      }) 
+    : projectsToDisplay == "VALID" ? 
+      this.setState({
+        displayPendingProjects: false,
+        displayValidatedProjects: true,
+        displayCampaings: false
+      }) 
+      :
+      this.setState({
+        displayPendingProjects: false,
+        displayValidatedProjects: false,
+        displayCampaings: true
+      })
+  }
+
 
 
   render() {
-    const {funnels, userId} = this.props;
-    const pendingProjects = [];
-    const validatedProjects = [];
-    const refusedProjects = [];
-    const campaigns = [];
+    const {funnels, userId} = this.props,
+    pendingProjects = [],
+    validatedProjects = [],
+    refusedProjects = [],
+    campaigns = [],
+    {displayPendingProjects,displayValidatedProjects, displayCampaings} = this.state;
     funnels.map((project) => {
       project.projectState ? 
         project.projectState == "VALID" ? validatedProjects.push(project) :
@@ -57,59 +88,131 @@ class AdminDashboardLayout extends Component {
     
     return (
       <div className="container-fluid row">
-          <div className="col-sm-8 col-md-12">
-            <br/>
-            <h1 className = "AdminProjectH1">Projects List </h1>
-            <hr className = "AdminProjectHr"/>
-            {
-                pendingProjects.length == 0 ? 
-                "" 
-                :
+        <br/>
+        <h1 className = "AdminProjectH1">Projects List </h1>
+        <hr className = "AdminProjectHr"/>
+
+
+        {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
+        <div className="filerMenu col-md-3">
+          <h1 className="transparent">.</h1>
+          <form className="form">
+            <h2>Filter Options</h2>
+            {/* <div className="inputGroup">
+              <input id="option1" name="option1" type="checkbox"/>
+              <label for="option1">Pending projects</label>
+            </div>
+            
+            <div className="inputGroup">
+              <input id="option2" name="option2" type="checkbox"/>
+              <label for="option2">Valided projects</label>
+            </div>
+
+            <div className="inputGroup">
+              <input id="option2" name="option2" type="checkbox"/>
+              <label for="option2">Campaigns</label>
+            </div> */}
+
+            <div className="inputGroup">
+              <input id="radio1" name="radio" type="radio" checked={displayPendingProjects} onChange={()=>this.filterProjects("PENDING")}/>
+              <label for="radio1">Pending projects</label>
+            </div>
+
+            <div className="inputGroup">
+              <input id="radio2" name="radio" type="radio" onChange={()=>this.filterProjects("VALID")}/>
+              <label for="radio2">Valided projects</label>
+            </div>
+
+            <div className="inputGroup">
+              <input id="radio3" name="radio" type="radio" onChange={()=>this.filterProjects("CAMPAIGNS")}/>
+              <label for="radio3">Campaigns</label>
+            </div>
+          </form>
+
+        </div>
+
+        {/*------------------------ PROJECTS CONATINER -------------------------*/}        
+          <div className="container-fluid row col-md-9">
+            {displayPendingProjects ?        
               <div className="row text-center pendingProjectsContainer">
-                <br/>
-                <h2 className = "AdminProjectH2">Pending Projects </h2>
-                <br/>
-                <div className="projects">
-                    {this.renderProjects(pendingProjects)}
-                </div>
-                <br/>
-                {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-                <br/>
+                  <br/>
+                  <h2 className = "AdminProjectH2">Pending Projects </h2>
+                  <br/>
+                  {
+                  pendingProjects.length == 0 ? 
+                  <div className="noProject">
+                    <span>{emptyIcon}</span>
+                    <h3>No project.</h3>
+                  </div>
+                  :
+                  <div>
+                    <div className="projects">
+                        {this.renderProjects(pendingProjects)}
+                    </div>
+                    <br/>
+                    {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                    <br/>
+                  </div> 
+                }
               </div>
+              :
+              ""
             }
 
-            {
-              validatedProjects.length == 0 ? 
-              "" 
-              :
+            {displayValidatedProjects ?
               <div className="row text-center validatedProjectsConatiner">
-                <hr className = "AdminProjectSHr"/>
+                {/* <hr className = "AdminProjectSHr"/> */}
+                <br/>
                 <h2 className = "AdminProjectH2">Valided Projects </h2>
-                <div className="projects">
-                    {this.renderProjects(validatedProjects)}
+                <br/>
+                {
+                validatedProjects.length == 0 ? 
+                <div className="noProject">
+                  <span>{emptyIcon}</span>
+                  <h3>No project.</h3>
                 </div>
-                <br/>
-                {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-                <br/>
+                :
+                <div>
+                  <div className="projects">
+                      {this.renderProjects(validatedProjects)}
+                  </div>
+                  <br/>
+                  {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                  <br/>
+                </div>
+                }
               </div>
+              :
+              ""
             }
 
-            {
-              campaigns.length == 0 ? 
-              "" 
-              :
-              <div className="row text-center validatedProjectsConatiner">
-                <hr className = "AdminProjectSHr"/>
-                <h2 className = "AdminProjectH2">Campaigns </h2>
-                <div className="projects">
-                  {this.renderProjects(campaigns)}
+           {displayCampaings ?
+            <div className="row text-center validatedProjectsConatiner">
+              {/* <hr className = "AdminProjectSHr"/> */}
+              <br/>
+              <h2 className = "AdminProjectH2">Campaigns </h2>
+              <br/>
+              {
+                campaigns.length == 0 ? 
+                <div className="noProject">
+                  <span>{emptyIcon}</span>
+                  <h3>No project.</h3>
+                </div> 
+                :
+                <div>
+                  <div className="projects">
+                    {this.renderProjects(campaigns)}
+                  </div>
+                  <br/>
+                  {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                  <br/>
                 </div>
-                <br/>
-                {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-                <br/>
-              </div>
-            }
-          </div>
+              }
+            </div>
+            :
+            ""
+          }
+        </div>
       </div>   
     )
   }
@@ -124,7 +227,7 @@ export default withTracker((props)=>{
   return {
     funnels: Funnels.find(q).fetch(),
     categories: Categories.find({}).fetch(),
-    foundRaiseAs: ForWhoFoundsRaise.find({}).fetch(),
-    forWhoFoundsRaise: FoundRaiseAs.find({}).fetch()
+    forWhoFoundsRaise: ForWhoFoundsRaise.find({}).fetch(),
+    foundRaiseAs: FoundRaiseAs.find({}).fetch()
   }
 })(AdminDashboardLayout);

@@ -81,7 +81,7 @@ Meteor.methods({
     'makeDonate': (data, projectId) => {
         let currentProject = Funnels.findOne(projectId);
         // Get the previous amount add to the new
-        let newAmount = parseInt(currentProject.currentAmount) + data.amount;
+        let newAmount = parseInt(currentProject.currentAmount) + parseInt(data.amount);
         // Save the new value
         Funnels.update(projectId, { $set: { currentAmount: newAmount } });
         // Save the new donator
