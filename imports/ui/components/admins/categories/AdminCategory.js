@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import CategoryModalForm from './CategoryModalForm';
 import Input from '../../../globalComponents/Input'
 import {Modal, Button} from 'react-bootstrap';
+
 // App component - represents the whole app
 const monthNames = [
     "January", "February", "March",
