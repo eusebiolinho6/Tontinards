@@ -986,7 +986,8 @@ h5 {
 }
 .navbar {
   border: 0;
-  padding: 0 5%;
+  padding: 5px 5%;  
+  min-height: 70px !important;
 }
 .navbar-default {
   background-color: transparent;
@@ -1002,10 +1003,10 @@ h5 {
 .body-small .navbar-top-links li:last-child {
   margin-right: 0;
 }
-.navbar-top-links li a {
+/* .navbar-top-links li a {
   padding: 20px 10px;
   min-height: 50px;
-}
+} */
 .dropdown-menu {
   border: medium none;
   border-radius: 3px;
@@ -8493,11 +8494,13 @@ ul.horizontal-step-list li {
   background-color: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  left: -100%;
   min-width: 180px;
   border: solid 1px #eeeeee;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
   border-radius: 3px;
   z-index: 1;
+  text-align: left !important;
 }
 
 .dropdown-content a {
@@ -9730,6 +9733,13 @@ overflow-y: auto;
 
 .logoutMenu{
   color: #150738 !important;
+  width: 100%;
+  margin-top: 10px;
+  text-align: right !important;
+}
+
+.logoutMenu li{
+  width: 100%
 }
 
 .no-padding {
@@ -9936,8 +9946,8 @@ color: green;
 /* DROPDOWN BUTTON ON HEADER */
 .dropbtn {
   color: inherit;
-  padding: 16px;
-  font-size: 15px;
+  padding: 10px 16px 16px 16px;
+  font-size: 19.5px;
   border: none;
   cursor: pointer;
   margin: 0 !important;
@@ -10245,6 +10255,7 @@ color: green;
 /* -------------------- RESPONSIVE MENU ----------------------------------------------*/
 .Navbar__Link {
   padding-right: 8px;
+  padding-top: 5px;
 }
 
 .Navbar__Items {
@@ -10320,6 +10331,22 @@ color: green;
   
   .donationPageContent h3{
     text-align: center
+  }
+
+  .logoutMenu{
+    text-align: left !important;
+  }
+
+  .Navbar__Link {
+    margin-left: 0px !important;
+  }
+
+  .dropbtn{
+    padding-left:  0 !important;
+  }
+
+  .dropdown-content{
+    left: 0;
   }
 
 }
@@ -10453,4 +10480,52 @@ padding: 0 8px;
 .noProject {
   color: rgba(75, 67, 67, 0.424);
   font-size: 3em;
+}
+
+/*---------------------------- HEADER -----------------------------------*/
+.signIn, .signUp{
+  font-size: 2vw;
+  border-radius: 30px;
+  width: 40%;
+  height: 40px;
+  padding: 8px 20px;
+  font-weight: 600;
+}
+
+.signIn{
+  background-color: #fff;
+  color: #0076B6;
+  border: 2px solid #0076B6;
+  margin-right: 5%;
+}
+
+.signIn:hover{
+  background-color: #0076B6;
+  color: #fff;
+  border: 2px solid #0076B6;
+}
+
+.signUp{
+  background-color: #0076B6;
+  color: #fff;
+}
+
+.signUp:hover{
+  background-color: #fff;
+  color: #0076B6;
+  border: 2px solid #0076B6;
+}
+
+/*----------------------- FOOTER -----------------------------*/
+.footer hr{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #fff !important;
+  border-top: 1px solid #eee !important;
+
+}
+
+.footerHr{
+  text-align: center;
+  padding: 1px 30px;
 }

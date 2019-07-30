@@ -48,30 +48,30 @@ class Header extends Component {
                             <i >{toogleMenu}</i>
                         </div>
                         <div class="Navbar__Items col-md-10">
-                            <div className="col-md-10 col-sm-7 col-xs-9">
-                                {user ?
+                            {user ?
+                                <div className="col-md-7 col-sm-3 col-xs-12">
                                     <span>
                                         {user.profile.role == "admin" ?
                                             <div className="Navbar__Link dropdown">
                                                 <div>
                                                     <a className="dropbtn" className="menuLink" href="#">Admin <i className="fa fa-angle-down"></i> </a>
                                                     <div className="dropdown-content">
-                                                    <a id="dropbtn" href="/admin/categories">Categories</a>
-                                                    <a id="dropbtn" href="/admin/foundRaiseAs">Found Raise As</a>
-                                                    <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">For Who Founds Raise</a>
-                                                    <a id="dropbtn" href="/admin/funnels">Projects</a>
-                                                </div>
+                                                        <a id="dropbtn" href="/admin/categories">Categories</a>
+                                                        <a id="dropbtn" href="/admin/foundRaiseAs">Found Raise As</a>
+                                                        <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">For Who Founds Raise</a>
+                                                        <a id="dropbtn" href="/admin/funnels">Projects</a>
+                                                    </div>
                                                 </div>
                                             </div> : 
                                             ""
                                         }
                                     </span>
-                                    :
-                                    ""
-                                }
-                            </div>
+                                </div>
+                                :
+                                <div className="col-md-7 col-sm-3"></div>
+                            }
                             
-                            <div className="col-md-2 col-sm-5 col-xs-3">
+                            <div className="col-md-5 col-sm-9 col-xs-12">
                                 <ul className="nav navbar-top-links navbar-right logoutMenu">
                                     <li>
                                     {
@@ -84,7 +84,12 @@ class Header extends Component {
                                                     <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
                                                 </div>
                                             </div>
-                                            :<Link to="/authentication/signin"><i className="fa fa-sign-in"></i> Log In</Link>
+                                            :
+                                            <div>
+                                                <Link to="/authentication/signin" className="btn signIn"> Login</Link>
+                                                <Link to="/authentication/signup" className="btn signUp"> Register</Link>
+
+                                            </div>
                                     }
                                     </li>
                                 </ul>
