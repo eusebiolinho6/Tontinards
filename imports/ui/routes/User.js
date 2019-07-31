@@ -70,6 +70,8 @@ class User extends Component {
                 {/* <Route exact path='/user/projectdetails' component={ProjectsDetailsPage}/> */}
                 <Route exact path='/user/campaigns' component={AdminDashboard}/>
                 <Route exact path='user/projects/:projectId' component={ProjectsDetailsPage}/>
+                <Route exact path='/user/projects' component={authenticate(AdminPage)}/>
+                <Route exact path='/user/projectdetails' component={ProjectDetails}/>
               </span>
               :
             <Redirect to="/funnels/all/all" />

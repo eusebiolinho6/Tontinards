@@ -95,7 +95,7 @@ class AdminDashboardLayout extends Component {
 
 
         {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
-        <div className="filerMenu col-md-3">
+        <div className="filerMenu col-md-3" id="filerMenu">
           <h1 className="transparent">.</h1>
           <form className="form">
             <h2>Filter Options</h2>

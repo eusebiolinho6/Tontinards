@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Meteor} from 'meteor/meteor';
+import {Redirect} from 'react-router-dom'
 import ProjectItem from '../../components/projects/ProjectItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import {toObjectId} from '../../../utilities/';
@@ -14,7 +15,8 @@ class ProjectDonation extends Component {
       name: "",
       lastName: "",
       phoneNumber: "",
-      email: ""
+      email: "",
+      redirect: false
     }
   }
 
@@ -42,6 +44,9 @@ class ProjectDonation extends Component {
       amount: this.state.amount,
     }
     Meteor.call('makeDonate', newDonator, projectId);
+    this.setState({
+        redirect: true
+    })
   }
 
   handleInputChange(e) {
@@ -62,6 +67,7 @@ class ProjectDonation extends Component {
 
     return (
       <div className="container-fluid no-padding">
+        {this.state.redirect ? <Redirect to="/" />:null}
         <div className="row projectsPageHeader">
             <h1>Invest</h1>
             <hr/>
