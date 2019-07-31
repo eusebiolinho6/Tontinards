@@ -130,27 +130,29 @@ export default class ProjectItem extends Component {
                                 : ""
                             }
                             <div className="m-t text-righ">
-                            {console.log(user)}
-                                {user == "user" ?
-                                    projectState == "REFUSED" ?
-                                        <span>POUBELLE</span>
+                                {console.log(user)}
+                                {console.log(userId)}
+                                {
+                                    user.profile.role == "user" ?
+                                        projectState == "REFUSED" ?
+                                            <span>POUBELLE</span>
                                         :
-                                        <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details</Link>
+                                            <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details</Link>
                                     :
-                                    user == "admin" ?
-                                        projectState == "VALID" ?
-                                            <div id="wrap-btn">
-                                                <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
-                                                <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
-                                            </div>
+                                        user.profile.role == "admin" ?
+                                            projectState == "VALID" ?
+                                                <div id="wrap-btn">
+                                                    <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
+                                                    <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
+                                                </div>
                                             :
-                                            //this leads to the page where admin will validate or reject project
-                                            <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
+                                                //this leads to the page where admin will validate or reject project
+                                                <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
                                         :
-                                        <span>simpleUser
-                                            <Link to={{ pathname: '/projects/donate/' + project._id._str }} className="btn btn-primary donateBtn">Donate </Link>
-                                            <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
-                                        </span>
+                                            <span>simpleUser
+                                                <Link to={{ pathname: '/projects/donate/' + project._id._str }} className="btn btn-primary donateBtn">Donate </Link>
+                                                <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
+                                            </span>
                                 }
                             </div>
                         </div>
