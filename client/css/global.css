@@ -1572,6 +1572,13 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     /* display: block; */
     float: none;
   }
+  .titles{
+    display: none;
+  }
+  .footer{
+    position: absolute;
+    bottom: -400px !important; 
+  }
 }
 .menu-visible-lg,
 .menu-visible-md {
@@ -4604,11 +4611,11 @@ ol.unstyled {
   font-size: 160px !important;
   color: #e5e6e7;
 }
-/* FOOTER */
+/*-------------------------- FOOTER ------------------------------------------*/
 .footer {
-  background: none repeat scroll 0 0 white;
+  background: none repeat scroll 0 0 #F4F6F6;
   border-top: 1px solid #e7eaec;
-  bottom: 0;
+  bottom: -265px; 
   left: 0;
   padding: 10px 20px;
   position: absolute;
@@ -10521,11 +10528,47 @@ padding: 0 8px;
   margin-top: 20px;
   margin-bottom: 20px;
   border: 1px solid #fff !important;
-  border-top: 1px solid #eee !important;
+  border-top: 1px solid rgb(73, 68, 68) !important;
 
+}
+
+.footer{
+  padding: 25px 5%;
 }
 
 .footerHr{
   text-align: center;
   padding: 1px 30px;
+}
+
+.socials span{
+  margin-left: 20px;
+}
+
+.socials{
+  text-align: right;
+  padding-right: 30px;
+}
+
+.titles h5{
+  font-size: 1.2vw;
+  margin-top: -4px;
+}
+
+.footerLogoContainer img{
+  margin-top: -25px;
+  margin-right: 8px;
+}
+
+.footerLogoContainer{
+  text-align: right;
+}
+
+.footerInfos{
+  text-decoration: none;
+  line-height: 25px;
+}
+
+.footerInfos a{
+  color: rgb(112, 104, 104);
 }
