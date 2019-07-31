@@ -148,7 +148,7 @@ export default class ProjectItem extends Component {
                                                     //this leads to the page where admin will validate or reject project
                                                     <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
                                                 :
-                                                <span>simpleUser
+                                                <span>
                                                 <Link to={{ pathname: '/projects/donate/' + project._id._str }} className="btn btn-primary donateBtn">Donate </Link>
                                                     <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
                                                 </span>

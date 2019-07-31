@@ -31,7 +31,7 @@ class ProjectDonation extends Component {
    */
   renderSelectedProject(projects){
     return projects.map((project, index)=>( 
-      <ProjectItem key={index} project={project} propclass="donation" />
+      <ProjectItem key={index} project={project} user={{ profile: {role: "guest" }}} propclass="donation" />
     ))
   }
 
