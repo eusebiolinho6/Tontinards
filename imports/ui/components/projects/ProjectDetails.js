@@ -50,9 +50,10 @@ class ProjectDetails extends Component {
      */
     setProjectState = ()=>{
         const {project,user}= this.props;
+        console.log(user);
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
 
-            this.setState({
+            this.setState({ 
                 hideButton: false,
             })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}})
