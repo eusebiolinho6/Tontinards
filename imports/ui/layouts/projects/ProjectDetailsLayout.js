@@ -28,13 +28,12 @@ export default withTracker((props)=>{
   Meteor.subscribe('foundRaiseAs');
   Meteor.subscribe('onefoundRaiseAs');
   Meteor.subscribe('forWhoFoundsRaise');
-  console.log(Meteor.user())
-  const project = Funnels.findOne({"userId": Meteor.user()});
+  const project = Funnels.findOne({_id: toObjectId(props.projectId)});
   // const foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs)});
   // console.log(foundRaiseAs);
   console.log(project);
-    return {
-        user: Meteor.user(),
-        project: project 
-    }
-})(ProjectDetailsLayout)
+  return {
+  user: Meteor.user(),
+  project: project 
+  }
+  })(ProjectDetailsLayout)

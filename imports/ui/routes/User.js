@@ -65,7 +65,7 @@ class User extends Component {
             <HeaderLayout />
             {this.state.user ? 
               <span>
-                <Route exact path='/user/funnels' component={authenticate(AdminPage)}/>
+                <Route exact path='/user/projects' component={authenticate(AdminPage)}/>
                 <Route exact path='/user/projectdetails' component={ProjectDetails}/>
               </span>
               :

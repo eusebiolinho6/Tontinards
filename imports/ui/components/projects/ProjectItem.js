@@ -60,7 +60,7 @@ import 'react-circular-progressbar/dist/styles.css';
             description, _id, category, document, projectImage, teamImage, email,
             feedback, video, country, projectState } = project;
     return ( 
-         <div className = {propclass == 'details' ? 'col-md-3 subject-container' : 'col-md-3 subject-container'}>
+         <div className = {propclass == 'details' ? 'col-md-3 subject-container' : propclass == 'donation' ? 'col-md-10' : 'col-md-3 subject-container'}>
             <FunnelModalForm 
                 userId={userId} isReview={true}
                 feedback={feedback} city={city} 

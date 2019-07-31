@@ -85,6 +85,7 @@ class Header extends Component {
                                         <p className="dropbtn">{user.profile.name}</p>
                                         <div className="dropdown-content">
                                             <a href="/projects/all">My Campaigns</a>
+                                            <a href="/user/projects">Create Project</a>
                                             <a href="/authentication/profile">Profile</a>
                                             <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
                                         </div>

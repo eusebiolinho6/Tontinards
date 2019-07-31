@@ -16,7 +16,8 @@ class ProjectDetails extends Component {
             message: '',
             messages: [],
             story: true,
-            hideButton: true
+            hideButton: true,
+            project: props.project
         }
     }
 
@@ -93,7 +94,8 @@ class ProjectDetails extends Component {
     }
 
     render() {
-        const {project,user}= this.props;
+        const {user}= this.props;
+        const project= this.state.project;
         const category = Categories.findOne({_id:project&&project.category}); 
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
@@ -210,7 +212,7 @@ class ProjectDetails extends Component {
                             {
                               user.profile.role == 'admin'&& project.projectState == 'PENDING'  
                                ?
-                                <button className="btn btn-danger" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
+                                <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
                                 :
                                  '' 
                               }

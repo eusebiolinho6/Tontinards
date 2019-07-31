@@ -168,7 +168,7 @@ class FunnelModalForm extends Component {
                 if (err) {
                     return cb(err, null);
                 } else {
-                    console.log("Updated")
+                    return cb(null, id);
                 }
             });
         }
