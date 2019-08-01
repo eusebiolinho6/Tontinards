@@ -107,6 +107,9 @@ margin: -75px 0 0 -75px;
 .subject-container:nth-child(3n+1) {
   /* clear: left; */
 }
+.subject-container-2 {
+  width: 100% ;
+}
 .glyphicon {
   position: relative;
   top: 1px;
@@ -986,7 +989,6 @@ h5 {
 }
 .navbar {
   border: 0;
-  padding: 0 5%;
 }
 .navbar-default {
   background-color: transparent;
@@ -1099,6 +1101,11 @@ h5 {
   padding: 33px 25px;
   background-color: #2f4050;
   background-image: url("patterns/header-profile.png");
+}
+#validate-btn-admin {
+  background-color: #18a689;
+  color: white;
+  margin-right: 1.5rem;
 }
 .caret {
   display: inline-block;
@@ -1299,6 +1306,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: fixed;
   right: 0;
   left: 0;
+  padding: 0;
   top:0
 }
 .navbar-fixed-top .navbar-form-custom .form-control { height: 50px}
@@ -1568,7 +1576,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 @media (max-width: 768px) {
   .top-navigation .navbar-header {
-    /* display: block; */
+    display: block;
     float: none;
   }
 }
@@ -1579,6 +1587,11 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 @media (min-width: 1200px) {
   .menu-visible-lg {
     display: block !important;
+  }
+
+  
+  .submainTextContainer{
+    margin-top: -150px
   }
 }
 @media (min-width: 992px) {
@@ -8459,7 +8472,7 @@ ul.horizontal-step-list li {
   display: none;
   font-size: 2.5em;
   text-align: center;
-  margin-left: -90%;
+  margin-right: -90%;
   margin-top: 55px;
 }
 
@@ -8523,15 +8536,16 @@ ul.horizontal-step-list li {
 
 @media (min-width: 992px) {
   .cells{
-        display: table;
-      }
-      
-    .cell{
-      float: none;
-        display: table-cell;
-        vertical-align: middle;
-    }
+    display: table;
   }
+      
+  .cell{
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 @media(max-width:992px){
   .btn-details {
     position: unset;
@@ -9730,13 +9744,12 @@ overflow-y: auto;
   padding-left: 0;
   padding-right: 0;
 }
-
+/*-----------------------------------------------------------------------------------------------*/
 .mainText{
   width: 60%;
-  margin-top: 200px;
-  font-size: 60px;
+  /* margin-top: 200px; */
+  font-size:5vw;
   font-weight: bolder;
-
 }
 
 .bg-overlay {
@@ -9746,6 +9759,8 @@ overflow-y: auto;
   background-position: center center;
   color: #fff;
   height: 600px;
+  vertical-align: middle;
+  padding-top: 170px !important;
 }
 .addprojectBtn{
   font-size: 20px;
@@ -9753,17 +9768,27 @@ overflow-y: auto;
   padding: 12px 50px 12px 50px;
  }
  .mainVideo{
-  margin: 75px 200px 0px 200px;
+  margin: 75px 10% 0px 10%;
  }
  .mainVideo iframe{
   height: 500px !important;
  }
 .submainText{
   color: black;
-  font-size: 20px;
+  font-size:2vw;
   font-weight: bold;
-  margin: -200px 200px 0 200px !important;
-  width: 70% !important;
+  /* width: 79% !important; */
+}
+
+/* .embed-responsive-16by9{
+  padding-bottom: 100px !important;
+} */
+
+.submainTextContainer{
+  /* margin-top: -180px; */
+  padding: 0 10% !important;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .projectContainer{
@@ -9965,9 +9990,6 @@ color: green;
 #projectdetails .left .aws-sld__content {
   background-color: transparent !important;
 }
-#projectdetails .left .aws-sld {
-  margin-bottom: 3rem !important;
-}
 #projectdetails .left .aws-sld__bullets {
   bottom: -1rem !important;
 }
@@ -9994,8 +10016,26 @@ color: green;
   justify-content: space-between;
   align-items: center;
 }
+#projectdetails .description img{
+  width: 100% !important;
+}
+#projectdetails .description iframe{
+  width: 100% !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  #projectdetails .left h2{
+    margin-top: 1rem !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  #projectdetails .left h2{
+    margin-top: 2rem !important;
+  }
+}
 
 #projectdetails .left h2{
+  margin-top: -1rem;
   font-weight: 600;
   font-size: 23px;
   color: #333;
@@ -10079,8 +10119,22 @@ color: green;
   padding: 2rem;
   background-color: white;
 }
-#projectdetails .right .infos h4 strong{
-  color: #333;
+#projectdetails .right .infos .otherinfos0 .item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#projectdetails .right .otherinfos0{
+  padding: 1.5rem 2rem;
+  background-color: #18a689;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+}
+#projectdetails .right .infos h4 strong, 
+#projectdetails .right .infos h3 strong{
+  color: white;
 }
 #projectdetails .right .infos h4{
   font-size: 1.6rem;
@@ -10115,12 +10169,15 @@ color: green;
   margin-top: 1.5rem;
   background-color: #18a689;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 #projectdetails .right .socialBtn .fb{
   margin-top: 1.5rem;
   background-color:  #3C5999;
   color: white;
+}
+#projectdetails .right .socialBtn .refuse{
+  margin-top: 1.5rem;
 }
 
 #projectdetails .right .date{
@@ -10153,31 +10210,9 @@ color: green;
   margin-right: 1.5rem;
 }
 
-#projectdetails .right .dons{
-  padding: 1.5rem 2rem 1.5rem 2rem;
-  background-color: #fff;
-  border: solid 1px #eee;
-  display: flex;
-  flex-direction: column;
-}
-#projectdetails .right .dons .alldons{
-  padding: 1.5rem 2rem 1.5rem 2rem;
-  border: solid 1px #eee;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-}
-#projectdetails .right .dons h5{
-  font-weight: 400;
-  font-size: 1.4rem;
-}
-#projectdetails .right .dons h4{
-  margin-bottom: 0 !important;
-}
-
 #projectdetails .right .messages{
   margin-top: 2rem;
-  padding: 1.5rem 2rem 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   background-color: #fff;
   border: solid 1px #eee;
   display: flex;
@@ -10195,7 +10230,7 @@ color: green;
 }
 
 #projectdetails .right .messages .messages-items{
-  max-height: 15rem;
+  max-height: 12rem;
   overflow-y: scroll;
 }
 #projectdetails .right .video{
@@ -10206,6 +10241,7 @@ color: green;
 }
 #projectdetails .right .messages span{
   background-color: orangered;
+  display: block;
   color: white;
   width: 20px;
   height: 20px;
@@ -10225,9 +10261,7 @@ color: green;
   cursor: pointer;
 }
 
-/* -------------------- RESPONSIVE MENU --------------------------*/
-
-
+/* -------------------- RESPONSIVE MENU ----------------------------------------------*/
 .Navbar__Link {
   padding-right: 8px;
 }
@@ -10241,7 +10275,6 @@ color: green;
   display: none;
   font-size: 2.5em;
   text-align: center;
-  margin-left: -90%;
   margin-top: 55px;
 
 }
@@ -10263,24 +10296,182 @@ color: green;
     display: flex;
   }
   .Navbar__Items{
-    margin-left: -17%;
-    margin-top: 80px;
-    /* margin-left: -118% !important; */
-    /* width: 200%; */
+    margin-top: 13px;
+    margin-bottom: 13px;
   }
   .Navbar__Link-toggle {
     align-self: flex-end;
     display: initial;
-    position: absolute;
+    /* position: absolute; */
     cursor: pointer;
   }
 
   .s-header{
     min-height: 120px;
   }
+  .AdminProjectH1 {
+    text-align: center;
+    top:10px;
+  }
+  
+ /* .ibox-content {
+    width: 50%;
+    display: inline-flex;
+    flex-direction: column;
+    align-content: center;
+  } */
+
+  .menuDiv svg{
+    margin-left: 55%;
+    margin-top: 15px;
+  }
+  .projectsPageHeader h1{
+    text-align: center
+  }
 
   .description{
     overflow-wrap: break-word;
   }
+  .inputContainer{
+    right: 20px;
+    color:black;
+     }
+  
+  .donationPageContent h3{
+    text-align: center
+  }
 
+}
+
+#funnelListkamer{
+  text-align: center;
+ }
+.description{
+  overflow-wrap: break-word;
+}
+
+/*------------------------ FILTER MENU ADMIN DASHBOARD -------------------------*/
+
+.inputGroup {
+  background-color: #fff;
+  display: block;
+  margin: 10px 15px 10px 0;
+  position: relative;
+}
+.inputGroup  label {
+    padding: 12px 30px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    color: #3C454C;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 200ms ease-in;
+    overflow: hidden;
+}
+.inputGroup  label:before {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      content: '';
+      background-color: #5562eb;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale3d(1, 1, 1);
+      transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .inputGroup  label:after {
+      width: 32px;
+      height: 32px;
+      content: '';
+      border: 2px solid #D1D7DC; background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+      background-repeat: no-repeat;
+      background-position: 2px 3px;
+      /* background-color: rgb(16, 107, 226); */
+      border-radius: 50%;
+      z-index: 2;
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: all 200ms ease-in;
+    }
+  
+
+  input:checked ~ label {
+    color: #fff;
+  }
+    input:checked ~ label:before {
+      transform: translate(-50%, -50%) scale3d(56, 56, 1);
+      opacity: 1;
+    }
+
+    input:checked ~ label:after {
+      background-color: #54E0C7;
+      border-color: #54E0C7;
+    }
+  
+
+  #filerMenu input {
+    width: 32px;
+    height: 32px;
+    order: 1;
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    visibility: hidden;
+  }
+
+
+
+.form {
+padding: 0 16px;
+max-width: 550px;
+margin: 50px auto;
+font-size: 18px;
+font-weight: 600;
+line-height: 36px;
+}
+
+body {
+background-color: #D1D7DC;
+font-family: 'Fira Sans', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+box-sizing: inherit;
+}
+
+html {
+box-sizing: border-box;
+}
+
+code {
+background-color: #9AA3AC;
+padding: 0 8px;
+}
+
+.filerMenu .transparent{
+  color: rgba(255, 255, 255, 0);
+}
+
+.noProject {
+  color: rgba(75, 67, 67, 0.424);
+  font-size: 3em;
+}
+
+#wrap-btn button {
+  margin-right: 1.3rem;
 }
