@@ -53,7 +53,7 @@ export default withTracker((props)=>{
   }
    if(categories !='all') q.category={$in:listIdc};
     if(search) q.projectName ={$regex: search, $options: 'i'};
-    if(props.isFree) q.zipCode='0';
+    if(props.isFree) q.phoneNumber='0';
     return {
     funnels: Funnels.find(q).fetch(),
     categories: Categories.find({}).fetch(),

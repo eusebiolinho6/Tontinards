@@ -6,8 +6,10 @@ import {Meteor} from 'meteor/meteor'
 import TextArea from '../../globalComponents/Textarea';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections';
 import {toObjectId} from '../../../utilities/';
-import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections'
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 // App component - represents the whole app
 class ProjectDetails extends Component {
@@ -44,13 +46,14 @@ class ProjectDetails extends Component {
      * 
      * @goal change the projectState of the current project 
      * @returns void
-     * @Author Ranyl
+     * @Author Ranyl & roland
      */
     setProjectState = ()=>{
         const {project,user}= this.props;
+        console.log(user);
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
 
-            this.setState({
+            this.setState({ 
                 hideButton: false,
             })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}})
@@ -61,7 +64,19 @@ class ProjectDetails extends Component {
                 hideButton: true,
             })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "START CAMPAIGN"}})
-
+            // send mail to the project owner
+            const projectData = {
+                owner: project.userId.username,
+                name: project.projectName,
+                link: "http://localhost:3000/user/campaigns"
+            };
+            Meteor.call("sendEmail",
+                project.userId.emails[0].address,
+                "Tontinards",
+                "Your campaign is started",
+                projectData,
+                "campaign-started.html"
+            );
          }else{
 
             return 'all right reserved to admin';
@@ -85,6 +100,10 @@ class ProjectDetails extends Component {
         console.log('this project has been edited !!')
     }
 
+
+
+
+
     toggleContent = () => {
         this.setState({story: !this.state.story})
     }
@@ -104,29 +123,31 @@ class ProjectDetails extends Component {
                     <div className="col-sm-12 col-md-8 left">
                         <div className="infos">
                             {/* For Team */}
-                            {/* <AwesomeSlider>
-                                <div data-src="/images/img2.png" />
-                                <div data-src="/images/img5.PNG" />
-                            </AwesomeSlider> */}
+                            {
+                                project.teamImage.length > 0 ?
+                                    <AwesomeSlider bullets={false}>
+                                        <div data-src={project.projectImage} />
+                                        <div data-src={project.teamImage} />
+                                    </AwesomeSlider>:
+                                    <img src={project.projectImage} />
+                            }
                             {/* For Team */}
-                            <img src={project.projectImage} />
                             <div className="otherinfos">
                                 <h2>{project.projectName}</h2>
-                                {/* <h4>{category.name}</h4> */}
+                                <h5>{project.teamName.length > 0 ? "Team Name: "+project.teamName : null}</h5>
                                 <hr/>
-                                <div className="founds">
+                                {/* <div className="founds">
                                     <h4>Found Raise As</h4>
                                     <h4>For Who Founds Raise</h4>
-                                </div>
-                                <hr/>
-                                <div className="shareButtons">
+                                </div> */}
+                                {/* <div className="shareButtons">
                                     <div className="socialBtn">
                                         <button className="fb btn">Share on Facebook</button>
                                         <button className="tw btn">Share on Twitter</button>
                                     </div>
                                     <p>Be the first person to share</p>
                                 </div>
-                                <hr/>
+                                <hr/> */}
                             </div>
 
                             <div className="moreinfos">
@@ -145,9 +166,12 @@ class ProjectDetails extends Component {
                                             <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
                                         </div>:
                                         <div className="reviews">
-                                            <p>Rien n'est previsible dans cettte vie quand vous croyez etre les maitres du monde il faut que certains certaines choses nous arrrive pour comprendre...</p>
-                                            <p>Rien n'est previsible dans cettte vie quand vous croyez etre les maitres du monde il faut que certains certaines choses nous arrrive pour comprendre...</p>
-                                            <p>Rien n'est previsible dans cettte vie quand vous croyez etre les maitres du monde il faut que certains certaines choses nous arrrive pour comprendre...</p>
+                                        {
+                                            Meteor.userId() == project.userId._id ||  Meteor.user().profile.role == "admin"?
+                                            <p>{project.feedback.length > 0 ? 
+                                                <div className="text description" dangerouslySetInnerHTML={{__html: project.feedback}} />  : null}</p>:
+                                            null
+                                        }
                                         </div>
                                     }
                                 </div>
@@ -161,38 +185,6 @@ class ProjectDetails extends Component {
                              </form>
                             </div>
                             <div>
-
-
-                            {
-                              user.profile.role == 'admin'&& project.projectState == 'PENDING' 
-                              ?                               
-                               <button className="fb btn" onClick={()=>this.setProjectState()}>Validate</button>                                
-                                :
-                                 '' 
-                              }
-                            {
-                              user.profile.role == 'admin'&& project.projectState == 'PENDING'  
-                               ?
-                                <button className="btn btn-danger" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
-                                :
-                                 '' 
-                              }
-
-                            {
-                              user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
-                              ?
-                               <button className="fb btn" onClick={()=>this.setProjectState()}>Start campaign</button> 
-                                :
-                                 '' 
-                              }
-
-                            {
-                              user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
-                              ?
-                               <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
-                                :
-                                 '' 
-                              }
                               
                         </div>
                         </div>
@@ -201,12 +193,22 @@ class ProjectDetails extends Component {
 
                     <div className="col-sm-12 col-md-4 right">
                         <div className="infos">
+                            <div className="otherinfos0">
+                                <div className="item">
+                                    <h4><strong>OBJECTIVE: </strong></h4>
+                                    <h4>{project.objectifAmount} FCFA</h4>
+                                </div>
+                                <div className="item">
+                                    <h4><strong>CURRENT AMOUNT: </strong></h4>
+                                    <h4>{project.currentAmount} FCFA</h4>
+                                </div>
+                                {/* <h4><strong>OBJECTIVE: </strong> {project.objectifAmount} FCFA</h4>
+                                <h4><strong>CURRENT AMOUNT: </strong> {project.currentAmount} FCFA</h4> */}
+                            </div>        
                             <div className="otherinfos">
                                 <div className="d-flex flex-row justify-content-center align-items-center">
                                     <div>
-                                        <h3><strong>Objective: </strong> {project.objectifAmount}</h3>
-                                        <h4><strong>Current Amount: </strong> {project.currentAmount}</h4>
-                                        {/* <p>Campagne crée depuis {project.createdAt}</p> */}
+                                        <p>Campagne crée depuis <Moment fromNow ago>{project.createdAt}</Moment>.</p>
                                     </div>
                                     <div className="progress">
                                         <CircularProgressbar
@@ -227,57 +229,92 @@ class ProjectDetails extends Component {
                                     </div>
                                 </div>
                                 <div className="socialBtn">
-                                    <button className="st btn btn-lg">Je soutiens</button>
-                                    <button className="fb btn">Partager sur Facebook</button>
+                                    <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary st">Donate </Link>
+                                    {/* <button className="fb btn">Partager sur Facebook</button> */}
+                                             {
+                              user.profile.role == 'admin'&& project.projectState == 'PENDING' 
+                              ?                               
+                               <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Validate</button>                                
+                                :
+                                 '' 
+                              }
+                            {
+                              user.profile.role == 'admin'&& project.projectState == 'PENDING'  
+                               ?
+                                <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
+                                :
+                                 '' 
+                              }
+
+                            {
+                              user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
+                              ?
+                               <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Start campaign</button> 
+                                :
+                                 '' 
+                              }
+
+                            {
+                              user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
+                              ?
+                               <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
+                                :
+                                 '' 
+                              }
                                 </div>
                             </div>
                         </div>
                         <div className="video">
-                            <video width="100%" height="100%" poster="/images/img2.png" controls>
-                                <source src={project.video} type="video/mp4"></source>
-                                <source src="movie.ogg" type="video/ogg"></source>
-                            </video>
+                            {
+                                project.projectVideo ? 
+                                <video width="100%" height="100%" poster="/images/img2.png" controls>
+                                    <source src="movie.mp4" type="video/mp4"></source>
+                                    <source src="movie.ogg" type="video/ogg"></source>
+                                </video>: null
+                            }
                         </div>
                         <div className="date">
-                            <p>Date de création : <b>15 juillet 2019</b></p>
+                            <p>Date de création : <b>
+                                <Moment parse="YYYY-MM-DD">
+                                    {project.createdAt}
+                                </Moment></b>
+                            </p>
                         </div>
                         <div className="profile">
                             <img src="/images/user.png" />
                             <div className="profile-infos">
                                 <div>
-                                    <p>Owner Name</p>
+                                    <p>{project.userId.profile ? project.userId.profile.name: project.userId.username}</p>
                                     <p>{project.country}</p>
                                 </div>
                                 <div>
-                                    <p>Phone Number</p>
-                                    <p>Zip Code</p>
+                                    <p>{project.phoneNumber}</p>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
-                        <div className="dons">
-                            <div className="alldons">
+                        <div className="messages">
+                            <div className="allmessages">
                                 <h4>Donations</h4>
                             </div>
-                            <h5>Aucun don pour l'instant. Participez au lancement de cette campagne et <a href="#">devenez le premier donateur.</a></h5>
+                            <div className="messages-items">
+                                {!project.donators ?
+                                    <h5>Aucun don pour l'instant. Participez au lancement de cette campagne et devenez le premier donateur.</h5>:
+                                    <div className="alldons">
+                                        {project.donators.map((don) => {
+                                            return (
+                                                <div className="messages-item">
+                                                    <h5>{don.firstName}: {don.amount} FCFA</h5><hr/>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                }
+                            </div>
                         </div>
                         <div className="messages">
                             <div className="allmessages">
                                 <h4>Inbox Messages</h4>
                                 <span>5</span>
-                            </div>
-                            <div className="messages-items">
-                                <div className="messages-item">
-                                    <h6>Messages 1</h6>
-                                </div>
-                                <div className="messages-item">
-                                    <h6>Messages 2</h6>
-                                </div>
-                                <div className="messages-item">
-                                    <h6>Messages 3</h6>
-                                </div>
-                                <div className="messages-item">
-                                    <h6>Messages 4</h6>
-                                </div>
                             </div>
                         </div>
                     </div>

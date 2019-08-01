@@ -14,10 +14,10 @@ const uploadDir = getMainPath() +'/uploads/documents';
 export const Documents = new FilesCollection({
     collectionName: 'Documents',
     protected(fileObj){
-        if(checkRole(['admin', 'paid'], this.userId)) return true;
+        if(checkRole(['user'], this.userId)) return true;
         const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
         let funnel = Funnels.findOne({document: link});
-        if(funnel&&!Number(funnel.zipCode)) return true;
+        if(funnel&&!Number(funnel.phoneNumber)) return true;
         return false
     },
     allowClientCode: false, // Disallow remove files from Client

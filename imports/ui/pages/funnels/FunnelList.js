@@ -24,11 +24,11 @@ class FunnelList extends Component {
       <div className="container-fluid no-padding">
         <div className="row no-padding">
           <div className="col-md-12 no-padding bg-overlay text-center ">
-            <p className="mainText container text-center">Want to <strong>raise funds <br/>for your business ?</strong></p>
-            <p className="text-center">Get started below</p>
+            <p className="titleMain  text-center">Want to <strong>raise funds <br/>for your business ?</strong></p>
+            <p className="text-center" id="getStarted">Get started below</p>
             <br/>
-            <br/>
-            <a  href="/admin/funnels" type="submit" className=" addprojectBtn Link"></a>
+            <br/> 
+              <a  href="/admin/funnels" type="submit" className=" addprojectBtn Link">Lets Get started</a>
           </div>
           <div className="toggle-downIcon text-center">
             <a href="#Help" className="Link">
@@ -40,6 +40,9 @@ class FunnelList extends Component {
         
         <div className="row no-padding helpSection" id="Help">
           {/* <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" ></iframe> */}
+           <br/>
+           <br/>
+           <br/> 
           <div class="row helpTitle">
               <p >We are here to <strong>help you</strong></p>
           </div>
@@ -61,6 +64,7 @@ class FunnelList extends Component {
                   </p>
               </div>
 
+              <br/>
               <div className="help" >
               <img src="/images/user.png" className="helpImgIcon"></img>
                   <br/>
@@ -77,6 +81,7 @@ class FunnelList extends Component {
                   </p>
               </div>
 
+              <br/>
               <div className="help">
               <img src="/images/user.png" className="helpImgIcon"></img>
                   <br/>
@@ -93,13 +98,17 @@ class FunnelList extends Component {
                   </p>
               </div>
            </div>
+           <br/>
+           <br/>
+           <br/>
+           <br/>
         </div>
-        <div className="col-md-12 submainTextContainer">
+        {/* <div className="col-md-12 submainTextContainer">
           <p className = "submainText">
             Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
             typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
           </p>
-        </div>
+        </div> */}
         <div className="col-md-12">
           <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
           <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
