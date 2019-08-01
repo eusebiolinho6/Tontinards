@@ -64,7 +64,19 @@ class ProjectDetails extends Component {
                 hideButton: true,
             })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "START CAMPAIGN"}})
-
+            // send mail to the project owner
+            const projectData = {
+                owner: project.userId.username,
+                name: project.projectName,
+                link: "http://localhost:3000/user/campaigns"
+            };
+            Meteor.call("sendEmail",
+                project.userId.emails[0].address,
+                "Tontinards",
+                "Your campaign is started",
+                projectData,
+                "campaign-started.html"
+            );
          }else{
 
             return 'all right reserved to admin';
