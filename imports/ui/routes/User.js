@@ -11,12 +11,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import AdminDashboard from '../pages/admins/AdminDashboard';
 import ProjectDetails from '../components/funnels/ProjectDetails';
+import ProjectsDetailsPage from '../pages/projects/ProjectDetailsPage';
 
 
 // The Roster component matches one of two different routes
 // depending on the full pathname
 
-class Admin extends Component {
+class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -63,19 +64,15 @@ class Admin extends Component {
         <Switch>
           <Fragment>
             <HeaderLayout />
-            {this.state.user? 
-              this.state.user.profile.role == "admin" ?
+            {this.state.user ? 
               <span>
-                <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
-                <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
-                <Route exact path='/admin/foundRaiseAs' component={authenticate(AdminFoundRaiseAsPage)}/>
-                <Route exact path='/admin/forWhoFoundsRaisePage' component={authenticate(AdminForWhoFoundsRaisePage)}/>
-                <Route exact path='/admin/admindashboard/pengins' component={authenticate(AdminForWhoFoundsRaisePage)}/>
-                <Route exact path='/admin/admindashboard' component={AdminDashboard}/>
-                <Route exact path='/admin/projectdetails' component={ProjectDetails}/>
-
-              </span> :
-              <Redirect to="/funnels/all/all" /> 
+                <Route exact path='/user/funnels' component={authenticate(AdminPage)}/>
+                {/* <Route exact path='/user/projectdetails' component={ProjectsDetailsPage}/> */}
+                <Route exact path='/user/campaigns' component={AdminDashboard}/>
+                <Route exact path='user/projects/:projectId' component={ProjectsDetailsPage}/>
+                <Route exact path='/user/projects' component={authenticate(AdminPage)}/>
+                <Route exact path='/user/projectdetails' component={ProjectDetails}/>
+              </span>
               :
             <Redirect to="/funnels/all/all" />
           }
@@ -100,4 +97,4 @@ export default withTracker(props=>{
     userId:  Meteor.userId()
   }
 
-})(Admin)
+})(User)

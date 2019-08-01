@@ -107,6 +107,9 @@ margin: -75px 0 0 -75px;
 .subject-container:nth-child(3n+1) {
   /* clear: left; */
 }
+.subject-container-2 {
+  width: 100% ;
+}
 .glyphicon {
   position: relative;
   top: 1px;
@@ -1101,6 +1104,11 @@ h5 {
   background-color: #2f4050;
   background-image: url("patterns/header-profile.png");
 }
+#validate-btn-admin {
+  background-color: #18a689;
+  color: white;
+  margin-right: 1.5rem;
+}
 .caret {
   display: inline-block;
   width: 0;
@@ -1300,6 +1308,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: fixed;
   right: 0;
   left: 0;
+  padding: 0;
   top:0
 }
 .navbar-fixed-top .navbar-form-custom .form-control { height: 50px}
@@ -1569,7 +1578,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 @media (max-width: 768px) {
   .top-navigation .navbar-header {
-    /* display: block; */
+    display: block;
     float: none;
   }
   .titles{
@@ -6574,7 +6583,7 @@ table.shoping-cart-table tr td:last-child {
 .product-name:focus {
   color: #1ab394;
 }
-.product-phoneNumber {
+.product-zipCode {
   font-size: 14px;
   font-weight: 600;
   color: #ffffff;
@@ -6592,7 +6601,7 @@ table.shoping-cart-table tr td:last-child {
   text-align: center;
   padding: 200px 0;
 }
-.product-main-phoneNumber small {
+.product-main-zipCode small {
   font-size: 10px;
 }
 .product-images {
@@ -8213,7 +8222,7 @@ body.landing-page {
   text-align: center;
   color: #aeaeae;
 }
-.landing-page .pricing-plan .pricing-phoneNumber span {
+.landing-page .pricing-plan .pricing-zipCode span {
   font-weight: 700;
   color: #1ab394;
 }
@@ -9999,9 +10008,6 @@ color: green;
 #projectdetails .left .aws-sld__content {
   background-color: transparent !important;
 }
-#projectdetails .left .aws-sld {
-  margin-bottom: 3rem !important;
-}
 #projectdetails .left .aws-sld__bullets {
   bottom: -1rem !important;
 }
@@ -10028,8 +10034,26 @@ color: green;
   justify-content: space-between;
   align-items: center;
 }
+#projectdetails .description img{
+  width: 100% !important;
+}
+#projectdetails .description iframe{
+  width: 100% !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  #projectdetails .left h2{
+    margin-top: 1rem !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  #projectdetails .left h2{
+    margin-top: 2rem !important;
+  }
+}
 
 #projectdetails .left h2{
+  margin-top: -1rem;
   font-weight: 600;
   font-size: 23px;
   color: #333;
@@ -10113,8 +10137,22 @@ color: green;
   padding: 2rem;
   background-color: white;
 }
-#projectdetails .right .infos h4 strong{
-  color: #333;
+#projectdetails .right .infos .otherinfos0 .item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#projectdetails .right .otherinfos0{
+  padding: 1.5rem 2rem;
+  background-color: #18a689;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+}
+#projectdetails .right .infos h4 strong, 
+#projectdetails .right .infos h3 strong{
+  color: white;
 }
 #projectdetails .right .infos h4{
   font-size: 1.6rem;
@@ -10149,12 +10187,15 @@ color: green;
   margin-top: 1.5rem;
   background-color: #18a689;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 #projectdetails .right .socialBtn .fb{
   margin-top: 1.5rem;
   background-color:  #3C5999;
   color: white;
+}
+#projectdetails .right .socialBtn .refuse{
+  margin-top: 1.5rem;
 }
 
 #projectdetails .right .date{
@@ -10187,31 +10228,9 @@ color: green;
   margin-right: 1.5rem;
 }
 
-#projectdetails .right .dons{
-  padding: 1.5rem 2rem 1.5rem 2rem;
-  background-color: #fff;
-  border: solid 1px #eee;
-  display: flex;
-  flex-direction: column;
-}
-#projectdetails .right .dons .alldons{
-  padding: 1.5rem 2rem 1.5rem 2rem;
-  border: solid 1px #eee;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-}
-#projectdetails .right .dons h5{
-  font-weight: 400;
-  font-size: 1.4rem;
-}
-#projectdetails .right .dons h4{
-  margin-bottom: 0 !important;
-}
-
 #projectdetails .right .messages{
   margin-top: 2rem;
-  padding: 1.5rem 2rem 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   background-color: #fff;
   border: solid 1px #eee;
   display: flex;
@@ -10229,7 +10248,7 @@ color: green;
 }
 
 #projectdetails .right .messages .messages-items{
-  max-height: 15rem;
+  max-height: 12rem;
   overflow-y: scroll;
 }
 #projectdetails .right .video{
@@ -10240,6 +10259,7 @@ color: green;
 }
 #projectdetails .right .messages span{
   background-color: orangered;
+  display: block;
   color: white;
   width: 20px;
   height: 20px;
@@ -10436,7 +10456,7 @@ color: green;
     }
   
 
-  input {
+  #filerMenu input {
     width: 32px;
     height: 32px;
     order: 1;
@@ -10571,4 +10591,7 @@ padding: 0 8px;
 
 .footerInfos a{
   color: rgb(112, 104, 104);
+}
+#wrap-btn button {
+  margin-right: 1.3rem;
 }

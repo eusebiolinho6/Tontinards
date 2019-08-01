@@ -32,7 +32,7 @@ class FunnelList extends Component {
           { project.projectState != "START CAMPAIGN"?
           ""
             :
-            <ProjectItem key={index} project={project}  user="guest"/>
+            <ProjectItem key={index} project={project}  user={{ profile: {role: "guest" }}}/>
           }
       </div>
     ))
@@ -41,7 +41,7 @@ class FunnelList extends Component {
       render() {
         const {show}=this.state;
         const{funnels, userId}=this.props,
-        isAuthorized = checkRole(['admin', 'paid'], userId);
+        isAuthorized = checkRole(['user'], userId);
         console.log(funnels);
 
         return (
@@ -55,7 +55,7 @@ class FunnelList extends Component {
           {this.renderProjects(funnels)}
         </div>
 
-</div>
+</div> 
         )
     }
 }

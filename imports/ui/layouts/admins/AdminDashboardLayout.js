@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import { Meteor } from 'meteor/meteor';
 import {Link} from 'react-router-dom';
 import ProjectItem from '../../components/projects/ProjectItem';
 import { withTracker } from 'meteor/react-meteor-data';
-import {Categories, Funnels} from '../../../api/collections';
+import {Categories, Funnels, ForWhoFoundsRaise, FoundRaiseAs} from '../../../api/collections';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,13 +22,15 @@ class AdminDashboardLayout extends Component {
 /**
  * 
  * @param {Array} projects is the array of projects we will map to display each of them
- * @param {string} sop stands for State Of Projects, is the state of the projects ("pending", "validated", "Campaign" or "refused")
  * @returns rendered Components 
  * @Author Cindy and Junior
  */
   renderProjects(projects){
     return projects.map((project, index)=>(
-        <ProjectItem key={index} project={project} propclass="onDashboard" user="admin"/>
+        <ProjectItem key={index} project={project} 
+          foundRaiseAs={this.props.foundRaiseAs}
+          forWhoFoundsRaise={this.props.forWhoFoundsRaise}
+          categories={this.props.categories} user={this.props.user} />
     ))
   } 
 
@@ -69,7 +72,7 @@ class AdminDashboardLayout extends Component {
 
 
   render() {
-    const {funnels, userId} = this.props,
+    const {funnels, userId, user} = this.props,
     pendingProjects = [],
     validatedProjects = [],
     refusedProjects = [],
@@ -92,7 +95,7 @@ class AdminDashboardLayout extends Component {
 
 
         {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
-        <div className="filerMenu col-md-3">
+        <div className="filerMenu col-md-3" id="filerMenu">
           <h1 className="transparent">.</h1>
           <form className="form">
             <h2>Filter Options</h2>
@@ -218,11 +221,16 @@ class AdminDashboardLayout extends Component {
 
 export default withTracker((props)=>{
   Meteor.subscribe('funnels');
-  Meteor.subscribe('categories');  
+  Meteor.subscribe('categories');   
+  Meteor.subscribe('forWhoFoundsRaise');  
+  Meteor.subscribe('foundRaiseAs');
+  Meteor.subscribe('users');  
   let q={};
   return {
     funnels: Funnels.find(q).fetch(),
     categories: Categories.find({}).fetch(),
-    userId:Meteor.userId()
+    forWhoFoundsRaise: ForWhoFoundsRaise.find({}).fetch(),
+    foundRaiseAs: FoundRaiseAs.find({}).fetch(),
+    user: Meteor.user()
   }
 })(AdminDashboardLayout);
