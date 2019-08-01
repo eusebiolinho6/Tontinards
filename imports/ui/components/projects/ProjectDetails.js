@@ -110,6 +110,7 @@ class ProjectDetails extends Component {
 
     render() {
         const {project,user}= this.props;
+        console.log(project);
         const category = Categories.findOne({_id:project&&project.category}); 
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);

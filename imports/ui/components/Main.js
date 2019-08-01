@@ -60,6 +60,7 @@ class Main extends Component {
                         
                     </div>
                 </div>
+                <hr className= "beforeWhytontinard" />
             </div>
         )
     }

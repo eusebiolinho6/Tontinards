@@ -114,7 +114,7 @@ export default class ProjectItem extends Component {
                                                     pathColor: `rgba(62, 152, 199})`,
                                                     textColor: '#f88',
                                                     trailColor: '#d6d6d6',
-                                                    backgroundColor: '#3e98c7',
+                                                    backgroundColor: '#005991 !important',
                                                 })}
                                             /> : ""
                                         }
@@ -136,21 +136,21 @@ export default class ProjectItem extends Component {
                                             projectState == "REFUSED" ?
                                                 <span>POUBELLE</span>
                                                 :
-                                                <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details</Link>
+                                                <Link to={{ pathname: '/projects/' + project._id._str }} className="btn detailBtn">Details</Link>
                                             :
                                             user.profile.role == "admin" ?
                                                 projectState == "VALID" ?
                                                     <div id="wrap-btn">
                                                         <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
-                                                        <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
+                                                        <Link to={{ pathname: '/projects/' + project._id._str }} className="btn  detailBtn">Details </Link>
                                                     </div>
                                                     :
                                                     //this leads to the page where admin will validate or reject project
-                                                    <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-primary">Details </Link>
+                                                    <Link to={{ pathname: '/projects/' + project._id._str }} className="btn  detailBtn">Details </Link>
                                                 :
                                                 <span>
-                                                <Link to={{ pathname: '/projects/donate/' + project._id._str }} className="btn btn-primary donateBtn">Donate </Link>
-                                                    <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-outline btn-primary viewMoreBtn">Details </Link>
+                                                <Link to={{ pathname: '/projects/donate/' + project._id._str }} className="btn donateBtn">Donate </Link>
+                                                    <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-outline viewMoreBtn detailBtn">Details </Link>
                                                 </span>
                                     }
                                 </div>

@@ -21,7 +21,7 @@ class ProjectDetailsLayout extends Component {
   }
 }
 
-export default withTracker((props)=>{
+export default withTracker((props)=>{ console.log(props);
   Meteor.subscribe('funnels');
   Meteor.subscribe('funnel');
   // Meteor.subscribe('categories');
@@ -33,7 +33,7 @@ export default withTracker((props)=>{
   // console.log(foundRaiseAs);
   console.log(project);
   return {
-  user: Meteor.user(),
-  project: project 
+    user: Meteor.user(),
+    project: project 
   }
   })(ProjectDetailsLayout)
