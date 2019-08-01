@@ -7,6 +7,8 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import FunnelModalForm from '../funnels/Funnel-Modal-Form';
 import axios from 'axios';
 import 'react-circular-progressbar/dist/styles.css';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 
 export default class ProjectItem extends Component {
@@ -16,6 +18,7 @@ export default class ProjectItem extends Component {
             showModal: false,
             countries: []
         };
+        this.notificationDOMRef = React.createRef();
     }
 
     componentWillReceiveProps() {
@@ -48,7 +51,22 @@ export default class ProjectItem extends Component {
     closeModal = () => {
         this.setState({
             showModal: false
-        })
+        });
+        this.addNotification()
+    }
+
+    addNotification() {
+        this.notificationDOMRef.current.addNotification({
+          title: "EDIT PROJECT",
+          message: "Project Succcessfully Edited!",
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: { duration: 2000 },
+          dismissable: { click: true }
+        });
     }
 
     render() {
@@ -76,6 +94,7 @@ export default class ProjectItem extends Component {
                     foundRaiseAs={this.props.foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs}
                     email={email} objectifAmount={objectifAmount} country={country}
                     countries={this.state.countries} closeModal={this.closeModal} />
+                    <ReactNotification ref={this.notificationDOMRef} />
                 <div className="ibox text-center">
                     <div className="ibox-content product-box active">
                         <div className="imageContainer">

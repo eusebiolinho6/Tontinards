@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
 import Input from '../../globalComponents/Input';
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
 import TextArea from '../../globalComponents/Textarea';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections';
 import {toObjectId} from '../../../utilities/';
 import Moment from 'react-moment';
@@ -21,6 +23,7 @@ class ProjectDetails extends Component {
             story: true,
             hideButton: true
         }
+        this.notificationDOMRef = React.createRef();
     }
 
 
@@ -56,7 +59,8 @@ class ProjectDetails extends Component {
             this.setState({ 
                 hideButton: false,
             })
-            Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}})
+            Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}});
+            this.addNotification("Project Validated!");
 
          }else if(user.profile.role == 'admin' && project.projectState == 'VALID'){
 
@@ -70,6 +74,7 @@ class ProjectDetails extends Component {
                 name: project.projectName,
                 link: "http://localhost:3000/user/campaigns"
             };
+            this.addNotification("Canpaign started successfully!");
             Meteor.call("sendEmail",
                 project.userId.emails[0].address,
                 "Tontinards",
@@ -83,12 +88,27 @@ class ProjectDetails extends Component {
         }
     }
 
+    addNotification = (massage) => {
+        this.notificationDOMRef.current.addNotification({
+          title: "PROJECT STATE",
+          message: massage,
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: { duration: 2000 },
+          dismissable: { click: true }
+        });
+    }
+
 
     setProjectStateToRefused = ()=>{
         const {project,user}= this.props;
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
            
-            Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "REFUSED"}})
+            Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "REFUSED"}});
+            this.addNotification("Project Refused Successsfully!");
 
          }else{
 
@@ -119,6 +139,7 @@ class ProjectDetails extends Component {
         
         return (
             <div className="container" id="projectdetails">
+                <ReactNotification ref={this.notificationDOMRef} />
                 <div className="row">
                     <div className="col-sm-12 col-md-8 left">
                         <div className="infos">
