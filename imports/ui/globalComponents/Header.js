@@ -71,31 +71,31 @@ class Header extends Component {
                                 <div className="col-md-7 col-sm-3"></div>
                             }
                             
-                            <div className="col-md-5 col-sm-9 col-xs-12">
+                            {/* <div className="col-md-5 col-sm-9 col-xs-12">
                                 <ul className="nav navbar-top-links navbar-right logoutMenu">
                                     <li>
                                     <span>
                                     {
                                         user?
                                         <div class="dropdown">
-                                                <p class="dropbtn">{user.profile.name}</p>
-                                                <div class="dropdown-content">
-                                                    <a href="/projects/all">My Campaigns</a>
-                                                    <a href="/authentication/profile">Profile</a>
-                                                    <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
-                                                </div>
+                                            <p class="dropbtn">{user.profile.name}</p>
+                                            <div class="dropdown-content">
+                                                <a href="/projects/all">My Campaigns</a>
+                                                <a href="/authentication/profile">Profile</a>
+                                                <a onClick={(e)=>this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
                                             </div>
-                                            :
-                                            <div>
-                                                <Link to="/authentication/signin" className="btn signIn"> Login</Link>
-                                                <Link to="/authentication/signup" className="btn signUp"> Register</Link>
+                                        </div>
+                                        :
+                                        <div>
+                                            <Link to="/authentication/signin" className="btn signIn"> Login</Link>
+                                            <Link to="/authentication/signup" className="btn signUp"> Register</Link>
 
-                                            </div>
+                                        </div>
                                     }
                                     </span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                                 
 
                             <ul className="nav navbar-top-links navbar-right logoutMenu">
@@ -129,8 +129,11 @@ class Header extends Component {
                                                         </div>
                                                 }
                                             </span>
-                                        : <Link to="/authentication/signin"><i className="fa fa-sign-in"></i> Log In</Link>
-                                    }
+                                        : <div>
+                                            <Link to="/authentication/signin" className="btn signIn"> Login</Link>
+                                            <Link to="/authentication/signup" className="btn signUp"> Register</Link>
+                                        </div>
+                                }
                                 </li>
                             </ul>
                         </div>
