@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Meteor } from 'meteor/meteor';
 import {Link} from 'react-router-dom';
 import ProjectItem from '../../components/projects/ProjectItem';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -29,7 +30,7 @@ class AdminDashboardLayout extends Component {
         <ProjectItem key={index} project={project} 
           foundRaiseAs={this.props.foundRaiseAs}
           forWhoFoundsRaise={this.props.forWhoFoundsRaise}
-          categories={this.props.categories} user="admin" />
+          categories={this.props.categories} user={this.props.user} />
     ))
   } 
 
@@ -71,7 +72,7 @@ class AdminDashboardLayout extends Component {
 
 
   render() {
-    const {funnels, userId} = this.props,
+    const {funnels, userId, user} = this.props,
     pendingProjects = [],
     validatedProjects = [],
     refusedProjects = [],
@@ -94,7 +95,7 @@ class AdminDashboardLayout extends Component {
 
 
         {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
-        <div className="filerMenu col-md-3">
+        <div className="filerMenu col-md-3" id="filerMenu">
           <h1 className="transparent">.</h1>
           <form className="form">
             <h2>Filter Options</h2>
@@ -220,14 +221,16 @@ class AdminDashboardLayout extends Component {
 
 export default withTracker((props)=>{
   Meteor.subscribe('funnels');
-  Meteor.subscribe('categories');  
+  Meteor.subscribe('categories');   
   Meteor.subscribe('forWhoFoundsRaise');  
-  Meteor.subscribe('foundRaiseAs');  
+  Meteor.subscribe('foundRaiseAs');
+  Meteor.subscribe('users');  
   let q={};
   return {
     funnels: Funnels.find(q).fetch(),
     categories: Categories.find({}).fetch(),
     forWhoFoundsRaise: ForWhoFoundsRaise.find({}).fetch(),
-    foundRaiseAs: FoundRaiseAs.find({}).fetch()
+    foundRaiseAs: FoundRaiseAs.find({}).fetch(),
+    user: Meteor.user()
   }
 })(AdminDashboardLayout);

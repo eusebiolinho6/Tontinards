@@ -107,6 +107,9 @@ margin: -75px 0 0 -75px;
 .subject-container:nth-child(3n+1) {
   /* clear: left; */
 }
+.subject-container-2 {
+  width: 100% ;
+}
 .glyphicon {
   position: relative;
   top: 1px;
@@ -9987,9 +9990,6 @@ color: green;
 #projectdetails .left .aws-sld__content {
   background-color: transparent !important;
 }
-#projectdetails .left .aws-sld {
-  margin-bottom: 3rem !important;
-}
 #projectdetails .left .aws-sld__bullets {
   bottom: -1rem !important;
 }
@@ -10016,8 +10016,26 @@ color: green;
   justify-content: space-between;
   align-items: center;
 }
+#projectdetails .description img{
+  width: 100% !important;
+}
+#projectdetails .description iframe{
+  width: 100% !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  #projectdetails .left h2{
+    margin-top: 1rem !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  #projectdetails .left h2{
+    margin-top: 2rem !important;
+  }
+}
 
 #projectdetails .left h2{
+  margin-top: -1rem;
   font-weight: 600;
   font-size: 23px;
   color: #333;
@@ -10101,8 +10119,22 @@ color: green;
   padding: 2rem;
   background-color: white;
 }
-#projectdetails .right .infos h4 strong{
-  color: #333;
+#projectdetails .right .infos .otherinfos0 .item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#projectdetails .right .otherinfos0{
+  padding: 1.5rem 2rem;
+  background-color: #18a689;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: white;
+}
+#projectdetails .right .infos h4 strong, 
+#projectdetails .right .infos h3 strong{
+  color: white;
 }
 #projectdetails .right .infos h4{
   font-size: 1.6rem;
@@ -10137,12 +10169,15 @@ color: green;
   margin-top: 1.5rem;
   background-color: #18a689;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 #projectdetails .right .socialBtn .fb{
   margin-top: 1.5rem;
   background-color:  #3C5999;
   color: white;
+}
+#projectdetails .right .socialBtn .refuse{
+  margin-top: 1.5rem;
 }
 
 #projectdetails .right .date{
@@ -10175,31 +10210,9 @@ color: green;
   margin-right: 1.5rem;
 }
 
-#projectdetails .right .dons{
-  padding: 1.5rem 2rem 1.5rem 2rem;
-  background-color: #fff;
-  border: solid 1px #eee;
-  display: flex;
-  flex-direction: column;
-}
-#projectdetails .right .dons .alldons{
-  padding: 1.5rem 2rem 1.5rem 2rem;
-  border: solid 1px #eee;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-}
-#projectdetails .right .dons h5{
-  font-weight: 400;
-  font-size: 1.4rem;
-}
-#projectdetails .right .dons h4{
-  margin-bottom: 0 !important;
-}
-
 #projectdetails .right .messages{
   margin-top: 2rem;
-  padding: 1.5rem 2rem 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   background-color: #fff;
   border: solid 1px #eee;
   display: flex;
@@ -10217,7 +10230,7 @@ color: green;
 }
 
 #projectdetails .right .messages .messages-items{
-  max-height: 15rem;
+  max-height: 12rem;
   overflow-y: scroll;
 }
 #projectdetails .right .video{
@@ -10228,6 +10241,7 @@ color: green;
 }
 #projectdetails .right .messages span{
   background-color: orangered;
+  display: block;
   color: white;
   width: 20px;
   height: 20px;
@@ -10407,8 +10421,8 @@ color: green;
     }
   
 
-  input {
-    /* width: 32px;
+  #filerMenu input {
+    width: 32px;
     height: 32px;
     order: 1;
     z-index: 2;
@@ -10417,7 +10431,7 @@ color: green;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    visibility: hidden; */
+    visibility: hidden;
   }
 
 
@@ -10458,4 +10472,8 @@ padding: 0 8px;
 .noProject {
   color: rgba(75, 67, 67, 0.424);
   font-size: 3em;
+}
+
+#wrap-btn button {
+  margin-right: 1.3rem;
 }

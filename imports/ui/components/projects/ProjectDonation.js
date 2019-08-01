@@ -1,9 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import {Meteor} from 'meteor/meteor';
+import {Redirect} from 'react-router-dom'
 import ProjectItem from '../../components/projects/ProjectItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import {toObjectId} from '../../../utilities/';
 import {Funnels, FoundRaiseAs, ForWhoFoundsRaise} from '../../../api/collections';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 // App component - represents the whole app
 class ProjectDonation extends Component {
@@ -14,8 +17,10 @@ class ProjectDonation extends Component {
       name: "",
       lastName: "",
       phoneNumber: "",
-      email: ""
+      email: "",
+      redirect: false
     }
+    this.notificationDOMRef = React.createRef();
   }
 
   /**
@@ -26,7 +31,7 @@ class ProjectDonation extends Component {
    */
   renderSelectedProject(projects){
     return projects.map((project, index)=>( 
-      <ProjectItem key={index} project={project} propclass="donation" />
+      <ProjectItem key={index} project={project} user={{ profile: {role: "guest" }}} propclass="donation" />
     ))
   }
 
@@ -42,6 +47,10 @@ class ProjectDonation extends Component {
       amount: this.state.amount,
     }
     Meteor.call('makeDonate', newDonator, projectId);
+    this.addNotification()
+    this.setState({
+        redirect: true
+    })
   }
 
   handleInputChange(e) {
@@ -50,6 +59,20 @@ class ProjectDonation extends Component {
     console.log(value);
     this.setState({
         [name]: value
+    });
+  }
+
+  addNotification = () => {
+    this.notificationDOMRef.current.addNotification({
+      title: "Awesomeness",
+      message: "Awesome Notifications!",
+      type: "success",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: { duration: 2000 },
+      dismissable: { click: true }
     });
   }
 
@@ -62,6 +85,8 @@ class ProjectDonation extends Component {
 
     return (
       <div className="container-fluid no-padding">
+        {this.state.redirect ? <Redirect to="/" />:null}
+        <ReactNotification ref={this.notificationDOMRef} />
         <div className="row projectsPageHeader">
             <h1>Invest</h1>
             <hr/>
