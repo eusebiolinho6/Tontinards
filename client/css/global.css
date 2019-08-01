@@ -10310,13 +10310,22 @@ color: green;
   .description{
     overflow-wrap: break-word;
   }
-  .inputContainer{
-    right: 20px;
-    color:black;
-     }
   
   .donationPageContent h3{
-    text-align: center
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .donationInput{
+    width: 60%;
+    height: 50px;
+    margin-right: 100px;
+  }
+  /* .inputContainer{
+    margin-bottom:10px; 
+  } */
+  .submitbtn{
+    text-align: center;
+    margin-bottom: 30px;
   }
 
 }

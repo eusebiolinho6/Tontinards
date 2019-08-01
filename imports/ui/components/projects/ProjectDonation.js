@@ -44,10 +44,11 @@ class ProjectDonation extends Component {
             <form>
                   <div>
                     <div className="form-group inputContainer">
-                        <input type="number" className="donationInput " required /> Fcfa
+                        <input type="number" className="donationInput  " required /> Fcfa
                         {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
                     </div>
                   </div>
+                  {/* <br/> */}
                 <div className="form-group">
                     <label for="firstNameInput">First Name</label>
                     <input type="text" className="form-control" required id="firstNameInput" placeholder="Enter your first name"/>
@@ -65,14 +66,14 @@ class ProjectDonation extends Component {
                     <input type="email" className="form-control" required id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
-                
-                <button type="submit" className="btn btn-primary">Submit</button>
-
+                  <div  className="">
+                    <button type="submit" className="btn btn-primary submitbtn col-md-3 col-xs-12">Submit</button>
+                  </div>
                 <br/>
 
             </form>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4  hidden-xs">
             {this.renderSelectedProject(projects)}
         </div>
         
