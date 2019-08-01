@@ -44,6 +44,39 @@ class FunnelList extends Component {
           <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
         </div>
 
+        <div className="col-md-12 col-sm-12 descriptionDiv">
+          <div className="col-md-2 col-sm-2"></div>
+          <div className="col-md-8 col-sm-8 col-xs-12">
+            <div className="col-md-6">
+            < img src = "/images/img3.PNG"
+                className = "imgWhyTontinard"
+                alt = "Goal Image"
+              />
+            </div>
+            <div className="col-md-6 descriptionText">
+              <h3> Why Tontinard?</h3>
+              <p >
+                Qui aime est patient et bon, il n'est pas envieux, ne se vante pas et n'est pas prétentieux; qui aime ne fait rien de honteux, n'est pas égoïste, ne s'irrite pas et n'éprouve pas de rancune. Qui aime supporte tout et garde en toute circonstance la foi, l'espérance et la patience. 
+              </p>
+              <br/>
+              <a type="btn btn-lg" href="#"> Learn more</a>
+            </div>
+          </div>
+          <div className="col-md-2 col-sm-2"></div>
+        </div>
+
+        <div className="col-md-12 col-sm-12 fullwidthBlue no-padding">
+          <div className="col-md-4 col-sm-2 col-xs-2"></div>
+          <div className="col-md-4 col-sm-8 col-xs-8 centerDiv">
+            <p className="firstText">
+              Interested in <strong>raisong funds for your business now?</strong>
+            </p>
+            <p className="secondText">Get started below</p>
+            <a type="btn btn-lg" href="#"> Let's Get Started</a>
+          </div>
+          <div className="col-md-4 col-sm-2 col-xs-2"></div>
+        </div>
+
       </div>
     )
   }

@@ -1588,6 +1588,13 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     position: absolute;
     bottom: -400px !important; 
   }
+  .fullwidthBlue .firstText{
+    font-size: 5vw !important;
+  }
+  
+  .fullwidthBlue .secondText{
+    font-size: 3vw !important;
+  }
 }
 .menu-visible-lg,
 .menu-visible-md {
@@ -3633,6 +3640,13 @@ a.forum-item-projectName:hover {
   .forum-desc {
     float: none !important;
   }
+  .descriptionDiv{
+    padding-top: 50px !important;
+  }
+/*   
+  .descriptionDiv .descriptionText{
+    font-size: 3vw !important;
+  } */
 }
 /* New Timeline style */
 .vertical-container {
@@ -4584,7 +4598,7 @@ video {
   padding: 20px 10px 40px;
 }
 #page-wrapper {
-  padding: 0 15px;
+  padding: 0;
   min-height: 568px;
   position: relative !important;
 }
@@ -10594,4 +10608,60 @@ padding: 0 8px;
 }
 #wrap-btn button {
   margin-right: 1.3rem;
+}
+
+/*--------------------------LANDING PAGE---------------------------*/
+.fullwidthBlue{
+  padding: 0 ;
+  height: 380px;
+  background-color: #005991;
+  text-align: center;
+}
+
+.fullwidthBlue .centerDiv{
+  margin: 110px 0;
+
+}
+
+.fullwidthBlue .firstText{
+  font-size: 2vw;
+  color: #fff;
+}
+
+.fullwidthBlue .secondText{
+  font-size: 1.1vw;
+  color: #fff;
+}
+
+.descriptionDiv{
+  padding: 100px 0 ;
+  height: 550px;
+  background-color: #F4F6F6;
+}
+
+.descriptionDiv .imgWhyTontinard{
+  height: 300px;
+  width: 100%;
+}
+
+.descriptionText{
+  padding: 20px 20px;
+  text-align: left;
+}
+
+.descriptionText h3{
+  font-size: 2vw;
+}
+
+.descriptionText p{
+  font-size: 1.2vw;
+}
+
+.descriptionText a{
+  font-size: 1.2vw;
+  border: 2px solid #005991;
+  border-radius: 20px;
+  padding: 10px 50px;
+  color: #005991;
+  font-weight: 500;
 }
