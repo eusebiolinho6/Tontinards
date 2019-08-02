@@ -30,15 +30,16 @@ class FunnelList extends Component {
             <br/> 
               <a  href="/admin/funnels" type="submit" className=" addprojectBtn Link">Lets Get started</a>
           </div>
-          <div className="toggle-downIcon text-center">
+        </div>
+        <div className="row no-padding helpSection" id="Help">
+        <div className="row toggleiconwrapper">
+          <div className="toggle-downIcon">
             <a href="#Help" className="Link">
-              <span class="glyphicon glyphicon-menu-down "  aria-hidden="true">
+              <span className="glyphicon glyphicon-menu-down"  aria-hidden="true">
               </span>
             </a>
           </div>
         </div>
-        
-        <div className="row no-padding helpSection" id="Help">
           {/* <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" ></iframe> */}
            <br/>
            <br/>

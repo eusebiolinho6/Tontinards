@@ -89,7 +89,13 @@ Meteor.methods({
             const query = {$push: {"donators": data}}
             let project = Funnels.update({_id: projectId}, query);
             // Send Email to Donator
-            Meteor.call('sendEmail', data.email, "Tontinards@gmail.com", "Dons pour Tontinards", currentProject, "donation.html")
+            const passedData = {
+                name: currentProject.userId.profile.name,
+                projectName: currentProject.projectName,
+                amount: data.amount,
+                currentAmount: newAmount
+            }
+            Meteor.call('sendEmail', data.email, "Tontinards@gmail.com", "Donation for Tontinards", passedData, "donation.html")
             if (project) return resolve(project);
             return reject();
         })

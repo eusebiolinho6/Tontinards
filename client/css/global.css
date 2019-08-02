@@ -10773,15 +10773,31 @@ padding: 0 8px;
 }
 
 .toggle-downIcon{
-  position: absolute;
+  /* position: absolute; */
   background-color: #005991;
-  border-radius: 90px;
-  margin-top: 46rem;
-  margin-left: 62rem;
+  border-radius: 50%;
+  /* margin-top: 46rem;
+  margin-left: 68rem !important; */
   padding: 13px;
-  width: 4.5%;
+  width: 5rem;
+  height: 5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.toggle-downIcon a {
+  text-align: center;
+  display: block;
   height: 2%;
 }
+
+.toggleiconwrapper {
+  position: relative;
+  z-index: 100;
+  top: -2.8rem;
+}
+
 /**-----------------------------------contain-----------------------*/
 .helpImgIcon{
   width: 17%;
@@ -10926,8 +10942,12 @@ color:white;
 .detailBtn{
   color: #E99607 !important;
   background-color:white !important;
+  border: solid 1px #E99607;
 }
 .detailBtn:hover{
   color: white !important;
   background-color: #E99607!important; 
+}
+.someProjectContainer{
+  background-color: white !important;
 }

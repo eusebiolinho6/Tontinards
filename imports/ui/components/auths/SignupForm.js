@@ -42,19 +42,32 @@ class SignupForm extends Component {
         return isValid;
     }
 
-    signupWithGoogle() {
-        Meteor.loginWithGoogle({
-                forceApprovalPrompt: true,
-                requestPermissions: ['profile', 'email'],
-            },
-            (error) => {
-                if (error) {
-                    console.log(error); //If there is any error, will get error here
-                } else {
-                    this.setState({ redirect: true })
-                    console.log(Meteor.user());// If there is successful login, you will get login details here
-                }
+    // set user role when user sign
+    setUserRole = () => {
+        Meteor.call('setUserRole', (err, res) => {
+            if (err) {
+                console.log(err)
+            } else {
+                this.setState({redirect: true})
             }
+        });
+    }
+
+    signupWithGoogle = () => {
+        Meteor.loginWithGoogle(
+        {
+            forceApprovalPrompt: true,
+            requestPermissions: ['profile','email'],
+        }, 
+        (error) =>{
+            if (error) {
+                console.log(error); //If there is any error, will get error here
+            }else{
+                this.setUserRole();
+                console.log(Meteor.user());// If there is successful login, you will get login details here
+                
+            }
+        }
         );
     }
 
@@ -69,7 +82,7 @@ class SignupForm extends Component {
                 if (error) {
                     console.log(error); //If there is any error, will get error here
                 } else {
-                    this.setState({ redirect: true })
+                    this.setUserRole();
                     console.log(Meteor.user());// If there is successful login, you will get login details here
                 }
             }
@@ -83,7 +96,8 @@ class SignupForm extends Component {
             if (error) {
                 console.log(error)
             } else {
-                this.setState({ redirect: true });
+                this.setUserRole();
+                console.log(Meteor.user());
             }
         });
     }
@@ -93,18 +107,6 @@ class SignupForm extends Component {
         const value = e.target.value;
         this.setState({
             [name]: value
-        });
-    }
-
-    loginWIthTwitter = () => {
-        Meteor.loginWithTwitter({
-            requestPermissions: ['basic']
-        }, (error) => {
-            if (error) {
-                console.log(error)
-            } else {
-                this.setState({ redirect: true });
-            }
         });
     }
 

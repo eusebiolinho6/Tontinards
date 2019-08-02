@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import FunnelModalForm from './../funnels/Funnel-Modal-Form';
 import Input from '../../globalComponents/Input'
-import Tr from '../../globalComponents/Tr'
+import Tr from '../../globalComponents/Tr';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -39,7 +41,8 @@ class FunnelLIstAdmin extends Component {
             show: false,
             feedback: ''
         };
-        console.log(this.props.user._id);
+        console.log(this.props.user);
+        this.notificationDOMRef = React.createRef();
     }
 
     componentWillReceiveProps() {
@@ -132,6 +135,28 @@ class FunnelLIstAdmin extends Component {
         })
     }
 
+    addNotification = (massage) => {
+        this.notificationDOMRef.current.addNotification({
+          title: "PROJECT STATE",
+          message: massage,
+          type: "danger",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: { duration: 2000 },
+          dismissable: { click: true }
+        });
+    }
+
+    addNewProject = () => {
+        if(this.props.user.emails) {
+            this.setState({show: true})
+        } else {
+            this.addNotification("Please, update your profile with your email.");
+        }
+    }
+
     render() {
         const { show,city, phoneNumber, userId, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
@@ -141,7 +166,7 @@ class FunnelLIstAdmin extends Component {
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <div className="row">
-
+                    <ReactNotification ref={this.notificationDOMRef} />
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
                             <div className="ibox-projectName">
@@ -150,7 +175,7 @@ class FunnelLIstAdmin extends Component {
                             <div className="ibox-content">
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <button type="button" className="btn btn-primary" onClick={() => this.setState({ show: true })} > New Project</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => this.addNewProject()} > New Project</button>
                                     </div>
                                     <FunnelModalForm userId={userId} feedback={feedback} city={city} categories={categories} id={id} category={category} phoneNumber={phoneNumber} description={description} user={user} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} email={email} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
                                 </div>

@@ -18,7 +18,9 @@ class ProjectDonation extends Component {
       lastName: "",
       phoneNumber: "",
       email: "",
-      redirect: false
+      redirect: false,
+      message: '',
+      location: ''
     }
     this.notificationDOMRef = React.createRef();
   }
@@ -45,6 +47,8 @@ class ProjectDonation extends Component {
       email: this.state.email,
       phoneNumber: this.state.phoneNumber,
       amount: this.state.amount,
+      comment: this.state.message,
+      location: this.state.location,
     }
     Meteor.call('makeDonate', newDonator, projectId);
     this.addNotification()
@@ -127,6 +131,17 @@ class ProjectDonation extends Component {
                       value={this.state.email} onChange={(event) => this.handleInputChange(event)}
                       required id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputEmail">Informations about your Location</label>
+                    <input type="text" className="form-control" name="location"
+                      value={this.state.location} onChange={(event) => this.handleInputChange(event)}
+                      required id="exampleInputLocation" aria-describedby="emailHelp" placeholder="Enter your Location"/>
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputEmail">Comment</label>
+                    <textarea placeholder="Enter your comment" onChange={(event) => this.handleInputChange(event)}
+                    name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
                 </div>
                 
                 <button onClick={(event) => this.submit(event)} className="btn btn-primary">Submit</button>

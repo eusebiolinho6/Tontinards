@@ -129,11 +129,11 @@ export default class ProjectItem extends Component {
                                                     // Can specify path transition in more detail, or remove it entirely
                                                     // pathTransition: 'none',
 
-                                                    // Colors
-                                                    pathColor: `rgba(62, 152, 199})`,
-                                                    textColor: '#f88',
+                                                    // Colors d6d6d6 #005991 
+                                                    pathColor: `#005991`,
+                                                    textColor: '#005991',
                                                     trailColor: '#d6d6d6',
-                                                    backgroundColor: '#005991 !important',
+                                                    backgroundColor: '#005991',
                                                 })}
                                             /> : ""
                                         }

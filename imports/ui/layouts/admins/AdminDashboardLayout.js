@@ -78,7 +78,14 @@ class AdminDashboardLayout extends Component {
     refusedProjects = [],
     campaigns = [],
     {displayPendingProjects,displayValidatedProjects, displayCampaings} = this.state;
-    funnels.map((project) => {
+    // Filter projects. Display all projects to admin and only user project to the current user
+    let newFunnels = [...funnels];
+    if (user.profile.role != "admin") {
+      newFunnels = funnels.filter(project => {
+        return project.userId._id == user._id;
+      })
+    }
+    newFunnels.map((project) => {
       project.projectState ? 
         project.projectState == "VALID" ? validatedProjects.push(project) :
         project.projectState == "REFUSED" ? refusedProjects.push(project) :
