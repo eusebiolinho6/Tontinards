@@ -8,6 +8,7 @@ class Location extends Component {
 
     render() {
         const {props} = this;
+        console.log(props);
         return (
                 <div className="row wrapper border-bottom white-bg page-heading">
                     <div className="col-lg-9">

@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import MainLayout from '../../layouts/MainLayout';
-import AdminDashboard from '../admins/AdminDashboard';
-import FunnelDetailsPage from './FunnelsDetailsPage'
+
 import {Link} from 'react-router-dom';
+
+import AdminDashboard from '../admins/AdminDashboard';
+import MainLayout from '../../layouts/MainLayout';
+
+import FunnelDetailsPage from './FunnelsDetailsPage';
 
 // App component - represents the whole app
 class FunnelList extends Component {
@@ -17,9 +20,12 @@ class FunnelList extends Component {
       this.setState({isFree:b});
     }
 
+
+
   render() {
     const {match, location} = this.props; 
     const {isFree}=this.state;
+
     return (
       <div className="container-fluid no-padding">
         <div className="row no-padding">
@@ -27,7 +33,7 @@ class FunnelList extends Component {
             <h1 className="mainText container text-center">Get Funding and Develop your Business</h1>
             <br/>
             <br/>
-            <a  href="/admin/funnels" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
+            <a  href="/user/projects" type="submit" className="btn-lg btn-primary addprojectBtn">Add Project</a>
           </div>
         </div>
         <div className="embed-responsive embed-responsive-16by9 text-center mainVideo">
@@ -41,7 +47,6 @@ class FunnelList extends Component {
         </div>
         <div className="col-md-12">
           <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
-          <Link to={{pathname:'/admin/admindashboard'}} className="btn btn-primary donateBtn">adminDashboard </Link>
         </div>
 
       </div>

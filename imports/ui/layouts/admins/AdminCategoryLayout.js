@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+
 import {Meteor} from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+
 import Location from '../../globalComponents/Location';
 import AdminCategory from '../../components/admins/categories/AdminCategory';
 import {Categories} from '../../../api/collections'
