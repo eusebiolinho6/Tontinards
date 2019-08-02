@@ -8524,7 +8524,7 @@ ul.horizontal-step-list li {
   background-color: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  left: -100%;
+  /* left: -100%; */
   min-width: 180px;
   border: solid 1px #eeeeee;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
