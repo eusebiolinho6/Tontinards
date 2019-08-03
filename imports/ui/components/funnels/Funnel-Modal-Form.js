@@ -1,15 +1,16 @@
 import React, { Component, Fragment } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Input from '../../globalComponents/Input';
-import Textarea from '../../globalComponents/Textarea';
-import Summernote from '../../globalComponents/Summernote'
-import Select from '../../globalComponents/Select';
-import Upload from '../../globalComponents/Upload';
-import validateInput from '../../../validations/funnel';
-import { toObjectId } from '../../../utilities/'
-import { Funnels, Images, Videos, Documents } from '../../../api/collections'
 
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
+
+import { Link } from 'react-router-dom';
+
+import Input from '../../globalComponents/Input';
+import Select from '../../globalComponents/Select';
+import Summernote from '../../globalComponents/Summernote';
+import Textarea from '../../globalComponents/Textarea';
+import Upload from '../../globalComponents/Upload';
+import { Funnels, Images, Videos, Documents } from '../../../api/collections';
+import validateInput from '../../../validations/funnel';
 const collections = {
     documentFile: Documents,
     projectImage: Images,
@@ -251,7 +252,7 @@ class FunnelModalForm extends Component {
                 aria-labelledby="contained-modal-projectName-sm" show={show} backdrop={false} >
                 <form role="form" onSubmit={(event) => this.handleSUbmit(event)}>
                     <ModalHeader>
-                        <h3 className="text-center" > {id ? 'Edit Funnel' : ' Add Funnel'}</h3>
+                        <h3 className="text-center" > {id ? 'Edit Project' : ' Add Project'}</h3>
                     </ModalHeader>
                     <ModalBody>
                         <h2>Project Informations</h2>
@@ -292,7 +293,7 @@ class FunnelModalForm extends Component {
 
                         <label>Country</label>
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
-                            <option>Select one value</option>
+                            <option> {id ? country : 'Select Country'}</option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
                         </select>
                         

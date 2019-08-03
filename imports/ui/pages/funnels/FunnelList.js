@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import MainLayout from '../../layouts/MainLayout';
-import AdminDashboard from '../admins/AdminDashboard';
-import FunnelDetailsPage from './FunnelsDetailsPage'
+
 import {Link} from 'react-router-dom';
+
+import AdminDashboard from '../admins/AdminDashboard';
+import MainLayout from '../../layouts/MainLayout';
+
+import FunnelDetailsPage from './FunnelsDetailsPage';
 
 // App component - represents the whole app
 class FunnelList extends Component {
@@ -17,9 +20,12 @@ class FunnelList extends Component {
       this.setState({isFree:b});
     }
 
+
+
   render() {
     const {match, location} = this.props; 
     const {isFree}=this.state;
+
     return (
       <div className="container-fluid no-padding">
         <div className="row no-padding">

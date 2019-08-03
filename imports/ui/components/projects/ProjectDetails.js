@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
+
+import Moment from 'react-moment';
+
+import 'moment-timezone';
+
 import {Link,Redirect} from 'react-router-dom';
+
+import AwesomeSlider from 'react-awesome-slider';
+
 import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
+
+import 'react-awesome-slider/dist/styles.css';
+
 import Input from '../../globalComponents/Input';
 import {Meteor} from 'meteor/meteor';
 import TextArea from '../../globalComponents/Textarea';
-import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections';
 import {toObjectId} from '../../../utilities/';
-import Moment from 'react-moment';
-import 'moment-timezone';
 
 // App component - represents the whole app
 class ProjectDetails extends Component {
