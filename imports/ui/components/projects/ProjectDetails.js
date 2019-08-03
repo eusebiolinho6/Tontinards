@@ -261,35 +261,37 @@ class ProjectDetails extends Component {
                                 <div className="socialBtn">
                                     <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary st">Donate </Link>
                                     {/* <button className="fb btn">Partager sur Facebook</button> */}
-                                             {
-                              user.profile.role == 'admin'&& project.projectState == 'PENDING' 
-                              ?                               
-                               <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Validate</button>                                
-                                :
-                                 '' 
-                              }
+                                    {
+                                        user ? 
+                                        user.profile.role == 'admin'&& project.projectState == 'PENDING' 
+                                        ?                               
+                                        <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Validate</button>                                
+                                            : '' : null
+                                    }
                             {
-                              user.profile.role == 'admin'&& project.projectState == 'PENDING'  
+                                user ? 
+                                user.profile.role == 'admin'&& project.projectState == 'PENDING'  
                                ?
                                 <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
                                 :
-                                 '' 
+                                 '' : null
                               }
 
                             {
-                              user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
-                              ?
-                               <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Start campaign</button> 
-                                :
-                                 '' 
+                                user ? 
+                                user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
+                                ?
+                                <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Start campaign</button> 
+                                    :
+                                    '' : null
                               }
 
                             {
+                                user ? 
                               user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
                               ?
                                <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
-                                :
-                                 '' 
+                                : '' : null
                               }
                                 </div>
                             </div>
