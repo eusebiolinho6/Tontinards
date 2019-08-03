@@ -8524,7 +8524,7 @@ ul.horizontal-step-list li {
   background-color: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  left: -100%;
+  /* left: -100%; */
   min-width: 180px;
   border: solid 1px #eeeeee;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
@@ -10276,7 +10276,7 @@ color: green;
 
 #projectdetails .right .messages .messages-items{
   max-height: 12rem;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 #projectdetails .right .video{
   margin-top: 2rem;
@@ -10681,7 +10681,7 @@ padding: 0 8px;
 .signIn, .signUp{
   font-size: 2vw;
   border-radius: 30px;
-  width: 40%;
+  width: 30%;
   height: 40px;
   padding: 8px 20px;
   font-weight: 600;
@@ -10854,6 +10854,9 @@ color:white;
   .help p{
     width: 100%;
   
+  }
+  .signIn, .signUp{
+    width: 40%;
   }
 }
 @media (min-width: 588px) and (max-width: 1024px) {

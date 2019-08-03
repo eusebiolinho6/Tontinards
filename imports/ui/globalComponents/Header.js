@@ -129,11 +129,12 @@ class Header extends Component {
                                                         </div>
                                                 }
                                             </span>
-                                        : <div>
+                                        : 
+                                        <div>
                                             <Link to="/authentication/signin" className="btn signIn"> Login</Link>
                                             <Link to="/authentication/signup" className="btn signUp"> Register</Link>
                                         </div>
-                                }
+                                    }
                                 </li>
                             </ul>
                         </div>
