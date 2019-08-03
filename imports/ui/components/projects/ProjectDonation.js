@@ -2,10 +2,14 @@ import React, { Component, Fragment } from 'react';
 import {Meteor} from 'meteor/meteor';
 import {Redirect} from 'react-router-dom'
 import ProjectItem from '../../components/projects/ProjectItem';
+import Moment from 'react-moment';
+import 'moment-timezone';
 import { withTracker } from 'meteor/react-meteor-data';
 import {toObjectId} from '../../../utilities/';
 import {Funnels, FoundRaiseAs, ForWhoFoundsRaise} from '../../../api/collections';
 import ReactNotification from "react-notifications-component";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import "react-notifications-component/dist/theme.css";
 
 // App component - represents the whole app
@@ -49,12 +53,17 @@ class ProjectDonation extends Component {
       amount: this.state.amount,
       comment: this.state.message,
       location: this.state.location,
+      date: new Date()
     }
-    Meteor.call('makeDonate', newDonator, projectId);
-    this.addNotification()
-    this.setState({
-        redirect: true
-    })
+    if(this.state.amount.trim().length <= 0) {
+      this.addNotification("Enter an amount!", "danger");
+    } else {
+      Meteor.call('makeDonate', newDonator, projectId);
+      this.addNotification("Successfully done!", "success")
+      this.setState({
+          redirect: true
+      })
+    }
   }
 
   handleInputChange(e) {
@@ -66,11 +75,11 @@ class ProjectDonation extends Component {
     });
   }
 
-  addNotification = () => {
+  addNotification = (message, type) => {
     this.notificationDOMRef.current.addNotification({
-      title: "Awesomeness",
-      message: "Awesome Notifications!",
-      type: "success",
+      title: "Donation!",
+      message: message,
+      type: type,
       insert: "top",
       container: "top-right",
       animationIn: ["animated", "fadeIn"],
@@ -85,7 +94,28 @@ class ProjectDonation extends Component {
     const {project,user} = this.props,
     projects = [];
     /*here we want to apply donation on one project that's why we push one project inside the array of projects */
-    projects.push(project)
+    projects.push(project);
+
+    let comments = <p>No comments</p>;
+    if(project.donators) {
+      let donators = project.donators.reverse();
+      comments = donators.map(donator => {
+        if (donator.comment) {
+          return (
+            <div className="comment-item">
+              <div className="header">
+                  <FontAwesomeIcon icon={faUserCircle} size={"2x"} />
+                  <h4>{donator.lastName+" "+donator.firstName}</h4>
+              </div>
+              <div className="body">
+                  <p>{donator.comment}</p>
+                  <i>{donator.date ? <Moment fromNow>{donator.date}</Moment> : null}</i>
+              </div>
+            </div>
+          );
+        }
+      })
+    }
 
     return (
       <div className="container-fluid no-padding">
@@ -149,6 +179,11 @@ class ProjectDonation extends Component {
                 <br/>
 
             </form>
+
+            <div className="comments" id="donation-comment-bloc">
+                <h3>Recents comments</h3>
+                {comments}
+            </div>
         </div>
         <div className="col-md-4">
             {this.renderSelectedProject(projects)}
