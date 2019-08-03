@@ -10276,7 +10276,7 @@ color: green;
 
 #projectdetails .right .messages .messages-items{
   max-height: 12rem;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 #projectdetails .right .video{
   margin-top: 2rem;
@@ -10681,7 +10681,7 @@ padding: 0 8px;
 .signIn, .signUp{
   font-size: 2vw;
   border-radius: 30px;
-  width: 40%;
+  width: 30%;
   height: 40px;
   padding: 8px 20px;
   font-weight: 600;
@@ -10838,6 +10838,9 @@ color:white;
   .help p{
     width: 100%;
   
+  }
+  .signIn, .signUp{
+    width: 40%;
   }
 }
 @media (min-width: 588px) and (max-width: 1024px) {

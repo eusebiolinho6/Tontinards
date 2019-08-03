@@ -117,7 +117,7 @@ class FunnelList extends Component {
           <div className="col-md-2 col-sm-2"></div>
           <div className="col-md-8 col-sm-8 col-xs-12">
             <div className="col-md-6">
-            < img src = "/images/img3.png"
+            < img src = "/images/img1.PNG"
                 className = "imgWhyTontinard"
                 alt = "Goal Image"
               />
@@ -141,6 +141,7 @@ class FunnelList extends Component {
               Interested in <strong>raisong funds for your business now?</strong>
             </p>
             <p className="secondText">Get started below</p>
+            <br/>
             <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Let's Get Started</a>
           </div>
           <div className="col-md-4 col-sm-2 col-xs-2"></div>
