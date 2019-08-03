@@ -28,12 +28,11 @@ exports.checkRole = (roles, userId)=>{
     console.log(currentRole);
     console.log("-------------------this is the roles");
     console.log(roles);
-    console.log(roles.indexOf(currentRole.toLowerCase()));
     if (roles.indexOf(currentRole.toLowerCase()) != -1) return true;
     return false;
 }
 export function getMainPath(){
-    if(Meteor.isServer && !this.path){
+    if(Meteor.isServer && !this.path) {
         let path = os&&os.userInfo().homedir+"/projects/meteor-app";
         this.path = path;
     }

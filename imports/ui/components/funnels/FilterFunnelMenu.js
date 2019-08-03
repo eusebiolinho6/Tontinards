@@ -5,7 +5,7 @@ import IcheckCheckbox from '../../globalComponents/IcheckCheckbox'
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import {toObjectId} from '../../../utilities/'
-import {Categories, Industries} from '../../../api/collections'
+import {Categories} from '../../../api/collections'
 import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import ToggleButton from '../../globalComponents/ToggleButton'
@@ -16,8 +16,7 @@ class FilterFunnelMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            industries: {}
-            ,categories: {},
+            categories: {},
             path:'',
             redirect:false,
             search:'',
@@ -27,16 +26,15 @@ class FilterFunnelMenu extends Component {
     componentDidMount(){
         this.handleResize();
         window.addEventListener('resize',(event)=> this.handleResize(event))
-        const{industries, categories, params}=this.props,
+        const{categories, params}=this.props,
         propSearch=this.props.search;
             let search='';
           if (propSearch) {
               const tab = propSearch.split('search=');
               if (tab.length == 2 && tab[0] == '?') search = tab[1];
           }
-        if(industries&&categories&&industries.length&&categories.length){
+        if(categories.length&&categories.length){
             this.setState({
-                industries: this.initObj(industries, params.industries.split('-')),
                 categories: this.initObj(categories, params.categories.split('-')),
                 path: '',
                 redirect: false,
@@ -50,7 +48,7 @@ class FilterFunnelMenu extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        const{industries, categories, params}=nextProps,
+        const{categories, params}=nextProps,
             propSearch=nextProps.search;
             let search='';
           if (propSearch) {
@@ -58,9 +56,8 @@ class FilterFunnelMenu extends Component {
               if (tab.length == 2 && tab[0] == '?') search = tab[1];
           }
         const {redirect, path} = this.state;
-        if (industries && categories && industries.length && categories.length) {
+        if (categories && categories.length) {
             this.setState({
-                industries: this.initObj(industries, params.industries.split('-')),
                 categories: this.initObj(categories, params.categories.split('-')),
                 path: '',
                 redirect: false,
@@ -106,7 +103,7 @@ class FilterFunnelMenu extends Component {
         let pathIndustry = 'all',
         pathCategory = 'all',
         search = r;
-        const {industries, categories}=this.state;
+        const {categories}=this.state;
 
         for (let key in categories) {
         // skip loop if the property is from prototype
@@ -118,7 +115,7 @@ class FilterFunnelMenu extends Component {
             pathCategory=str;
         }
         } 
-
+/* 
         for (let key in industries) {
             // skip loop if the property is from prototype
             if (!industries.hasOwnProperty(key) || !industries[key].value) continue;
@@ -128,13 +125,13 @@ class FilterFunnelMenu extends Component {
                 const str = industries[key].devName + '-' + pathIndustry;
                 pathIndustry = str;
             }
-        }
+        } */
         if(search)  return '/funnels/'+pathIndustry+'/'+pathCategory+'?search='+search;
         return '/funnels/' + pathIndustry + '/' + pathCategory;
 
     }
     render() {
-        const {industries, categories,params, funnels}=this.props;
+        const {categories,params, funnels}=this.props;
         const {path,redirect,search, enabled}=this.state;
         if(redirect){
             return <Redirect push to={path}/>
@@ -166,12 +163,12 @@ class FilterFunnelMenu extends Component {
               </div>
                     <div className="hr-line-dashed"></div>
                         { /**Industry here*/ }
-                       {industries.length?<div className="col-md-12" ><h5 style={{marginBottom:'0px'}} >INDUSTRY</h5>
+                        {/* categories.length */1==1?<div className="col-md-12" ><h5 style={{marginBottom:'0px'}} >CATEGORY</h5>
                             <div className = "col-md-10" >
                             <ul className="folder-list" style={{padding: 0}}>
-                                {industries.map((industry)=>(
-                                    <li key={industry._id}><IcheckCheckbox id={industry._id._str} devName={industry.devName} value={this.state.industries[industry._id._str]&&this.state.industries[industry._id._str].value} type="industries" label={industry.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>
-                                    )) }  
+                                {/* categories.map((category)=>(
+                                    <li key={category._id}><IcheckCheckbox id={category._id._str} devName={category.devName} value={this.state.categories[category._id._str]&&this.state.categories[category._id._str].value} type="categories" label={category.name} setFilters={(id,type,devName )=> this.setFilters(id, type, devName)} /></li>
+                                    ))  */}  
                             </ul>
                             </div>
                         </div>:''} 

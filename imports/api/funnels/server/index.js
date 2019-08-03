@@ -43,6 +43,7 @@ Meteor.methods({
             });
         })
     },
+
     'getFunnelLinks': (data)=>{
         return new Promise((resolve, reject)=>{
             if(!data||!data.funnelId) return reject(new Meteor.Error('User unauthorized'));
@@ -75,7 +76,30 @@ Meteor.methods({
            });
         });
     })
-    }
+    },
+
+    'makeDonate': (data, projectId) => {
+        let currentProject = Funnels.findOne(projectId);
+        // Get the previous amount add to the new
+        let newAmount = parseInt(currentProject.currentAmount) + parseInt(data.amount);
+        // Save the new value
+        Funnels.update(projectId, { $set: { currentAmount: newAmount } });
+        // Save the new donator
+        return new Promise((resolve, reject) => {
+            const query = {$push: {"donators": data}}
+            let project = Funnels.update({_id: projectId}, query);
+            // Send Email to Donator
+            const passedData = {
+                name: currentProject.userId.profile.name,
+                projectName: currentProject.projectName,
+                amount: data.amount,
+                currentAmount: newAmount
+            }
+            Meteor.call('sendEmail', data.email, "Tontinards@gmail.com", "Donation for Tontinards", passedData, "donation.html")
+            if (project) return resolve(project);
+            return reject();
+        })
+    },
     /**,
     'createPlan': (data) => {
         return new Promise(function (resolve, reject) {
@@ -94,31 +118,36 @@ Meteor.methods({
 })
 if (Meteor.isServer) {
   Meteor.publish('funnels', function funnelsPublication() {
-    const hasPaid = checkRole(['admin', 'paid'], this.userId);
-    if(hasPaid) return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{price:1, title:1, image:1, document:1,video:1, description:1, industry:1, category:1}});
-    return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{price:1, title:1, image:1, description:1, industry:1, category:1}});
+    const hasPaid = checkRole(['user','admin'], this.userId);
+    // if(hasPaid) return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{zipCode:1, projectName:1, image:1, document:1,video:1, description:1, industry:1, category:1}});
+    // return Funnels.find({image:{$exists:true}, document:{$exists:true}}, {fields:{zipCode:1, projectName:1, image:1, description:1, industry:1, category:1}});
+    return Funnels.find({});
   });
   Meteor.publish('freeFunnels', function funnelsFreePublication(){
-    return Funnels.find({price:'0'}, {fields:{price:1, title:1, image:1, document:1,video:1, description:1, industry:1, category:1}})
-  });
-    Meteor.publish('adminFunnels', function funnelsPublication() {
-    const isAdmin = checkRole(['admin'], this.userId);
-   if (!isAdmin) return Funnels.find({_id: null});
+    //return Funnels.find({zipCode:'0'}, {fields:{zipCode:1, projectName:1, image:1, document:1,video:1, description:1, industry:1, category:1}})
     return Funnels.find({});
+    });
+
+Meteor.publish('adminFunnels', function funnelsPublication() {
+    const isAdmin = checkRole(['admin'], this.userId);
+    console.log(isAdmin)
+   if (!isAdmin) return Funnels.find({"userId._id": this.userId});
+    return Funnels.find();
   });
 
   Meteor.publish('funnel', function funnelPublication(funnelId) {
     return Funnels.findOne({
+        
       _id: funnelId
     });
   });
 
 Funnels.allow({
     insert: function (userId) {
-     return checkRole(['admin'], userId);
+     return checkRole(['user','admin'], userId);
     },
     update: function (userId) {
-     return checkRole(['admin'], userId);
+     return checkRole(['user','admin'], userId);
     },
     remove: function (userId) {
      return checkRole(['admin'], userId);

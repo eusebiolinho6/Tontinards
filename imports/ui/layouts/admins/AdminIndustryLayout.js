@@ -11,7 +11,7 @@ class AdminIndustryLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'Industries', 'Admin'], title: 'Administration' };
+    const location = {path: ['Home', 'Industries', 'Admin'], projectName: 'Administration' };
     const {industries} = this.props;
     
     return (

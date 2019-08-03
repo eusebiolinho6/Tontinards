@@ -14,19 +14,19 @@ class PlansLayout extends Component {
     const {userId}=this.props;
     const location = {
       path: ['Home', 'Pricing'],
-      title: 'Our plans'
+      projectName: 'Our plans'
     }, plans=[
         {name: "BASIC",
-         price: 1,
+         phoneNumber: 1,
         description: "With this Plan you can download all funnel images in FOPSwipe."  
         },
 {
     name: "PRO",
-    price: 2    ,
+    phoneNumber: 2    ,
     description: "With this Plan you can download all our funnel images and pdfs in FOPSwipe."
 }, {
     name: "ULTIMATE",
-    price: 3,
+    phoneNumber: 3,
     description: "With this Plan you can download all our funnel images, pdfs and videos in FOPSwipe."
 }];
     return (

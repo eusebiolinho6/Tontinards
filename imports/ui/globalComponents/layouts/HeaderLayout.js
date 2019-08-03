@@ -9,16 +9,16 @@ class HeaderLayout extends Component {
     super(props);
   }
 
-  render () {
-    const{user}=this.props;
-      return (
-        <Header user={user} />
-      )
+  render() {
+    const { user } = this.props;
+    return (
+      <Header user={user} />
+    )
   }
 }
 
-export default withTracker((props)=>{
+export default withTracker((props) => {
   return {
-    user:Meteor.user()
+    user: Meteor.user()
   }
 })(HeaderLayout)

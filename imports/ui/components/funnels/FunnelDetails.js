@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import {Categories, Industries} from '../../../api/collections'
-import {checkRole, asyncMethodCall} from '../../../utilities/'
-import {Meteor} from 'meteor/meteor'
-import CustomAlert from '../../globalComponents/CustomAlert';
-import DownloadComponent from '../../globalComponents/DownloadComponent'
-import ModalSubscription from '../payments/ModalSubscription';
+
 import PropTypes from 'prop-types';
+
+import ModalSubscription from '../payments/ModalSubscription';
+import CustomAlert from '../../globalComponents/CustomAlert';
 
 // App component - represents the whole app
 class FunnelDetails extends Component {
@@ -34,7 +32,7 @@ class FunnelDetails extends Component {
     componentDidUpdate(){
         const {funnel}=this.props;
             if (!this.state.links.video && !this.state.links.document) {
-                if (!Number(funnel && funnel.price)) {
+                if (!Number(funnel && funnel.phoneNumberphoneNumber)) {
                     asyncMethodCall('getFunnelLinks', {
                         funnelId: funnel && funnel._id
                     }).then((r) => {
@@ -68,7 +66,7 @@ class FunnelDetails extends Component {
     const userId = Meteor.userId();
     const {links}= this.state;
     let roles = ['admin'];
-    if (f == 'image' || !Number(funnel && funnel.price)) {
+    if (f == 'image' || !Number(funnel && funnel.phoneNumber)) {
         roles = ['all'];
     } else {
         roles.push('paid');
@@ -114,12 +112,12 @@ class FunnelDetails extends Component {
                         <div className="col-md-7">
 
                             <h2 className="font-bold m-b-xs">
-                                {funnel&&funnel.title}
-                                {!Number(funnel && funnel.price)&&<span style={{width:'100px'}} className="text-center product-price">
+                                {funnel&&funnel.projectName}
+                                {!Number(funnel && funnel.phoneNumber)&&<span style={{width:'100px'}} className="text-center product-phoneNumber">
                                    FREE</span>}
                             </h2>
                             {/**<div className="m-t-md">
-                                <h2 className="product-main-price">${funnel&&funnel.price} <small className="text-muted">Exclude Tax</small> </h2>
+                                <h2 className="product-main-phoneNumber">${funnel&&funnel.phoneNumber} <small className="text-muted">Exclude Tax</small> </h2>
                             </div>*/}
                             <hr/>
                             {/**    

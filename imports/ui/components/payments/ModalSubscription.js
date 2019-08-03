@@ -162,7 +162,7 @@ initiateAgreement(arg) { console.log("initiateAgreement CALLED")
       const {show, userId} =this.props;
 return (
 <Modal bsSize="md"
-        aria-labelledby="contained-modal-title-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
+        aria-labelledby="contained-modal-projectName-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" className="modal-subscription" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
      {userId&&!isNew?'Purchase to FOPSwipe':<CircleStep step={step} />}

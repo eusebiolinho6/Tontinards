@@ -8,10 +8,11 @@ class Location extends Component {
 
     render() {
         const {props} = this;
+        console.log(props);
         return (
                 <div className="row wrapper border-bottom white-bg page-heading">
                     <div className="col-lg-9">
-                        <h2>{props.location&&props.location.title}</h2>
+                        <h2>{props.location&&props.location.projectName}</h2>
                         <ol className="breadcrumb">
                             {props.location&&props.location.path.map((path, index)=>(<li key={index} className="breadcrumb-item">
                                 {path}

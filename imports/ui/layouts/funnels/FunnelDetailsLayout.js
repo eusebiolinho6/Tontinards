@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+
 import {Meteor} from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+
 import Header from '../../globalComponents/Header';
-import Location from '../../globalComponents/Location'
+import Location from '../../globalComponents/Location';
 import FunnelDetails from '../../components/funnels/FunnelDetails';
 import FunnelList from '../../components/funnels/DetailsFunnelList'
 import {toObjectId} from '../../../utilities/'
@@ -19,8 +21,9 @@ class FunnelDetailsLayout extends Component {
     window.scrollTo(0, 0);
   }
   render () {
-    const location = {path: ['Home', 'Funnels', 'detail'], title: 'Details' };
+    const location = {path: ['Home', 'Funnels', 'detail'], projectName: 'Details' };
     const {funnel, funnels, user} = this.props;
+   
     return (
         <Fragment>
             <Location location={location} />
@@ -35,7 +38,7 @@ export default withTracker(props=>{
   Meteor.subscribe('funnels');
   Meteor.subscribe('industries');
   Meteor.subscribe('categories');
-  const funnel =Funnels.findOne({_id: toObjectId(props.funnelId)});
+  const funnel = Funnels.findOne({_id: toObjectId(props.funnelId)});
   return {
     user:Meteor.user(),
     funnel: funnel,

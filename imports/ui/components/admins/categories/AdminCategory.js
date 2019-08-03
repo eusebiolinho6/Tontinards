@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import CategoryModalForm from './CategoryModalForm';
 import Input from '../../../globalComponents/Input'
 import {Modal, Button} from 'react-bootstrap';
+
 // App component - represents the whole app
 const monthNames = [
     "January", "February", "March",
@@ -62,7 +63,7 @@ class AdminCategory extends Component {
 
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
-        <div className="ibox-title">
+        <div className="ibox-projectName">
             <h5>category List</h5>
         </div>
         <div className="ibox-content">

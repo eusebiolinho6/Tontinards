@@ -11,7 +11,7 @@ class AdminForWhoFoundsRaiseLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'ForWhoFoundsRaise', 'Admin'], title: 'Administration' };
+    const location = {path: ['Home', 'ForWhoFoundsRaise', 'Admin'], projectName: 'Administration' };
     const {forWhoFoundsRaise} = this.props;
     return (
       <Fragment>

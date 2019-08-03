@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import FunnelModalForm from './../funnels/Funnel-Modal-Form';
 import Input from '../../globalComponents/Input'
-import Tr from '../../globalComponents/Tr'
-import {Modal, Button} from 'react-bootstrap';
+import Tr from '../../globalComponents/Tr';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { Modal, Button } from 'react-bootstrap';
+import axios from 'axios';
+
 // App component - represents the whole app
 const monthNames = [
     "January", "February", "March",
@@ -14,20 +18,54 @@ class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
+            projectName: '',
+            userId: this.props.user,
+            projectState: 'PENDING',
+            currentAmount: 0,
             onefoundRaiseAs: '',
             oneForWhoFoundsRaise: '',
-            objectifAmount : '',
-            price: '',
+            objectifAmount: '',
+            phoneNumber: '',
             description: '',
-            industry: '',
-            category:'',
-            document:'',
-            image:'',
-            video:'',
+            category: '',
+            document: '',
+            projectImage: '',
+            teamName: '',
+            teamImage: '',
+            video: '',
             id: '',
-            show: false
+            country: '',
+            countries: [],
+            city: '',
+            email: '',
+            show: false,
+            feedback: ''
         };
+        console.log(this.props.user);
+        this.notificationDOMRef = React.createRef();
+    }
+
+    componentWillReceiveProps() {
+        this.loadCountry();
+
+    }
+
+    async loadCountry() {
+        const countries = await axios.get('https://restcountries.eu/rest/v2/regionalbloc/au')
+            .then(function (response) {
+                // handle success
+                return response;
+                console.log(this.state.category);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
+        //console.log(countries.data[0].name);
+        this.setState({ countries: countries.data });
     }
 
     formatDate(d) {
@@ -47,91 +85,129 @@ class FunnelLIstAdmin extends Component {
         });
     }
 
-    editFunnel(funnel){
+    editFunnel(funnel) {
         this.setState({
-            price: funnel.price,
-            objectifAmount : funnel.objectifAmount,
+            phoneNumber: funnel.phoneNumber,
+            objectifAmount: funnel.objectifAmount,
             onefoundRaiseAs: funnel.onefoundRaiseAs,
-            oneForWhoFoundsRaise : funnel.oneForWhoFoundsRaise,
+            oneForWhoFoundsRaise: funnel.oneForWhoFoundsRaise,
             description: funnel.description,
-            title: funnel.title,
+            projectName: funnel.projectName,
+            projectState: funnel.projectState,
+            currentAmount: funnel.currentAmount,
             category: funnel.category,
-            industry: funnel.industry,
-            id:funnel._id,
+            id: funnel._id,
             document: funnel.document,
-            image: funnel.image,
+            projectImage: funnel.projectImage,
+            teamName: funnel.teamName,
+            teamImage: funnel.teamImage,
             video: funnel.video,
+            country: funnel.country,
+            city: funnel.city,
+            email: funnel.email,
             show: true
         });
     }
 
-    closeModal(){
-        this.setState({show:false});
+    closeModal() {
+        this.setState({ show: false });
         this.setState({
-            title: '',
-            onefoundRaiseAs:'',
-            oneForWhoFoundsRaise : '',
-            objectifAmount : '',
-            price: '',
+            projectName: '',
+            city: '',
+            projectState: '',
+            currentAmount: '',
+            onefoundRaiseAs: '',
+            oneForWhoFoundsRaise: '',
+            objectifAmount: '',
+            phoneNumber: '',
             description: '',
-            industry: '',
             category: '',
-            document:'',
-            image: '',
+            document: '',
+            projectImage: '',
+            teamName: '',
+            teamImage: '',
             video: '',
             errors: {},
             id: '',
+            country: '',
+            email: '',
             isLoading: false,
         })
     }
 
+    addNotification = (massage) => {
+        this.notificationDOMRef.current.addNotification({
+          title: "PROJECT STATE",
+          message: massage,
+          type: "danger",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: { duration: 2000 },
+          dismissable: { click: true }
+        });
+    }
+
+    addNewProject = () => {
+        if(this.props.user.emails) {
+            this.setState({show: true})
+        } else {
+            this.addNotification("Please, update your profile with your email.");
+        }
+    }
+
     render() {
-         const { show, price, objectifAmount ,title, onefoundRaiseAs, oneForWhoFoundsRaise ,description, industry,id, category, document, image,video } = this.state;
-        const {funnels, industries,categories, foundRaiseAs, forWhoFoundsRaise }=this.props;
+        const { show,city, phoneNumber, userId, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries } = this.state;
+        const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
+        //console.log(user);
         
+        // console.log(funnels)
         return (
-    <div className="wrapper wrapper-content animated fadeInRight">
-   <div className="row">
+            <div className="wrapper wrapper-content animated fadeInRight">
+                <div className="row">
+                    <ReactNotification ref={this.notificationDOMRef} />
+                    <div className="col-lg-12">
+                        <div className="ibox float-e-margins">
+                            <div className="ibox-projectName">
+                                <h5>Projects</h5>
+                            </div>
+                            <div className="ibox-content">
+                                <div className="row">
+                                    <div className="col-sm-3">
+                                        <button type="button" className="btn btn-primary" onClick={() => this.addNewProject()} > New Project</button>
+                                    </div>
+                                    <FunnelModalForm userId={userId} feedback={feedback} city={city} categories={categories} id={id} category={category} phoneNumber={phoneNumber} description={description} user={user} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} email={email} objectifAmount={objectifAmount} country={country} countries={countries} closeModal={() => this.closeModal()} />
+                                </div>
+                                {funnels && funnels.length ? <div className="table-responsive">
+                                    <table className="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Category</th>
+                                                <th>phoneNumber</th>
+                                                <th>Email</th>
+                                                <th>Objectif Amount</th>
+                                                <th>Current Amount</th>
+                                                <th>Created At</th>
+                                                <th className="pull-right">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {funnels && funnels.map((funnel, index) => (
+                                                <Tr key={funnel._id} funnel={funnel} editFunnel={(funnel) => this.editFunnel(funnel)} formatDate={(date) => this.formatDate(date)} />
+                                            ))}
 
-<div className="col-lg-12">
-    <div className="ibox float-e-margins">
-        <div className="ibox-title">
-            <h5>Funnel List</h5>
-        </div>
-        <div className="ibox-content">
-            <div className="row">
-             <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Funnel</button>
+                                        </tbody>
+                                    </table>
+                                </div> : ''}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <FunnelModalForm industries={industries} categories={categories} id={id} category={category} price={price} description={description} title={title} industry={industry} forWhoFoundsRaise = {forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise}video={video} show={show} image={image} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount = {objectifAmount} closeModal={()=>this.closeModal()} />
-             </div>
-            {funnels&&funnels.length?<div className="table-responsive">
-                <table className="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Industry</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Created At</th>
-                        <th className="pull-right">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {funnels&&funnels.map((funnel, index)=>(
-                            <Tr key={funnel._id} funnel={funnel} editFunnel={(funnel)=>this.editFunnel(funnel)} formatDate={(date)=>this.formatDate(date)}/>
-                    ))}
-                    
-                    </tbody>
-                </table>
-            </div>:''}
-
-        </div>
-    </div>
-</div>
-
-</div>
-</div>
         )
     }
 }

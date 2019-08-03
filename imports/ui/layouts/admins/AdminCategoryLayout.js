@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+
 import {Meteor} from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+
 import Location from '../../globalComponents/Location';
 import AdminCategory from '../../components/admins/categories/AdminCategory';
 import {Categories} from '../../../api/collections'
@@ -11,7 +13,7 @@ class AdminCategoryLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'Categories', 'Admin'], title: 'Administration' };
+    const location = {path: ['Home', 'Categories', 'Admin'], projectName: 'Administration' };
     const {categories} = this.props;
     console.log(this.props);
     return (

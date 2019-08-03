@@ -58,8 +58,8 @@ initiateAgreement(e) {
                     [ Image ]
                     </div>
                     <div className="product-desc">
-                                <span className="product-price">
-                                    ${plan&&plan.price}/MONTH</span>
+                                <span className="product-phoneNumber">
+                                    ${plan&&plan.phoneNumber}/MONTH</span>
                         <a href="#" className="product-name"><span>{plan?plan.name:''}</span> </a>
                         <div className="m-t-xs">
                              {plan&&plan.description}
