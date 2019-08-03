@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Input from '../../globalComponents/Input';
 import Select from '../../globalComponents/Select';
 import Summernote from '../../globalComponents/Summernote';
+import {toObjectId} from '../../../utilities/';
 import Textarea from '../../globalComponents/Textarea';
 import Upload from '../../globalComponents/Upload';
 import { Funnels, Images, Videos, Documents } from '../../../api/collections';

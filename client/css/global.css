@@ -10986,3 +10986,55 @@ color:white;
 .someProjectContainer{
   background-color: white !important;
 }
+
+/* Donation page */
+
+#donation-comment-bloc {
+  margin-top: 2.5rem;
+  margin-bottom: 4rem;
+  border: solid 1px #eee;
+  padding: 3rem 3rem;
+  background-color: white;
+}
+
+#donation-comment-bloc .comment-item{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding-bottom: .7rem;
+}
+#donation-comment-bloc .comment-item:not(:last-child){
+  border-bottom: solid 1px #eee;
+}
+
+#donation-comment-bloc .header{
+  display: flex;
+  align-items: center;
+}
+#donation-comment-bloc .body{
+  display: flex;
+  flex-direction: column;
+  margin-left: 3.7rem;
+}
+#donation-comment-bloc .body i{
+  align-self: flex-end;
+  font-size: 1rem;
+}
+#donation-comment-bloc h4{
+  margin-left: 1rem;
+  font-size: 1.35rem;
+  margin-top: 1.2rem;
+}
+#donation-comment-bloc h3{
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  #donation-comment-bloc .body{
+    margin-left: 0rem !important;
+  }
+  #donation-comment-bloc .body p{
+    font-size: 1.1rem;
+  }
+}
