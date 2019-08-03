@@ -153,13 +153,15 @@ class ProjectDetails extends Component {
                     <div className="col-sm-12 col-md-8 left">
                         <div className="infos">
                             {/* For Team */}
-                            {
-                                project.teamImage.length > 0 ?
+                            {project.teamImage ?
+                                // project.teamImage.length > 0 ?
                                     <AwesomeSlider bullets={false}>
                                         <div data-src={project.projectImage} />
                                         <div data-src={project.teamImage} />
-                                    </AwesomeSlider>:
-                                    <img src={project.projectImage} />
+                                    </AwesomeSlider>
+                                // :
+                            :        
+                                <img src={project.projectImage} />
                             }
                             {/* For Team */}
                             <div className="otherinfos">
@@ -259,7 +261,14 @@ class ProjectDetails extends Component {
                                     </div>
                                 </div>
                                 <div className="socialBtn">
-                                    <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary st">Donate </Link>
+                                {user ? 
+                                    user.profile.role == 'admin' ?
+                                        null
+                                    :
+                                        <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary st">Donate </Link>
+                                :
+                                    null
+                                }
                                     {/* <button className="fb btn">Partager sur Facebook</button> */}
                                     {
                                         user ? 
@@ -316,7 +325,7 @@ class ProjectDetails extends Component {
                             <img src="/images/user.png" />
                             <div className="profile-infos">
                                 <div>
-                                    <p>{project.userId.profile ? project.userId.profile.name: project.userId.username}</p>
+                                    {/* <p>{project.userId.profile ? project.userId.profile.name: project.userId.username}</p> */}
                                     <p>{project.country}</p>
                                 </div>
                                 <div>
