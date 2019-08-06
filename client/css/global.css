@@ -10403,6 +10403,38 @@ color: green;
     left: 0;
   }
 
+  .descriptionText h3{
+    font-size: 4vw !important;
+  }
+  
+  .descriptionText p{
+    font-size: 2.4vw !important;
+  }
+
+  .descriptionText a{
+    font-size: 3vw !important;
+    border: 2px solid #005991;
+    padding: 7px 35px !important;
+    font-weight: 500;
+  }
+
+  .addprojectBtn{
+    font-size: 14px !important;
+    font-weight: bold;
+    background-color: #E99607;
+    padding: 10px 35px !important;
+    border-radius: 25px;
+  }
+
+  .footerLogoContainer{
+    text-align: left !important;
+  }
+
+  
+.socials{
+  text-align: left !important;
+}
+
 }
 
 #funnelListkamer{
