@@ -13,19 +13,19 @@ import CircleStep from '../../globalComponents/CircleStep';
 class ModalSubscription extends Component {
   constructor(props) {
     super(props);
-this.state = {
-    email: '',
-    password: '',
-    name:'',
-    confirmPassword: '',
-    errors: {},
-    isLoading: false,
-    redirect:false,
-    isLogin:true,
-    step: 0,
-    class0: 'btn-primary',
-    class1: 'btn-default',
-    isNew:false
+    this.state = {
+        email: '',
+        password: '',
+        name:'',
+        confirmPassword: '',
+        errors: {},
+        isLoading: false,
+        redirect:false,
+        isLogin:true,
+        step: 0,
+        class0: 'btn-primary',
+        class1: 'btn-default',
+        isNew:false
     };
 }
 

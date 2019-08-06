@@ -34,7 +34,7 @@ class FunnelList extends Component {
             <p className="text-center" id="getStarted">Get started below</p>
             <br/>
             <br/> 
-              <a  href="/admin/funnels" type="submit" className=" addprojectBtn Link">Let's Get started</a>
+              <a  href="/" type="submit" className=" addprojectBtn Link">Let's Get started</a>
           </div>
         </div>
         <div className="row no-padding helpSection" id="Help">
