@@ -915,6 +915,7 @@ h4,
 h5,
 h6 {
   font-weight: 100;
+  font-family: 'Roboto Slab', serif !important;
 }
 .h1,
 .h2,
@@ -4494,7 +4495,7 @@ samp {
   border-bottom: 1px solid #e7eaec;
 }
 body {
-  font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Tahoma', serif !important;
   background-color: #2f4050;
   font-size: 13px;
   color: #676a6c;
@@ -4503,6 +4504,7 @@ body {
 html,
 body {
   height: 100%;
+  font-family: 'Roboto Slab'; 
 }
 body.full-height-layout #wrapper,
 body.full-height-layout #page-wrapper {
@@ -4536,7 +4538,13 @@ body.boxed-layout #wrapper {
 a {
   color: #337ab7;
   cursor: pointer;
+  font-family: 'Tahoma', serif !important;
 }
+
+p{
+  font-family: 'Tahoma', serif !important;
+}
+
 a:hover,
 a:focus {
   text-decoration: none;
@@ -10798,6 +10806,8 @@ padding: 0 8px;
 
 .titleMain{
   font-size: 3vw;
+  font-family: 'Roboto Slab', serif !important;
+  /* font-family: 'Tahoma', serif !important; */
 }
 
 #getStarted{
@@ -10931,6 +10941,7 @@ color:white;
 .fullwidthBlue .firstText{
   font-size: 2vw;
   color: #fff;
+  font-family: 'Roboto Slab', serif !important;
 }
 
 .fullwidthBlue .secondText{
