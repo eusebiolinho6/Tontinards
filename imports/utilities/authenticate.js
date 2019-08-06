@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import {Meteor} from 'meteor/meteor'
-import { checkRole } from '.';
+import { checkRole } from './index';
 
 export default function(ComposedComponent){
     class Authenticate extends Component{

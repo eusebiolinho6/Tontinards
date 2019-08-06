@@ -41,15 +41,17 @@ class Admin extends Component {
   }
   
   asyncCall = async() => {
-    await this.resolveAfter2Seconds()
-    .then(res => {
-      this.setState({
-        user: res
-      })
-    }).then(res => {
-      this.renderUI();  
-      // console.log(res);
-    })
+    // await this.resolveAfter2Seconds()
+    // .then(res => {
+    //   this.setState({
+    //     user: res
+    //   })
+    // }).then(res => {
+    //   this.renderUI();  
+    //   // console.log(res);
+    // })
+
+    this.renderUI()
   }
 
   componentWillMount(){
@@ -63,8 +65,8 @@ class Admin extends Component {
         <Switch>
           <Fragment>
             <HeaderLayout />
-            {this.state.user? 
-              this.state.user.profile.role == "admin" ?
+            {1==1? 
+              2==2 ?
               <span>
                 <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>

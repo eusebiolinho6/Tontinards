@@ -42,15 +42,17 @@ class User extends Component {
   }
   
   asyncCall = async() => {
-    await this.resolveAfter2Seconds()
-    .then(res => {
-      this.setState({
-        user: res
-      })
-    }).then(res => {
-      this.renderUI();  
-      // console.log(res);
-    })
+    // await this.resolveAfter2Seconds()
+    // .then(res => {
+    //   this.setState({
+    //     user: res
+    //   })
+    // }).then(res => {
+    //   this.renderUI();  
+    //   // console.log(res);
+    // })
+
+    this.renderUI();
   }
 
   componentWillMount(){
@@ -64,7 +66,7 @@ class User extends Component {
         <Switch>
           <Fragment>
             <HeaderLayout />
-            {this.state.user ? 
+            {1==1 ? 
               <span>
                 <Route exact path='/user/funnels' component={authenticate(AdminPage)}/>
                 {/* <Route exact path='/user/projectdetails' component={ProjectsDetailsPage}/> */}
