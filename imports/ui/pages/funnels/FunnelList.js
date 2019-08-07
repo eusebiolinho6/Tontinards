@@ -130,7 +130,7 @@ class FunnelList extends Component {
               />
             </div>
             <div className="col-md-6 descriptionText">
-              <h3> Why Tontinard?</h3>
+              <h3> Why Tontinards?</h3>
               <p >
                 Qui aime est patient et bon, il n'est pas envieux, ne se vante pas et n'est pas prétentieux; qui aime ne fait rien de honteux, n'est pas égoïste, ne s'irrite pas et n'éprouve pas de rancune. Qui aime supporte tout et garde en toute circonstance la foi, l'espérance et la patience. 
               </p>
@@ -149,7 +149,7 @@ class FunnelList extends Component {
             </p>
             <p className="secondText">Get started below</p>
             <br/>
-            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Let's Get Started</a>
+            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Let's Get started</a>
           </div>
           <div className="col-md-4 col-sm-2 col-xs-2"></div>
         </div>
