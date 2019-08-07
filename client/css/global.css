@@ -10904,6 +10904,7 @@ color:white;
   .help{
     width: 170%;
     font-size: 14px;
+    margin-left: -20px;
   }
   .help p{
     width: 100%;
