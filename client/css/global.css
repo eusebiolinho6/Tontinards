@@ -11051,3 +11051,18 @@ color:white;
     font-size: 1.1rem;
   }
 }
+
+/* Auth Form */
+.social-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.9rem;
+}
+
+.social-wrapper .btn-info{
+  background-color: #00acee !important;
+}
+.social-wrapper .btn-default{
+  background-color: #0076B6 !important;
+  color: white;
+}

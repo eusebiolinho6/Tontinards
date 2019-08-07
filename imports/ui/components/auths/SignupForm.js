@@ -141,7 +141,7 @@ class SignupForm extends Component {
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <div className="row">
-                    <div className="col-md-3 col-sm-1"></div>
+                    <div className="col-md-6 col-sm-1"></div>
                     <div className="ibox col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1 float-e-margins">
                         <div className="ibox-projectName">
                             <h5>Sign up
@@ -198,9 +198,9 @@ class SignupForm extends Component {
                                 {/*  <div className="col-sm-12 mt-3">
                                     <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Signup with Twitter</strong></button>
                                 </div> */}
-                                <div className="col-sm-12 mt-12">
+                                <div className="col-sm-12 mt-12 social-wrapper">
                                     <button className="btn btn-md btn-danger mt-3" onClick={this.signupWithGoogle} ><strong>Signup with Google</strong></button><br />
-                                    <button className="btn btn-md btn-default mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br />
+                                    <button className="btn btn-md btn-primary mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br />
                                     <button className="btn btn-md btn-info mt-3" onClick={this.signupWIthTwitter} ><strong>Signup with Twitter</strong></button><br />
                                 </div>
                             </div>
