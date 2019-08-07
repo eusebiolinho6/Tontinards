@@ -187,9 +187,12 @@ class ProjectDetails extends Component {
                                     <h3 
                                         onClick={this.toggleContent}
                                         className={this.state.story ? "story btn1 active-content": "story btn1"}>Story</h3>
-                                    <h3 
-                                        onClick={this.toggleContent}
-                                        className={!this.state.story ? "statement btn1 active-content": "statement btn1"}>Reviews</h3>
+                                    {
+                                        user ?
+                                        <h3 
+                                            onClick={this.toggleContent}
+                                            className={!this.state.story ? "statement btn1 active-content": "statement btn1"}>Reviews</h3>:null
+                                    }
                                 </div>
                                 <div className="content">
                                     {
@@ -208,14 +211,14 @@ class ProjectDetails extends Component {
                                     }
                                 </div>
                             </div>
-                            <div className="form-content">
+                            {/* <div className="form-content">
                              <form className="input__form" onSubmit={()=>this.handleSubmit}>
                                 <div className="form-group">
                                     <textarea placeholder="Enter your message" className="form-control" onChange={(e) => this.setState({message: e.target.value})} id="textmessage" rows="3"></textarea>
                                 </div>
                                 <button className="btn send-btn" type="submit">Send</button>
                              </form>
-                            </div>
+                            </div> */}
                             <div>
                               
                         </div>
@@ -240,7 +243,7 @@ class ProjectDetails extends Component {
                             <div className="otherinfos">
                                 <div className="d-flex flex-row justify-content-center align-items-center">
                                     <div>
-                                        <p>Campagne crée depuis <Moment fromNow ago>{project.createdAt}</Moment>.</p>
+                                        <p>Campaign launched <Moment fromNow>{project.createdAt}</Moment>.</p>
                                     </div>
                                     <div className="progress">
                                         <CircularProgressbar
@@ -307,7 +310,7 @@ class ProjectDetails extends Component {
                             }
                         </div>
                         <div className="date">
-                            <p>Date de création : <b>
+                            <p>Création Date: <b>
                                 <Moment parse="YYYY-MM-DD">
                                     {project.createdAt}
                                 </Moment></b>
@@ -317,7 +320,7 @@ class ProjectDetails extends Component {
                             <img src="/images/user.png" />
                             <div className="profile-infos">
                                 <div>
-                                    {/* <p>{project.userId.profile ? project.userId.profile.name: project.userId.username}</p> */}
+                                    <p>{project.userId.profile ? project.userId.profile.name ? project.userId.profile.name: project.userId.username : project.userId.username}</p>
                                     <p>{project.country}</p>
                                 </div>
                                 <div>
@@ -331,7 +334,7 @@ class ProjectDetails extends Component {
                             </div>
                             <div className="messages-items">
                                 {!project.donators ?
-                                    <h5>Aucun don pour l'instant. Participez au lancement de cette campagne et devenez le premier donateur.</h5>:
+                                    <h5>No donations for the moment.</h5>:
                                     <div className="alldons">
                                         {project.donators.map((don) => {
                                             return (
@@ -344,12 +347,12 @@ class ProjectDetails extends Component {
                                 }
                             </div>
                         </div>
-                        <div className="messages">
+                        {/* <div className="messages">
                             <div className="allmessages">
                                 <h4>Inbox Messages</h4>
                                 <span>5</span>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
