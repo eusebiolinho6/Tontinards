@@ -4597,7 +4597,6 @@ video {
 /* WRAPPERS */
 #wrapper {
   width: 100%;
-  overflow-x: hidden;
 }
 .wrapper {
   padding: 0 20px;
@@ -11065,4 +11064,12 @@ color:white;
 .social-wrapper .btn-default{
   background-color: #0076B6 !important;
   color: white;
+}
+
+/* Main layout */
+#container-fluid {
+  width: 90%;
+}
+#projectlist-wrapper {
+  background-color: white;
 }

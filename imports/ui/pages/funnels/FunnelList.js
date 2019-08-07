@@ -116,9 +116,13 @@ class FunnelList extends Component {
             typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
           </p>
         </div> */}
-        <div className="col-md-12">
-          <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
-        </div>
+        <section id="projectlist-wrapper">
+          <div className="container-fluid" id="container-fluid">
+            <div className="col-md-12">
+              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
+            </div>
+          </div>
+        </section>
 
         <div className="col-md-12 col-sm-12 descriptionDiv">
           <div className="col-md-2 col-sm-2"></div>
