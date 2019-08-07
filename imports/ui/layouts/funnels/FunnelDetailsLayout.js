@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+
 import {Meteor} from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+
 import Header from '../../globalComponents/Header';
-import Location from '../../globalComponents/Location'
+import Location from '../../globalComponents/Location';
 import FunnelDetails from '../../components/funnels/FunnelDetails';
 import FunnelList from '../../components/funnels/DetailsFunnelList'
 import {toObjectId} from '../../../utilities/'
@@ -21,6 +23,7 @@ class FunnelDetailsLayout extends Component {
   render () {
     const location = {path: ['Home', 'Funnels', 'detail'], projectName: 'Details' };
     const {funnel, funnels, user} = this.props;
+   
     return (
         <Fragment>
             <Location location={location} />

@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
+
 import ModalSubscription from './../payments/ModalSubscription';
-import { checkRole } from '../../../utilities';
 import ProjectItem from '../projects/ProjectItem';
+import { checkRole } from '../../../utilities';
 
 
 // App component - represents the whole app
@@ -32,7 +33,7 @@ class FunnelList extends Component {
           { project.projectState != "START CAMPAIGN"?
           ""
             :
-            <ProjectItem key={index} project={project}  user="guest"/>
+            <ProjectItem key={index} project={project}  user={{ profile: {role: "guest" }}}/>
           }
       </div>
     ))
@@ -41,8 +42,7 @@ class FunnelList extends Component {
       render() {
         const {show}=this.state;
         const{funnels, userId}=this.props,
-        isAuthorized = checkRole(['admin', 'paid'], userId);
-        console.log(funnels);
+        isAuthorized = checkRole(['user'], userId);
 
         return (
         <div style={{width: '100%', paddingTop: '0px'}} className="wrapper wrapper-content animated fadeInRight">
@@ -55,7 +55,7 @@ class FunnelList extends Component {
           {this.renderProjects(funnels)}
         </div>
 
-</div>
+</div> 
         )
     }
 }

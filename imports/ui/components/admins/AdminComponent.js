@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import FunnelModalForm from './../funnels/Funnel-Modal-Form';
 import Input from '../../globalComponents/Input'
-import Tr from '../../globalComponents/Tr'
+import Tr from '../../globalComponents/Tr';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -32,20 +34,34 @@ class FunnelLIstAdmin extends Component {
             video: '',
             id: '',
             country: '',
+            countries: [],
+            city: '',
             email: '',
             show: false,
-            feedback: ''
+            feedback: '',
+            currentUser: null
         };
-        console.log(this.props.user._id);
+        console.log(this.props.user);
+        this.notificationDOMRef = React.createRef();
     }
 
     componentWillReceiveProps() {
         this.loadCountry();
+        // const currentUser = Meteor.call('getTheCurrent', this.props.user);
+        // console.log(currentUser)
+        // this.setState({currentUser: currentUser});
 
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.user != this.props.user) {
+            this.setState({currentUser: this.props.user})
+        }
+    }
+
+
     async loadCountry() {
-        const countries = await axios.get('https://restcountries.eu/rest/v2/all')
+        const countries = await axios.get('https://restcountries.eu/rest/v2/regionalbloc/au')
             .then(function (response) {
                 // handle success
                 return response;
@@ -97,6 +113,7 @@ class FunnelLIstAdmin extends Component {
             teamImage: funnel.teamImage,
             video: funnel.video,
             country: funnel.country,
+            city: funnel.city,
             email: funnel.email,
             show: true
         });
@@ -106,7 +123,7 @@ class FunnelLIstAdmin extends Component {
         this.setState({ show: false });
         this.setState({
             projectName: '',
-            userId: '',
+            city: '',
             projectState: '',
             currentAmount: '',
             onefoundRaiseAs: '',
@@ -124,18 +141,42 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             email: '',
-            isLoading: false,
+            isLoading: false
         })
     }
 
+    addNotification = (massage) => {
+        this.notificationDOMRef.current.addNotification({
+          title: "PROJECT STATE",
+          message: massage,
+          type: "danger",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: { duration: 2000 },
+          dismissable: { click: true }
+        });
+    }
+
+    addNewProject = () => {
+        if(this.state.currentUser.emails) {
+            this.setState({show: true})
+        } else {
+            this.addNotification("Please, update your profile with your email.");
+        }
+    }
+
     render() {
-        const { show, zipCode, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, video, email, feedback,  country, countries } = this.state;
-        const { funnels, categories, foundRaiseAs, forWhoFoundsRaise } = this.props;
+        const { show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries } = this.state;
+        const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
+        //console.log(user);
+        
         console.log(funnels)
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <div className="row">
-
+                    <ReactNotification ref={this.notificationDOMRef} />
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
                             <div className="ibox-projectName">
@@ -144,9 +185,17 @@ class FunnelLIstAdmin extends Component {
                             <div className="ibox-content">
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <button type="button" className="btn btn-primary" onClick={() => this.setState({ show: true })} > New Project</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => this.addNewProject()} > New Project</button>
                                     </div>
-                                    <FunnelModalForm feedback={feedback} categories={categories} id={id} category={category} zipCode={zipCode} description={description} projectName={projectName} projectState={projectState} currentAmount={currentAmount} teamName={teamName} forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} video={video} show={show} projectImage={projectImage} teamImage={teamImage} document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} objectifAmount={objectifAmount} email={email} country={country} countries={countries} closeModal={() => this.closeModal()} />
+                                    <FunnelModalForm userId={this.state.currentUser} feedback={feedback} city={city} 
+                                    categories={categories} id={id} category={category} phoneNumber={phoneNumber} 
+                                    description={description} user={this.state.currentUser} projectName={projectName} 
+                                    projectState={projectState} currentAmount={currentAmount} teamName={teamName} 
+                                    forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
+                                    video={video} show={show} projectImage={projectImage} teamImage={teamImage} 
+                                    document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} 
+                                    email={email} objectifAmount={objectifAmount} country={country} countries={countries}
+                                     closeModal={() => this.closeModal()} />
                                 </div>
                                 {funnels && funnels.length ? <div className="table-responsive">
                                     <table className="table table-striped">
@@ -154,7 +203,7 @@ class FunnelLIstAdmin extends Component {
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Category</th>
-                                                <th>zipCode</th>
+                                                <th>phoneNumber</th>
                                                 <th>Email</th>
                                                 <th>Objectif Amount</th>
                                                 <th>Current Amount</th>

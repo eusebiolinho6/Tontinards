@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import MainLayout from '../MainLayout';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import ProjectItem from '../../components/projects/ProjectItem';
 import {Categories, Funnels} from '../../../api/collections';
@@ -20,7 +21,7 @@ class ProjectsLayout extends Component {
  */
   renderProjects(projects, sop){
     return projects.map((project, index)=>(
-      <ProjectItem key={index} project={project} stateOfProject={sop} user="simpleUser"/>
+      <ProjectItem key={index} project={project} stateOfProject={sop} user={this.props.user}/>
     ))
   }
 
@@ -44,7 +45,7 @@ class ProjectsLayout extends Component {
 
 
   render() {
-    const {funnels, userId} = this.props;
+    const {funnels, userId, user} = this.props;
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
@@ -57,6 +58,7 @@ class ProjectsLayout extends Component {
       : 
       pendingProjects.push(project);
     })
+    console.log(user);
     return (
       <div className="container-fluid no-padding">
         <div className="row projectsPageHeader">
@@ -139,9 +141,11 @@ class ProjectsLayout extends Component {
 export default withTracker((props)=>{
   Meteor.subscribe('funnels');
   Meteor.subscribe('categories');  
+  Meteor.subscribe('users');
   let q={};
   return {
     funnels: Funnels.find(q).fetch(),
-    userId:Meteor.userId()
+    userId:Meteor.userId(),
+    user: Meteor.user()
   }
 })(ProjectsLayout);

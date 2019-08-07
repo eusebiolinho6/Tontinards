@@ -45,6 +45,17 @@ this.state = {
       });
   }
 
+  // set user role when user sign
+  setUserRole = () => {
+    Meteor.call('setUserRole', (err, res) => {
+        if (err) {
+            console.log(err)
+        } else {
+            this.setState({redirect: true})
+        }
+     });
+  }
+
   loginGoogle = () =>{
      
       Meteor.loginWithGoogle(
@@ -56,7 +67,7 @@ this.state = {
             if (error) {
                 console.log(error); //If there is any error, will get error here
             }else{
-                this.setState({redirect: true})
+                this.setUserRole();
                 console.log(Meteor.user());// If there is successful login, you will get login details here
                
             }
@@ -75,7 +86,7 @@ this.state = {
           if (error) {
               console.log(error); //If there is any error, will get error here
           }else{
-              this.setState({redirect: true})
+              this.setUserRole();
               console.log(Meteor.user());// If there is successful login, you will get login details here
              
           }
@@ -90,7 +101,8 @@ this.state = {
         if (error) {
           console.log(error)
         } else {
-            this.setState({redirect:true});
+            this.setUserRole();
+            console.log(Meteor.user());
         }
       });
   }
@@ -108,18 +120,6 @@ this.state = {
             })
      }
    
-  }
-
-  loginWIthTwitter = () => {
-    Meteor.loginWithTwitter({
-        requestPermissions: ['basic']
-      }, (error) => {
-        if (error) {
-          console.log(error)
-        } else {
-            this.setState({redirect:true});
-        }
-      });
   }
 
   render() {

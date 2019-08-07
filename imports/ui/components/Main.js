@@ -33,9 +33,9 @@ class Main extends Component {
         // console.log(funnels);
         const { isLoading } = this.state;
         return (
-            <div className="wrapper wrapper-content">
+            <div className="wrapper wrapper-content someProjectContainer">
                 <div className="projectContainer">
-                    <hr/>
+                    {/* <hr/> */}
                     <h1>Some Projects</h1>
                     <br/>
                     <br/>
@@ -60,6 +60,7 @@ class Main extends Component {
                         
                     </div>
                 </div>
+                {/* <hr className= "beforeWhytontinard" /> */}
             </div>
         )
     }
