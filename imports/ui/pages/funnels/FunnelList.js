@@ -116,9 +116,13 @@ class FunnelList extends Component {
             typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
           </p>
         </div> */}
-        <div className="col-md-12">
-          <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
-        </div>
+        <section id="projectlist-wrapper">
+          <div className="container-fluid" id="container-fluid">
+            <div className="col-md-12">
+              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
+            </div>
+          </div>
+        </section>
 
         <div className="col-md-12 col-sm-12 descriptionDiv">
           <div className="col-md-2 col-sm-2"></div>
@@ -130,7 +134,7 @@ class FunnelList extends Component {
               />
             </div>
             <div className="col-md-6 descriptionText">
-              <h3> Why Tontinard?</h3>
+              <h3> Why Tontinards?</h3>
               <p >
                 Qui aime est patient et bon, il n'est pas envieux, ne se vante pas et n'est pas prétentieux; qui aime ne fait rien de honteux, n'est pas égoïste, ne s'irrite pas et n'éprouve pas de rancune. Qui aime supporte tout et garde en toute circonstance la foi, l'espérance et la patience. 
               </p>
@@ -149,7 +153,7 @@ class FunnelList extends Component {
             </p>
             <p className="secondText">Get started below</p>
             <br/>
-            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Let's Get Started</a>
+            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Let's Get started</a>
           </div>
           <div className="col-md-4 col-sm-2 col-xs-2"></div>
         </div>
