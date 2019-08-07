@@ -124,7 +124,7 @@ class FunnelList extends Component {
           <div className="col-md-2 col-sm-2"></div>
           <div className="col-md-8 col-sm-8 col-xs-12">
             <div className="col-md-6">
-            < img src = "/images/img1.PNG"
+            <img src = "/images/img1.png"
                 className = "imgWhyTontinard"
                 alt = "Goal Image"
               />
