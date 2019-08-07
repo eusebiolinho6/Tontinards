@@ -160,7 +160,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     addNewProject = () => {
-        if(this.state.currentUser.emails[0].address) {
+        if(this.state.currentUser.emails) {
             this.setState({show: true})
         } else {
             this.addNotification("Please, update your profile with your email.");
