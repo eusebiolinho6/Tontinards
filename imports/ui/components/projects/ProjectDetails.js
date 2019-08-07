@@ -294,14 +294,6 @@ class ProjectDetails extends Component {
                                     :
                                     '' : null
                               }
-
-                            {
-                                user ? 
-                              user.profile.role == 'admin' && project.projectState == 'VALID' && this.state.hideButton == true
-                              ?
-                               <button className="fb btn" onClick={()=>this.editProject()}>Edit</button> 
-                                : '' : null
-                              }
                                 </div>
                             </div>
                         </div>
