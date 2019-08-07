@@ -252,8 +252,8 @@ class ProjectDetails extends Component {
                                                 strokeLinecap: 'butt',
                                                 textSize: '20px',
                                                 pathTransitionDuration: 0.5,
-                                                pathColor: `#18a689`,
-                                                textColor: '#333',
+                                                pathColor: `#005dac`,
+                                                textColor: '#231F20',
                                                 trailColor: '#d6d6d6',
                                                 backgroundColor: '#3e98c7',
                                             })}
