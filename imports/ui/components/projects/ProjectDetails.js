@@ -329,6 +329,9 @@ class ProjectDetails extends Component {
                             </div> 
                         </div>
                         <div className="messages">
+                            <a className="btn readproject" href={project.document}>Read project</a>                            
+                        </div>
+                        <div className="messages">
                             <div className="allmessages">
                                 <h4>Donations</h4>
                             </div>
@@ -348,10 +351,7 @@ class ProjectDetails extends Component {
                             </div>
                         </div>
 
-                        <div>
-                            <a className="btn btn-warning" href={project.document}>Document</a>
-                                                        
-                        </div>
+                       
 
                         <div className="messages">
                             <div className="allmessages">
