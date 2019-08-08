@@ -24,10 +24,10 @@ export const Videos = new FilesCollection({
     },
     onBeforeUpload(file) {
         // Allow upload files under 10MB, and only in png/jpg/jpeg formats
-        if (file.size <= 1024 * 1024 * 500 && /mp4|mpeg|mkv|avi|flv|mov/i.test(file.extension)) {
+        if (file.size <= 1024 * 1024 * 10 && /mp4|mpeg|mkv|avi|flv|mov/i.test(file.extension)) {
             return true;
         } else {
-            return 'Please upload video, with size equal or less than 500MB';
+            return 'Please upload video, with size equal or less than 10MB';
         }
     }
 });
