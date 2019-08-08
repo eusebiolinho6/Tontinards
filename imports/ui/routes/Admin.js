@@ -77,9 +77,9 @@ class Admin extends Component {
                 <Route exact path='/admin/projectdetails' component={ProjectDetails}/>
 
               </span> :
-              <Redirect to="/funnels/all/all" /> 
+              <Redirect to="/" /> 
               :
-            <Redirect to="/funnels/all/all" />
+            <Redirect to="/" />
           }
           </Fragment>
         </Switch>

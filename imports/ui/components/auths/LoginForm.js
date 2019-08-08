@@ -124,7 +124,7 @@ this.state = {
 
   render() {
       const { errors, email, password, isLoading, redirect } = this.state;
-      if(redirect) return <Redirect to="/funnels/all/all" />
+      if(redirect) return <Redirect to="/" />
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
              <div className="row">
