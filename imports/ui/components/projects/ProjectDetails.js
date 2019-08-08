@@ -302,10 +302,10 @@ class ProjectDetails extends Component {
                         </div>
                         <div className="video">
                             {
-                                project.projectVideo ? 
+                                project.video ? 
                                 <video width="100%" height="100%" poster="/images/img2.png" controls>
-                                    <source src="movie.mp4" type="video/mp4"></source>
-                                    <source src="movie.ogg" type="video/ogg"></source>
+                                    <source src={project.video} type="video/mp4"></source>
+                                    <source src={project.video} type="video/ogg"></source>
                                 </video>: null
                             }
                         </div>
@@ -347,12 +347,18 @@ class ProjectDetails extends Component {
                                 }
                             </div>
                         </div>
-                        {/* <div className="messages">
+
+                        <div>
+                            <a className="btn btn-warning" href={project.document}>Document</a>
+                                                        
+                        </div>
+
+                        <div className="messages">
                             <div className="allmessages">
                                 <h4>Inbox Messages</h4>
                                 <span>5</span>
                             </div>
-                        </div> */}
+                        </div> 
                     </div>
                 </div>
             </div>
