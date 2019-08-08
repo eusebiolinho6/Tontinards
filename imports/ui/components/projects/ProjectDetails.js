@@ -354,10 +354,7 @@ class ProjectDetails extends Component {
                         </div>
 
                         <div>
-                            <a className="btn btn-warning" href={project.document}>Document</a>
-                            <a className="btn btn-warning" href={project.video}>Video</a>
-
-                            
+                            <a className="btn btn-warning" href={project.document}>Document</a>                            
                         </div>
 
                         <div className="messages">
