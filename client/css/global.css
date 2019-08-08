@@ -11092,3 +11092,11 @@ color:white;
 #projectlist-wrapper {
   background-color: white;
 }
+
+.readproject{
+  background-color: #005DAC;
+  color: #fff !important;
+  font-weight: bolder;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
