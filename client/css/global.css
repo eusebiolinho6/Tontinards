@@ -1590,11 +1590,11 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     bottom: -400px !important; 
   }
   .fullwidthBlue .firstText{
-    font-size: 5vw !important;
+    font-size: 18px !important;
   }
   
   .fullwidthBlue .secondText{
-    font-size: 3vw !important;
+    font-size: 14px !important;
   }
 }
 .menu-visible-lg,
@@ -3643,6 +3643,7 @@ a.forum-item-projectName:hover {
   }
   .descriptionDiv{
     padding-top: 50px !important;
+    margin-bottom: 70px;
   }
 /*   
   .descriptionDiv .descriptionText{
@@ -9901,13 +9902,16 @@ a.Link{
 }
 
 .addprojectBtn{
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   padding: 12px 50px 12px 50px;
  }
 .AdminProjectHr{
   border: 0.5px solid rgb(155, 148, 148);
   width: 100%;
+  height: 1px;
+  background: #000;
+  opacity: 0.2;
 }
 .AdminProjectH2{
 margin-left: 12px;
@@ -9987,6 +9991,7 @@ color: green;
 .AdminProjectH1{
   font-size: 25px;
   font-weight: bold;
+  margin-left: 25px
   }
   .AdminProjectSHr{
   border: 0.5px solid rgb(155, 148, 148);
@@ -10421,15 +10426,15 @@ color: green;
   }
 
   .descriptionText h3{
-    font-size: 4vw !important;
+    font-size: 18px !important;
   }
   
   .descriptionText p{
-    font-size: 2.4vw !important;
+    font-size: 14px !important;
   }
 
   .descriptionText a{
-    font-size: 3vw !important;
+    font-size:14px !important;
     border: 2px solid #005991;
     padding: 7px 35px !important;
     font-weight: 500;
@@ -10442,6 +10447,7 @@ color: green;
     padding: 10px 35px !important;
     border-radius: 25px;
   }
+  
 
   .footerLogoContainer{
     text-align: left !important;
@@ -10815,13 +10821,13 @@ padding: 0 8px;
 }
 
 .titleMain{
-  font-size: 3vw;
+  font-size: 56px;
   font-family: 'Roboto Slab', serif !important;
   /* font-family: 'Tahoma', serif !important; */
 }
 
 #getStarted{
-  font-size: 1.25vw;
+  font-size: 24px;
 }
 
 .toggle-downIcon{
@@ -10861,11 +10867,12 @@ padding: 0 8px;
   display: flex;
   height: 250px;
   justify-content: space-evenly;
+  margin-bottom:200px 
 
 }
 .helpTitle{
 text-align: center;
-font-size: 20px;
+font-size: 24px;
 color:white;
 }
 /* p .helpTitle{
@@ -10876,10 +10883,13 @@ color:white;
   background-color:#005991;
 }
 .help{
-  font-size: 10px;
+  font-size: 16px;
   color:white;
   /* width: 10%; */
 }
+/* .help strong{
+  font-size: 24px;
+} */
 .help p{
   width: 65%;
 
@@ -10895,13 +10905,15 @@ color:white;
   }
   .helpTitle{
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
   }
   .helpImgIcon{
       width: 30%;
   }
   .help{
     width: 170%;
+    font-size: 14px;
+    margin-left: -20px;
   }
   .help p{
     width: 100%;
@@ -10910,6 +10922,13 @@ color:white;
   .signIn, .signUp{
     width: 40%;
   }
+  .titleMain{
+    font-size: 28px;
+  }
+  #getStarted{
+    font-size: 14px;
+  }
+
 }
 @media (min-width: 588px) and (max-width: 1024px) {
   .helpContainer{
@@ -10949,13 +10968,13 @@ color:white;
 }
 
 .fullwidthBlue .firstText{
-  font-size: 2vw;
+  font-size: 24px;
   color: #fff;
   font-family: 'Roboto Slab', serif !important;
 }
 
 .fullwidthBlue .secondText{
-  font-size: 1.1vw;
+  font-size: 16px;
   color: #fff;
 }
 
@@ -10976,15 +10995,15 @@ color:white;
 }
 
 .descriptionText h3{
-  font-size: 2vw;
+  font-size: 24px;
 }
 
 .descriptionText p{
-  font-size: 1.2vw;
+  font-size: 18px;
 }
 
 .descriptionText a{
-  font-size: 1.2vw;
+  font-size: 18px;
   border: 2px solid #005991;
   border-radius: 20px;
   padding: 10px 50px;
@@ -11081,4 +11100,12 @@ color:white;
 }
 #projectlist-wrapper {
   background-color: white;
+}
+
+.readproject{
+  background-color: #005DAC;
+  color: #fff !important;
+  font-weight: bolder;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

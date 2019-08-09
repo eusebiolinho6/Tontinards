@@ -9,6 +9,7 @@ import Project from '../imports/ui/routes/Project';
 import Admin from '../imports/ui/routes/Admin';
 import User from '../imports/ui/routes/User';
 import '../imports/startup/accounts-config.js';
+import FunnelList from '../imports/ui/pages/funnels/FunnelList';
 import Authentication from '../imports/ui/routes/Authentication';
 import PaypalPage from '../imports/ui/pages/payments/PaypalPage';
 import PagePlans from '../imports/ui/pages/payments/PagePlans';
@@ -21,7 +22,7 @@ Meteor.startup(() => {
     <div>
         <Switch>
           <Route exact path='/' component={App} />
-          <Route path='/funnels' component={Funnel} />
+          <Route path='/project' component={Funnel} />
           <Route path='/projects' component={Project} />
           {/**<Route path='/pricing' component={PagePlans} />*/}
           <Route exact path='/paypal' component={PaypalPage} />

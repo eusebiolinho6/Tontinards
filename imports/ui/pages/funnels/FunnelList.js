@@ -49,7 +49,7 @@ class FunnelList extends Component {
           {/* <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" ></iframe> */}
            <br/>
            <br/>
-           <br/> 
+          
           <div class="row helpTitle">
               <p >We are here to <strong>help you</strong></p>
           </div>
@@ -109,6 +109,7 @@ class FunnelList extends Component {
            <br/>
            <br/>
            <br/>
+           
         </div>
         {/* <div className="col-md-12 submainTextContainer">
           <p className = "submainText">
