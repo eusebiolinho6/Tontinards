@@ -11,9 +11,14 @@ class HeaderLayout extends Component {
 
   render() {
     const { user } = this.props;
-    return (
-      <Header user={user} />
-    )
+    let data = null;
+    // Verify if all data are ready, then render this data
+    if(this.props.user) {
+      data = (
+        <Header user={user} />
+      )
+    }
+    return data;
   }
 }
 

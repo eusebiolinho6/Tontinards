@@ -78,76 +78,110 @@ class AdminDashboardLayout extends Component {
     refusedProjects = [],
     campaigns = [],
     {displayPendingProjects,displayValidatedProjects, displayCampaings} = this.state;
-    // Filter projects. Display all projects to admin and only user project to the current user
-    let newFunnels = [...funnels];
-    if (user.profile.role != "admin") {
-      newFunnels = funnels.filter(project => {
-        return project.userId._id == user._id;
+
+      let data = null;
+      // Verify if all data are ready, then render this data
+      if(this.props.funnels && 
+        this.props.user && 
+        this.props.categories && 
+        this.props.foundRaiseAs && 
+        this.props.forWhoFoundsRaise) {
+      // Filter projects. Display all projects to admin and only user project to the current user
+      let newFunnels = [...funnels];
+      if (user.profile.role != "admin") {
+        newFunnels = funnels.filter(project => {
+          return project.userId._id == user._id;
+        })
+      }
+      newFunnels.map((project) => {
+        project.projectState ? 
+          project.projectState == "VALID" ? validatedProjects.push(project) :
+          project.projectState == "REFUSED" ? refusedProjects.push(project) :
+          project.projectState == "START CAMPAIGN" ? campaigns.push(project): pendingProjects.push(project)
+        : 
+        ''
       })
-    }
-    newFunnels.map((project) => {
-      project.projectState ? 
-        project.projectState == "VALID" ? validatedProjects.push(project) :
-        project.projectState == "REFUSED" ? refusedProjects.push(project) :
-        project.projectState == "START CAMPAIGN" ? campaigns.push(project): pendingProjects.push(project)
-      : 
-      ''
-    })
-    
-    return (
-      <div className="container-fluid row">
-        <br/>
-        <h1 className = "AdminProjectH1">Projects List </h1>
-        <hr className = "AdminProjectHr"/>
-
-
-        {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
-        <div className="filerMenu col-md-3" id="filerMenu">
-          <h1 className="transparent">.</h1>
-          <form className="form">
-            <h2>Filter Options</h2>
-            {/* <div className="inputGroup">
-              <input id="option1" name="option1" type="checkbox"/>
-              <label for="option1">Pending projects</label>
-            </div>
-            
-            <div className="inputGroup">
-              <input id="option2" name="option2" type="checkbox"/>
-              <label for="option2">Valided projects</label>
-            </div>
-
-            <div className="inputGroup">
-              <input id="option2" name="option2" type="checkbox"/>
-              <label for="option2">Campaigns</label>
-            </div> */}
-
-            <div className="inputGroup">
-              <input id="radio1" name="radio" type="radio" checked={displayPendingProjects} onChange={()=>this.filterProjects("PENDING")}/>
-              <label for="radio1">Pending projects</label>
-            </div>
-
-            <div className="inputGroup">
-              <input id="radio2" name="radio" type="radio" onChange={()=>this.filterProjects("VALID")}/>
-              <label for="radio2">Valided projects</label>
-            </div>
-
-            <div className="inputGroup">
-              <input id="radio3" name="radio" type="radio" onChange={()=>this.filterProjects("CAMPAIGNS")}/>
-              <label for="radio3">Campaigns</label>
-            </div>
-          </form>
-
-        </div>
-
-        {/*------------------------ PROJECTS CONATINER -------------------------*/}        
-          <div className="container-fluid row col-md-9">
-            {displayPendingProjects ?        
-              <div className="row text-center pendingProjectsContainer">
+        data = (
+          <div className="container-fluid row">
+          <br/>
+          <h1 className = "AdminProjectH1">Projects List </h1>
+          <hr className = "AdminProjectHr"/>
+  
+  
+          {/*------------------------ FILTER MENU CONTAINER ----------------------*/}
+          <div className="filerMenu col-md-3" id="filerMenu">
+            <h1 className="transparent">.</h1>
+            <form className="form">
+              <h2>Filter Options</h2>
+              {/* <div className="inputGroup">
+                <input id="option1" name="option1" type="checkbox"/>
+                <label for="option1">Pending projects<AdminDashboardLayout/label>
+              </div>
+              
+              <div className="inputGroup">
+                <input id="option2" name="option2" type="checkbox"/>
+                <label for="option2">Valided projects</label>
+              </div>
+  
+              <div className="inputGroup">
+                <input id="option2" name="option2" type="checkbox"/>
+                <label for="option2">Campaigns</label>
+              </div> */}
+  
+              <div className="inputGroup">
+                <input id="radio1" name="radio" type="radio" checked={displayPendingProjects} onChange={()=>this.filterProjects("PENDING")}/>
+                <label for="radio1">Pending projects</label>
+              </div>
+  
+              <div className="inputGroup">
+                <input id="radio2" name="radio" type="radio" onChange={()=>this.filterProjects("VALID")}/>
+                <label for="radio2">Valided projects</label>
+              </div>
+  
+              <div className="inputGroup">
+                <input id="radio3" name="radio" type="radio" onChange={()=>this.filterProjects("CAMPAIGNS")}/>
+                <label for="radio3">Campaigns</label>
+              </div>
+            </form>
+  
+          </div>
+  
+          {/*------------------------ PROJECTS CONATINER -------------------------*/}        
+            <div className="container-fluid row col-md-9">
+              {displayPendingProjects ?        
+                <div className="row text-center pendingProjectsContainer">
+                    <br/>
+                    <h2 className = "AdminProjectH2">Pending Projects </h2>
+                    <br/>
+                    {
+                    pendingProjects.length == 0 ? 
+                    <div className="noProject">
+                      <span>{emptyIcon}</span>
+                      <h3>No project.</h3>
+                    </div>
+                    :
+                    <div>
+                      <div className="projects">
+                          {this.renderProjects(pendingProjects)}
+                      </div>
+                      <br/>
+                      {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                      <br/>
+                    </div> 
+                  }
+                </div>
+                :
+                ""
+              }
+  
+              {displayValidatedProjects ?
+                <div className="row text-center validatedProjectsConatiner">
+                  {/* <hr className = "AdminProjectSHr"/> */}
                   <br/>
-                  <h2 className = "AdminProjectH2">Pending Projects </h2>
+                  <h2 className = "AdminProjectH2">Valided Projects </h2>
                   <br/>
                   {
-                  pendingProjects.length == 0 ? 
+                  validatedProjects.length == 0 ? 
                   <div className="noProject">
                     <span>{emptyIcon}</span>
                     <h3>No project.</h3>
@@ -155,74 +189,50 @@ class AdminDashboardLayout extends Component {
                   :
                   <div>
                     <div className="projects">
-                        {this.renderProjects(pendingProjects)}
+                        {this.renderProjects(validatedProjects)}
                     </div>
                     <br/>
-                    {/* <a  id="5" onClick={()=> this.pushMoreProjects("pendingProjects", this.state.pendingProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                    {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
                     <br/>
-                  </div> 
-                }
-              </div>
-              :
-              ""
-            }
-
-            {displayValidatedProjects ?
+                  </div>
+                  }
+                </div>
+                :
+                ""
+              }
+  
+             {displayCampaings ?
               <div className="row text-center validatedProjectsConatiner">
                 {/* <hr className = "AdminProjectSHr"/> */}
                 <br/>
-                <h2 className = "AdminProjectH2">Valided Projects </h2>
+                <h2 className = "AdminProjectH2">Campaigns </h2>
                 <br/>
                 {
-                validatedProjects.length == 0 ? 
-                <div className="noProject">
-                  <span>{emptyIcon}</span>
-                  <h3>No project.</h3>
-                </div>
-                :
-                <div>
-                  <div className="projects">
-                      {this.renderProjects(validatedProjects)}
+                  campaigns.length == 0 ? 
+                  <div className="noProject">
+                    <span>{emptyIcon}</span>
+                    <h3>No project.</h3>
+                  </div> 
+                  :
+                  <div>
+                    <div className="projects">
+                      {this.renderProjects(campaigns)}
+                    </div>
+                    <br/>
+                    {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+                    <br/>
                   </div>
-                  <br/>
-                  {/* <a type="button" onClick={()=> this.pushMoreProjects("validatedProjects", this.state.validatedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-                  <br/>
-                </div>
                 }
               </div>
               :
               ""
             }
-
-           {displayCampaings ?
-            <div className="row text-center validatedProjectsConatiner">
-              {/* <hr className = "AdminProjectSHr"/> */}
-              <br/>
-              <h2 className = "AdminProjectH2">Campaigns </h2>
-              <br/>
-              {
-                campaigns.length == 0 ? 
-                <div className="noProject">
-                  <span>{emptyIcon}</span>
-                  <h3>No project.</h3>
-                </div> 
-                :
-                <div>
-                  <div className="projects">
-                    {this.renderProjects(campaigns)}
-                  </div>
-                  <br/>
-                  {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
-                  <br/>
-                </div>
-              }
-            </div>
-            :
-            ""
-          }
+          </div>
         </div>
-      </div>   
-    )
+        )
+    }
+    
+    return data;
   }
 }
 
