@@ -150,11 +150,12 @@ class FunnelList extends Component {
           <div className="col-md-4 col-sm-2 col-xs-2"></div>
           <div className="col-md-4 col-sm-8 col-xs-8 centerDiv">
             <p className="firstText">
-              Interested in <strong>raisong funds for your business now?</strong>
+              Do you want to <strong>join us transform Africa’s solidarity to Profit?</strong>
             </p>
-            <p className="secondText">Get started below</p>
             <br/>
-            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Let's Get started</a>
+            {/*these links Will come from cindy */}
+            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Start Funding</a>
+            <a type="btn btn-lg" href="#" className=" addprojectBtn Link"> Get Funding</a>
           </div>
           <div className="col-md-4 col-sm-2 col-xs-2"></div>
         </div>
