@@ -9785,13 +9785,27 @@ overflow-y: auto;
   padding-right: 0;
 }
 /*-----------------------------------------------------------------------------------------------*/
+.imgfirstcontain{
+  margin-top: -51px;
+  width: 100%;
+  margin-left:20%;
+  height: 500px;
+}
 .mainText{
   width: 60%;
-  /* margin-top: 200px; */
   font-size:5vw;
   font-weight: bolder;
 }
 
+.firstContain{
+ height: 420px;
+ background-color: #F1F1F1;
+}
+.firstContaindiv{
+  margin-top:-350px;
+  margin-left:42%;
+
+}
 .bg-overlay {
   background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("/images/tontinard.jpg");
   background-repeat: no-repeat;
@@ -9808,12 +9822,26 @@ a.Link{
 }
 
 .addprojectBtn{
-  font-size: 20px;
+  margin-left: -5px;
+  font-size: 15px;
   font-weight: bold;
   background-color: #E99607;
+  padding: 12px 30px 12px 30px;
+  border-radius: 25px;
+  border:2px solid #E99607 ;
+
+ }
+.getfundBtn{
+  margin-left:50px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: transparent;
+  color: #E99607 !important;
   padding: 12px 50px 12px 50px;
   border-radius: 25px;
+  border:2px solid #E99607 ;
  }
+
  .mainVideo{
   margin: 75px 10% 0px 10%;
  }
@@ -9901,11 +9929,7 @@ a.Link{
   color: white !important;
 }
 
-.addprojectBtn{
-  font-size: 18px;
-  font-weight: bold;
-  padding: 12px 50px 12px 50px;
- }
+
 .AdminProjectHr{
   border: 0.5px solid rgb(155, 148, 148);
   width: 100%;
@@ -10815,20 +10839,25 @@ padding: 0 8px;
 
 .footerInfos a{
   color: rgb(112, 104, 104);
+
 }
 #wrap-btn button {
   margin-right: 1.3rem;
 }
 
 .titleMain{
-  font-size: 56px;
+  font-size: 35px;
   font-family: 'Roboto Slab', serif !important;
   /* font-family: 'Tahoma', serif !important; */
 }
 
 #getStarted{
+  font-size: 14px;
+}
+getFund{
   font-size: 24px;
 }
+
 
 .toggle-downIcon{
   /* position: absolute; */

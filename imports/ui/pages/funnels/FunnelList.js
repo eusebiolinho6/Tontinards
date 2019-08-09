@@ -29,94 +29,33 @@ class FunnelList extends Component {
     return (
       <div className="container-fluid no-padding">
         <div className="row no-padding">
-          <div className="col-md-12 no-padding bg-overlay text-center ">
-            <p className="titleMain  text-center">Want to <strong>raise funds <br/>for your business ?</strong></p>
-            <p className="text-center" id="getStarted">Get started below</p>
-            <br/>
-            <br/> 
-              <a  href="/" type="submit" className=" addprojectBtn Link">Let's Get started</a>
+          <div className="col-md-12 no-padding firstContain  text-center ">
+          <div className="row">
+            <div className="col-md-6">
+              <img src="/images/imge1.png" className="imgfirstcontain "></img>
+            </div>
+            <div className="firstContaindiv col-md-6" >
+              <p className="titleMain  text-center"><strong> Invest in Cameroon’s </strong><strong><br/>most promising startups</strong></p>
+              <p className="text-center" id="getStarted">Get started below</p>
+              <br/>
+              <br/> 
+                <a  href="/" type="submit" className=" addprojectBtn Link"> Start Investing Now </a>
+                <a  href="/" type="submit" className=" getfundBtn ">Get Funded</a>
+            </div>
+          </div>
           </div>
         </div>
         <div className="row no-padding helpSection" id="Help">
-        <div className="row toggleiconwrapper">
-          <div className="toggle-downIcon">
-            <a href="#Help" className="Link">
-              <span className="glyphicon glyphicon-menu-down"  aria-hidden="true">
-              </span>
-            </a>
-          </div>
-        </div>
-          {/* <iframe className="embed-responsive-item " src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" ></iframe> */}
-           <br/>
-           <br/>
-          
-          <div class="row helpTitle">
-              <p >We are here to <strong>help you</strong></p>
-          </div>
-          
-           <div className="helpContainer ">
-              <div className="help">
-                  <img src="/images/user.png" className="helpImgIcon"></img>
-                  <br/>
-                  <br/>
-
-                  <p>
-                    <strong>Get the rigth people to fund your bussiness</strong>
-                  </p>
-                  <br/>
-                  <p>  
-                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et 
-                  la mise en page avant impression. 
-                  Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500
-                  </p>
+            <div className="row toggleiconwrapper">
+              <div className="toggle-downIcon">
+                <a href="#Help" className="Link">
+                  <span className="glyphicon glyphicon-menu-down"  aria-hidden="true">
+                  </span>
+                </a>
               </div>
-
-              <br/>
-              <div className="help" >
-              <img src="/images/user.png" className="helpImgIcon"></img>
-                  <br/>
-                  <br/>
-                 
-                  <p>
-                    <strong>Get the rigth people to fund your bussiness</strong>
-                  </p>
-                  <br/>
-                  <p>  
-                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et 
-                  la mise en page avant impression. 
-                  Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500
-                  </p>
-              </div>
-
-              <br/>
-              <div className="help">
-              <img src="/images/user.png" className="helpImgIcon"></img>
-                  <br/>
-                  <br/>
-                 
-                  <p>
-                    <strong>Get the rigth people to fund your bussiness</strong>
-                  </p>
-                  <br/>
-                  <p>  
-                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et 
-                  la mise en page avant impression. 
-                  Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500
-                  </p>
-              </div>
-           </div>
-           <br/>
-           <br/>
-           <br/>
-           <br/>
-           
-        </div>
-        {/* <div className="col-md-12 submainTextContainer">
-          <p className = "submainText">
-            Crowdfunding is the practice of funding a project or venture by raising small amounts of money from a large number of people,
-            typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance. In 2015, over US$34 billion was raised worldwide by crowdfunding
-          </p>
-        </div> */}
+            </div>
+         
+       </div>
         <section id="projectlist-wrapper">
           <div className="container-fluid" id="container-fluid">
             <div className="col-md-12">
