@@ -69,7 +69,7 @@ class FunnelList extends Component {
         <div className="col-md-12 col-sm-12 descriptionDiv">
           <div className="col-md-2 col-sm-2"></div>
           <div className="col-md-8 col-sm-8 col-xs-12">
-           <div className="col-md-6 descriptionText">
+           <div className="col-md-6 col-sm-7 col-xs-8 descriptionText">
               <h3> Why Tontinards?</h3>
               <p >
                 African Solidarity meets Profitability!
@@ -83,7 +83,7 @@ class FunnelList extends Component {
               <br/>
               <a type="btn btn-lg" href="#"> Learn more</a>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-6 col-sm-5 col-xs-4 imgWhyTontinardDiv">
               <img src = "/images/imge2.png"
                   className = "imgWhyTontinard"
                   alt = "Goal Image"
@@ -94,17 +94,19 @@ class FunnelList extends Component {
         </div>
 
         <div className="col-md-12 col-sm-12 fullwidthBlue no-padding">
-          <div className="col-md-4 col-sm-2 col-xs-2"></div>
-          <div className="col-md-4 col-sm-8 col-xs-8 centerDiv">
-            <p className="firstText">
-              Do you want to <strong>join us transform Africa’s solidarity to Profit?</strong>
-            </p>
-            <br/>
-            {/*these links Will come from cindy */}
-            <a  href="/" type="submit" className=" addprojectBtn Link"> Start Funding </a>
-            <a  href="/" type="submit" className=" getfundBtn ">Get Funded</a>
+          <div className="col-md-2 col-sm-2 col-xs-0"></div>
+          <div className="col-md-8 col-sm-8 col-xs-12 centerDiv">
+            <div className="col-md-12 firstTextDiv">
+              <p className="firstText">
+                Do you want to <strong>join us transform Africa’s solidarity to Profit?</strong>
+              </p>
+            </div>
+            <div className="col-md-12 buttonsContainer">
+              <a  href="/" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
+              <a  href="/" type="submit" className="btn getfundBtn ">Get Funded</a>
+            </div>
           </div>
-          <div className="col-md-4 col-sm-2 col-xs-2"></div>
+          <div className="col-md-2 col-sm-2 col-xs-0"></div>
         </div>
 
       </div>

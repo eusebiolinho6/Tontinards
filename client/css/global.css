@@ -1586,10 +1586,23 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   
   .footer{
     position: absolute;
-    bottom: -400px !important; 
   }
   .fullwidthBlue .firstText{
     font-size: 18px !important;
+  }
+
+  .descriptionText{
+    margin: 0 !important;
+  }
+
+  .imgWhyTontinard{
+    height: 300px !important;
+    width: 100% !important;
+    padding-top: 40px;
+  }
+
+  .buttonsContainer{
+    padding-right: 0 !important;
   }
   
 }
@@ -3637,14 +3650,19 @@ a.forum-item-projectName:hover {
   .forum-desc {
     float: none !important;
   }
-  .descriptionDiv{
-    padding-top: 50px !important;
-    margin-bottom: 70px;
+  .imgWhyTontinard{
+    height: 400px !important;
+    width: 170% !important;
+    padding-top: 40px;
   }
-/*   
-  .descriptionDiv .descriptionText{
-    font-size: 3vw !important;
-  } */
+  .descriptionDiv{
+    padding: 50px 0 !important;
+  }
+
+  .firstTextDiv{
+    padding: 0 16% !important;
+  }
+  
 }
 /* New Timeline style */
 .vertical-container {
@@ -8454,6 +8472,9 @@ body.landing-page {
   .landing-page .carousel-control {
     display: none;
   }
+  .buttonsContainer{
+    padding-right: 0 !important;
+  }
 }
 .box-offer h2 {
   color: #555;
@@ -8572,6 +8593,10 @@ ul.horizontal-step-list li {
     float: none;
     display: table-cell;
     vertical-align: middle;
+  }
+
+  .footer {
+    margin-top: -250px !important;
   }
 }
 
@@ -9800,6 +9825,7 @@ overflow-y: auto;
 .firstContaindiv{
   margin-top:-390px;
   margin-left:38%;
+  font-family: 'Source Sans Pro', sans-serif !important;
 
 }
 .bg-overlay {
@@ -10465,15 +10491,34 @@ color: green;
     font-size: 14px !important;
     font-weight: bold;
     background-color: #E99607;
-    padding: 10px 35px !important;
     border-radius: 25px;
+    padding: 11px 55px !important;
+    margin-bottom: 20px !important;
   }
-  
 
   .footerLogoContainer{
     text-align: left !important;
   }
 
+  .getfundBtn{
+   margin-left:10%;
+  }
+
+  .firstText{
+    padding: 0 0 0 10% !important;
+  }
+  .firstTextDiv{
+    padding: 0 0 0 10% !important;
+  }
+
+  .centerDiv{
+    margin: 70px 0 !important;
+    padding: 0 15% 0 0 !important;
+  }
+
+  .descriptionText p{
+    width: 150% !important;
+  }
 
 }
 
@@ -10831,7 +10876,7 @@ padding: 0 8px;
 
 .titleMain{
   font-size: 32px;
-  font-family: 'Roboto Slab', serif !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
   /* font-family: 'Tahoma', serif !important; */
 }
 
@@ -10965,6 +11010,15 @@ color:white;
     font-size: 14px;
   }
 
+  .imgWhyTontinardDiv{
+    display: none;
+  }
+
+  .descriptionDiv{
+    padding: 20px 0 !important;
+    height: 400px !important;
+  }
+
 }
 @media (min-width: 588px) and (max-width: 1024px) {
   .helpContainer{
@@ -11000,13 +11054,22 @@ color:white;
 
 .fullwidthBlue .centerDiv{
   margin: 130px 0;
+}
 
+.firstTextDiv{
+  text-align: center !important;
+  padding: 0 25%;
 }
 
 .fullwidthBlue .firstText{
   font-size: 24px;
   color: #444444;
   font-family: 'Source Sans Pro', sans-serif, serif !important;
+}
+
+.buttonsContainer{
+  margin-top: 30px;
+  padding-right: 10%;
 }
 
 
