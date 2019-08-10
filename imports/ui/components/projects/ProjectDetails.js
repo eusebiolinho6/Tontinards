@@ -353,12 +353,12 @@ class ProjectDetails extends Component {
 
                        
 
-                        <div className="messages">
+                        {/* <div className="messages">
                             <div className="allmessages">
                                 <h4>Inbox Messages</h4>
                                 <span>5</span>
                             </div>
-                        </div> 
+                        </div>  */}
                     </div>
                 </div>
             </div>

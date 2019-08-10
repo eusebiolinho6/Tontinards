@@ -21,8 +21,8 @@ Meteor.startup(() => {
    <BrowserRouter>
     <div>
         <Switch>
-          <Route exact path='/' component={App} />
-          <Route path='/project' component={Funnel} />
+          <Route exact path='/' component={FunnelList} />
+          {/* <Route path='/project' component={Funnel} /> */}
           <Route path='/projects' component={Project} />
           {/**<Route path='/pricing' component={PagePlans} />*/}
           <Route exact path='/paypal' component={PaypalPage} />

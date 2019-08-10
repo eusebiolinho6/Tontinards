@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import AdminDashboard from '../admins/AdminDashboard';
 import MainLayout from '../../layouts/MainLayout';
+import HeaderLayout from '../../globalComponents/layouts/HeaderLayout'
 
 import FunnelDetailsPage from './FunnelsDetailsPage';
 
@@ -28,6 +29,7 @@ class FunnelList extends Component {
 
     return (
       <div className="container-fluid no-padding">
+        <HeaderLayout/>
         <div className="row no-padding">
           <div className="col-md-12 no-padding bg-overlay text-center ">
             <p className="titleMain  text-center">Want to <strong>raise funds <br/>for your business ?</strong></p>
@@ -120,7 +122,7 @@ class FunnelList extends Component {
         <section id="projectlist-wrapper">
           <div className="container-fluid" id="container-fluid">
             <div className="col-md-12">
-              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
+              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} />
             </div>
           </div>
         </section>
