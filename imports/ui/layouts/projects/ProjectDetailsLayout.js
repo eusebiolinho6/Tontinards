@@ -12,12 +12,16 @@ class ProjectDetailsLayout extends Component {
   }
 
   render() {
-    const{user, project}=this.props;
-    return (
+    const{project,user} = this.props;
+    let data = null;
+    if(this.props.project && this.props.user) {
+      data = (
         <Fragment>
-            <ProjectDetails user={user} project={project} />
+             <ProjectDetails user={user} project={project} />
         </Fragment>
-    )
+      );
+  }
+      return data;
   }
 }
 

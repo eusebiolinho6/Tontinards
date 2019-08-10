@@ -35,6 +35,7 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             countries: [],
+            messages:[],
             city: '',
             email: '',
             show: false,

@@ -11047,7 +11047,7 @@ color:white;
   flex-direction: column;
   margin-left: 3.7rem;
 }
-#donation-comment-bloc .body i{
+#donation-comment-bloc .body i{ 
   align-self: flex-end;
   font-size: 1rem;
 }
