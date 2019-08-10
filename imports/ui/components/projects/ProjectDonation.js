@@ -137,6 +137,7 @@ class ProjectDonation extends Component {
                         {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
                     </div>
                   </div>
+                  {/* <br/> */}
                 <div className="form-group">
                     <label for="firstNameInput">First Name</label>
                     <input type="text" className="form-control" name="name"
@@ -185,7 +186,7 @@ class ProjectDonation extends Component {
                 {comments}
             </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-4  hidden-xs">
             {this.renderSelectedProject(projects)}
         </div>
         
