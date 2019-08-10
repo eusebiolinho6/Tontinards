@@ -11,9 +11,8 @@ class HeaderLayout extends Component {
 
   render() {
     const { user } = this.props;
-    return (
-      <Header user={user} />
-    )
+    console.log(user)
+    return <Header user={user} />;
   }
 }
 

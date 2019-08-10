@@ -19,7 +19,7 @@ const Project = () => (
         <Route exact path='/projects/all' component={ProjectsPage}/>
         <Route exact path='/projects/:projectId' component={ProjectsDetailsPage}/>
         <Route exact path='/projects/donate/:projectId' component={ProjectDonationPage}/>
-        <Route exact path='/projects/campaigns/all' component={CampaignsPage}/>
+        <Route  path='/projects/campaigns/all' component={CampaignsPage}/>
       </div>
     </Fragment>
   </Switch>

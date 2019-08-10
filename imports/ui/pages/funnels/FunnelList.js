@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import AdminDashboard from '../admins/AdminDashboard';
 import MainLayout from '../../layouts/MainLayout';
+import HeaderLayout from '../../globalComponents/layouts/HeaderLayout'
 
 import FunnelDetailsPage from './FunnelsDetailsPage';
 
@@ -23,7 +24,6 @@ class FunnelList extends Component {
 
 
   render() {
-    const {match, location} = this.props; 
     const {isFree}=this.state;
 
     return (
@@ -41,8 +41,8 @@ class FunnelList extends Component {
               <p className="text-center getStartedlast">are interested in.</p>
               <br/>
               <br/> 
-                <a  href="/" type="submit" className=" addprojectBtn Link"> Start Funding </a>
-                <a  href="/" type="submit" className=" getfundBtn ">Get Funded</a>
+                <a  href="/projects/campaigns/all" type="submit" className=" addprojectBtn Link"> Start Funding </a>
+                <a  href="/authentication/signin" type="submit" className=" getfundBtn ">Get Funded</a>
             </div>
           </div>
           </div>
@@ -60,9 +60,9 @@ class FunnelList extends Component {
        </div>
       {/*   <section id="projectlist-wrapper">
           <div className="container-fluid" id="container-fluid">
-          <div className="col-md-12">
-              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} params={match.params} />
-            </div> 
+            <div className="col-md-12">
+              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)}  />
+            </div>
           </div>
         </section>
  */}
@@ -101,8 +101,8 @@ class FunnelList extends Component {
             </p>
             <br/>
             {/*these links Will come from cindy */}
-            <a  href="/" type="submit" className=" addprojectBtn Link"> Start Funding </a>
-            <a  href="/" type="submit" className=" getfundBtn ">Get Funded</a>
+            <a  href="/projects/campaigns/all" type="submit" className=" addprojectBtn Link"> Start Funding </a>
+            <a  href="/authentication/signin" type="submit" className=" getfundBtn ">Get Funded</a>
           </div>
           <div className="col-md-4 col-sm-2 col-xs-2"></div>
         </div>

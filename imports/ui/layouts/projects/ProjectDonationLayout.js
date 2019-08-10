@@ -14,12 +14,17 @@ class ProjectDonationLayout extends Component {
   
     render() {
         const {project,user} = this.props;
-      return (
-          <Fragment>
-              <ProjectDonation user={user} project={project} />
-          </Fragment>
-      )
-    }
+        let data = null;
+        // Verify if all data are ready, then render this data
+        if((this.props.project && this.props.user) || this.props.project) {
+          data = (
+            <Fragment>
+                <ProjectDonation user={user} project={project} />
+            </Fragment>
+          )
+        }
+        return data;
+        }
   }
 
 export default withTracker((props)=>{

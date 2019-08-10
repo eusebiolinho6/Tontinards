@@ -29,7 +29,7 @@ class Main extends Component {
     }
 
     render() {
-        const { params, funnels, search, categories, userId, industries } = this.props;
+        const { funnels, categories, userId, industries } = this.props;
         // console.log(funnels);
         const { isLoading } = this.state;
         return (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';;
 import LandingPage from './home/LandingPage';
+import FunnelList from '../pages/funnels/FunnelList';
 
 // App component - represents the whole app
 class App extends Component {
