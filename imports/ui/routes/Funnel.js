@@ -11,14 +11,13 @@ import ProjectDetails from '../components/funnels/ProjectDetails'
 // The Roster component matches one of two different routes
 // depending on the full pathname
 const Funnel = () => (
-  <Switch>
+  
     <Fragment>
       <HeaderLayout />
-        <Route exact path='/project/:industries/:categories' component={FunnelList}/>
-        {/* <Route exact path='/project/:all' component={FunnelDetailsPage}/> */}
+      <FunnelList />
       <Footer/>  
     </Fragment>
-  </Switch>
+  
 )
 
 export default Funnel;

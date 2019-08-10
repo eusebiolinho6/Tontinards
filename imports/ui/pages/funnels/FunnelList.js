@@ -24,12 +24,10 @@ class FunnelList extends Component {
 
 
   render() {
-    const {match, location} = this.props; 
     const {isFree}=this.state;
 
     return (
       <div className="container-fluid no-padding">
-        <HeaderLayout/>
         <div className="row no-padding">
           <div className="col-md-12 no-padding bg-overlay text-center ">
             <p className="titleMain  text-center">Want to <strong>raise funds <br/>for your business ?</strong></p>
@@ -122,7 +120,7 @@ class FunnelList extends Component {
         <section id="projectlist-wrapper">
           <div className="container-fluid" id="container-fluid">
             <div className="col-md-12">
-              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)} search={location.search} />
+              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)}  />
             </div>
           </div>
         </section>

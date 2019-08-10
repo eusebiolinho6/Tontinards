@@ -7,18 +7,13 @@ import { Meteor } from 'meteor/meteor';
 class HeaderLayout extends Component {
   constructor(props) {
     super(props);
+    this.state = {user: null}
   }
 
   render() {
     const { user } = this.props;
-    let data = null;
-    // Verify if all data are ready, then render this data
-    if(this.props.user) {
-      data = (
-        <Header user={user} />
-      )
-    }
-    return data;
+    console.log(user)
+    return <Header user={user} />;
   }
 }
 

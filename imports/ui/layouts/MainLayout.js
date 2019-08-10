@@ -15,13 +15,13 @@ class MainLayout extends Component {
       path: ['Home', 'Funnels'],
       projectName: 'List of funnels'
     },
-    {params, isFree, funnels, userId, search, categories}=this.props;
+    {params, isFree, funnels, userId, categories}=this.props;
     // console.log(funnels);
     // console.log(categories);
     return (
       <Fragment>
         {/* <Location location={location} /> */}
-         <Main {...this.props}  userId={userId} search={search} funnels={funnels} />
+         <Main {...this.props}  userId={userId} funnels={funnels} />
       </Fragment>
     )
   }

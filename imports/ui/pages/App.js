@@ -13,7 +13,7 @@ class App extends Component {
     return (
     //  <div className="wrapper wrapper-content animated fadeInRight">
      <div className="wrapper wrapper-content">
-      <Redirect to='/project/all' />
+      <Redirect to='/project/all/all' />
       {/* <LandingPage /> */}
       {/* <h1>HOOOOOOOOOOOOHEEEEEEEEEEEEEE</h1> */}
     </div>

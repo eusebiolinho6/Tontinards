@@ -15,7 +15,7 @@ class ProjectDetailsLayout extends Component {
     const{user, project}=this.props;
     let data = null;
     // Verify if all data are ready, then render this data
-    if(this.props.project && this.props.user) {
+    if((this.props.project && this.props.user) || this.props.project) {
       data = (
         <Fragment>
             <ProjectDetails user={user} project={project} />

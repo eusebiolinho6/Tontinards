@@ -26,19 +26,17 @@ class Header extends Component {
     }
 
   render() {
-    const {redirect, hasAccount}=this.state;
-    if (redirect) return <Redirect to = "/" />
     const {user}=this.props;
-    // console.log(user);
     return (
         <div className="container border-bottom">
+            {this.state.redirect ? <Redirect to="/" />:null}
             <div className="row">
                 <nav className="navbar navbar-fixed-top" role="navigation" style={{marginBottom: 0, zIndex:'1000'}}>
                     {/* <div className="container"> */}
                         <div className="navbar-header row col-md-2 col-xs-4 col-sm-3 ranyl">
                             {/*<span minimalize-sidebar></span>*/}
                             <Link to="/" style={{display: 'block', margin: '12px'}}>
-                                < img src = "/images/tontinardsLogo.png" height="35px"
+                                <img src = "/images/tontinardsLogo.png" height="35px"
                                 className = ".logo-element"
                                 alt = "logo homepage"
                                 />
