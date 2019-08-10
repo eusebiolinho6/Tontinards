@@ -35,11 +35,13 @@ class FunnelList extends Component {
               <img src="/images/imge1.png" className="imgfirstcontain "></img>
             </div>
             <div className="firstContaindiv col-md-6" >
-              <p className="titleMain  text-center"><strong> Invest in Cameroon’s </strong><strong><br/>most promising startups</strong></p>
-              <p className="text-center" id="getStarted">Get started below</p>
+              <p className="titleMain  text-center"><strong><span>Invest in Cameroon’s</span> </strong><strong><br/>most promising startups</strong></p>
+              <p className="text-center getStarted">We have selected Cameroon’s most promising startups so you can</p>
+              <p className="text-center getStarted">invest to share future profits or just invest to support a project you</p>
+              <p className="text-center getStartedlast">are interested in.</p>
               <br/>
               <br/> 
-                <a  href="/" type="submit" className=" addprojectBtn Link"> Start Investing Now </a>
+                <a  href="/" type="submit" className=" addprojectBtn Link"> Start Funding </a>
                 <a  href="/" type="submit" className=" getfundBtn ">Get Funded</a>
             </div>
           </div>

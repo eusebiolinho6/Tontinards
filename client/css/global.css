@@ -9802,8 +9802,8 @@ overflow-y: auto;
  background-color: #F1F1F1;
 }
 .firstContaindiv{
-  margin-top:-350px;
-  margin-left:42%;
+  margin-top:-390px;
+  margin-left:38%;
 
 }
 .bg-overlay {
@@ -9822,22 +9822,22 @@ a.Link{
 }
 
 .addprojectBtn{
-  margin-left: -5px;
+  margin-left: 2%;
   font-size: 15px;
   font-weight: bold;
   background-color: #E99607;
-  padding: 12px 30px 12px 30px;
+  padding: 11px 40px 11px 40px;
   border-radius: 25px;
   border:2px solid #E99607 ;
 
  }
 .getfundBtn{
-  margin-left:50px;
+  margin-left:2%;
   font-size: 15px;
   font-weight: bold;
   background-color: transparent;
   color: #E99607 !important;
-  padding: 12px 50px 12px 50px;
+  padding: 11px 40px 11px 40px;
   border-radius: 25px;
   border:2px solid #E99607 ;
  }
@@ -10846,15 +10846,24 @@ padding: 0 8px;
 }
 
 .titleMain{
-  font-size: 35px;
+  font-size: 32px;
   font-family: 'Roboto Slab', serif !important;
   /* font-family: 'Tahoma', serif !important; */
 }
 
-#getStarted{
-  font-size: 14px;
+.titleMain strong span{
+margin-left: -5%;
 }
-getFund{
+
+
+.getStarted{
+  font-size: 14px;
+  margin-left: 5%;
+}
+.getStartedlast{
+  margin-left: -38% !important;
+}
+.getFund{
   font-size: 24px;
 }
 
@@ -10954,7 +10963,7 @@ color:white;
   .titleMain{
     font-size: 28px;
   }
-  #getStarted{
+  .getStarted{
     font-size: 14px;
   }
 
