@@ -137,7 +137,7 @@ class SignupForm extends Component {
 
     render() {
         const { name, username, email, password, confirmPassword, errors, redirect } = this.state;
-        if (redirect) return <Redirect to="/funnels/all/all" />
+        if (redirect) return <Redirect to="/" />
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <div className="row">

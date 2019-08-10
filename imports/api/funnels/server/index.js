@@ -150,7 +150,7 @@ Funnels.allow({
      return checkRole(['user','admin'], userId);
     },
     remove: function (userId) {
-     return checkRole(['admin'], userId);
+     return checkRole(['admin', 'user'], userId);
     }
   });
 }

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import FunnelModalForm from './../funnels/Funnel-Modal-Form';
 import Input from '../../globalComponents/Input'
 import Tr from '../../globalComponents/Tr';
+import { Funnels } from '../../../api/collections'
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { Modal, Button } from 'react-bootstrap';
@@ -120,6 +121,16 @@ class FunnelLIstAdmin extends Component {
         });
     }
 
+    deleteFunnel = (funnel) => {
+        Funnels.remove(funnel._id, function (err, id) {
+            if (err) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+    }
+
     closeModal() {
         this.setState({ show: false });
         this.setState({
@@ -209,12 +220,15 @@ class FunnelLIstAdmin extends Component {
                                                 <th>Objectif Amount</th>
                                                 <th>Current Amount</th>
                                                 <th>Created At</th>
-                                                <th className="pull-right">Action</th>
+                                                <th className="pull-right">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {funnels && funnels.map((funnel, index) => (
-                                                <Tr key={funnel._id} funnel={funnel} editFunnel={(funnel) => this.editFunnel(funnel)} formatDate={(date) => this.formatDate(date)} />
+                                                <Tr key={funnel._id} funnel={funnel} 
+                                                    editFunnel={(funnel) => this.editFunnel(funnel)} 
+                                                    deleteFunnel={(funnel) => this.deleteFunnel(funnel)} 
+                                                    formatDate={(date) => this.formatDate(date)} />
                                             ))}
 
                                         </tbody>

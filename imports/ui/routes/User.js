@@ -76,7 +76,7 @@ class User extends Component {
                 <Route exact path='/user/projectdetails' component={ProjectDetails}/>
               </span>
               :
-            <Redirect to="/funnels/all/all" />
+            <Redirect to="/" />
           }
           </Fragment>
         </Switch>

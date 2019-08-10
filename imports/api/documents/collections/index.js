@@ -24,10 +24,10 @@ export const Documents = new FilesCollection({
     storagePath: uploadDir,
     onBeforeUpload(file) {
         // Allow upload files under 10MB, and only in png/jpg/jpeg formats
-        if (file.size <= 1024*1024*20 && /pdf|docx|pptx/i.test(file.extension)) {
+        if (file.size <= 1024*1024*2 && /pdf|docx|pptx/i.test(file.extension)) {
             return true
         } else {
-            return 'Please upload document, with size equal or less than 20MB';
+            return 'Please upload document, with size equal or less than 2MB';
         }
     }
 });

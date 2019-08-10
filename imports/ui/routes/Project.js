@@ -1,6 +1,7 @@
 import React, { Fragment} from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ProjectsPage from '../pages/projects/ProjectsPage';
+import CampaignsPage from '../pages/projects/CampaignsPage';
 import ProjectsDetailsPage from '../pages/projects/ProjectDetailsPage';
 import ProjectDonationPage from '../pages/projects/ProjectDonationPage';
 import HeaderLayout from '../globalComponents/layouts/HeaderLayout';
@@ -18,6 +19,7 @@ const Project = () => (
         <Route exact path='/projects/all' component={ProjectsPage}/>
         <Route exact path='/projects/:projectId' component={ProjectsDetailsPage}/>
         <Route exact path='/projects/donate/:projectId' component={ProjectDonationPage}/>
+        <Route exact path='/projects/campaigns/all' component={CampaignsPage}/>
       </div>
     </Fragment>
   </Switch>
