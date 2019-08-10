@@ -1604,7 +1604,12 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   .buttonsContainer{
     padding-right: 0 !important;
   }
-  
+  .titleMain,.getStarted{
+    width: 100% !important;
+      }
+  .firstContaindiv{
+    margin-left: 45% !important;
+  }
 }
 .menu-visible-lg,
 .menu-visible-md {
@@ -9824,7 +9829,8 @@ overflow-y: auto;
 }
 .firstContaindiv{
   margin-top:-390px;
-  margin-left:38%;
+  margin-left:50%;
+  text-align: left;
   font-family: 'Source Sans Pro', sans-serif !important;
 
 }
@@ -9842,26 +9848,26 @@ overflow-y: auto;
 a.Link{
   color: white !important;
 }
+.allbuttons{
+ margin-left:-12%;
 
+}
 .addprojectBtn{
   margin-left: 10%;
   font-size: 15px;
   font-weight: bold;
-  background-color: #E99607;
+  background-color: #ACD61E;
   padding: 11px 55px 11px 55px;
   border-radius: 25px;
-  border:2px solid #E99607 ;
-
  }
 .getfundBtn{
   margin-left:2%;
   font-size: 15px;
   font-weight: bold;
-  background-color: transparent;
-  color: #E99607 !important;
+   color:white;
+  background-color: #E99607 ;
   padding: 11px 55px 11px 55px;
   border-radius: 25px;
-  border:2px solid #E99607 ;
  }
 
  .mainVideo{
@@ -10385,6 +10391,16 @@ color: green;
 }
 
 @media only screen and (max-width: 588px) {
+  .imgfirstcontain{
+    margin-left:0%!important; 
+  }
+  .firstContaindiv{
+    margin-left: 40% !important;
+  }
+  .titleMain{
+    font-size:20px !important;
+  }
+ 
   .Navbar__Items,
   .menuDiv {
     flex-direction: column;
@@ -10490,9 +10506,9 @@ color: green;
   .addprojectBtn{
     font-size: 14px !important;
     font-weight: bold;
-    background-color: #E99607;
+    background-color: #ACD61E;
     border-radius: 25px;
-    padding: 11px 55px !important;
+    padding: 10px 45px !important;
     margin-bottom: 20px !important;
   }
 
@@ -10502,6 +10518,8 @@ color: green;
 
   .getfundBtn{
    margin-left:10%;
+   padding: 10px 45px !important;
+
   }
 
   .firstText{
@@ -10519,7 +10537,7 @@ color: green;
   .descriptionText p{
     width: 150% !important;
   }
-
+  
 }
 
 #funnelListkamer{
@@ -10878,17 +10896,18 @@ padding: 0 8px;
   font-size: 32px;
   font-family: 'Source Sans Pro', sans-serif !important;
   /* font-family: 'Tahoma', serif !important; */
+  width: 80%;
+  text-align: left;
+  /* margin-left: 25%; */
 }
-
-.titleMain strong span{
-margin-left: -5%;
-}
-
 
 .getStarted{
   font-size: 15px;
-  margin-left: 12%;
+  /* margin-left: 25%; */
+  width: 70%;
+  text-align: left;
 }
+
 .getStartedlast{
   font-size: 15px;
   margin-left: -35% !important;

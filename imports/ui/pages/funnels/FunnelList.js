@@ -31,18 +31,21 @@ class FunnelList extends Component {
         <div className="row no-padding">
           <div className="col-md-12 no-padding firstContain  text-center ">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 col-sm-6 col-xs-6 ">
               <img src="/images/imge1.png" className="imgfirstcontain "></img>
             </div>
-            <div className="firstContaindiv col-md-6" >
+            <div className="firstContaindiv col-md-6 col-sm-6 col-xs-6" >
               <p className="titleMain  text-center"><strong><span>Invest in Cameroon’s</span> </strong><strong><br/>most promising startups</strong></p>
-              <p className="text-center getStarted">We have selected Cameroon’s most promising startups so you can</p>
-              <p className="text-center getStarted">invest to share future profits or just invest to support a project you</p>
-              <p className="text-center getStartedlast">are interested in.</p>
+              <p className="text-center getStarted">We have selected Cameroon’s most promising startups so you can
+                invest to share future profits or just invest to support a project you
+                are interested in.
+              </p>
               <br/>
               <br/> 
-                <a  href="/" type="submit" className=" addprojectBtn Link"> Start Funding </a>
-                <a  href="/" type="submit" className=" getfundBtn ">Get Funded</a>
+              <div className="row allbuttons">
+                <a  href="/" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
+                <a  href="/" type="submit" className="btn getfundBtn ">Get Funded</a>
+              </div>
             </div>
           </div>
           </div>
