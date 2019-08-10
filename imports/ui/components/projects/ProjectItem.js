@@ -150,7 +150,7 @@ export default class ProjectItem extends Component {
                                 <div className="m-t text-righ">
                                     {console.log(user)}
                                     {console.log(userId)}
-                                    {
+                                    {user?
                                         user.profile.role == "user" ?
                                             projectState == "REFUSED" ?
                                                 <span>POUBELLE</span>
@@ -171,7 +171,7 @@ export default class ProjectItem extends Component {
                                                 <Link to={{ pathname: '/projects/donate/' + project._id._str }} className="btn donateBtn">Donate </Link>
                                                     <Link to={{ pathname: '/projects/' + project._id._str }} className="btn btn-outline viewMoreBtn detailBtn">Details </Link>
                                                 </span>
-                                    }
+                                    :''}
                                 </div>
                             </div>
                         </div>

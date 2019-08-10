@@ -4,13 +4,20 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import ProjectItem from '../../components/projects/ProjectItem';
 import {Categories, Funnels} from '../../../api/collections';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
+
+const emptyIcon = <FontAwesomeIcon icon={faBan} size="3x"/>
 
 class CampaignsLayout extends Component {
   constructor(props) {
     super(props);
     this.state={
+      projectList : [],
+      firstRender: true
     }
   }
+
 
 /**
  * 
@@ -19,11 +26,27 @@ class CampaignsLayout extends Component {
  * @returns rendered Components 
  * @Author Cindy and Junior
  */
-  renderProjects(projects, sop){
-    return projects.map((project, index)=>(
-      <ProjectItem key={index} project={project} stateOfProject={sop} user={this.props.user}/>
-    ))
+  renderProjects(projects, sop , categoryId){
+    let campaigns = []
+    console.log(projects)
+    if(categoryId == null){
+      return projects.map((project, index)=>(
+        <ProjectItem key={index} project={project} stateOfProject={sop} user={this.props.user}/>
+      ))
+    }else{
+       projects.map((project, index)=>(
+        project.category == categoryId ?
+        campaigns.push(<ProjectItem key={index} project={project} stateOfProject={sop} user={this.props.user}/>) 
+        : "")
+      )
+    }
+    this.setState({
+      projectList: campaigns,
+      firstRender: false
+    })
   }
+
+
 
   /**
    * 
@@ -45,7 +68,7 @@ class CampaignsLayout extends Component {
 
 
   render() {
-    const {funnels, userId, user} = this.props;
+    const {funnels, userId, user, categories} = this.props;
     const campaigns = [];
     funnels.map((project) => {
       project.projectState ? 
@@ -56,7 +79,7 @@ class CampaignsLayout extends Component {
       : 
       null
     })
-    console.log(user);
+    let AllCampaigns = this.renderProjects(campaigns, "START CAMPAIGN")
     return (
       <div className="container-fluid no-padding">
         <div className="row projectsPageHeader">
@@ -65,6 +88,28 @@ class CampaignsLayout extends Component {
             <br/>
             {/* <hr/> */}
         </div>
+
+        {/* ---- FILTER ---- */}
+        <div className="filerMenu col-md-3" id="filterCategory">
+          <h1 className="transparent">.</h1>
+          <form className="form">
+            <h2>Filter by Category</h2>
+      
+            {
+              categories.map((category)=>{
+               return(
+                <div className="inputGroup">
+                    <input id={category._id._str} name="radio" type="radio" onChange={()=>this.renderProjects(campaigns, "START CAMPAIGN" , category._id._str)} />
+                    <label for={category._id._str}>{category.name}</label>
+                </div>
+               ) 
+          })
+          }
+
+          </form>
+
+        </div>
+
         
 
         {/*---- Begining zone of Campaigns ------*/}
@@ -76,7 +121,17 @@ class CampaignsLayout extends Component {
             {/* <hr/> */}
             {/* <h2>Campaigns</h2> */}
             <div className="projects">
-                {this.renderProjects(campaigns, "START CAMPAIGN")}
+                {/* {this.renderProjects(campaigns, "START CAMPAIGN")} */}
+                {this.state.firstRender ? AllCampaigns : 
+                  this.state.projectList.length == 0 ? 
+                   <div className="noProject">
+                    <span>{emptyIcon}</span>
+                    <h3>No project.</h3>
+                   </div>
+                   :
+                   this.state.projectList
+                   }
+
             </div>
             <br/>
             <br/>
@@ -98,7 +153,8 @@ export default withTracker((props)=>{
   let q={};
   return {
     funnels: Funnels.find(q).fetch(),
-    userId:Meteor.userId(),
+    categories: Categories.find(q).fetch(),
+    userId: Meteor.userId(),
     user: Meteor.user()
   }
 })(CampaignsLayout);
