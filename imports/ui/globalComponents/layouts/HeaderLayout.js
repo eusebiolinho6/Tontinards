@@ -7,7 +7,6 @@ import { Meteor } from 'meteor/meteor';
 class HeaderLayout extends Component {
   constructor(props) {
     super(props);
-    this.state = {user: null}
   }
 
   render() {
