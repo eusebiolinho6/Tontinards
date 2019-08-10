@@ -22,7 +22,15 @@ class Footer extends Component {
                     
                     <div className="col-md-4 col-sm-6 titles">
                         <span className="rightBordered"> English </span>  
-                        <span className="rightBordered"> French </span>  
+                        <span className="rightBordered"> French </span> 
+                        <span className="p-w-xs"> Drapeau </span> 
+                        <br/> 
+                        <br/> 
+                        <div className="copyrightDiv">
+                            <span>2019 All right reserved</span> 
+                            <span><a href="#">privacy policy</a></span> 
+
+                        </div>
                     </div>
                     
                     <div className="col-md-4 col-sm-3 footerLogoContainer">

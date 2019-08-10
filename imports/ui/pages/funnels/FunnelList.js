@@ -128,19 +128,25 @@ class FunnelList extends Component {
         <div className="col-md-12 col-sm-12 descriptionDiv">
           <div className="col-md-2 col-sm-2"></div>
           <div className="col-md-8 col-sm-8 col-xs-12">
-            <div className="col-md-6">
-            <img src = "/images/img1.png"
-                className = "imgWhyTontinard"
-                alt = "Goal Image"
-              />
-            </div>
-            <div className="col-md-6 descriptionText">
+           <div className="col-md-6 descriptionText">
               <h3> Why Tontinards?</h3>
               <p >
-                Qui aime est patient et bon, il n'est pas envieux, ne se vante pas et n'est pas prétentieux; qui aime ne fait rien de honteux, n'est pas égoïste, ne s'irrite pas et n'éprouve pas de rancune. Qui aime supporte tout et garde en toute circonstance la foi, l'espérance et la patience. 
+                African Solidarity meets Profitability!
+                <br/>
+                <br/>
+
+                It’s simple! Because no other people have more solidarity than Africans. Most Africans help their family members like brothers, sisters, aunts, cousines, father, mother, friends, tribesmen, colleagues and the list goes on.
+                All what the Tontinard platform carefully select the most promising startups, so that you can enjoy showing your African solidarity by supporting a project you love and sharing in the future profit.
+                  
               </p>
               <br/>
               <a type="btn btn-lg" href="#"> Learn more</a>
+            </div>
+            <div className="col-md-6">
+              <img src = "/images/imge1.png"
+                  className = "imgWhyTontinard"
+                  alt = "Goal Image"
+                />
             </div>
           </div>
           <div className="col-md-2 col-sm-2"></div>
