@@ -21,7 +21,7 @@ class Footer extends Component {
                 <div className="footer">
                     
                     <div className="col-md-4 col-sm-6 titles">
-                        <span className="rightBordered"> English </span>  
+                        {/* <span className="rightBordered"> English </span>  
                         <span className="rightBordered"> French </span> 
                         <span className="p-w-xs"> Drapeau </span> 
                         <br/> 
@@ -30,7 +30,7 @@ class Footer extends Component {
                             <span>2019 All right reserved</span> 
                             <span><a href="#">privacy policy</a></span> 
 
-                        </div>
+                        </div> */}
                     </div>
                     
                     <div className="col-md-4 col-sm-3 footerLogoContainer">
@@ -42,18 +42,18 @@ class Footer extends Component {
                         </Link>
                     </div>    
                     
-                    <div className="col-md-4 col-sm-6 footerInfos">
-                        <div>
+                    {/* <div className="col-md-4 col-sm-6 footerInfos">
+                        <div> */}
                             {/* <a>+237671042312</a><br/> */}
-                            <a>meli@tontinards.com</a>
-                        </div>
+                     {/*    <a>meli@tontinards.com</a>
+                         </div>
                         <br/>
                         <div className="socials">
                             <a href="#"><span>{fbIcon}</span></a>
                             <a href="#"><span>{instagIcon}</span></a>
                             <a href="#"><span>{twitterIcon}</span></a>
                         </div>    
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )
