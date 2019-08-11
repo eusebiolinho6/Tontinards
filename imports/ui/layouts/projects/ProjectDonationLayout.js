@@ -28,19 +28,23 @@ class ProjectDonationLayout extends Component {
   }
 
 export default withTracker((props)=>{
-    Meteor.subscribe('funnels');
-    Meteor.subscribe('funnel');
-    // Meteor.subscribe('categories');
-    Meteor.subscribe('foundRaiseAs');
-    Meteor.subscribe('onefoundRaiseAs');
-    Meteor.subscribe('forWhoFoundsRaise');
-    const project = Funnels.findOne({_id: toObjectId(props.projectId)});
-    // const foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs)});
-    // console.log(foundRaiseAs);
-    console.log(project);
-      return {
-          user: Meteor.user(),
-          project: project 
-      }
-  })(ProjectDonationLayout)
+  //if the project has changed, we change the value in localStorage too
+  if (props.projectId != localStorage.getItem("projectId")){
+    localStorage.setItem("projectId", props.projectId)
+  } 
+  Meteor.subscribe('funnels');
+  Meteor.subscribe('funnel');
+  // Meteor.subscribe('categories');
+  Meteor.subscribe('foundRaiseAs');
+  Meteor.subscribe('onefoundRaiseAs');
+  Meteor.subscribe('forWhoFoundsRaise');
+  const project = Funnels.findOne({_id: toObjectId(props.projectId)});
+  // const foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs)});
+  // console.log(foundRaiseAs);
+  console.log(project);
+    return {
+        user: Meteor.user(),
+        project: project 
+    }
+})(ProjectDonationLayout)
 

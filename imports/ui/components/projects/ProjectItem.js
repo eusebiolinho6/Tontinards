@@ -106,7 +106,7 @@ export default class ProjectItem extends Component {
                         <div className="imageContainer">
                             <div className={!project.img ? 'product-imitation' : ''}>
                                 {/**Link to details */}
-                                <Link  to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }}> {project && project.projectImage ? <img className="projetImage" style={{ borderBottom: '1px solid rgb(191, 194, 197)' }} width="100%" src={project.projectImage} /> : '[     ]'}
+                                <Link  to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str }}> {project && project.projectImage ? <img className="projetImage" style={{ borderBottom: '1px solid rgb(191, 194, 197)' }} width="100%" src={project.projectImage} /> : '[     ]'}
                                 </Link>
                             </div>
                             <div className="product-desc">
@@ -147,7 +147,7 @@ export default class ProjectItem extends Component {
                                 </div>
                                 <div className="projectTitle">
                                     {/**Link to details */}
-                                    <Link to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }} className="product-name"> {project.projectName} </Link>
+                                    <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str }} className="product-name"> {project.projectName} </Link>
                                 </div>
                                 {projectState == "START CAMPAIGN" ?
                                     <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
@@ -159,27 +159,28 @@ export default class ProjectItem extends Component {
                                             projectState == "REFUSED" ?
                                                 <span>POUBELLE</span>
                                                 :
-                                                <Link to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }} className="btn detailBtn">Details</Link>
+                                                <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str }} className="btn detailBtn">Details</Link>
                                         :
                                         user.profile.role == "admin" ?
                                             projectState == "VALID" ?
                                                 <div id="wrap-btn">
                                                     <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
-                                                    <Link to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }} className="btn  detailBtn">Details </Link>
+                                                    <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str }} className="btn  detailBtn">Details </Link>
                                                 </div>
                                             :
                                                 //this leads to the page where admin will validate or reject project
-                                                <Link to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }} className="btn  detailBtn">Details </Link>
+                                                <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str }} className="btn  detailBtn">Details </Link>
                                         :
                                             propclass == "donation" ?
-                                                null
+                                                <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str  }} className="btn btn-outline viewMoreBtn detailBtn">Details</Link>
+
                                             :
                                                 <span>
-                                                    <Link to={{ pathname: '/projects/donate/' + finalProjectRoute, projectId: project._id._str }} className="btn donateBtn">Donate </Link>
-                                                    <Link to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }} className="btn btn-outline viewMoreBtn detailBtn">Details </Link>
+                                                    <Link to={{ pathname: '/projects/' + finalProjectRoute + '/donate', projectId: project._id._str }} className="btn donateBtn">Donate </Link>
+                                                    <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str  }} className="btn btn-outline viewMoreBtn detailBtn">Details </Link>
                                                 </span>
                                         :
-                                            <Link to={{ pathname: '/projects/' + finalProjectRoute, projectId: project._id._str }} className="btn  detailBtn">Details </Link>
+                                            <Link to={{ pathname: '/projects/' + finalProjectRoute + '/details', projectId: project._id._str }} className="btn  detailBtn">Details </Link>
                                     }
                                 </div>
                             </div>

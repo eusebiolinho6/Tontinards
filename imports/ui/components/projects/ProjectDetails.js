@@ -53,7 +53,16 @@ class ProjectDetails extends Component {
         this.saveComment()
     }
 
-            /**
+
+    componentWillMount = () => {
+        console.log(this.props);
+        // this.props.navigation.navigate('Details', {
+        //     itemId: 86,
+        //     otherParam: 'anything you want here',
+        //   });
+    }
+
+    /**
      * 
      * @goal change the projectState of the current project 
      * @returns void
@@ -278,7 +287,7 @@ class ProjectDetails extends Component {
                                     user._id == project.userId._id ?
                                         ""
                                         :
-                                        <Link to={{pathname:'/projects/donate/'+ finalProjectRoute, projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                        <Link to={{pathname:'/projects/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
                                     :
                                     null
                                 }
@@ -289,7 +298,7 @@ class ProjectDetails extends Component {
                                                 <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>Validate</button>                                
                                             : '' 
                                         : 
-                                        <Link to={{pathname:'/projects/donate/'+ finalProjectRoute, projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                        <Link to={{pathname:'/projects/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
                                     }
                             {
                                 user ? 

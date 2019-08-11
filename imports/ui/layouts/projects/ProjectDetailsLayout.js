@@ -26,7 +26,11 @@ class ProjectDetailsLayout extends Component {
   }
 }
 
-export default withTracker((props)=>{ console.log(props);
+export default withTracker((props)=>{ 
+  //if the project has changed, we change the value in localStorage too
+  if (props.projectId != localStorage.getItem("projectId")){
+    localStorage.setItem("projectId", props.projectId)
+  }   
   Meteor.subscribe('funnels');
   Meteor.subscribe('funnel');
   // Meteor.subscribe('categories');
