@@ -13,7 +13,7 @@ class ProjectDonationPage extends Component {
   render() {
     return (
       <div>
-        <ProjectDonationLayout projectId={this.props.match.params.projectId} />
+        <ProjectDonationLayout projectId={this.props.location.projectId} />
       </div>
     )
   }

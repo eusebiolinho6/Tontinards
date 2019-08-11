@@ -215,9 +215,9 @@ class FunnelLIstAdmin extends Component {
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Category</th>
-                                                <th>phoneNumber</th>
+                                                <th>Phone Number</th>
                                                 <th>Email</th>
-                                                <th>Objectif Amount</th>
+                                                <th>Objective Amount</th>
                                                 <th>Current Amount</th>
                                                 <th>Created At</th>
                                                 <th className="pull-right">Actions</th>

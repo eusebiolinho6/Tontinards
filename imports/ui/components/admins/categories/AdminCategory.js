@@ -12,8 +12,8 @@ const monthNames = [
 ];
 class AdminCategory extends Component {
     constructor(props) {
-        super(props);
-     this.state = {
+    super(props);
+    this.state = {
         name: '',
         devName: '',
         id: '',
@@ -21,13 +21,13 @@ class AdminCategory extends Component {
     };
 }
 
- formatDate(d) {
-     const date = new Date(d);
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
-}
+    formatDate(d) {
+        const date = new Date(d);
+        const day = date.getDate();
+        const monthIndex = date.getMonth();
+        const year = date.getFullYear();
+        return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
 
   handleInputChange(e) {
       const name = e.target.name;
@@ -64,7 +64,7 @@ class AdminCategory extends Component {
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
         <div className="ibox-projectName">
-            <h5>category List</h5>
+            <h5>Categories List</h5>
         </div>
         <div className="ibox-content">
             <div className="row">

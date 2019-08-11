@@ -17,8 +17,8 @@ const Project = () => (
         <HeaderLayout />
         {/*---- The route '/projects/all' leads to the lists of all the projects a user has got ----*/}
         <Route exact path='/projects/all' component={ProjectsPage}/>
-        <Route exact path='/projects/:projectId' component={ProjectsDetailsPage}/>
-        <Route exact path='/projects/donate/:projectId' component={ProjectDonationPage}/>
+        <Route exact path='/projects/:projectRouteName' component={ProjectsDetailsPage}/>
+        <Route exact path='/projects/donate/:projectRouteName' component={ProjectDonationPage}/>
         <Route  path='/projects/campaigns/all' component={CampaignsPage}/>
       </div>
     </Fragment>

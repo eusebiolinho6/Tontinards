@@ -5,13 +5,14 @@ import ProjectDetailsLayout from '../../layouts/projects/ProjectDetailsLayout';
 class AdminCategoryPage extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   render() {
     return (
       <Fragment>
       {/* <Header /> */}
-        <ProjectDetailsLayout projectId={this.props.match.params.projectId}/>
+        <ProjectDetailsLayout projectId={this.props.location.projectId}/>
       </Fragment>
     )
   }

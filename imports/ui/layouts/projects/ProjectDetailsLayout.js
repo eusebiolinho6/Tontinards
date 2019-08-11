@@ -18,7 +18,7 @@ class ProjectDetailsLayout extends Component {
     if((this.props.project && this.props.user) || this.props.project) {
       data = (
         <Fragment>
-             <ProjectDetails user={user} project={project} />
+          <ProjectDetails user={user} project={project} />
         </Fragment>
       )
     }

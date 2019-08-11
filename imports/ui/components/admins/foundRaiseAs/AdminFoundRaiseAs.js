@@ -63,12 +63,12 @@ class AdminFoundRaiseAs extends Component {
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
         <div className="ibox-projectName">
-            <h5>Found Raise As List</h5>
+            <h5>Funds Raise As</h5>
         </div>
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New Found Raise As</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > Create New</button>
             </div>
             <FoundRaiseAsModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>

@@ -285,7 +285,7 @@ class FunnelModalForm extends Component {
 
                         <Input
                             field="objectifAmount"
-                            label="Objectif Amount"
+                            label="Objective Amount"
                             type="number"
                             value={objectifAmount}
                             error={errors.objectifAmount}
@@ -297,7 +297,6 @@ class FunnelModalForm extends Component {
                             <option> {id ? country : 'Select Country'}</option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
                         </select>
-                        
                         <Input
                             field="city"
                             label="City"
@@ -315,7 +314,7 @@ class FunnelModalForm extends Component {
                         />
                         <Select
                             field="onefoundRaiseAs"
-                            label="Found Raise As"
+                            label="Funds Raise As"
                             value={onefoundRaiseAs}
                             options={foundRaiseAs}
                             error={errors.onefoundRaiseAs}
@@ -323,7 +322,7 @@ class FunnelModalForm extends Component {
                         />
                         <Select
                             field="oneForWhoFoundsRaise"
-                            label="For Who Founds Raise"
+                            label="Funds Raise For"
                             value={oneForWhoFoundsRaise}
                             options={forWhoFoundsRaise}
                             error={errors.oneForWhoFoundsRaise}
