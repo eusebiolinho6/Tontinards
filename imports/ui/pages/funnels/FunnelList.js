@@ -61,14 +61,6 @@ class FunnelList extends Component {
             </div>
          
        </div>
-      {/*   <section id="projectlist-wrapper">
-          <div className="container-fluid" id="container-fluid">
-            <div className="col-md-12">
-              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)}  />
-            </div>
-          </div>
-        </section>
- */}
         <div className="col-md-12 col-sm-12 descriptionDiv">
           <div className="col-md-2 col-sm-2"></div>
           <div className="col-md-8 col-sm-8 col-xs-12">
@@ -95,7 +87,13 @@ class FunnelList extends Component {
           </div>
           <div className="col-md-2 col-sm-2"></div>
         </div>
-
+        <section id="projectlist-wrapper">
+          <div className="container-fluid" id="container-fluid">
+            <div className="col-md-12">
+              <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)}  />
+            </div>
+          </div>
+        </section>
         <div className="col-md-12 col-sm-12 fullwidthBlue no-padding">
           <div className="col-md-2 col-sm-2 col-xs-0"></div>
           <div className="col-md-8 col-sm-8 col-xs-12 centerDiv">
@@ -109,9 +107,7 @@ class FunnelList extends Component {
               <a  href="/authentication/signin" type="submit" className="btn getfundBtn ">Get Funded</a>
             </div>
           </div>
-          <div className="col-md-2 col-sm-2 col-xs-0"></div>
         </div>
-
       </div>
     )
   }

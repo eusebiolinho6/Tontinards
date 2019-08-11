@@ -4664,7 +4664,7 @@ ol.unstyled {
 /*-------------------------- FOOTER ------------------------------------------*/
 .footer {
   background: none repeat scroll 0 0 #444444;
-  border-top: 1px solid #e7eaec;
+  /* border-top: 1px solid #e7eaec; */
   left: 0;
   padding: 10px 20px;
   position: absolute;
@@ -10959,6 +10959,7 @@ padding: 0 8px;
 }
 
 /**-----------------------------------contain-----------------------*/
+
 .helpImgIcon{
   width: 17%;
   }
@@ -11067,10 +11068,13 @@ color:white;
 
 }
 /*--------------------------LANDING PAGE---------------------------*/
+.subheader{
+  margin-left: 1%;
+}
 .fullwidthBlue{
   padding: 0 ;
-  height: 400px;
-  background-color: #FCFCFC;
+  height: 410px;
+  background-color: #005dac;
   text-align: center;
 }
 
@@ -11085,7 +11089,7 @@ color:white;
 
 .fullwidthBlue .firstText{
   font-size: 24px;
-  color: #444444;
+  color: white;
   font-family: 'Source Sans Pro', sans-serif, serif !important;
 }
 
@@ -11103,10 +11107,13 @@ color:white;
 }
 
 .descriptionDiv .imgWhyTontinard{
-  height: 550px;
-  position: absolute;
+  height: 430px;
+  /* position: absolute; */
   z-index: 50;
   width: 150%;
+  margin-top:-38px;
+  margin-left: 15%
+
 }
 
 .descriptionText{
