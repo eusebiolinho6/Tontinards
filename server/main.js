@@ -9,6 +9,18 @@ Meteor.startup(() => {
   startCron();
   process.env.MAIL_URL = 'smtps://onlineprepalearning@gmail.com:onlineprepa123@smtp.gmail.com:465';
 
+
+  Accounts.loginServiceConfiguration.remove({
+    service: "google"
+  });
+  Accounts.loginServiceConfiguration.insert({
+    service: "google",
+    clientId: "798248306616-63c0d02sa5f28ukmf7ldtgarv2n2ufuf.apps.googleusercontent.com",
+    loginStyle: 'popup',
+    secret: "t1AnzaWPH4cbAuANEvE_x-t-"
+  });
+
+
   Accounts.loginServiceConfiguration.remove({
     service: "twitter"
   });
@@ -19,15 +31,6 @@ Meteor.startup(() => {
       loginStyle: "popup"
   });
 
-  Accounts.loginServiceConfiguration.remove({
-    service: "google"
-  });
-  Accounts.loginServiceConfiguration.insert({
-    service: "google",
-    clientId: "798248306616-63c0d02sa5f28ukmf7ldtgarv2n2ufuf.apps.googleusercontent.com",
-    loginStyle: 'popup',
-    secret: "0uqUPSc1CrGJT2JFIZY2E8pc"
-  });
 
   Accounts.loginServiceConfiguration.remove({
     service: "facebook"
