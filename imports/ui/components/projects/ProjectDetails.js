@@ -139,6 +139,7 @@ class ProjectDetails extends Component {
     render() {
         const {project,user}= this.props;
         console.log(project);
+        console.log(user);
         const category = Categories.findOne({_id:project&&project.category}); 
         if(project.currentAmount=="") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount))* 100);
@@ -272,9 +273,13 @@ class ProjectDetails extends Component {
                                 {user ? 
                                     user.profile.role == 'admin' ?
                                         null
-                                    :
+                                    :  
+                                    //user._id == user._id ?
+                                    user._id == project.userId._id ?
+                                        ""
+                                        :
                                         <Link to={{pathname:'/projects/donate/'+ finalProjectRoute, projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
-                                :
+                                    :
                                     null
                                 }
                                     {/* <button className="fb btn">Partager sur Facebook</button> */}
