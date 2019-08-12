@@ -18,7 +18,7 @@ class ProjectDetailsLayout extends Component {
     if((this.props.project && this.props.user) || this.props.project) {
       data = (
         <Fragment>
-             <ProjectDetails user={user} project={project} />
+          <ProjectDetails user={user} project={project} />
         </Fragment>
       )
     }
@@ -26,7 +26,11 @@ class ProjectDetailsLayout extends Component {
   }
 }
 
-export default withTracker((props)=>{ console.log(props);
+export default withTracker((props)=>{ 
+  //if the project has changed, we change the value in localStorage too
+  if (props.projectId != localStorage.getItem("projectId")){
+    localStorage.setItem("projectId", props.projectId)
+  }   
   Meteor.subscribe('funnels');
   Meteor.subscribe('funnel');
   // Meteor.subscribe('categories');

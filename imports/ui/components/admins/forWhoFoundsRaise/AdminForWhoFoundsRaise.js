@@ -65,12 +65,12 @@ class AdminForWhoFoundsRaise extends Component {
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
         <div className="ibox-projectName">
-            <h5>For Who Founds Raise</h5>
+            <h5>Funds Raise For</h5>
         </div>
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New For Who Founds Raise As</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > Create New</button>
             </div>
             <ForWhoFoundsRaiseModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>

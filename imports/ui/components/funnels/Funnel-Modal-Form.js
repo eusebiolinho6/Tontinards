@@ -21,7 +21,7 @@ const collections = {
 // App component - represents the whole app
 class FunnelModalForm extends Component {
     constructor(props) {
-        super(props);
+        super(props); console.log(props)
         this.state = {
             projectName: props.projectName,
             city: props.city,
@@ -211,6 +211,7 @@ class FunnelModalForm extends Component {
                 if (this.state.videoFile) uploads.push('videoFile');
                 if (this.state.documentFile) uploads.push('documentFile');
                 if (!uploads.length) return this.closeModal();
+                console.log(uploads);
                 for (let i = 0; i < uploads.length; i++) {
                     const fieldName = uploads[i];
                     let collection = collections[fieldName];
@@ -242,6 +243,7 @@ class FunnelModalForm extends Component {
                 }
             }
         })
+        this.closeModal();
     }
     render() {
 
@@ -285,7 +287,7 @@ class FunnelModalForm extends Component {
 
                         <Input
                             field="objectifAmount"
-                            label="Objectif Amount"
+                            label="Objective Amount"
                             type="number"
                             value={objectifAmount}
                             error={errors.objectifAmount}
@@ -297,7 +299,6 @@ class FunnelModalForm extends Component {
                             <option> {id ? country : 'Select Country'}</option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
                         </select>
-                        
                         <Input
                             field="city"
                             label="City"
@@ -315,7 +316,7 @@ class FunnelModalForm extends Component {
                         />
                         <Select
                             field="onefoundRaiseAs"
-                            label="Found Raise As"
+                            label="Funds Raise As"
                             value={onefoundRaiseAs}
                             options={foundRaiseAs}
                             error={errors.onefoundRaiseAs}
@@ -323,7 +324,7 @@ class FunnelModalForm extends Component {
                         />
                         <Select
                             field="oneForWhoFoundsRaise"
-                            label="For Who Founds Raise"
+                            label="Funds Raise For"
                             value={oneForWhoFoundsRaise}
                             options={forWhoFoundsRaise}
                             error={errors.oneForWhoFoundsRaise}
@@ -345,18 +346,26 @@ class FunnelModalForm extends Component {
                                 error={errors.feedback}
                                 onChange={(event) => this.handleInputChange(event)} />: null
                         }
-                        <h2>Team Informations</h2>
-                        <Input
-                            field="teamName"
-                            label="Team Name"
-                            value={teamName}
-                            error={errors.teamName}
-                            onChange={(event) => this.handleInputChange(event)}
-                            size={250}
-                        />
-                        <div className="row">
-                            <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
-                        </div>
+                        
+                        {/* hide team Informations when user selects personnal funds reason  */}
+                        {onefoundRaiseAs == 'team' ?                        
+                            <div>
+                                <h2>Team Informations</h2>
+                                <Input
+                                    field="teamName"
+                                    label="Team Name"
+                                    value={teamName}
+                                    error={errors.teamName}
+                                    onChange={(event) => this.handleInputChange(event)}
+                                    size={250}
+                                />
+                                <div className="row">
+                                    <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
+                                </div>
+                            </div>
+                        :   
+                            null
+                        }
                         <h2>Uploads</h2>
                         <br />
                         <div className="row">

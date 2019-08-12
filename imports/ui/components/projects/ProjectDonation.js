@@ -96,7 +96,7 @@ class ProjectDonation extends Component {
     /*here we want to apply donation on one project that's why we push one project inside the array of projects */
     projects.push(project);
 
-    let comments = <p>No comments</p>;
+    let comments = <p>No comment</p>;
     if(project.donators) {
       let donators = project.donators.reverse();
       comments = donators.map(donator => {
@@ -182,7 +182,7 @@ class ProjectDonation extends Component {
             </form>
 
             <div className="comments" id="donation-comment-bloc">
-                <h3>Recents comments</h3>
+                <h3>Most recent comments</h3>
                 {comments}
             </div>
         </div>
