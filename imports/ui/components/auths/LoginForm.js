@@ -61,10 +61,10 @@ this.state = {
       Meteor.loginWithGoogle(
         {
             forceApprovalPrompt: true,
-            requestPermissions: ['profile','email'],
+            requestPermissions: ['email'],
         }, 
         (error) =>{
-            if (error) {
+            if (!error) {
                 console.log(error); //If there is any error, will get error here
             }else{
                 this.setUserRole();
@@ -80,7 +80,7 @@ this.state = {
     Meteor.loginWithFacebook(
       {
           forceApprovalPrompt: true,
-          requestPermissions: ['user_friends', 'public_profile', "email"],
+          requestPermissions: ['public_profile', "email"],
       }, 
       (error) =>{
           if (error) {
