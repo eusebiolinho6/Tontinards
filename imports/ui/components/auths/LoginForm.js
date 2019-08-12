@@ -167,8 +167,8 @@ this.state = {
                         </div>
                         <div className="col-sm-12 mt-3 social-wrapper">
                             {/* <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Login with Twitter</strong></button> */}
-                            <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>Login with Google</strong></button>
-                            <button className="btn btn-md btn-primary mt-3" onClick={this.loginFacebook}><strong>Login with Facebook</strong></button>
+                            {/* <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>Login with Google</strong></button>
+                            <button className="btn btn-md btn-primary mt-3" onClick={this.loginFacebook}><strong>Login with Facebook</strong></button> */}
                             <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>Login with Twitter</strong></button>
                         </div>
                     </div>
