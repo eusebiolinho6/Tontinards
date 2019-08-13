@@ -200,7 +200,7 @@ class SignupForm extends Component {
                                 </div> */}
                                 <div className="col-sm-12 mt-12 social-wrapper">
                                     <button className="btn btn-md btn-danger mt-3" onClick={this.signupWithGoogle} ><strong>Signup with Google</strong></button><br />
-                                    <button className="btn btn-md btn-primary mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br />
+                                    {/* <button className="btn btn-md btn-primary mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br /> */}
                                     <button className="btn btn-md btn-info mt-3" onClick={this.signupWIthTwitter} ><strong>Signup with Twitter</strong></button><br />
                                 </div>
                             </div>

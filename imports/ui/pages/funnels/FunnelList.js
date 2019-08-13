@@ -44,7 +44,7 @@ class FunnelList extends Component {
               <br/> 
               <div className="row allbuttons">
                 <a  href="/projects/campaigns/all" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
-                <a  href="/authentication/signin" type="submit" className="btn getfundBtn ">Get Funded</a>
+                <a  href="/user/projects" type="submit" className="btn getfundBtn ">Get Funded</a>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@ class FunnelList extends Component {
             </div>
             <div className="col-md-12 buttonsContainer">
               <a  href="/projects/campaigns/all" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
-              <a  href="/authentication/signin" type="submit" className="btn getfundBtn ">Get Funded</a>
+              <a  href="/user/projects" type="submit" className="btn getfundBtn ">Get Funded</a>
             </div>
           </div>
         </div>

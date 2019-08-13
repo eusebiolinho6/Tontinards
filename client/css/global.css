@@ -10294,6 +10294,11 @@ color: green;
   background-color: #EE202E !important;
 }
 
+.socialBtn .startCampaignBtn, .validateBtn, .donationBtn{
+  background-color: #ACD61E !important;
+  font-weight: bold;
+}
+
 #projectdetails .right .date{
   padding: 2rem 2rem 0rem 2rem;
 }
@@ -10556,7 +10561,7 @@ color: green;
      }
   
   .donationPageContent h3{
-    text-align: center
+    text-align: left;
   }
 
 
@@ -10586,6 +10591,9 @@ color: green;
     z-index: 2;
     transition: color 200ms ease-in;
     overflow: hidden;
+}
+.inputGroup  label span{
+    margin-right: 20%;
 }
 .inputGroup  label:before {
       width: 10px;
@@ -11232,7 +11240,7 @@ color:white;
 }
 
 .readproject{
-  background-color: #005DAC;
+  background-color: #F26524;
   color: #fff !important;
   font-weight: bolder;
   padding-top: 1rem;

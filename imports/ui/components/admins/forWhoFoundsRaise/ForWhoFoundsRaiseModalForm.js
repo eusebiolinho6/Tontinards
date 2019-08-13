@@ -87,10 +87,10 @@ componentWillReceiveProps(nextProps){
     </ModalHeader>
     <ModalBody>
         <div className="col-md-12">
-                <h2>FoundRaiseAs Info</h2>
+                <h2>Funds Raise For </h2>
                 <Input
                     field="name"
-                    label="Enter FoundRaiseAs name"
+                    label="Enter name"
                     value={name}
                     error={errors.name}
                     onChange={(event)=> this.handleInputChange(event) }

@@ -1,4 +1,5 @@
 import Validator from 'validator';
+
 import isEmpty from 'lodash/isEmpty';
 
 export default function validateInput(data) {
@@ -16,7 +17,14 @@ export default function validateInput(data) {
         errors.description = 'This field is required';
     }
    
+    if (Validator.isEmpty(data.documentFile)) {
+        errors.documentFile = 'This field is required';
+    }
 
+    if (Validator.isEmpty(data.projectImage)) {
+        errors.projectImage = 'This field is required';
+    }
+    
     return {
         errors,
         isValid: isEmpty(errors)

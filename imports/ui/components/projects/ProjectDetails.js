@@ -53,7 +53,16 @@ class ProjectDetails extends Component {
         this.saveComment()
     }
 
-            /**
+
+    componentWillMount = () => {
+        console.log(this.props);
+        // this.props.navigation.navigate('Details', {
+        //     itemId: 86,
+        //     otherParam: 'anything you want here',
+        //   });
+    }
+
+    /**
      * 
      * @goal change the projectState of the current project 
      * @returns void
@@ -96,10 +105,10 @@ class ProjectDetails extends Component {
         }
     }
 
-    addNotification = (massage) => {
+    addNotification = (message) => {
         this.notificationDOMRef.current.addNotification({
           title: "PROJECT STATE",
-          message: massage,
+          message: message,
           type: "success",
           insert: "top",
           container: "top-center",
@@ -146,7 +155,12 @@ class ProjectDetails extends Component {
         // foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs._str)});
         // foundRaiseAs = FoundRaiseAs.findOne({_id:project&&project.onefoundRaiseAs});
         // const forWhoFoundsRaise = ForWhoFoundsRaise.findOne({_id:project&&project.oneForWhoFoundsRaise});
-        
+         //we extract the first 4 chars from the proectId to make the routeId 
+         let routeId = project._id._str.slice(0,4);
+         //we convert the project name to lower case and removeall spaces
+         let routeProjectName = project.projectName.toLowerCase().replace(/\s/g, '-');
+         let finalProjectRoute = routeProjectName +'_'+ routeId;
+ 
         return (
             <div className="container" id="projectdetails">
                 <ReactNotification ref={this.notificationDOMRef} />
@@ -273,17 +287,18 @@ class ProjectDetails extends Component {
                                     user._id == project.userId._id ?
                                         ""
                                         :
-                                        <Link to={{pathname:'/projects/donate/'+project._id._str}} className="btn btn-primary st">Donate </Link>
-                                :
+                                        <Link to={{pathname:'/projects/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                    :
                                     null
                                 }
                                     {/* <button className="fb btn">Partager sur Facebook</button> */}
                                     {
                                         user ? 
-                                        user.profile.role == 'admin'&& project.projectState == 'PENDING' 
-                                        ?                               
-                                        <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Validate</button>                                
-                                            : '' : null
+                                            user.profile.role == 'admin'&& project.projectState == 'PENDING' ?                               
+                                                <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>Validate</button>                                
+                                            : '' 
+                                        : 
+                                        <Link to={{pathname:'/projects/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
                                     }
                             {
                                 user ? 
@@ -298,7 +313,7 @@ class ProjectDetails extends Component {
                                 user ? 
                                 user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
                                 ?
-                                <button className="st btn btn-lg" onClick={()=>this.setProjectState()}>Start campaign</button> 
+                                <button className="st btn btn-lg startCampaignBtn" onClick={()=>this.setProjectState()}>Start campaign</button> 
                                     :
                                     '' : null
                               }
@@ -334,7 +349,7 @@ class ProjectDetails extends Component {
                             </div> 
                         </div>
                         <div className="messages">
-                            <a className="btn readproject" href={project.document}>Read project</a>                            
+                            <a className="btn readproject" href={project.document}>Read Detailed Description</a>                            
                         </div>
                         <div className="messages">
                             <div className="allmessages">

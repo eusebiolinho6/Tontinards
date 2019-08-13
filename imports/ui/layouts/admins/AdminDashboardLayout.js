@@ -120,7 +120,7 @@ class AdminDashboardLayout extends Component {
               
               <div className="inputGroup">
                 <input id="option2" name="option2" type="checkbox"/>
-                <label for="option2">Valided projects</label>
+                <label for="option2">Validated projects</label>
               </div>
   
               <div className="inputGroup">
@@ -130,17 +130,17 @@ class AdminDashboardLayout extends Component {
   
               <div className="inputGroup">
                 <input id="radio1" name="radio" type="radio" checked={displayPendingProjects} onChange={()=>this.filterProjects("PENDING")}/>
-                <label for="radio1">Pending projects</label>
+                <label for="radio1"><span>Pending projects</span></label>
               </div>
   
               <div className="inputGroup">
                 <input id="radio2" name="radio" type="radio" onChange={()=>this.filterProjects("VALID")}/>
-                <label for="radio2">Valided projects</label>
+                <label for="radio2"><span>Validated projects</span></label>
               </div>
   
               <div className="inputGroup">
                 <input id="radio3" name="radio" type="radio" onChange={()=>this.filterProjects("CAMPAIGNS")}/>
-                <label for="radio3">Campaigns</label>
+                <label for="radio3"><span>Campaigns</span></label>
               </div>
             </form>
   
@@ -178,7 +178,7 @@ class AdminDashboardLayout extends Component {
                 <div className="row text-center validatedProjectsConatiner">
                   {/* <hr className = "AdminProjectSHr"/> */}
                   <br/>
-                  <h2 className = "AdminProjectH2">Valided Projects </h2>
+                  <h2 className = "AdminProjectH2">Validated Projects </h2>
                   <br/>
                   {
                   validatedProjects.length == 0 ? 

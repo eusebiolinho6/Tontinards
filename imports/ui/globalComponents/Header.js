@@ -55,8 +55,8 @@ class Header extends Component {
                                                     <a className="dropbtn" className="menuLink" href="#">Admin <i className="fa fa-angle-down"></i> </a>
                                                     <div className="dropdown-content">
                                                         <a id="dropbtn" href="/admin/categories">Categories</a>
-                                                        <a id="dropbtn" href="/admin/foundRaiseAs">Found Raise As</a>
-                                                        <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">For Who Founds Raise</a>
+                                                        <a id="dropbtn" href="/admin/foundRaiseAs">Funds Raise As</a>
+                                                        <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">Funds Raise For</a>
                                                         <a id="dropbtn" href="/admin/funnels">Projects</a>
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@ class Header extends Component {
                                                             <p className="dropbtn">{user.profile.name}</p>
 
                                                             <div className="dropdown-content">
-                                                                <Link to={{pathname:'/admin/admindashboard'}} className="">adminDashboard </Link>
+                                                                <Link to={{pathname:'/admin/admindashboard'}} className="">Dashboard </Link>
                                                                 <a href="/authentication/profile">Profile</a>
                                                                 <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
                                                             </div>

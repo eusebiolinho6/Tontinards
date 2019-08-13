@@ -66,7 +66,7 @@ class User extends Component {
         <Switch>
           <Fragment>
             <HeaderLayout />
-            {1==1 ? 
+            {this.props.userId ? 
               <span>
                 <Route exact path='/user/funnels' component={authenticate(AdminPage)}/>
                 {/* <Route exact path='/user/projectdetails' component={ProjectsDetailsPage}/> */}
@@ -76,7 +76,7 @@ class User extends Component {
                 <Route exact path='/user/projectdetails' component={ProjectDetails}/>
               </span>
               :
-            <Redirect to="/" />
+            <Redirect to="/authentication/signin" />
           }
           </Fragment>
         </Switch>

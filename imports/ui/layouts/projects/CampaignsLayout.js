@@ -100,7 +100,7 @@ class CampaignsLayout extends Component {
                return(
                 <div className="inputGroup">
                     <input id={category._id._str} name="radio" type="radio" onChange={()=>this.renderProjects(campaigns, "START CAMPAIGN" , category._id._str)} />
-                    <label for={category._id._str}>{category.name}</label>
+                    <label for={category._id._str}><span>{category.name}</span></label>
                 </div>
                ) 
           })
@@ -113,31 +113,33 @@ class CampaignsLayout extends Component {
         
 
         {/*---- Begining zone of Campaigns ------*/}
-        {
-          campaigns.length == 0 ? 
-          "" 
-          :
-        <div className="row text-center validatedProjectsConatiner">
-            {/* <hr/> */}
-            {/* <h2>Campaigns</h2> */}
-            <div className="projects">
-                {/* {this.renderProjects(campaigns, "START CAMPAIGN")} */}
-                {this.state.firstRender ? AllCampaigns : 
-                  this.state.projectList.length == 0 ? 
-                   <div className="noProject">
-                    <span>{emptyIcon}</span>
-                    <h3>No project.</h3>
-                   </div>
-                   :
-                   this.state.projectList
-                   }
+        <div className="container-fluid row col-md-9">
+          {
+            campaigns.length == 0 ? 
+            "" 
+            :
+          <div className="row text-center validatedProjectsConatiner">
+              {/* <hr/> */}
+              {/* <h2>Campaigns</h2> */}
+              <div className="projects">
+                  {/* {this.renderProjects(campaigns, "START CAMPAIGN")} */}
+                  {this.state.firstRender ? AllCampaigns : 
+                    this.state.projectList.length == 0 ? 
+                    <div className="noProject">
+                      <span>{emptyIcon}</span>
+                      <h3>No project.</h3>
+                    </div>
+                    :
+                    this.state.projectList
+                    }
 
-            </div>
-            <br/>
-            <br/>
-            {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+              </div>
+              <br/>
+              <br/>
+              {/* <a type="button" onClick={()=> this.pushMoreProjects("rejectedProjects", this.state.rejectedProjects)} className="btn-lg viewMoreProjectsBtn btn-danger">View More</a> */}
+          </div>
+          }
         </div>
-        }
         {/*---- End zone of Rejected Projects ------*/}
         
 
