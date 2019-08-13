@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import {Link} from 'react-router-dom';
-
+import CurrencyFormat from 'react-currency-format';
 import AdminDashboard from '../admins/AdminDashboard';
 import MainLayout from '../../layouts/MainLayout';
 import HeaderLayout from '../../globalComponents/layouts/HeaderLayout'
@@ -76,7 +76,7 @@ class FunnelList extends Component {
                   
               </p>
               <br/>
-              <a type="btn btn-lg" href="#"> Learn more</a>
+              {/* <a type="btn btn-lg" href="#"> Learn more</a> */}
             </div>
             <div className="col-md-6 col-sm-5 col-xs-4 imgWhyTontinardDiv">
               <img src = "/images/imge2.png"
