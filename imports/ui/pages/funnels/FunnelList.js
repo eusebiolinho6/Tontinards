@@ -43,7 +43,7 @@ class FunnelList extends Component {
               <br/>
               <br/> 
               <div className="row allbuttons">
-                <a  href="/projects/campaigns/all" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
+                <a  href="/projects/campaigns" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
                 <a  href="/user/projects" type="submit" className="btn getfundBtn ">Get Funded</a>
               </div>
             </div>

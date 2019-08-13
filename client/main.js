@@ -14,6 +14,8 @@ import Authentication from '../imports/ui/routes/Authentication';
 import PaypalPage from '../imports/ui/pages/payments/PaypalPage';
 import PagePlans from '../imports/ui/pages/payments/PagePlans';
 import NotFoundPage from '../imports/ui/pages/errors/NotFoundPage';
+import ProjectsPage from '../imports/ui/pages/projects/ProjectsPage'
+import CampaignsPage from '../imports/ui/pages/projects/CampaignsPage'
 
 Meteor.startup(() => {
   ['fixed-sidebar', 'mini-navbar', 'fixed-nav', 'pace-done', 'skin-1'].forEach(klass => document.body.classList.add(klass));
@@ -23,11 +25,11 @@ Meteor.startup(() => {
         <Switch>
           <Route exact path='/' component={Funnel} />
           <Route path='/projects' component={Project} />
+          <Route path='/authentication' component={Authentication} />
           {/**<Route path='/pricing' component={PagePlans} />*/}
           <Route exact path='/paypal' component={PaypalPage} />
           <Route path='/admin' component={Admin} />
           <Route path='/user' component={User} />
-          <Route path='/authentication' component={Authentication} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
     </div>

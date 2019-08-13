@@ -90,7 +90,7 @@ class ProjectDetails extends Component {
             const projectData = {
                 owner: project.userId.username,
                 name: project.projectName,
-                link: "http://localhost:3000/user/campaigns"
+                link: "http://tontinards.biz/user/campaigns"
             };
             this.addNotification("Canpaign started successfully!");
             Meteor.call("sendEmail",
@@ -160,7 +160,7 @@ class ProjectDetails extends Component {
          let routeId = project._id._str.slice(0,4);
          //we convert the project name to lower case and removeall spaces
          let routeProjectName = project.projectName.toLowerCase().replace(/\s/g, '-');
-         let finalProjectRoute = routeProjectName +'_'+ routeId;
+         let finalProjectRoute = routeProjectName;
  
         return (
             <div className="container" id="projectdetails">
@@ -293,7 +293,7 @@ class ProjectDetails extends Component {
                                     user._id == project.userId._id ?
                                         ""
                                         :
-                                        <Link to={{pathname:'/projects/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
                                     :
                                     null
                                 }
@@ -304,7 +304,7 @@ class ProjectDetails extends Component {
                                                 <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>Validate</button>                                
                                             : '' 
                                         : 
-                                        <Link to={{pathname:'/projects/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
                                     }
                             {
                                 user ? 
@@ -366,11 +366,13 @@ class ProjectDetails extends Component {
                                     <h5>No donations for the moment.</h5>:
                                     <div className="alldons">
                                         {project.donators.map((don) => {
-                                            return (
-                                                <div className="messages-item">
-                                                    <h5>{don.firstName}: {don.amount} FCFA</h5><hr/>
-                                                </div>
-                                            );
+                                            if(don.validated) {
+                                                return (
+                                                    <div className="messages-item">
+                                                        <h5>{don.firstName}: {don.amount} FCFA</h5><hr/>
+                                                    </div>
+                                                );
+                                            }
                                         })}
                                     </div>
                                 }

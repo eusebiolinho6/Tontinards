@@ -58,6 +58,7 @@ class Header extends Component {
                                                         <a id="dropbtn" href="/admin/foundRaiseAs">Funds Raise As</a>
                                                         <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">Funds Raise For</a>
                                                         <a id="dropbtn" href="/admin/funnels">Projects</a>
+                                                        <a id="dropbtn" href="/admin/donations">Donations</a>
                                                     </div>
                                                 </div>
                                             </div> : 
