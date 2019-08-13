@@ -9,6 +9,8 @@ import axios from 'axios';
 import 'react-circular-progressbar/dist/styles.css';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import CurrencyFormat from 'react-currency-format';
+
 
 
 export default class ProjectItem extends Component {
@@ -70,6 +72,8 @@ export default class ProjectItem extends Component {
     }
 
     render() {
+        // var IntlMixin = ReactIntl.IntlMixin;
+        // var FormattedNumber = ReactIntl.FormattedNumber;
         const { project, propclass, user } = this.props;
         if (project.currentAmount == "") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount)) * 100);
@@ -144,7 +148,14 @@ export default class ProjectItem extends Component {
                                     <Link to={{ pathname: '/projects/' + project._id._str }} className="product-name"> {project.projectName} </Link>
                                 </div>
                                 {projectState == "START CAMPAIGN" ?
-                                    <h4 className="text-muted"> Raised: {project.currentAmount} Fcfa / Goal: {project.objectifAmount} Fcfa  </h4>
+                                    <h4 className="text-muted">
+                                       <span>Raised :  </span> 
+                                        <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/>
+                                         Fcfa / 
+                                        <span>Goal :  </span>
+                                        <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/>
+                                         Fcfa 
+                                     </h4>
                                     : ""
                                 }
                                 <div className="m-t text-righ">
