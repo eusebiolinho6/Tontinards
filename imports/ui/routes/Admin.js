@@ -2,7 +2,7 @@ import React, { Fragment, Component} from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom';
 import HeaderLayout from '../globalComponents/layouts/HeaderLayout';
 import AdminPage from '../pages/admins/AdminPage';
-import AdminIndustryPage from '../pages/admins/AdminIndustryPage';
+import AdminDonationPage from '../pages/admins/AdminDonationPage';
 import AdminCategoryPage from '../pages/admins/AdminCategoryPage';
 import AdminFoundRaiseAsPage from '../pages/admins/AdminFoundRaiseAsPage';
 import AdminForWhoFoundsRaisePage from '../pages/admins/AdminForWhoFoundsRaisePage'
@@ -69,6 +69,7 @@ class Admin extends Component {
               2==2 ?
               <span>
                 <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
+                <Route exact path='/admin/donations' component={authenticate(AdminDonationPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
                 <Route exact path='/admin/foundRaiseAs' component={authenticate(AdminFoundRaiseAsPage)}/>
                 <Route exact path='/admin/forWhoFoundsRaisePage' component={authenticate(AdminForWhoFoundsRaisePage)}/>

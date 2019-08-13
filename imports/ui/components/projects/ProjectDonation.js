@@ -46,6 +46,7 @@ class ProjectDonation extends Component {
     e.preventDefault();
     const projectId = this.props.project._id;
     const newDonator = {
+      id: new Mongo.ObjectID(),
       firstName: this.state.name,
       lastName: this.state.lastName,
       email: this.state.email,
@@ -53,10 +54,13 @@ class ProjectDonation extends Component {
       amount: this.state.amount,
       comment: this.state.message,
       location: this.state.location,
-      date: new Date()
+      date: new Date(),
+      validated: false
     }
-    if(this.state.amount.trim().length <= 0) {
-      this.addNotification("Enter an amount!", "danger");
+    if(this.state.amount.trim().length <= 0 ||
+    this.state.email.trim().length <= 0 ||
+    this.state.phoneNumber.trim().length <= 0 ) {
+      this.addNotification("Amount, Phone Number and Email are required!", "danger");
     } else {
       Meteor.call('makeDonate', newDonator, projectId);
       this.addNotification("Successfully done!", "success")
