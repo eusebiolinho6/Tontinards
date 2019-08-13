@@ -51,8 +51,9 @@ class FunnelModalForm extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { show, userId,city, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, email,objectifAmount,feedback, category, description, id, country } = nextProps;
-        this.setState({ show, userId,city, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email,feedback, objectifAmount, category, description, id, country });
+        const { show, userId,city, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, email,objectifAmount,feedback, category, description, id, country, projectImage } = nextProps;
+        const documentFile = nextProps.document;
+        this.setState({ show, userId,city, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email,feedback, objectifAmount, category, description, id, country, projectImage, documentFile });
         
     
     }
@@ -83,17 +84,18 @@ class FunnelModalForm extends Component {
         });
     }
     isValid() {
-        const {
-            errors,
-            isValid
-        } = validateInput(this.state);
 
-        if (!isValid) {
-            console.log(errors);
-            this.setState({
-                errors
-            });
-        }
+    const {
+        errors,
+        isValid
+    } = validateInput(this.state);
+
+    if (!isValid) {
+        console.log(errors);
+        this.setState({
+            errors
+        });
+    }
 
         return isValid;
     }
@@ -248,7 +250,8 @@ class FunnelModalForm extends Component {
     render() {
 
         const { show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback } = this.state;
-        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user } = this.props;
+        const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user, isEditing  } = this.props;
+        console.log(this.props);
 
        return (
             <Modal bsSize="large"

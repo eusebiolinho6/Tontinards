@@ -41,7 +41,8 @@ class FunnelLIstAdmin extends Component {
             email: '',
             show: false,
             feedback: '',
-            currentUser: null
+            currentUser: null,
+            isEditing: false
         };
         console.log(this.props.user);
         this.notificationDOMRef = React.createRef();
@@ -97,7 +98,7 @@ class FunnelLIstAdmin extends Component {
         });
     }
 
-    editFunnel(funnel) {
+    editFunnel(funnel) { console.log(funnel);
         this.setState({
             phoneNumber: funnel.phoneNumber,
             objectifAmount: funnel.objectifAmount,
@@ -117,7 +118,8 @@ class FunnelLIstAdmin extends Component {
             country: funnel.country,
             city: funnel.city,
             email: funnel.email,
-            show: true
+            show: true,
+            isEditing: true
         });
     }
 
@@ -153,7 +155,8 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             email: '',
-            isLoading: false
+            isLoading: false,
+            isEditing: false
         })
     }
 
@@ -180,7 +183,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-        const { show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries } = this.state;
+        const { show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
         //console.log(user);
         
@@ -206,7 +209,7 @@ class FunnelLIstAdmin extends Component {
                                     forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
                                     video={video} show={show} projectImage={projectImage} teamImage={teamImage} 
                                     document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} 
-                                    email={email} objectifAmount={objectifAmount} country={country} countries={countries}
+                                    email={email} objectifAmount={objectifAmount} country={country} countries={countries} isEditing={isEditing}
                                      closeModal={() => this.closeModal()} />
                                 </div>
                                 {funnels && funnels.length ? <div className="table-responsive">
@@ -228,7 +231,8 @@ class FunnelLIstAdmin extends Component {
                                                 <Tr key={funnel._id} funnel={funnel} 
                                                     editFunnel={(funnel) => this.editFunnel(funnel)} 
                                                     deleteFunnel={(funnel) => this.deleteFunnel(funnel)} 
-                                                    formatDate={(date) => this.formatDate(date)} />
+                                                    formatDate={(date) => this.formatDate(date)} 
+                                                />
                                             ))}
 
                                         </tbody>

@@ -17,11 +17,11 @@ export default function validateInput(data) {
         errors.description = 'This field is required';
     }
    
-    if (Validator.isEmpty(data.documentFile)) {
+    if (!data.documentFile) {
         errors.documentFile = 'This field is required';
     }
 
-    if (Validator.isEmpty(data.projectImage)) {
+    if (!data.projectImage) {
         errors.projectImage = 'This field is required';
     }
     
