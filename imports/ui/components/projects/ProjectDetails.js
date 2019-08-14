@@ -19,6 +19,7 @@ import 'react-awesome-slider/dist/styles.css';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections';
+import CurrencyFormat from 'react-currency-format';
 import {toObjectId} from '../../../utilities/';
 
 // App component - represents the whole app
@@ -246,11 +247,16 @@ class ProjectDetails extends Component {
                             <div className="otherinfos0">
                                 <div className="item">
                                     <h4><strong>OBJECTIVE: </strong></h4>
-                                    <h4>{project.objectifAmount} FCFA</h4>
+                                    
+                                    <h4>
+                                        <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/> FCFA
+                                    </h4>
                                 </div>
                                 <div className="item">
                                     <h4><strong>CURRENT AMOUNT: </strong></h4>
-                                    <h4>{project.currentAmount} FCFA</h4>
+                                    <h4>
+                                        <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/> FCFA
+                                    </h4>
                                 </div>
                                 {/* <h4><strong>OBJECTIVE: </strong> {project.objectifAmount} FCFA</h4>
                                 <h4><strong>CURRENT AMOUNT: </strong> {project.currentAmount} FCFA</h4> */}
