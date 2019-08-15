@@ -41,8 +41,7 @@ class FunnelLIstAdmin extends Component {
             email: '',
             show: false,
             feedback: '',
-            currentUser: null,
-            isEditing: false
+            currentUser: null
         };
         console.log(this.props.user);
         this.notificationDOMRef = React.createRef();
@@ -68,7 +67,6 @@ class FunnelLIstAdmin extends Component {
             .then(function (response) {
                 // handle success
                 return response;
-                console.log(this.state.category);
             })
             .catch(function (error) {
                 // handle error
@@ -118,8 +116,7 @@ class FunnelLIstAdmin extends Component {
             country: funnel.country,
             city: funnel.city,
             email: funnel.email,
-            show: true,
-            isEditing: true
+            show: true
         });
     }
 
@@ -155,22 +152,21 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             email: '',
-            isLoading: false,
-            isEditing: false
+            isLoading: false
         })
     }
 
     addNotification = (massage) => {
         this.notificationDOMRef.current.addNotification({
-          title: "PROJECT STATE",
-          message: massage,
-          type: "danger",
-          insert: "top",
-          container: "top-center",
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: { duration: 2000 },
-          dismissable: { click: true }
+            title: "PROJECT STATE",
+            message: massage,
+            type: "danger",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: { duration: 2000 },
+            dismissable: { click: true }
         });
     }
 
@@ -183,7 +179,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-        const { show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing } = this.state;
+        const { show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
         //console.log(user);
         
@@ -209,7 +205,7 @@ class FunnelLIstAdmin extends Component {
                                     forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
                                     video={video} show={show} projectImage={projectImage} teamImage={teamImage} 
                                     document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} 
-                                    email={email} objectifAmount={objectifAmount} country={country} countries={countries} isEditing={isEditing}
+                                    email={email} objectifAmount={objectifAmount} country={country} countries={countries}
                                      closeModal={() => this.closeModal()} />
                                 </div>
                                 {funnels && funnels.length ? <div className="table-responsive">
