@@ -7,7 +7,7 @@ import Location from '../../globalComponents/Location';
 import AdminDonations from '../../components/admins/donations/AdminDonations';
 import { Funnels } from '../../../api/collections'
 // App component - represents the whole app
-class AdminCategoryLayout extends Component {
+class AdminDonationLayout extends Component {
   constructor(props) {
     super(props);
   }
@@ -31,4 +31,4 @@ export default withTracker(props=>{
   return {
     projects: Funnels.find({}).fetch()
   }
-})(AdminCategoryLayout)
+})(AdminDonationLayout)
