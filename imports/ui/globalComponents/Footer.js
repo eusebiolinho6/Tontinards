@@ -15,7 +15,17 @@ class Footer extends Component {
         super(props);
     }
 
+    setLanguage=()=>{
+        
+        localStorage.getItem('lang') == 'fr'?
+            localStorage.setItem('lang','en')
+            :
+            localStorage.setItem('lang','fr')
+        window.location.reload();
+    }
+
     render() {
+        const lang = localStorage.getItem('lang');
         return (
             <div>
                 <div className="footer">
@@ -54,6 +64,25 @@ class Footer extends Component {
                             <a href="#"><span>{twitterIcon}</span></a>
                         </div>    
                     </div> */}
+                    
+                        <div className="col-md-3 socials">
+                                <label >Languages </label>
+                                <br/>
+                                {console.log(lang)}
+                                    {lang == 'fr'?
+                                    <select className="selectLanguage" onChange={this.setLanguage}>
+                                        <option selected value="fr" >Français</option>
+                                        <option  value="en" >Anglais</option>
+                                    </select>
+                                    :
+                                    <select className="selectLanguage" onChange={this.setLanguage}>
+                                        <option  value="fr" >Français</option>
+                                        <option selected value="en" >Anglais</option>
+                                    </select>
+                                    }
+                                
+                                
+                         </div>
                 </div>
             </div>
         )
