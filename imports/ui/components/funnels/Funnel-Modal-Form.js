@@ -1026,7 +1026,7 @@ class FunnelModalForm extends Component {
         aria-labelledby="contained-modal-title-sm" show={show} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-    <h3 className="text-center" > {id ?'Edit Funnel': ' Add Funnel'}</h3>
+    <h3 className="text-center" > {id ?'Edit Project': ' Add Project'}</h3>
     </ModalHeader>
     <ModalBody>
         <h2>Project Informations</h2>
