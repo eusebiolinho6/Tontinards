@@ -28,8 +28,15 @@ formatDate(d) {
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
 
+  // Validate a Donation
   validate(don, projectId){
     Meteor.call('validateDonate', don, projectId)
+    this.addNotification("Successfully done!", "success")
+  }
+
+  // Delete a donation
+  delete(projectId, donID){
+    Meteor.call('deleteDonate', projectId, donID)
     this.addNotification("Successfully done!", "success")
   }
 
@@ -61,7 +68,10 @@ formatDate(d) {
                                 <td>{don.firstName+" "+don.lastName}</td>
                                 <td><CurrencyFormat  value={don.amount} displayType={'text'} thousandSeparator=" "/> FCFA</td>
                                 <td>{this.formatDate(don.date)} </td>
-                                    <td> <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-md btn-primary pull-right">Validate</button></td>
+                                    <td> 
+                                        <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-md btn-danger m-l-md pull-right">Delete</button>
+                                        <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-md btn-primary pull-right">Validate</button>
+                                    </td>
                             </tr>
                         )
                     }
