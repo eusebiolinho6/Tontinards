@@ -189,7 +189,6 @@ class SignupForm extends Component {
                                         error={errors.confirmPassword}
                                         onChange={(event) => this.handleInputChange(event)}
                                     />
-
                                     <div>
                                         <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
                                         {errors.error && <span style={{ color: '#ed5565' }} className="error-block">{errors.error}</span>}

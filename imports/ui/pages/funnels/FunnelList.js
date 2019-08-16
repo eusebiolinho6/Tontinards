@@ -2,11 +2,8 @@ import React, { Component, Fragment } from 'react';
 
 import {Link} from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
-import AdminDashboard from '../admins/AdminDashboard';
 import MainLayout from '../../layouts/MainLayout';
-import HeaderLayout from '../../globalComponents/layouts/HeaderLayout'
-
-import FunnelDetailsPage from './FunnelsDetailsPage';
+import i18n from '../../../../traduction/landingPage/translation'
 
 // App component - represents the whole app
 class FunnelList extends Component {
@@ -16,16 +13,15 @@ class FunnelList extends Component {
       isFree:false
     }
   }
-
+  
     toggleFree(b) {
       this.setState({isFree:b});
     }
 
 
-
   render() {
     const {isFree}=this.state;
-
+   
     return (
       <div className="container-fluid no-padding">
         <div className="row no-padding">
@@ -35,16 +31,14 @@ class FunnelList extends Component {
               <img src="/images/imge1.png" className="imgfirstcontain "></img>
             </div>
             <div className="firstContaindiv col-md-6 col-sm-6 col-xs-6" >
-              <p className="titleMain  text-center"><strong><span>Invest in Cameroon’s</span> </strong><strong><br/>most promising startups</strong></p>
-              <p className="text-center getStarted">We have selected Cameroon’s most promising startups so you can
-                invest to share future profits or just invest to support a project you
-                are interested in.
+              <p  className="titleMain  text-center"><strong><span>{i18n.t('Invest')}</span> </strong><strong><br/>{i18n.t('landing1')}</strong></p>
+              <p className="text-center getStarted">{i18n.t('landing2')}
               </p>
               <br/>
               <br/> 
               <div className="row allbuttons">
-                <a  href="/projects/campaigns" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
-                <a  href="/user/projects" type="submit" className="btn getfundBtn ">Get Funded</a>
+                <a key="landing3" href="/projects/campaigns" type="submit" className="btn addprojectBtn Link"> {i18n.t('landing3')} </a>
+                <a key="landing4" href="/user/projects" type="submit" className="btn getfundBtn ">{i18n.t('landing4')}</a>
               </div>
             </div>
           </div>
@@ -65,15 +59,12 @@ class FunnelList extends Component {
           <div className="col-md-2 col-sm-2"></div>
           <div className="col-md-8 col-sm-8 col-xs-12">
            <div className="col-md-6 col-sm-7 col-xs-8 descriptionText">
-              <h3> Why Tontinards?</h3>
+              <h3> {i18n.t('landing5')}</h3>
               <p >
-                African Solidarity meets Profitability!
-                <br/>
-                <br/>
-
-                It’s simple! Because no other people have more solidarity than Africans. Most Africans help their family members like brothers, sisters, aunts, cousines, father, mother, friends, tribesmen, colleagues and the list goes on.
-                All what the Tontinard platform carefully select the most promising startups, so that you can enjoy showing your African solidarity by supporting a project you love and sharing in the future profit.
-                  
+              {i18n.t('landing6')}  
+              <br/>
+              <br/>
+              {i18n.t('landing61')}
               </p>
               <br/>
               {/* <a type="btn btn-lg" href="#"> Learn more</a> */}
@@ -98,13 +89,13 @@ class FunnelList extends Component {
           <div className="col-md-2 col-sm-2 col-xs-0"></div>
           <div className="col-md-8 col-sm-8 col-xs-12 centerDiv">
             <div className="col-md-12 firstTextDiv">
-              <p className="firstText">
-                Do you want to <strong>join us transform Africa’s solidarity to Profit?</strong>
+              <p className="firstText">{i18n.t('landing7')} &nbsp; 
+              <strong>{i18n.t('landing71')}</strong>
               </p>
             </div>
             <div className="col-md-12 buttonsContainer">
-              <a  href="/projects/campaigns/all" type="submit" className="btn addprojectBtn Link"> Start Funding </a>
-              <a  href="/user/projects" type="submit" className="btn getfundBtn ">Get Funded</a>
+              <a   href="/projects/campaigns/all" type="submit" className="btn addprojectBtn Link"> {i18n.t('landing8')} </a>
+              <a href="/user/projects" type="submit" className="btn getfundBtn ">{i18n.t('landing9')}</a>
             </div>
           </div>
         </div>
