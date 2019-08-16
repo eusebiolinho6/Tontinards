@@ -99,7 +99,9 @@ export default class ProjectItem extends Component {
                     teamImage={teamImage} document={document}
                     foundRaiseAs={this.props.foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs}
                     email={email} objectifAmount={objectifAmount} country={country}
-                    countries={this.state.countries} closeModal={this.closeModal} />
+                    countries={this.state.countries} closeModal={this.closeModal} 
+                    isEditing={true}    
+                />
                     <ReactNotification ref={this.notificationDOMRef} />
                 <div className="ibox text-center">
                     <div className="ibox-content product-box active">
