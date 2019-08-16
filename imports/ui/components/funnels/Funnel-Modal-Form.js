@@ -1064,12 +1064,14 @@ class FunnelModalForm extends Component {
                 error={errors.objectifAmount}
                 onChange={(event) => this.handleInputChange(event)}
             />
-
-            <label>Country</label>
-            <select name="country" onChange={(event) => this.handleInputChange(event)}>
-                <option> {id ? country : 'Select Country'}</option>
-                {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
-            </select>
+            <div>
+                <label>Country</label> 
+                <br/>
+                <select name="country" className="countrySelect" onChange={(event) => this.handleInputChange(event)}>
+                    <option> {id ? country : 'Select Country'}</option>
+                    {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
+                </select>
+            </div>
             <Input
                 field="city"
                 label="City"
