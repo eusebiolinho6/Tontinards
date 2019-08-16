@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Modal, Button} from 'react-bootstrap';
+import CurrencyFormat from 'react-currency-format';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
@@ -10,7 +11,7 @@ const monthNames = [
     "November", "December"
 ];
 
-class AdminCategory extends Component {
+class AdminDonations extends Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -58,7 +59,7 @@ formatDate(d) {
                             <tr key={don.id.toString()}>
                                 <td>{project.projectName}</td>
                                 <td>{don.firstName+" "+don.lastName}</td>
-                                <td>{don.amount} FCFA</td>
+                                <td><CurrencyFormat  value={don.amount} displayType={'text'} thousandSeparator=" "/> FCFA</td>
                                 <td>{this.formatDate(don.date)} </td>
                                     <td> <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-md btn-primary pull-right">Validate</button></td>
                             </tr>
@@ -111,4 +112,4 @@ formatDate(d) {
     }
 }
 
-export default AdminCategory;
+export default AdminDonations;

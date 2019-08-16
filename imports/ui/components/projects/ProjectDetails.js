@@ -369,7 +369,7 @@ class ProjectDetails extends Component {
                                             if(don.validated) {
                                                 return (
                                                     <div className="messages-item">
-                                                        <h5>{don.firstName}: {don.amount} FCFA</h5><hr/>
+                                                        <h5>{don.firstName}: <CurrencyFormat  value={don.amount} displayType={'text'} thousandSeparator=" "/> FCFA</h5><hr/>
                                                     </div>
                                                 );
                                             }
