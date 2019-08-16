@@ -20,8 +20,10 @@ export default function validateInput(data) {
     if (!data.documentFile) {
         errors.documentFile = 'This field is required';
     }
-
-    if (!data.projectImage) {
+    
+    console.log(data)
+    if (!data.projectImage) { 
+        console.log(data.projectImage)
         errors.projectImage = 'This field is required';
     }
     

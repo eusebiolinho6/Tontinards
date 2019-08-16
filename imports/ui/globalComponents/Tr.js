@@ -5,11 +5,6 @@ class Tr extends Component {
         super(props);
     }
 
-    startEdition = (funnel) => {
-        funnel.isEditing = true;
-        this.props.editFunnel(funnel);
-    }
- 
     render() {
         const { funnel } = this.props;
         const category = Categories.findOne({ _id: funnel.category });
@@ -24,7 +19,7 @@ class Tr extends Component {
                 <td>{this.props.formatDate(funnel.createdAt)} </td>
                 <td> 
                     <button onClick={() => this.props.deleteFunnel(funnel)} type="button" className="btn btn-sm btn-danger pull-right m-l-sm">Delete</button>
-                    <button onClick={() => this.startEdition(funnel)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button>
+                    <button onClick={() => this.props.editFunnel(funnel)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button>
                 </td>
             </tr>
         )
