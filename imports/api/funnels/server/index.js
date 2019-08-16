@@ -116,6 +116,22 @@ Meteor.methods({
             return reject();
         })
     },
+
+    'deleteDonate': (projectId, donID) => {
+        let currentProject = Funnels.findOne(projectId);
+        return new Promise((resolve, reject) => {
+            let allDonations = currentProject.donators;
+            let finalDonations = [];
+            finalDonations = allDonations.filter(don => {
+                return  don.id.toString() != donID.toString();
+            })
+
+            const query = {$set: {"donators": finalDonations}}
+            let project = Funnels.update({_id: projectId}, query);
+            if (project) return resolve(project);
+            return reject();
+        })
+    },
     /**,
     'createPlan': (data) => {
         return new Promise(function (resolve, reject) {
