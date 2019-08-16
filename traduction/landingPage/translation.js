@@ -41,8 +41,8 @@ i18n
       }
     
     },
-    lng: localStorage.getItem('lang'),
-    fallbackLng: localStorage.getItem('lang'),
+    lng: 'fr',
+    fallbackLng: 'fr',
 
     interpolation: {
       escapeValue: false

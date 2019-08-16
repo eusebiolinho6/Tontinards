@@ -3,6 +3,7 @@ import {Link,Redirect} from 'react-router-dom';
 import Input from '../../globalComponents/Input';
 import validateInput from '../../../validations/login.js';
 import {Meteor} from 'meteor/meteor';
+import i18n from '../../../../traduction/auth/login/translation'
 
 // App component - represents the whole app
 class LoginForm extends Component {
@@ -108,12 +109,16 @@ this.state = {
   }
 
   handleSUbmit(e) {
+      const { lang } = localStorage.getItem('lang')
      e.preventDefault();
      const {email, password}=this.state;
      if(this.isValid()){
             Meteor.loginWithPassword(email, password, (err)=>{
                 if(err){
-                  this.setState({errors: {password: 'No user with this email & password'}});
+                    lang == 'fr'? 
+                     this.setState({errors: {password: 'Aucun utilisateur avec cet email et ce mot de passe'}})
+                     :
+                     this.setState({errors: {password: 'No user with this email & password'}});
                 } else {
                     this.setState({redirect: true})
                 }
@@ -130,14 +135,14 @@ this.state = {
              <div className="row">
             <div className="ibox col-md-6 col-md-offset-3 float-e-margins">
                 <div className="ibox-projectName">
-                    <h5>Log In to Tontinards
+                    <h5>{i18n.t('login1')}
                     </h5>
                 </div>
                 <div className="ibox-content">
 
                     <div className="row">
                    
-                        <div className="col-sm-12"><h3 className="m-t-none m-b">Log in</h3>
+                        <div className="col-sm-12"><h3 className="m-t-none m-b">{i18n.t('login2')}</h3>
                            
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
                                 <Input
@@ -157,19 +162,19 @@ this.state = {
                                     />
                                 <div>
                                 <div>
-                                    <span>Don't have an account? Register <a href="/authentication/signup"> here.</a></span>
+                                    <span>{i18n.t('login3')} <a href="/authentication/signup"> {i18n.t('login4')}</a></span>
                                 </div><br/>
-                                <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>Log
-                                    in</strong></button>
-                                <label> <input type="checkbox" /> Remember me </label>
+                                <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>{i18n.t('login5')}
+                                    </strong></button>
+                                <label> <input type="checkbox" /> {i18n.t('login6')} </label>
                                 </div>
                             </form>
                         </div>
                         <div className="col-sm-12 mt-3 social-wrapper">
-                            {/* <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Login with Twitter</strong></button> */}
-                            {/* <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>Login with Google</strong></button> */}
-                            {/* <button className="btn btn-md btn-primary mt-3" onClick={this.loginFacebook}><strong>Login with Facebook</strong></button> */}
-                            <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>Login with Twitter</strong></button>
+                            
+                            {/* <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>{i18n.t('login7')}</strong></button> */}
+                            {/* <button className="btn btn-md btn-primary mt-3" onClick={this.loginFacebook}><strong>{i18n.t('login8')}</strong></button> */}
+                            <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>{i18n.t('login9')}</strong></button>
                         </div>
                     </div>
                 </div>
