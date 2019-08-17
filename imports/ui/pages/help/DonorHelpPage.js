@@ -18,7 +18,7 @@ class HelpPage extends Component {
           <div className="container">
             <div className="row m-t-5 full-content">
               <div className="col">
-                  <h2 className="text-center title">User manual for donor User</h2><hr/>
+                  <h2 className="text-center title">User manual for donor</h2><hr/>
                   <div className="col-sm-12 content">
                       <p className=""><span>Goal:</span> This document will help a donor to know well all step to make a donation.</p>
                       <p className=""><span>Donor role:</span> his role is to choose a project and then click on the donation button to make a donation to the person who subscribed to the project. This is to help them for the growth of their project.</p>
