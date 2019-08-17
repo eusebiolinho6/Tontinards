@@ -1011,6 +1011,12 @@ class FunnelModalForm extends Component {
      })
   }
 
+  /**
+   * When the component is loaded, We receive foundsRaiseAs from props and add them to 
+   * the fundsRaiseAsPossibilities state
+   * 
+   * @author: Junior
+   */
   componentDidUpdate=(prevProps)=>{
     if(this.props.foundRaiseAs !== prevProps.foundRaiseAs) {
         this.setState({
@@ -1129,7 +1135,8 @@ class FunnelModalForm extends Component {
                     onChange={(event) => this.handleInputChange(event)} />: null
             }
 
-            {/* hide team Informations when user selects personnal funds reason  */}
+            {/* hide team Informations when user selects personnal funds reason 
+               and show when he chooses Team   */}
             {/** foundRaiseAs[0] ==> individual, foundRaiseAs[1] ==> team*/}
             {fundsRaiseAsPossibilities[1] ?
                 onefoundRaiseAs == fundsRaiseAsPossibilities[0]._id._str ?                        
