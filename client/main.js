@@ -25,7 +25,7 @@ Meteor.startup(() => {
     <div>
         <Switch>
           <Route exact path='/' component={Funnel} />
-          <Route exact path='/user/help' component={DonorHelpPage}/>
+          <Route exact path='/donation/help' component={DonorHelpPage}/>
           <Route path='/projects' component={Project} />
           <Route path='/authentication' component={Authentication} />
           {/**<Route path='/pricing' component={PagePlans} />*/}

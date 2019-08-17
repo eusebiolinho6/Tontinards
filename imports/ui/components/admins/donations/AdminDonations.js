@@ -37,7 +37,7 @@ formatDate(d) {
   // Delete a donation
   delete(projectId, donID){
     Meteor.call('deleteDonate', projectId, donID)
-    this.addNotification("Successfully done!", "success")
+    this.addNotification("Successfully deleted!", "success")
   }
 
   addNotification = (message, type) => {
