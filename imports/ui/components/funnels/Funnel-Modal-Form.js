@@ -826,6 +826,7 @@ class FunnelModalForm extends Component {
         feedback: props.feedback,
         country: props.country,
         phoneNumber : props.phoneNumber,
+        fundsRaiseAsPossibilities: []
     };
 }   
 
@@ -881,9 +882,6 @@ class FunnelModalForm extends Component {
       const name = e.target.name;
       const value = e.target.value;
       console.log(name);
-    //   console.log(this.state.onefoundRaiseAs);
-    //   console.log(this.props.foundRaiseAs[0]._id);
-    //   console.log(this.state.onefoundRaiseAs == this.props.foundRaiseAs[0]._id);
       console.log(value);
       this.setState({
           [name]: value
@@ -1012,13 +1010,23 @@ class FunnelModalForm extends Component {
         }
      })
   }
+
+  componentDidUpdate=(prevProps)=>{
+    if(this.props.foundRaiseAs !== prevProps.foundRaiseAs) {
+        this.setState({
+          fundsRaiseAsPossibilities: this.props.foundRaiseAs
+        });
+    }
+}
+
   render() {
 
     //   const {show, errors, title,projectName, onefoundRaiseAs, oneForWhoFoundsRaise, price, objectifAmount, industry,category, description, isLoading, id } = this.state;
-      const { show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback } = this.state;
+      const { show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities } = this.state;
 
       const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user  } = this.props;
       console.log(foundRaiseAs);
+
 
       
     return (            
@@ -1123,21 +1131,24 @@ class FunnelModalForm extends Component {
 
             {/* hide team Informations when user selects personnal funds reason  */}
             {/** foundRaiseAs[0] ==> individual, foundRaiseAs[1] ==> team*/}
-            {onefoundRaiseAs != "foundRaiseAs[1]._id" ?                        
-                <div>
-                    <h2>Team Informations</h2>
-                    <Input
-                        field="teamName"
-                        label="Team Name"
-                        value={teamName}
-                        error={errors.teamName}
-                        onChange={(event) => this.handleInputChange(event)}
-                        size={250}
-                    />
-                    <div className="row">
-                        <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
+            {fundsRaiseAsPossibilities[1] ?
+                onefoundRaiseAs == fundsRaiseAsPossibilities[0]._id._str ?                        
+                    <div>
+                        <h2>Team Informations</h2>
+                        <Input
+                            field="teamName"
+                            label="Team Name"
+                            value={teamName}
+                            error={errors.teamName}
+                            onChange={(event) => this.handleInputChange(event)}
+                            size={250}
+                        />
+                        <div className="row">
+                            <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
+                        </div>
                     </div>
-                </div>
+                :   
+                    null
             :   
                 null
             }
