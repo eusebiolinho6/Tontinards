@@ -11361,3 +11361,47 @@ color:white;
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
+
+.donationTypeWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.donationTypeWrapper .wrapper{
+  display: flex;
+  align-items: center;
+}
+.donationTypeWrapper label{
+  margin-top: 1rem !important;
+  color: black !important;
+}
+.donationTypeWrapper input{
+  margin-right: 1rem;
+}
+
+#radioinput {
+  display: flex;
+  margin-bottom: 1.5rem;
+  padding: 0 !important;
+}
+#radioinput label {
+  color: black !important;
+  margin-top: .2rem;
+}
+#radioinput input {
+  margin-right: .5rem;
+}
+#radioinput .radioitem {
+  display: flex;
+}
+#radioinput .radioitem:not(:last-child) {
+  margin-right: 5rem;
+}
+@media only screen and (max-width: 900px) {
+  #radioinput .radioitem:first-child {
+    margin-right: 0rem !important;
+  }
+  #radioinput {
+    flex-direction: column !important;
+  }
+}

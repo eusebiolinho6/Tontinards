@@ -3,7 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import Location from '../globalComponents/Location';
 import Main from '../components/Main';
-import {Categories, Funnels} from '../../api/collections'
+import { Categories, Funnels, TypeOfDonations } from '../../api/collections'
 
 // App component - represents the whole app
 class MainLayout extends Component {
@@ -21,7 +21,7 @@ class MainLayout extends Component {
     return (
       <Fragment>
         {/* <Location location={location} /> */}
-         <Main {...this.props}  userId={userId} funnels={funnels} />
+         <Main {...this.props}  userId={userId} funnels={funnels}  />
       </Fragment>
     )
   }
@@ -31,6 +31,7 @@ export default withTracker((props)=>{
   
   Meteor.subscribe('funnels');
   Meteor.subscribe('categories');
+  Meteor.subscribe('typeOfDonations');
   // categories = props.params.categories,
   // propSearch=props.search,
   // console.log(Funnels.findAll());
@@ -57,6 +58,6 @@ export default withTracker((props)=>{
     return {
     funnels: Funnels.find({}).fetch(),
     // categories: Categories.find({}).fetch(),
-    userId:Meteor.userId()
+    userId: Meteor.userId()
   }
 })(MainLayout)
