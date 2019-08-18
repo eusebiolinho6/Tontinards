@@ -159,10 +159,10 @@ export default class ProjectItem extends Component {
                                     <h4 className="text-muted">
                                        <span>Raised :  </span> 
                                         <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/>
-                                         Fcfa / 
+                                       <span> Fcfa /  </span> 
                                         <span>Goal :  </span>
                                         <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/>
-                                         Fcfa 
+                                       <span> Fcfa  </span> 
                                      </h4>
                                     : ""
                                 }
