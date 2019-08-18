@@ -28,7 +28,7 @@ class FunnelList extends Component {
  * @Author Cindy and Junior
  */
   renderProjects(projects){
-    return projects.map((project, index)=>(
+    return projects.map((project, index)=>( 
       <div>
         <ProjectItem key={index} project={project}  user={{ profile: {role: "guest" }}}/>
       </div>
