@@ -1,0 +1,9 @@
+{
+    "DonationList": "Listes des Dons",
+    "ProjectName": "Nom du Projet ",
+    "DonatorName":"Nom du Donneur",
+    "Amount": "Montant",
+    "Date": "Date",
+    "Action": "Action",
+    "validatebtn":"valider"
+  }

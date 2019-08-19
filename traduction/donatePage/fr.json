@@ -1,0 +1,13 @@
+{
+    "invest": "Investir",
+    "enterYourInvest": "Entrez votre investissemen",
+    "firstName":"Nom",
+    "lastName":"Prenom",
+    "PhoneNumber":"Numero de téléphone",
+    "emailaddress":"address email",
+    "informationsaboutLocation":" information par rapport a votre location",
+    "comment":"Commententaire",
+    "submit":"soumettre",
+    "mostrecentcomments":"commentaire les plus recents",
+    "Nocomment":"Pas de commentaire"
+  }

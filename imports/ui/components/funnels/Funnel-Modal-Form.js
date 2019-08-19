@@ -12,6 +12,10 @@ import Textarea from '../../globalComponents/Textarea';
 import Upload from '../../globalComponents/Upload';
 import { Funnels, Images, Videos, Documents } from '../../../api/collections';
 import validateInput from '../../../validations/funnel';
+import adminfunnelModalFormFr from '../../../../traduction/adminfunnelModalForm/fr.json';
+import adminfunnelModalFormEn from '../../../../traduction/adminfunnelModalForm/en.json';
+
+
 const collections = {
     documentFile: Documents,
     projectImage: Images,
@@ -249,6 +253,14 @@ class FunnelModalForm extends Component {
     }
     render() {
 
+        let lg = adminfunnelModalFormFr;
+        let lang = localStorage.getItem('lang');
+            lang == 'fr'?
+                lg = adminfunnelModalFormFr
+                :
+                lg = adminfunnelModalFormEn;
+
+
         const { show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback } = this.state;
         const { projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user, isEditing  } = this.props;
         console.log(this.props);
@@ -258,13 +270,21 @@ class FunnelModalForm extends Component {
                 aria-labelledby="contained-modal-projectName-sm" show={show} backdrop={false} >
                 <form role="form" onSubmit={(event) => this.handleSUbmit(event)}>
                     <ModalHeader>
-                        <h3 className="text-center" > {id ? 'Edit Project' : ' Add Project'}</h3>
+                        <h3 className="text-center" > 
+                         {lang == 'fr'?
+                             id ? 'Edit Project' : ' Ajouter projet'
+                             :
+                             id ? 'Edit Project' : ' Add Project'
+                                
+                        
+                         } 
+                        </h3>
                     </ModalHeader>
                     <ModalBody>
-                        <h2>Project Informations</h2>
+                        <h2>{lg.ProjectInformations}</h2>
                         <Input
                             field="projectName"
-                            label="Project Name"
+                            label={lg.ProjectName}
                             type="text"
                             value={projectName}
                             error={errors.projectName}
@@ -272,7 +292,7 @@ class FunnelModalForm extends Component {
                         />
                         <Input
                             field="phoneNumber"
-                            label="Phone Number"
+                            label={lg.PhoneNumber}
                             type="number"
                             value={phoneNumber}
                             error={errors.phoneNumber}
@@ -281,7 +301,7 @@ class FunnelModalForm extends Component {
 
                         <Input
                             field="email"
-                            label="Email"
+                            label={lg.email}
                             type="email"
                             value={email}
                             error={errors.email}
@@ -290,28 +310,34 @@ class FunnelModalForm extends Component {
 
                         <Input
                             field="objectifAmount"
-                            label="Objective Amount"
+                            label={lg.ObjectiveAmount}
                             type="number"
                             value={objectifAmount}
                             error={errors.objectifAmount}
                             onChange={(event) => this.handleInputChange(event)}
                         />
 
-                        <label>Country</label>
+                        <label>{lg.Country}</label>
                         <select name="country" onChange={(event) => this.handleInputChange(event)}>
-                            <option> {id ? country : 'Select Country'}</option>
+                            <option> 
+                            {  lang == 'fr'?
+                                  id ? country : 'Selectionner pays'
+                                :
+                                  id ? country : 'Select Country'
+                                }
+                            </option>
                             {countries.map((item) =>(<option key={item.name} value={item.name}>{item.name}</option>))}
                         </select>
                         <Input
                             field="city"
-                            label="City"
+                            label={lg.City}
                             value={city}
                             error={errors.city}
                             onChange={(event) => this.handleInputChange(event)}
                         />
                         <Select
                             field="category"
-                            label="Category"
+                            label={lg.Category}
                             value={category}
                             options={categories}
                             error={errors.category}
@@ -319,7 +345,7 @@ class FunnelModalForm extends Component {
                         />
                         <Select
                             field="onefoundRaiseAs"
-                            label="Funds Raise As"
+                            label={lg.FundsRaiseAs}
                             value={onefoundRaiseAs}
                             options={foundRaiseAs}
                             error={errors.onefoundRaiseAs}
@@ -327,7 +353,7 @@ class FunnelModalForm extends Component {
                         />
                         <Select
                             field="oneForWhoFoundsRaise"
-                            label="Funds Raise For"
+                            label={lg.FundsRaiseFor}
                             value={oneForWhoFoundsRaise}
                             options={forWhoFoundsRaise}
                             error={errors.oneForWhoFoundsRaise}
@@ -335,7 +361,7 @@ class FunnelModalForm extends Component {
                         />
                         <Summernote
                             field="description"
-                            label="Enter the description"
+                            label={lg.Enterthedescription}
                             value={description}
                             error={errors.description}
                             onChange={(event) => this.handleInputChange(event)}
@@ -344,7 +370,7 @@ class FunnelModalForm extends Component {
                             this.props.isReview ? 
                             <Summernote
                                 field="feedback"
-                                label="Enter the review"
+                                label={lg.Enterthereview}
                                 value={feedback}
                                 error={errors.feedback}
                                 onChange={(event) => this.handleInputChange(event)} />: null
@@ -353,35 +379,35 @@ class FunnelModalForm extends Component {
                         {/* hide team Informations when user selects personnal funds reason  */}
                         {onefoundRaiseAs == 'team' ?                        
                             <div>
-                                <h2>Team Informations</h2>
+                                <h2>{lg.TeamInformations}</h2>
                                 <Input
                                     field="teamName"
-                                    label="Team Name"
+                                    label={lg.TeamName}
                                     value={teamName}
                                     error={errors.teamName}
                                     onChange={(event) => this.handleInputChange(event)}
                                     size={250}
                                 />
                                 <div className="row">
-                                    <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label="Upload Team Image" />
+                                    <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label={lg.UploadTeamImage} />
                                 </div>
                             </div>
                         :   
                             null
                         }
-                        <h2>Uploads</h2>
+                        <h2>{lg.Uploads}</h2>
                         <br />
                         <div className="row">
-                            <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name, file) => this.setFile(name, file)} name="projectImage" label="Upload Project Image" />
-                            <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file) => this.setFile(name, file)} name="documentFile" label="Upload Project Document" />
-                            <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file) => this.setFile(name, file)} name="videoFile" label="Upload Project Video" />
+                            <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name, file) => this.setFile(name, file)} name="projectImage" label={lg.UploadProjectImage} />
+                            <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file) => this.setFile(name, file)} name="documentFile" label={lg.UploadProjectDocument} />
+                            <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file) => this.setFile(name, file)} name="videoFile" label={lg.UploadProjectVideo} />
                         </div>
                         {errors.global && <span style={{ color: '#ed5565', fontSize: '15px' }} className="error-block">{errors.global}</span>}
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button disabled={isLoading} onClick={() => this.closeModal()}>Close {isLoading && <i className="fa fa-spin fa-spinner"></i>}</Button>
-                        <Button type="submit" disabled={isLoading} bsStyle="primary">Save {isLoading && <i className="fa fa-spin fa-spinner"></i>}</Button>
+                        <Button disabled={isLoading} onClick={() => this.closeModal()}> {lg.Close} {isLoading && <i className="fa fa-spin fa-spinner"></i>}</Button>
+                        <Button type="submit" disabled={isLoading} bsStyle="primary">{lg.Save} {isLoading && <i className="fa fa-spin fa-spinner"></i>}</Button>
                     </ModalFooter>
                 </form>
             </Modal>

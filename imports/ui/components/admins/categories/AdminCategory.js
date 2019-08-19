@@ -2,14 +2,34 @@ import React, { Component, Fragment } from 'react';
 import CategoryModalForm from './CategoryModalForm';
 import Input from '../../../globalComponents/Input'
 import {Modal, Button} from 'react-bootstrap';
+import adminCategoryPageFr from '../../../../../traduction/adminCategoryPage/fr.json';
+import adminCategoryPageEn from '../../../../../traduction/adminCategoryPage/en.json';
+
+
 
 // App component - represents the whole app
-const monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-];
+    const monthNamesEn = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    let lang = localStorage.getItem('lang');
+    let monthNames = [];
+    let monthNamesFr = [
+        "Janvier", "Fevrier", "Mars",
+        "Avril", "Mai", "Juin", "Juillet",
+        "Août", "Septembre", "Octobre",
+        "Novembre", "Decembre"
+    ];
+    lang == 'fr'?
+        monthNames = monthNamesFr
+    :
+        monthNames = monthNamesEn
+
+
+ 
 class AdminCategory extends Component {
     constructor(props) {
     super(props);
@@ -55,6 +75,14 @@ class AdminCategory extends Component {
   }
 
     render() {
+        let lang = localStorage.getItem('lang')
+        let lg = adminCategoryPageFr;
+     
+          lang == 'fr'?
+              lg = adminCategoryPageFr
+              :
+              lg = adminCategoryPageEn;
+
          const { show, name, devName, id } = this.state;
         const {categories}=this.props;
         return (
@@ -64,12 +92,12 @@ class AdminCategory extends Component {
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
         <div className="ibox-projectName">
-            <h5>Categories List</h5>
+            <h5>{lg.CategoriesList}</h5>
         </div>
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New category</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >{lg.Newcategory}</button>
             </div>
             <CategoryModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>
@@ -77,10 +105,10 @@ class AdminCategory extends Component {
                 <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>DevName</th>
-                        <th>Created At</th>
-                        <th className="pull-right">Action</th>
+                        <th>{lg.Name}</th>
+                        <th>{lg.DevName}</th>
+                        <th>{lg.CreatedAt}</th>
+                        <th className="pull-right">{lg.Action}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -88,7 +116,7 @@ class AdminCategory extends Component {
                         <td>{category.name}</td>
                         <td>{category.devName}</td>
                         <td>{this.formatDate(category.createdAt)} </td>
-                        <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                        <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-sm btn-primary pull-right">{lg.Editbtn} <i className="fa fa-pencil"></i> </button></td>
                     </tr>))}
                     
                     </tbody>

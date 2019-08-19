@@ -1,0 +1,25 @@
+{
+    "ProjectInformations":"Informations sur les projets ",
+    "ProjectName":"Nom Projet",
+    "PhoneNumber": "Numéro de Téléphone",
+    "email":"Email",
+    "ObjectiveAmount":"Montant désiré",
+    "Country":"Pays ",
+    "City":"Ville",
+    "Category": "Categorie",
+    "FundsRaiseAs":"collecter des fonds en tant que",
+    "FundsRaiseFor":"collecter des fonds pour",
+    "Enterthedescription":"Entrer la description",
+    "Enterthereview":"entrez commentaire",
+    "TeamInformations":"Information sur le groupe",
+    "TeamName":"Nom du groupe",
+    "UploadTeamImage":"Télécharger l'image du groupe",
+    "Uploads":"Teléchargements",
+    "UploadProjectImage":"Télécharger l'imange du projet",
+    "UploadProjectDocument":"Télécharger le document projet",
+    "UploadProjectVideo":"Télécharger la vidéo du projet",
+    "Close": "Fermer",
+    "Save": "Enregistrer",
+    "Selectonevalue":"Selectionner une valeur"
+
+  }

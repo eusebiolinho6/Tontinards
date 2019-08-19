@@ -1,0 +1,9 @@
+{
+    "DonationList": "Donation List",
+    "ProjectName": "Project Name",
+    "DonatorName":"Donator Name",
+    "Amount": "Amount",
+    "Date": "Date",
+    "Action": "Action",
+    "validatebtn":"validate"
+  }

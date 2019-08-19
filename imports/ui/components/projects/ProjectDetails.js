@@ -21,6 +21,8 @@ import "react-notifications-component/dist/theme.css";
 import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api/collections';
 import CurrencyFormat from 'react-currency-format';
 import {toObjectId} from '../../../utilities/';
+import detailPageFr from '../../../../traduction/detailPage/fr.json' ;
+import detailPageEn from '../../../../traduction/detailPage/en.json';
 
 // App component - represents the whole app
 class ProjectDetails extends Component {
@@ -147,6 +149,13 @@ class ProjectDetails extends Component {
     }
 
     render() {
+        let lg = detailPageFr;
+        let lang = localStorage.getItem('lang')
+          lang == 'fr'?
+              lg = detailPageFr
+              :
+              lg = detailPageEn;
+              
         const {project,user}= this.props;
         console.log(project);
         console.log(user);
@@ -202,12 +211,12 @@ class ProjectDetails extends Component {
                                 <div className="headers">
                                     <h3 
                                         onClick={this.toggleContent}
-                                        className={this.state.story ? "story btn1 active-content": "story btn1"}>Story</h3>
+                                        className={this.state.story ? "story btn1 active-content": "story btn1"}>{lg.story}</h3>
                                     {
                                         user ?
                                         <h3 
                                             onClick={this.toggleContent}
-                                            className={!this.state.story ? "statement btn1 active-content": "statement btn1"}>Reviews</h3>:null
+                                            className={!this.state.story ? "statement btn1 active-content": "statement btn1"}>{lg.reviews}</h3>:null
                                     }
                                 </div>
                                 <div className="content">
@@ -246,14 +255,14 @@ class ProjectDetails extends Component {
                         <div className="infos">
                             <div className="otherinfos0">
                                 <div className="item">
-                                    <h4><strong>OBJECTIVE: </strong></h4>
+                                    <h4><strong>{lg.Objective}</strong></h4>
                                     
                                     <h4>
                                         <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/> FCFA
                                     </h4>
                                 </div>
                                 <div className="item">
-                                    <h4><strong>CURRENT AMOUNT: </strong></h4>
+                                    <h4><strong>{lg.currentAmount}</strong></h4>
                                     <h4>
                                         <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/> FCFA
                                     </h4>
@@ -264,7 +273,7 @@ class ProjectDetails extends Component {
                             <div className="otherinfos">
                                 <div className="d-flex flex-row justify-content-center align-items-center">
                                     <div>
-                                        <p>Campaign launched <Moment fromNow>{project.createdAt}</Moment>.</p>
+                                        <p>Campaign Lauched <Moment fromNow>{project.createdAt}</Moment>.</p>
                                     </div>
                                     <div className="progress">
                                         <CircularProgressbar
@@ -293,7 +302,7 @@ class ProjectDetails extends Component {
                                     user._id == project.userId._id ?
                                         ""
                                         :
-                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">{lg.donateBtn} </Link>
                                     :
                                     null
                                 }
@@ -355,15 +364,15 @@ class ProjectDetails extends Component {
                             </div> 
                         </div>
                         <div className="messages">
-                            <a className="btn readproject" href={project.document}>Read Detailed Description</a>                            
+                            <a className="btn readproject" href={project.document}>{lg.readDetailedBtn}</a>                            
                         </div>
                         <div className="messages">
                             <div className="allmessages">
-                                <h4>Donations</h4>
+                                <h4>{lg.donationMessage}</h4>
                             </div>
                             <div className="messages-items">
                                 {!project.donators ?
-                                    <h5>No donations for the moment.</h5>:
+                                    <h5>{lg.donationsubMessage}.</h5>:
                                     <div className="alldons">
                                         {project.donators.map((don) => {
                                             if(don.validated) {

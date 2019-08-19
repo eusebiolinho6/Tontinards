@@ -3,13 +3,29 @@ import {Modal, Button} from 'react-bootstrap';
 import CurrencyFormat from 'react-currency-format';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import adminDonationPageFr from '../../../../../traduction/adminDonationPage/fr.json';
+import adminDonationPageEn from '../../../../../traduction/adminDonationPage/en.json';
 
-const monthNames = [
+const monthNamesEn = [
     "January", "February", "March",
     "April", "May", "June", "July",
     "August", "September", "October",
     "November", "December"
 ];
+
+let lang = localStorage.getItem('lang');
+let monthNames = [];
+let monthNamesFr = [
+    "Janvier", "Fevrier", "Mars",
+    "Avril", "Mai", "Juin", "Juillet",
+    "Août", "Septembre", "Octobre",
+    "Novembre", "Decembre"
+];
+lang == 'fr'?
+    monthNames = monthNamesFr
+:
+    monthNames = monthNamesEn
+
 
 class AdminDonations extends Component {
     constructor(props) {
@@ -48,6 +64,14 @@ formatDate(d) {
   }
 
     render() {
+        let lg = adminDonationPageFr;
+        let lang = localStorage.getItem('lang')
+
+          lang == 'fr'?
+              lg = adminDonationPageFr
+              :
+              lg = adminDonationPageEn;
+
         const { show, name, devName, id } = this.state;
         const { projects } = this.props;
         let donations = [];
@@ -75,7 +99,7 @@ formatDate(d) {
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
                             <div className="ibox-projectName">
-                                <h5>Donation List</h5>
+                                <h5>{lg.DonationList}</h5>
                             </div>
                             <div className="ibox-content">
                                 <div className="row">
@@ -89,11 +113,11 @@ formatDate(d) {
                                             <table className="table table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>Project Name</th>
-                                                    <th>Donator Name</th>
-                                                    <th>Amount</th>
-                                                    <th>Date</th>
-                                                    <th className="pull-right">Action</th>
+                                                    <th>{lg.ProjectName}</th>
+                                                    <th>{lg.DonatorName}</th>
+                                                    <th>{lg.Amount}</th>
+                                                    <th>{lg.Date}</th>
+                                                    <th className="pull-right">{lg.Action}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

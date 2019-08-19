@@ -1,0 +1,13 @@
+{
+    "invest": "Invest:",
+    "enterYourInvest": "Enter your Investment",
+    "firstName":"First Name",
+    "lastName":"Last Name",
+    "PhoneNumber":"Phone Number",
+    "emailaddress":"Email address",
+    "informationsaboutLocation":" Informations about your Location",
+    "comment":"Comment",
+    "submit":"Comment",
+    "mostrecentcomments":"Most recent comments",
+    "Nocomment":"No comment"
+  }

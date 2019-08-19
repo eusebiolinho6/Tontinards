@@ -5,7 +5,11 @@ import Input from '../../../globalComponents/Input';
 import Upload from '../../../globalComponents/Upload';
 import validateInput from '../../../../validations/categories';
 import {toObjectId} from '../../../../utilities'
-import {Categories} from '../../../../api/collections'
+import {Categories} from '../../../../api/collections';
+import adminCategoryModalFormFr from '../../../../../traduction/adminCategoryModalForm/fr.json';
+import adminCategoryModalFormEn from '../../../../../traduction/adminCategoryModalForm/en.json';
+
+
 
 // App component - represents the whole app
 class CategoryModalForm extends Component {
@@ -78,20 +82,33 @@ componentWillReceiveProps(nextProps){
   }
   render() {
 
+    let lang = localStorage.getItem('lang')
+    let lg = adminCategoryModalFormFr;
+ 
+      lang == 'fr'?
+          lg = adminCategoryModalFormFr
+          :
+          lg = adminCategoryModalFormEn;
+
+
       const {show, errors, name, isLoading, id } = this.state;
     return (            
 <Modal bsSize="medium"
         aria-labelledby="contained-modal-projectName-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-     {id ?'Edit Category': ' Add Category'}
+      { lang == 'fr'?
+            id ?'Edit Category'  : ' Ajouter Categorie'
+              :
+           id ?'Edit Category'  : ' Add Category' 
+      }
     </ModalHeader>
     <ModalBody>
         <div className="col-md-12">
-                <h2>Category Info</h2>
+                <h2>{lg.CategoryInfo}</h2>
                 <Input
                     field="name"
-                    label="Enter Category name"
+                    label={lg.enterCategoryName}
                     value={name}
                     error={errors.name}
                     onChange={(event)=> this.handleInputChange(event) }
@@ -100,8 +117,8 @@ componentWillReceiveProps(nextProps){
     </ModalBody>
      
     <ModalFooter>
-      <Button onClick={()=> this.closeModal()}>Close</Button>
-      <Button type="submit" bsStyle="primary">Save</Button>
+      <Button onClick={()=> this.closeModal()}>{lg.Close}</Button>
+      <Button type="submit" bsStyle="primary">{lg.Save}</Button>
     </ModalFooter>
     </form>
   </Modal>
