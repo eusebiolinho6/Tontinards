@@ -297,7 +297,8 @@ class FunnelLIstAdmin extends Component {
             show: false,
             feedback: '',
             currentUser: null,
-            isEditing: false
+            isEditing: false,
+            categoryType: ''
         };
         console.log(this.props.user);
         this.notificationDOMRef = React.createRef();
@@ -374,6 +375,7 @@ class FunnelLIstAdmin extends Component {
             country: funnel.country,
             city: funnel.city,
             email: funnel.email,
+            categoryType: funnel.categoryType,
             show: true,
             isEditing: true
         });
@@ -412,6 +414,7 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             email: '',
+            categoryType: '',
             isLoading: false,
             isEditing: false
         })
@@ -440,7 +443,7 @@ class FunnelLIstAdmin extends Component {
     }
 
     render() {
-        const { typeOfDonation, show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing } = this.state;
+        const { typeOfDonation, show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing, categoryType } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user, typeOfDonations } = this.props;
         //console.log(user);
         
@@ -465,7 +468,7 @@ class FunnelLIstAdmin extends Component {
                                         projectState={projectState} currentAmount={currentAmount} teamName={teamName} 
                                         forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
                                         video={video} show={show} projectImage={projectImage} teamImage={teamImage} 
-                                        document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} 
+                                        document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} categoryType={categoryType} 
                                         email={email} objectifAmount={objectifAmount} country={country} countries={countries} isEditing={isEditing}
                                         closeModal={() => this.closeModal()} />
                                 </div>
