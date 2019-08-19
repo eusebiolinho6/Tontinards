@@ -10,6 +10,8 @@ const monthNames = [
     "November", "December"
 ];
 
+let lang = localStorage.getItem('lang')
+
 class AdminCategory extends Component {
     constructor(props) {
     super(props);
@@ -28,13 +30,23 @@ formatDate(d) {
 }
 
   validate(don, projectId){
+    let title = 'Effectué avec Succès';
+    lang == 'fr'?
+        title = 'Effectué avec Succès'
+        :
+        title = "Successfully done!"
     Meteor.call('validateDonate', don, projectId)
-    this.addNotification("Successfully done!", "success")
+    this.addNotification(title, "success")
   }
 
   addNotification = (message, type) => {
+    let title = "Don!";
+    lang == 'fr'?
+        title = "Don!"
+        :
+        title = "Donation!"
     this.notificationDOMRef.current.addNotification({
-      title: "Donation!",
+      title: title,
       message: message,
       type: type,
       insert: "top",

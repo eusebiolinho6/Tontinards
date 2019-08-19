@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import "react-notifications-component/dist/theme.css";
 
+let lang = localStorage.getItem('lang')
 // App component - represents the whole app
 class ProjectDonation extends Component {
   constructor(props) {
@@ -60,10 +61,16 @@ class ProjectDonation extends Component {
     if(this.state.amount.trim().length <= 0 ||
     this.state.email.trim().length <= 0 ||
     this.state.phoneNumber.trim().length <= 0 ) {
-      this.addNotification("Amount, Phone Number and Email are required!", "danger");
+      lang == 'fr'?
+       this.addNotification("Montant, Numéro de téléphone et Email requis!", "danger")
+      :
+       this.addNotification("Amount, Phone Number and Email are required!", "danger");
     } else {
       Meteor.call('makeDonate', newDonator, projectId);
-      this.addNotification("Successfully done!", "success")
+      lang == 'fr'?
+       this.addNotification("Effectué avec Succès!", "success")
+      :
+       this.addNotification("Successfully done!", "success")
       this.setState({
           redirect: true
       })
@@ -80,8 +87,13 @@ class ProjectDonation extends Component {
   }
 
   addNotification = (message, type) => {
+    let title = "Don!"
+    lang == 'fr'?
+      title = "Don!"
+      :
+      title = "Donation!"
     this.notificationDOMRef.current.addNotification({
-      title: "Donation!",
+      title: title,
       message: message,
       type: type,
       insert: "top",

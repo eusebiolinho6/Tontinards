@@ -19,8 +19,15 @@ class AdminLayout extends Component {
      * @goal change the location path if is user or admin 
      * @Author roland
      */
+    let lang = localStorage.getItem('lang')
 
-    const locationUser = { path: ['Home', 'Projects'], projectName: 'Administration' };
+    let head = ['Accueil', 'Projets']
+     lang == 'fr'?
+       head = ['Accueil', 'Projets']
+       :
+       head = ['Home', 'Projects']
+       
+    const locationUser = { path: head, projectName: 'Administration' };
     
     const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
     return (

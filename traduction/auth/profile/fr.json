@@ -1,0 +1,7 @@
+{
+    "update":"Mettre à jour vos informations",
+    "name":"Nom",
+    "username":"Nom d'utilisateur",
+    "emailNameExist":"cet Email ou ce Nom d'utilisateur existe déja.",
+    "save":"Enregistrer"
+}

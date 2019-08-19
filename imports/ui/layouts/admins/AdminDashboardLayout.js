@@ -6,8 +6,12 @@ import { withTracker } from 'meteor/react-meteor-data';
 import {Categories, Funnels, ForWhoFoundsRaise, FoundRaiseAs} from '../../../api/collections';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
+import AdminDashboardLayoutFr from '../../../../traduction/admin/adminDashbaordLayout/fr.json'
+import AdminDashboardLayoutEn from '../../../../traduction/admin/adminDashbaordLayout/en.json'
 
 const emptyIcon = <FontAwesomeIcon icon={faBan} size="3x"/>
+
+let lang = localStorage.getItem('lang')
 
 class AdminDashboardLayout extends Component {
   constructor(props) {
@@ -72,7 +76,16 @@ class AdminDashboardLayout extends Component {
 
 
   render() {
+    let lg = AdminDashboardLayoutFr;
+    let lang = localStorage.getItem('lang')
+
+    lang == 'fr'?
+     lg = AdminDashboardLayoutFr
+    :
+     lg = AdminDashboardLayoutEn;
+
     const {funnels, userId, user} = this.props,
+
     pendingProjects = [],
     validatedProjects = [],
     refusedProjects = [],
@@ -104,7 +117,7 @@ class AdminDashboardLayout extends Component {
         data = (
           <div className="container-fluid row">
           <br/>
-          <h1 className = "AdminProjectH1">Projects List </h1>
+          <h1 className = "AdminProjectH1">{lg.projectlist} </h1>
           <hr className = "AdminProjectHr"/>
   
   
@@ -112,7 +125,7 @@ class AdminDashboardLayout extends Component {
           <div className="filerMenu col-md-3" id="filerMenu">
             <h1 className="transparent">.</h1>
             <form className="form">
-              <h2>Filter Options</h2>
+              <h2>{lg.filter}</h2>
               {/* <div className="inputGroup">
                 <input id="option1" name="option1" type="checkbox"/>
                 <label for="option1">Pending projects<AdminDashboardLayout/label>
@@ -130,17 +143,17 @@ class AdminDashboardLayout extends Component {
   
               <div className="inputGroup">
                 <input id="radio1" name="radio" type="radio" checked={displayPendingProjects} onChange={()=>this.filterProjects("PENDING")}/>
-                <label for="radio1"><span>Pending projects</span></label>
+                <label for="radio1"><span>{lg.pending}</span></label>
               </div>
   
               <div className="inputGroup">
                 <input id="radio2" name="radio" type="radio" onChange={()=>this.filterProjects("VALID")}/>
-                <label for="radio2"><span>Validated projects</span></label>
+                <label for="radio2"><span>{lg.validate}</span></label>
               </div>
   
               <div className="inputGroup">
                 <input id="radio3" name="radio" type="radio" onChange={()=>this.filterProjects("CAMPAIGNS")}/>
-                <label for="radio3"><span>Campaigns</span></label>
+                <label for="radio3"><span>{lg.campaign}</span></label>
               </div>
             </form>
   
@@ -151,13 +164,13 @@ class AdminDashboardLayout extends Component {
               {displayPendingProjects ?        
                 <div className="row text-center pendingProjectsContainer">
                     <br/>
-                    <h2 className = "AdminProjectH2">Pending Projects </h2>
+                    <h2 className = "AdminProjectH2">{lg.pending} </h2>
                     <br/>
                     {
                     pendingProjects.length == 0 ? 
                     <div className="noProject">
                       <span>{emptyIcon}</span>
-                      <h3>No project.</h3>
+                      <h3>{lg.Noproject}</h3>
                     </div>
                     :
                     <div>
@@ -178,13 +191,13 @@ class AdminDashboardLayout extends Component {
                 <div className="row text-center validatedProjectsConatiner">
                   {/* <hr className = "AdminProjectSHr"/> */}
                   <br/>
-                  <h2 className = "AdminProjectH2">Validated Projects </h2>
+                  <h2 className = "AdminProjectH2">{lg.validate} </h2>
                   <br/>
                   {
                   validatedProjects.length == 0 ? 
                   <div className="noProject">
                     <span>{emptyIcon}</span>
-                    <h3>No project.</h3>
+                    <h3>{lg.Noproject}</h3>
                   </div>
                   :
                   <div>
@@ -205,13 +218,13 @@ class AdminDashboardLayout extends Component {
               <div className="row text-center validatedProjectsConatiner">
                 {/* <hr className = "AdminProjectSHr"/> */}
                 <br/>
-                <h2 className = "AdminProjectH2">Campaigns </h2>
+                <h2 className = "AdminProjectH2">{lg.campaign} </h2>
                 <br/>
                 {
                   campaigns.length == 0 ? 
                   <div className="noProject">
                     <span>{emptyIcon}</span>
-                    <h3>No project.</h3>
+                    <h3>{lg.Noproject}</h3>
                   </div> 
                   :
                   <div>

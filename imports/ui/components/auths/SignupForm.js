@@ -5,6 +5,8 @@ import validateInput from '../../../validations/signup';
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
 import { toObjectId } from '../../../utilities'
+import SignupFr from '../../../../traduction/auth/signup/fr.json'
+import SignupEn from '../../../../traduction/auth/signup/en.json'
 // App component - represents the whole app
 
 class SignupForm extends Component {
@@ -137,6 +139,14 @@ class SignupForm extends Component {
 
     render() {
         const { name, username, email, password, confirmPassword, errors, redirect } = this.state;
+        let lg = SignupFr;
+        let lang = localStorage.getItem('lang')
+
+        lang == 'fr'?
+            lg = SignupFr
+            :
+            lg = SignupEn;
+            
         if (redirect) return <Redirect to="/" />
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
@@ -144,7 +154,7 @@ class SignupForm extends Component {
                     <div className="col-md-6 col-sm-1"></div>
                     <div className="ibox col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1 float-e-margins">
                         <div className="ibox-projectName">
-                            <h5>Sign up
+                            <h5>{lg.signup}
                     </h5>
                         </div>
 
@@ -154,7 +164,7 @@ class SignupForm extends Component {
                                 <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
                                     <Input
                                         field="name"
-                                        label="Name"
+                                        label={lg.name}
                                         value={name}
                                         error={errors.name}
                                         onChange={(event) => this.handleInputChange(event)}
@@ -168,14 +178,14 @@ class SignupForm extends Component {
                                     />
                                     <Input
                                         field="username"
-                                        label="Username"
+                                        label={lg.username}
                                         value={username}
                                         error={errors.username}
                                         onChange={(event) => this.handleInputChange(event)}
                                     />
                                     <Input
                                         field="password"
-                                        label="Password"
+                                        label={lg.password}
                                         type="password"
                                         value={password}
                                         error={errors.password}
@@ -183,24 +193,22 @@ class SignupForm extends Component {
                                     />
                                     <Input
                                         field="confirmPassword"
-                                        label="Confirm Password"
+                                        label={lg.confirm}
                                         type="password"
                                         value={confirmPassword}
                                         error={errors.confirmPassword}
                                         onChange={(event) => this.handleInputChange(event)}
                                     />
                                     <div>
-                                        <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
+                                        <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>{lg.save}</strong></button>
                                         {errors.error && <span style={{ color: '#ed5565' }} className="error-block">{errors.error}</span>}
                                     </div>
                                 </form>
-                                {/*  <div className="col-sm-12 mt-3">
-                                    <button onClick={this.loginWIthTwitter} className="btn btn-md btn-primary mt-3" type="submit"><strong>Signup with Twitter</strong></button>
-                                </div> */}
+                               
                                 <div className="col-sm-12 mt-12 social-wrapper">
-                                    {/* <button className="btn btn-md btn-danger mt-3" onClick={this.signupWithGoogle} ><strong>Signup with Google</strong></button><br /> */}
-                                    {/* <button className="btn btn-md btn-primary mt-3" onClick={this.signupFacebook} ><strong>Signup with Facebook</strong></button><br /> */}
-                                    <button className="btn btn-md btn-info mt-3" onClick={this.signupWIthTwitter} ><strong>Signup with Twitter</strong></button><br />
+                                    {/* <button className="btn btn-md btn-danger mt-3" onClick={this.signupWithGoogle} ><strong>{lg.google}</strong></button><br /> */}
+                                    {/* <button className="btn btn-md btn-primary mt-3" onClick={this.signupFacebook} ><strong>{lg.facebook}</strong></button><br /> */}
+                                    <button className="btn btn-md btn-info mt-3" onClick={this.signupWIthTwitter} ><strong>{lg.twitter}</strong></button><br />
                                 </div>
                             </div>
                         </div>

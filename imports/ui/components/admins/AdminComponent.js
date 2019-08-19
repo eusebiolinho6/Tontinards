@@ -15,6 +15,9 @@ const monthNames = [
     "August", "September", "October",
     "November", "December"
 ];
+
+let lang = localStorage.getItem('lang')
+
 class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
@@ -161,8 +164,13 @@ class FunnelLIstAdmin extends Component {
     }
 
     addNotification = (massage) => {
+        let title = 'ETAT DU PROJECT';
+        lang == 'fr'?
+            title = 'ETAT DU PROJECT'
+            :
+            title = 'PROJECT STATE'
         this.notificationDOMRef.current.addNotification({
-          title: "PROJECT STATE",
+          title: title,
           message: massage,
           type: "danger",
           insert: "top",
@@ -175,10 +183,15 @@ class FunnelLIstAdmin extends Component {
     }
 
     addNewProject = () => {
+        let notification = "S'il vous plait, Mettez à jour votre profil en ajoutant votre Email.";
+        lang == 'fr'?
+            notification = "S'il vous plait, Mettez à jour votre profil en ajoutant votre Email."
+            :
+            notification = "Please, update your profile with your email."
         if(this.state.currentUser.emails) {
             this.setState({show: true})
         } else {
-            this.addNotification("Please, update your profile with your email.");
+            this.addNotification(notification);
         }
     }
 

@@ -16,7 +16,6 @@ import NotFoundPage from '../imports/ui/pages/errors/NotFoundPage';
 Meteor.startup(() => {
   ['fixed-sidebar', 'mini-navbar', 'fixed-nav', 'pace-done', 'skin-1'].forEach(klass => document.body.classList.add(klass));
 
-  localStorage.setItem('lang','fr')
 
   render((
    <BrowserRouter>

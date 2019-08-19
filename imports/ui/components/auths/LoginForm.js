@@ -3,19 +3,20 @@ import {Link,Redirect} from 'react-router-dom';
 import Input from '../../globalComponents/Input';
 import validateInput from '../../../validations/login.js';
 import {Meteor} from 'meteor/meteor';
-import i18n from '../../../../traduction/auth/login/translation'
+import loginFr from '../../../../traduction/auth/login/fr.json'
+import loginEn from '../../../../traduction/auth/login/en.json'
 
 // App component - represents the whole app
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-this.state = {
-    email: '',
-    password: '',
-    errors: {},
-    isLoading: false,
-    redirect:false,
-    };
+    this.state = {
+        email: '',
+        password: '',
+        errors: {},
+        isLoading: false,
+        redirect:false,
+        };
 }
     componentDidMount(){
         if(Meteor.loggingIn()){
@@ -36,7 +37,6 @@ this.state = {
 
         return isValid;
     }
-
 
   handleInputChange(e) {
       const name = e.target.name;
@@ -129,22 +129,32 @@ this.state = {
 
   render() {
       const { errors, email, password, isLoading, redirect } = this.state;
+      console.log(loginEn.login2)
+      console.log(loginFr.login2)
+      let lg = loginFr;
+      let lang = localStorage.getItem('lang')
+      lang == 'fr'?
+          lg = loginFr
+          :
+          lg = loginEn;
+
       if(redirect) return <Redirect to="/" />
     return (
         <div className="wrapper wrapper-content animated fadeInRight">
              <div className="row">
             <div className="ibox col-md-6 col-md-offset-3 float-e-margins">
                 <div className="ibox-projectName">
-                    <h5>{i18n.t('login1')}
+                    <h5>{lg.login1}
                     </h5>
                 </div>
                 <div className="ibox-content">
 
                     <div className="row">
                    
-                        <div className="col-sm-12"><h3 className="m-t-none m-b">{i18n.t('login2')}</h3>
+                        <div className="col-sm-12"><h3 className="m-t-none m-b">{lg.login2}</h3>
                            
                             <form onSubmit={(event) => this.handleSUbmit(event)} role="form">
+                                
                                 <Input
                                     field="email"
                                     label="Email"
@@ -152,29 +162,31 @@ this.state = {
                                     error={errors.email}
                                     onChange={(event)=> this.handleInputChange(event) }
                                     />
-                                <Input
-                                    field="password"
-                                    label="Pasword"
-                                    type="password"
-                                    value={password}
-                                    error={errors.password}
-                                    onChange={(event)=> this.handleInputChange(event)}
+                                   
+                                    <Input
+                                        field="password"
+                                        label={lg.password}
+                                        type="password"
+                                        value={password}
+                                        error={errors.password}
+                                        onChange={(event)=> this.handleInputChange(event)}
                                     />
+                                
                                 <div>
                                 <div>
-                                    <span>{i18n.t('login3')} <a href="/authentication/signup"> {i18n.t('login4')}</a></span>
+                                    <span>{lg.login3} <a href="/authentication/signup"> {lg.login4}</a></span>
                                 </div><br/>
-                                <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>{i18n.t('login5')}
+                                <button className="btn btn-md btn-primary pull-right m-t-n-xs" type="submit"><strong>{lg.login5}
                                     </strong></button>
-                                <label> <input type="checkbox" /> {i18n.t('login6')} </label>
+                                <label> <input type="checkbox" /> {lg.login6} </label>
                                 </div>
                             </form>
                         </div>
                         <div className="col-sm-12 mt-3 social-wrapper">
                             
-                            {/* <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>{i18n.t('login7')}</strong></button> */}
-                            {/* <button className="btn btn-md btn-primary mt-3" onClick={this.loginFacebook}><strong>{i18n.t('login8')}</strong></button> */}
-                            <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>{i18n.t('login9')}</strong></button>
+                            {/* <button className="btn btn-md btn-danger mt-3" onClick={this.loginGoogle}><strong>{lg.login7}</strong></button> */}
+                            {/* <button className="btn btn-md btn-primary mt-3" onClick={this.loginFacebook}><strong>{lg.login8}</strong></button> */}
+                            <button className="btn btn-md btn-info mt-3" onClick={this.loginWIthTwitter}><strong>{lg.login9}</strong></button>
                         </div>
                     </div>
                 </div>

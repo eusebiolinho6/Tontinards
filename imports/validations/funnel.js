@@ -4,25 +4,45 @@ import isEmpty from 'lodash/isEmpty';
 
 export default function validateInput(data) {
     let errors = {};
+    let lang = localStorage.getItem('lang');
+
     if (Validator.isEmpty(data.phoneNumber)) {
-        errors.phoneNumber = 'This field is required';
+        lang == 'fr'?
+         errors.phoneNumber = 'Ce champ est requis'
+        :
+         errors.phoneNumber = 'This field is required';
     }
     if (Validator.isEmpty(data.projectName)) {
-        errors.projectName = 'This field is required';
+        lang == 'fr'?
+         errors.projectName = 'Ce champ est requis'
+        :
+         errors.projectName = 'This field is required';
     }
     if (!data.category) {
-        errors.category = 'This field is required';
+        lang == 'fr'?
+         errors.category = 'Ce champ est requis'
+        :
+         errors.category = 'This field is required';
     }
     if (Validator.isEmpty(data.description)) {
-        errors.description = 'This field is required';
+        lang == 'fr'?
+         errors.description = 'Ce champ est requis'
+        :
+         errors.description = 'This field is required';
     }
    
     if (!data.documentFile) {
-        errors.documentFile = 'This field is required';
+        lang == 'fr'?
+         errors.documentFile = 'Ce champ est requis'
+        :
+         errors.documentFile = 'This field is required';
     }
 
     if (!data.projectImage) {
-        errors.projectImage = 'This field is required';
+        lang == 'fr'?
+         errors.projectImage = 'Ce champ est requis'
+        :
+         errors.projectImage = 'This field is required';
     }
     
     return {

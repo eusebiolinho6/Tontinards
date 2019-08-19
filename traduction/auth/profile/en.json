@@ -1,0 +1,7 @@
+{
+    "update":"Update your informations",
+    "name":"Name",
+    "username":"Username",
+    "emailNameExist":"Email or Username already exist.",
+    "save":"Save"
+}

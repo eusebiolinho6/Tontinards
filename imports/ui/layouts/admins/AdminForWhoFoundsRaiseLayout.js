@@ -11,7 +11,15 @@ class AdminForWhoFoundsRaiseLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'Funds Raise For', 'Admin'], projectName: 'Administration' };
+    let lang = localStorage.getItem('lang')
+
+    let head = ['Accueil','Collecter les fonds pour', 'Administrateur']
+     lang == 'fr'?
+        head = ['Accueil','Collecter les fonds pour', 'Administrateur']
+        :
+        head = ['Home', 'Funds Raise For', 'Admin']
+
+    const location = {path: head, projectName: 'Administration' };
     const {forWhoFoundsRaise} = this.props;
     return (
       <Fragment>

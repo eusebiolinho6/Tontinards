@@ -22,6 +22,7 @@ import {Categories, FoundRaiseAs, Funnels ,ForWhoFoundsRaise} from '../../../api
 import CurrencyFormat from 'react-currency-format';
 import {toObjectId} from '../../../utilities/';
 
+let lang = localStorage.getItem('lang')
 // App component - represents the whole app
 class ProjectDetails extends Component {
     constructor(props) {
@@ -71,14 +72,17 @@ class ProjectDetails extends Component {
      */
     setProjectState = ()=>{
         const {project,user}= this.props;
-        console.log(user);
+                
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
 
             this.setState({ 
                 hideButton: false,
             })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}});
-            this.addNotification("Project Validated!");
+            lang == 'fr'?
+                this.addNotification("Validé Projet!")
+                :
+                this.addNotification("Project Validated!");
 
          }else if(user.profile.role == 'admin' && project.projectState == 'VALID'){
 
@@ -92,7 +96,12 @@ class ProjectDetails extends Component {
                 name: project.projectName,
                 link: "http://tontinards.biz/user/campaigns"
             };
-            this.addNotification("Canpaign started successfully!");
+
+            lang == 'fr'?
+              this.addNotification("Campagne debutée avec succès!")
+            :
+             this.addNotification("Campaign started successfully!");
+
             Meteor.call("sendEmail",
                 project.userId.emails[0].address,
                 "Tontinards",
@@ -107,8 +116,13 @@ class ProjectDetails extends Component {
     }
 
     addNotification = (message) => {
+        let title = 'ETAT DU PROJECT';
+        lang == 'fr'?
+            title = 'ETAT DU PROJECT'
+            :
+            title = "PROJECT STATE"
         this.notificationDOMRef.current.addNotification({
-          title: "PROJECT STATE",
+          title: title,
           message: message,
           type: "success",
           insert: "top",
@@ -126,7 +140,10 @@ class ProjectDetails extends Component {
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
            
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "REFUSED"}});
-            this.addNotification("Project Refused Successsfully!");
+            lang == 'fr'?
+              this.addNotification("Projet rejetté avec succès!")
+            :
+             this.addNotification("Project Refused Successsfully!");
 
          }else{
 

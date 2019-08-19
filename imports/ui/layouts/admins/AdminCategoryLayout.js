@@ -13,7 +13,14 @@ class AdminCategoryLayout extends Component {
   }
 
   render () {
-    const location = {path: ['Home', 'Categories', 'Admin'], projectName: 'Administration' };
+    let lang = localStorage.getItem('lang')
+
+    let head = ['Accueil','Catégories', 'Administrateur']
+     lang == 'fr'?
+       head = ['Accueil','Categories', 'Administrateur']
+       :
+       head = ['Home', 'Categories', 'Admin']
+    const location = {path: head, projectName: 'Administration' };
     const {categories} = this.props;
     console.log(this.props);
     return (
