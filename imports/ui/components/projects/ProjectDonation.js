@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import "react-notifications-component/dist/theme.css";
 import donatePageFr from '../../../../traduction/donatePage/fr.json';
-import donatePageEn from '../../../../traduction/detailPage/en.json';
+import donatePageEn from '../../../../traduction/donatePage/en.json';
 
 // App component - represents the whole app
 class ProjectDonation extends Component {
