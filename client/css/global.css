@@ -10358,16 +10358,6 @@ color: green;
 #projectdetails .right .messages h4{
   margin-bottom: 0 !important;
 }
-#projectdetails .right .messages span{
-  background-color: orangered;
-  display: block;
-  color: white;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  font-size: 1.2rem;
-  border-radius: 50%;
-}
 
 #projectdetails .right .messages .messages-item{
   padding: .5rem 1rem;

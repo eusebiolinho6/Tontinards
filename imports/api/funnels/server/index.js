@@ -85,7 +85,7 @@ Meteor.methods({
             let project = Funnels.update({_id: projectId}, query);
             // Send Email to Donator
             const passedData = {
-                name: currentProject.userId.profile.name,
+                name: data.lastName+' '+data.firstName,
                 projectName: currentProject.projectName,
                 amount: data.amount
             }
