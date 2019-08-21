@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Modal, Button} from 'react-bootstrap';
 import CurrencyFormat from 'react-currency-format';
 import DonationTypeModalForm from './DonationTypeModalForm';
+import ValidationModalForm from './validationModalForm';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
@@ -20,7 +21,11 @@ class AdminDonations extends Component {
             name: '',
             devName: '',
             id: '',
-            show: false
+            show: false,
+            clickValidate: false,
+            comment: '',
+            don: null, 
+            projectId: null, 
         };
         this.notificationDOMRef = React.createRef();
     }
@@ -45,30 +50,46 @@ class AdminDonations extends Component {
             name: donationType.name,
             devName: donationType.devName,
             id:donationType._id,
-            show: true
+            show: true,
+            don: null, 
+            projectId: null, 
+            comment: ''
         });
     }
     closeModal(){
-        this.setState({show:false});
+        this.setState({show:false, clickValidate: false});
         this.setState({
             name: '',
             devName: '',
             errors: {},
-            id: ''
+            id: '',
+            comment: '',
+            don: null, 
+            projectId: null, 
+        })
+    }
+    // Validate a Donation
+    validate(don, projectId, comment) {
+        // open the popup
+        this.setState({ 
+            clickValidate: true, 
+            comment: comment,  
+            don: don, 
+            projectId: projectId
         })
     }
 
-  // Validate a Donation
-  validate(don, projectId){
-    Meteor.call('validateDonate', don, projectId)
-    this.addNotification("Successfully done!", "success")
-  }
+    // Validate a donation
+    displayNotification = () => {
+        this.addNotification("Successfully done!", "success")
+    }
 
-  // Delete a donation
-  delete(projectId, donID){
-    Meteor.call('deleteDonate', projectId, donID)
-    this.addNotification("Successfully deleted!", "success")
-  }
+    // Delete a donation
+    delete(projectId, donID){
+        Meteor.call('deleteDonate', projectId, donID)
+        this.addNotification("Successfully deleted!", "success")
+    }
+
 
   addNotification = (message, type) => {
     this.notificationDOMRef.current.addNotification({
@@ -85,7 +106,7 @@ class AdminDonations extends Component {
   }
 
     render() {
-        const { show, name, devName, id } = this.state;
+        const { show, name, devName, id, clickValidate, comment, don, projectId } = this.state;
         const { projects, donationsTypes } = this.props;
         let donations = [];
         projects.forEach((project) => {
@@ -101,7 +122,7 @@ class AdminDonations extends Component {
                                 <td>{this.formatDate(don.date)} </td>
                                     <td> 
                                         <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-sm btn-danger m-l-md pull-right">Delete</button>
-                                        <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-sm btn-primary pull-right">Validate</button>
+                                        <button onClick={() => this.validate(don, project._id , don.comment)} type="button" className="btn btn-sm btn-primary pull-right">Validate</button>
                                     </td>
                             </tr>
                         )
@@ -113,6 +134,7 @@ class AdminDonations extends Component {
             <div className="wrapper wrapper-content animated fadeInRight">
                 <ReactNotification ref={this.notificationDOMRef} />
                 <DonationTypeModalForm id={id} name={name} devName={devName} show={show} closeModal={() => this.closeModal()} />
+                <ValidationModalForm id={id} don={don} projectId={projectId} comment={comment} show={clickValidate} displayNotification={this.displayNotification} closeModal={() => this.closeModal()} />
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
