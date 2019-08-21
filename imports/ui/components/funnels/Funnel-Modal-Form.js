@@ -1229,7 +1229,15 @@ class FunnelModalForm extends Component {
             <div className="row">
                 <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name,file)=>this.setFile(name, file)} name="projectImage" label="Upload Project Image" />
                 <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = "Upload Project Document" />
-                <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Project Video" />
+                {
+                user ?
+                    user.profile.role == "admin"?
+                        <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Project Video" />
+                    :
+                        null
+                :dit 
+                    null
+            }
             </div>
             {errors.global&& <span style={{color: '#ed5565', fontSize:'15px'}} className="error-block">{errors.global}</span>}
     </ModalBody>
