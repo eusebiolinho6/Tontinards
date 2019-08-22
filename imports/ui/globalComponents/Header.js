@@ -133,6 +133,7 @@ class Header extends Component {
                                                                 <Link to={{pathname:'/user/campaigns'}} className="">{lg.campaign} </Link>
                                                                 <a href="/authentication/profile">{lg.profile}</a>
                                                                 <a href="/user/projects">{lg.createproject}</a>
+                                                                <a href="/user/help">Help</a>
                                                                 <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
                                                             </div>
                                                         </div>
@@ -142,6 +143,7 @@ class Header extends Component {
                                         <div>
                                             <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
                                             <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
+                                            <Link to="/donation/help" className="m-l-md">Help</Link>
                                         </div>
                                     }
                                 </li>

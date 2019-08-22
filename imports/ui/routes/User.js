@@ -12,6 +12,7 @@ import { Meteor } from 'meteor/meteor';
 import AdminDashboard from '../pages/admins/AdminDashboard';
 import ProjectDetails from '../components/funnels/ProjectDetails';
 import ProjectsDetailsPage from '../pages/projects/ProjectDetailsPage';
+import UserHelpPage from '../pages/help/UserHelpPage';
 
 
 // The Roster component matches one of two different routes
@@ -71,6 +72,7 @@ class User extends Component {
                 <Route exact path='/user/funnels' component={authenticate(AdminPage)}/>
                 {/* <Route exact path='/user/projectdetails' component={ProjectsDetailsPage}/> */}
                 <Route exact path='/user/campaigns' component={AdminDashboard}/>
+                <Route exact path='/user/help' component={UserHelpPage}/>
                 <Route exact path='user/projects/:projectId' component={ProjectsDetailsPage}/>
                 <Route exact path='/user/projects' component={authenticate(AdminPage)}/>
                 <Route exact path='/user/projectdetails' component={ProjectDetails}/>

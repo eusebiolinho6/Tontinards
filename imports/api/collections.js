@@ -7,6 +7,7 @@ import {Payments} from './payments/collections/'
 import {FoundRaiseAs} from './foundRaiseAs/collections/'
 import {ForWhoFoundsRaise} from './forWhoFoundsRaise/collections/'
 import {Users} from './forWhoFoundsRaise/collections/'
+import {TypeOfDonations} from './donations/collections'
 
 exports.Images = Images;
 exports.Documents = Documents;
@@ -17,6 +18,7 @@ exports.Payments = Payments;
 exports.FoundRaiseAs = FoundRaiseAs;
 exports.ForWhoFoundsRaise = ForWhoFoundsRaise;
 exports.Users = Users;
+exports.TypeOfDonations = TypeOfDonations;
 
 
 

@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import Location from '../../globalComponents/Location';
 import AdminComponent from '../../components/admins/AdminComponent';
-import { Categories, Funnels, FoundRaiseAs, ForWhoFoundsRaise } from '../../../api/collections'
+import { Categories, Funnels, FoundRaiseAs, ForWhoFoundsRaise, TypeOfDonations } from '../../../api/collections'
 
 // App component - represents the whole app
  
@@ -29,11 +29,11 @@ class AdminLayout extends Component {
        
     const locationUser = { path: head, projectName: 'Administration' };
     
-    const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
+    const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user, typeOfDonations } = this.props;
     return (
       <Fragment>
         <Location location={locationUser}/>
-        <AdminComponent funnels={funnels} user={user} categories={categories} foundRaiseAs={foundRaiseAs} forWhoFoundsRaise={forWhoFoundsRaise} />
+        <AdminComponent typeOfDonations={typeOfDonations} funnels={funnels} user={user} categories={categories} foundRaiseAs={foundRaiseAs} forWhoFoundsRaise={forWhoFoundsRaise} />
       </Fragment>
     )
   }
@@ -45,6 +45,7 @@ export default withTracker(props => {
   Meteor.subscribe('foundRaiseAs');
   Meteor.subscribe('forWhoFoundsRaise');
   Meteor.subscribe('users');
+  Meteor.subscribe('typeOfDonations');
   // console.log(Meteor.call('getTheCurrent', Meteor.userId()));
 
   return {
@@ -52,6 +53,7 @@ export default withTracker(props => {
     categories: Categories.find({}).fetch(),
     foundRaiseAs: FoundRaiseAs.find({}).fetch(),
     forWhoFoundsRaise: ForWhoFoundsRaise.find({}).fetch(),
+    typeOfDonations: TypeOfDonations.find({}).fetch(),
     user:Meteor.user(),
   }
 })(AdminLayout)

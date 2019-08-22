@@ -40,13 +40,14 @@ export default withTracker((props)=>{
   Meteor.subscribe('foundRaiseAs');
   Meteor.subscribe('onefoundRaiseAs');
   Meteor.subscribe('forWhoFoundsRaise');
+  Meteor.subscribe('typeOfDonations');
   const project = Funnels.findOne({_id: toObjectId(props.projectId)});
   // const foundRaiseAs = FoundRaiseAs.findOne({_id: toObjectId(project.onefoundRaiseAs)});
   // console.log(foundRaiseAs);
   console.log(project);
     return {
         user: Meteor.user(),
-        project: project 
+        project: project,
     }
 })(ProjectDonationLayout)
 

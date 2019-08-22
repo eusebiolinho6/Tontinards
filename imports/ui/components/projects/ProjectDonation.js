@@ -27,7 +27,8 @@ class ProjectDonation extends Component {
       email: "",
       redirect: false,
       message: '',
-      location: ''
+      location: '',
+      choosenDonationType: ''
     }
     this.notificationDOMRef = React.createRef();
   }
@@ -47,6 +48,7 @@ class ProjectDonation extends Component {
   // Save the Donation
   submit(e) {
     e.preventDefault();
+    console.log(this.state.donationType)
     const projectId = this.props.project._id;
     const newDonator = {
       id: new Mongo.ObjectID(),
@@ -58,11 +60,13 @@ class ProjectDonation extends Component {
       comment: this.state.message,
       location: this.state.location,
       date: new Date(),
-      validated: false
+      validated: false,
+      choosenDonationType: this.state.choosenDonationType
     }
     if(this.state.amount.trim().length <= 0 ||
     this.state.email.trim().length <= 0 ||
-    this.state.phoneNumber.trim().length <= 0 ) {
+    this.state.phoneNumber.trim().length <= 0 ||
+    this.state.choosenDonationType.trim().length <= 0 ) {
       lang == 'fr'?
        this.addNotification("Montant, Numéro de téléphone et Email requis!", "danger")
       :
@@ -187,6 +191,17 @@ class ProjectDonation extends Component {
                       value={this.state.email} onChange={(event) => this.handleInputChange(event)}
                       required id="exampleInputEmail" aria-describedby="emailHelp" placeholder={lg.placeholderEmail}/>
                     <small id="emailHelp" className="form-text text-muted">{lg.smallMessage}</small>
+                </div>
+                <p><strong>Donation Option</strong></p>
+                <div className="wrapper" id="radioinput">
+                  {
+                    project.typeOfDonation.map(type => (
+                        <div className="radioitem">
+                              <input id={type} value={type} type="radio" name="choosenDonationType" onChange={(event) => this.handleInputChange(event)} />
+                              <label for={type}>{type}</label>
+                        </div>
+                      ))
+                  }
                 </div>
                 <div className="form-group">
                     <label for="exampleInputEmail">{lg.informationsaboutLocation}</label>

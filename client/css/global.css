@@ -9789,6 +9789,14 @@ max-height: 70vh;
 overflow-y: auto;
 }
 
+.countrySelect{
+  width: 100%;
+  height: 35px;
+  padding-left: 1%;
+  margin-bottom: 10px;
+  border: 1px solid rgb(220, 233, 230);
+}
+
 
 .navbar-right {
   color: #150738;
@@ -9937,6 +9945,27 @@ a.Link{
   vertical-align: baseline !important;
   padding-top: auto;
   padding-bottom: auto; 
+}
+
+.viewMoreBtnContainer{
+  width: 100%;
+  text-align: center ;
+  margin: 0 0 30px 0 ;
+}
+
+.moreCampaigns{
+  padding: 10px 40px;
+  font-size: 1.5em;
+  border: 2px solid #005DAC;
+  color: #005DAC;
+  /* border: 2px solid #005DAC */
+}
+
+.moreCampaigns:hover{
+  border: 2px solid #005DAC;
+  color: #ffffff;
+  background-color: #005DAC;
+  /* border: 2px solid #005DAC */
 }
 
 .viewMoreBtn{
@@ -10564,6 +10593,16 @@ color: green;
 
 /*------------------------ FILTER MENU ADMIN DASHBOARD -------------------------*/
 
+/*-----ONLY FOR MOZILLA FIREFOX ----*/
+/* @-moz-document url-prefix() { */
+  @media (min-width: 992px){
+    .inputGroup  label{
+      padding-right: 25% !important;
+    }
+  }
+/* } */
+
+
 .inputGroup {
   background-color: #fff;
   display: block;
@@ -10571,7 +10610,7 @@ color: green;
   position: relative;
 }
 .inputGroup  label {
-    padding: 12px 30px;
+    padding: 12px 15px;
     width: 100%;
     display: block;
     text-align: left;
@@ -10613,7 +10652,7 @@ color: green;
       border-radius: 50%;
       z-index: 2;
       position: absolute;
-      right: 30px;
+      right: 15px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -10702,7 +10741,7 @@ padding: 0 8px;
   position: relative;
 }
 .inputGroup  label {
-    padding: 12px 30px;
+    padding: 12px 15px;
     width: 100%;
     display: block;
     text-align: left;
@@ -10740,7 +10779,7 @@ padding: 0 8px;
       border-radius: 50%;
       z-index: 2;
       position: absolute;
-      right: 30px;
+      right: 15px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -11257,4 +11296,145 @@ color:white;
 }
 .selectLanguage{
   background-color: rgb(73, 68, 68) !important;
+}
+/* User manual */
+
+.user-manual {
+  margin-top: 5rem;
+}
+.user-manual .container{
+  width: 55%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+  .user-manual .container{
+    width: 80% !important;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .user-manual .container{
+    width: 85% !important;
+  }
+  .user-manual .full-content{
+    padding: 4rem 3rem !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .user-manual .container{
+    width: 96% !important;
+  }
+  .user-manual .full-content{
+    padding: 3rem 1.5rem !important;
+  }
+  .user-manual .col p{
+    font-size: 1.5rem !important;
+  }
+  .user-manual .col .step{
+    font-size: 1.7rem !important;
+  }
+  .user-manual .col h6{
+    font-size: 1.4rem !important;
+  }
+}
+.user-manual .full-content{
+  padding: 6rem;
+  background-color: white;
+  border: solid 1px #eee;
+  box-shadow: 0px 2px 5px rgb(243, 239, 239);
+  margin-bottom: 8rem;
+}
+.user-manual .col .title{
+  color: #0076B6;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.user-manual .col p{
+  font-size: 1.7rem;
+  text-align: justify;
+  margin-top: 1.8rem;
+}
+.user-manual .col p span{
+  font-weight: 600;
+  color: #0076B6;
+  text-decoration: underline;
+}
+.user-manual .col .content{
+  margin-top: 2rem;
+}
+
+.user-manual .col .step{
+  margin-top: 2.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0076B6;
+}
+.user-manual .col ul{
+  padding-inline-start: 10px !important;
+}
+.user-manual .col h6{
+  margin-top: 2.5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #0076B6;
+}
+
+.user-manual .col img{
+  width: 100%;
+  margin-top: 2rem;
+}
+.user-manual .col ul{
+  margin-top: 3rem;
+  list-style-type: none;
+  list-style-image: url("/images/chevron.png");
+}
+.user-manual .col ul li{
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.donationTypeWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.donationTypeWrapper .wrapper{
+  display: flex;
+  align-items: center;
+}
+.donationTypeWrapper label{
+  margin-top: 1rem !important;
+  color: black !important;
+}
+.donationTypeWrapper input{
+  margin-right: 1rem;
+}
+
+#radioinput {
+  display: flex;
+  margin-bottom: 1.5rem;
+  padding: 0 !important;
+}
+#radioinput label {
+  color: black !important;
+  margin-top: .2rem;
+}
+#radioinput input {
+  margin-right: .5rem;
+}
+#radioinput .radioitem {
+  display: flex;
+}
+#radioinput .radioitem:not(:last-child) {
+  margin-right: 5rem;
+}
+@media only screen and (max-width: 900px) {
+  #radioinput .radioitem:first-child {
+    margin-right: 0rem !important;
+  }
+  #radioinput {
+    flex-direction: column !important;
+  }
 }
