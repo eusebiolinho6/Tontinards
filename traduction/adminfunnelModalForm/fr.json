@@ -6,20 +6,21 @@
     "ObjectiveAmount":"Montant désiré",
     "Country":"Pays ",
     "City":"Ville",
-    "Category": "Categorie",
-    "FundsRaiseAs":"collecter des fonds en tant que",
-    "FundsRaiseFor":"collecter des fonds pour",
+    "Category": "Catégorie",
+    "FundsRaiseAs":"Collecter des fonds en tant que",
+    "FundsRaiseFor":"Collecter des fonds pour",
     "Enterthedescription":"Entrer la description",
-    "Enterthereview":"entrez commentaire",
+    "Enterthereview":"Entrer commentaire",
     "TeamInformations":"Information sur le groupe",
     "TeamName":"Nom du groupe",
     "UploadTeamImage":"Télécharger l'image du groupe",
-    "Uploads":"Teléchargements",
-    "UploadProjectImage":"Télécharger l'imange du projet",
+    "Uploads":"Téléchargements",
+    "UploadProjectImage":"Télécharger l'image du projet",
     "UploadProjectDocument":"Télécharger le document projet",
     "UploadProjectVideo":"Télécharger la vidéo du projet",
     "Close": "Fermer",
     "Save": "Enregistrer",
-    "Selectonevalue":"Selectionner une valeur"
+    "Selectonevalue":"Sélectionner une valeur",
+    "TypeofCategory":"Type de Categorie"
 
   }

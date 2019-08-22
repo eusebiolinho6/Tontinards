@@ -7,6 +7,8 @@
     "donationsubMessage":" No donations for the moment.",
     "story":"Story",
     "reviews":"Reviews",
-    "createdDate":"created Date:"
-
+    "createdDate":"created Date:",
+    "Validate":" Validate",
+    "Refuse":" Refuse",
+    "StartCampaign":" Start Campaign"
 }

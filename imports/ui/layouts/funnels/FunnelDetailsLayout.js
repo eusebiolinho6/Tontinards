@@ -21,7 +21,15 @@ class FunnelDetailsLayout extends Component {
     window.scrollTo(0, 0);
   }
   render () {
-    const location = {path: ['Home', 'Funnels', 'detail'], projectName: 'Details' };
+    let lang = localStorage.getItem('lang')
+    let head =['Accueil', 'Projets', 'detail'];
+    lang == 'fr'?
+      head = ['Accueil', 'Projets', 'detail']
+      :
+      head = ['Home', 'Projects', 'detail']
+
+    // const location = {path: ['Home', 'Funnels', 'detail'], projectName: 'Details' };
+    const location = {path: head, projectName: 'Details' };
     const {funnel, funnels, user} = this.props;
    
     return (

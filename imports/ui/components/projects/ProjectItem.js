@@ -10,9 +10,11 @@ import 'react-circular-progressbar/dist/styles.css';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import CurrencyFormat from 'react-currency-format';
+import projectItemFr from '../../../../traduction/project/projectItem/fr.json';
+import projectItemEn from '../../../../traduction/project/projectItem/en.json';
 
 
-
+let lang = localStorage.getItem('lang')
 export default class ProjectItem extends Component {
     constructor(props) {
         super(props);
@@ -58,9 +60,21 @@ export default class ProjectItem extends Component {
     }
 
     addNotification() {
+        let title = "EDITER PROJECT";
+        let message = "Project Successfully Edited!"
+        lang == 'fr'?
+         title = "EDITER PROJECT"
+        :
+         title = "EDIT PROJECT"
+
+        lang == 'fr'?
+           message = "Projet Edité avec Succès !"
+           :
+           message = "Project Successfully Edited!"
+
         this.notificationDOMRef.current.addNotification({
-          title: "EDIT PROJECT",
-          message: "Project Succcessfully Edited!",
+          title: title,
+          message: message,
           type: "success",
           insert: "top",
           container: "top-center",
@@ -74,6 +88,14 @@ export default class ProjectItem extends Component {
     render() {
         // var IntlMixin = ReactIntl.IntlMixin;
         // var FormattedNumber = ReactIntl.FormattedNumber;
+        
+        let lg = projectItemFr;
+        let lang = localStorage.getItem('lang')
+
+        lang == 'fr'?
+            lg = projectItemFr
+            :
+            lg = projectItemEn;
         const { project, propclass, user, typeOfDonations } = this.props;
         if (project.currentAmount == "") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount)) * 100);
@@ -159,12 +181,12 @@ export default class ProjectItem extends Component {
                                 </div>
                                 {projectState == "START CAMPAIGN" ?
                                     <h4 className="text-muted">
-                                       <span>Raised :  </span> 
+                                       <span>{lg.raise}  </span> 
                                         <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/>
                                          Fcfa / 
-                                        <span>Goal :  </span>
+                                        <span>{lg.goal}  </span>
                                         <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/>
-                                         Fcfa 
+                                       <span> Fcfa  </span> 
                                      </h4>
                                     : ""
                                 }
@@ -172,30 +194,30 @@ export default class ProjectItem extends Component {
                                     {user?
                                         user.profile.role == "user" ?
                                             projectState == "REFUSED" ?
-                                                <span>POUBELLE</span>
+                                                <span>{lg.bin}</span>
                                                 :
-                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn detailBtn">Details</Link>
+                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn detailBtn"></Link>
                                         :
                                         user.profile.role == "admin" ?
                                             projectState == "VALID" ?
                                                 <div id="wrap-btn">
                                                     <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
-                                                    <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">Details </Link>
+                                                    <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">{lg.detail} </Link>
                                                 </div>
                                             :
                                                 //this leads to the page where admin will validate or reject project
-                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">Details </Link>
+                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">{lg.detail} </Link>
                                         :
                                             propclass == "donation" ?
-                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str  }} className="btn btn-outline viewMoreBtn detailBtn">Details</Link>
+                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str  }} className="btn btn-outline viewMoreBtn detailBtn">{lg.detail}</Link>
 
                                             :
                                                 <span>
-                                                    <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str }} className="btn donateBtn">Donate </Link>
-                                                    <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str  }} className="btn btn-outline viewMoreBtn detailBtn">Details </Link>
+                                                    <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str }} className="btn donateBtn">{lg.donate} </Link>
+                                                    <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str  }} className="btn btn-outline viewMoreBtn detailBtn">{lg.detail} </Link>
                                                 </span>
                                         :
-                                            <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">Details </Link>
+                                            <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">{lg.detail} </Link>
                                     }
                                 </div>
                             </div>

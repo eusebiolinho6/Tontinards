@@ -8,10 +8,10 @@ exports.asyncMethodCall = (methodName, args) =>{ console.log(methodName)
     return new Promise((resolve, reject) => {
         Meteor.call(methodName, args, (error, result) => {
             if (error) {
-                console.log(error)
+                // console.log(error)
                 return reject(error);
             } else {
-                console.log(result)
+                // console.log(result)
                 return resolve(result);
             }
         });
@@ -24,10 +24,10 @@ exports.checkRole = (roles, userId)=>{
    let user= Meteor.users.findOne(userId);
    if(!user) return false;
     const currentRole = user.profile.role;
-    console.log("-------------------this is the currentRole");
-    console.log(currentRole);
-    console.log("-------------------this is the roles");
-    console.log(roles);
+    // console.log("-------------------this is the currentRole");
+    // console.log(currentRole);
+    // console.log("-------------------this is the roles");
+    // console.log(roles);
     if (roles.indexOf(currentRole.toLowerCase()) != -1) return true;
     return false;
 }

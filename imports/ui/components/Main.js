@@ -30,13 +30,28 @@ class Main extends Component {
 
     render() {
         const { funnels, categories, userId, industries } = this.props;
+        let lang = localStorage.getItem('lang')
         // console.log(funnels);
+        const threeFirstCampaigns = funnels.slice(0, 3);  //we display only the three first campaigns
+        const campaigns = [];
+        funnels.map((project, index)=>(
+                project.projectState != "START CAMPAIGN"?
+                ""
+                  :
+                campaigns.push(project)
+          ))
         const { isLoading } = this.state;
         return (
             <div className="wrapper wrapper-content someProjectContainer">
                 <div className="projectContainer">
                     {/* <hr/> */}
-                    <h1>Some Projects</h1>
+                    {
+                        lang == 'fr'?
+                          <h1>Quelques Projets</h1>
+                         :
+                          <h1>Some Projects</h1>
+                    }
+                    
                     <br/>
                     <br/>
 
@@ -55,8 +70,17 @@ class Main extends Component {
                             </div>
                         } */} 
                         <div className="row">
-                            <FunnelList funnels={funnels} />
+                            <FunnelList funnels={threeFirstCampaigns} />
                         </div>
+                        
+                        {campaigns.length > 3 ?
+                            <div className="row viewMoreBtnContainer">
+                                <a type="button" className="btn moreCampaigns" href="/projects/campaigns">View More</a>
+                            </div>
+                        :
+                            null
+                        }
+
                         
                     </div>
                 </div>

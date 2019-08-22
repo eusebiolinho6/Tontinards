@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import {Link,Redirect} from 'react-router-dom';
 import Input from '../../globalComponents/Input';
 import validateInput from '../../../validations/signup';
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
+import profileFr from '../../../../traduction/auth/profile/fr.json';
+import profileEn from '../../../../traduction/auth/profile/en.json';
 
 // App component - represents the whole app
 class ProfileForm extends Component {
@@ -82,6 +84,15 @@ class ProfileForm extends Component {
 
   render() {
       const { name, username, email, errors, redirect } = this.state;
+      let lang = localStorage.getItem('lang')
+      
+      let lg = profileFr;
+    
+      lang == 'fr'?
+        lg = profileFr
+        :
+        lg = profileEn
+
       if(redirect) return <Redirect to="/" />
     return (
     <div className="wrapper wrapper-content animated fadeInRight">
@@ -89,14 +100,14 @@ class ProfileForm extends Component {
             <div className="col-md-3 col-sm-1"></div>   
             <div className="ibox col-md-6 col-sm-10 col-md-offset-3 col-sm-offset-1 float-e-margins">
                 <div className="ibox-title">
-                    <h5>Update your informations</h5>
+                    <h5>{lg.update}</h5>
                 </div>
                 <div className="ibox-content">
                     <div className="row">
                             <form onSubmit={(event) => this.handleSUbmit(event)} className="col-md-12" role="form">
                             <Input
                                 field="name"
-                                label="Name"
+                                label={lg.name}
                                 value={name}
                                 error={errors.name}
                                 onChange={(event)=> this.handleInputChange(event) }
@@ -110,7 +121,7 @@ class ProfileForm extends Component {
                                 />
                             <Input
                                 field="username"
-                                label="Username"
+                                label={lg.username}
                                 value={username}
                                 error={errors.username}
                                 onChange={(event)=> this.handleInputChange(event) }
@@ -118,11 +129,11 @@ class ProfileForm extends Component {
                                 {
                                     this.state.duplicatedData ?
                                     <div className="alert alert-danger" role="alert">
-                                        Email or Username already exist.
+                                        {lg.emailNameExist}
                                     </div>: null
                                 }
                                 <div>
-                                    <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>Save</strong></button>
+                                    <button className="btn btn-md btn-primary m-t-n-xs" type="submit"><strong>{lg.save}</strong></button>
                                     {errors.error && <span style={{color: '#ed5565'}} className="error-block">{errors.error}</span>}
                                 </div>
                             </form>

@@ -315,7 +315,8 @@ class FunnelLIstAdmin extends Component {
             show: false,
             feedback: '',
             currentUser: null,
-            isEditing: false
+            isEditing: false,
+            categoryType: ''
         };
         console.log(this.props.user);
         this.notificationDOMRef = React.createRef();
@@ -392,6 +393,7 @@ class FunnelLIstAdmin extends Component {
             country: funnel.country,
             city: funnel.city,
             email: funnel.email,
+            categoryType: funnel.categoryType,
             show: true,
             isEditing: true
         });
@@ -430,14 +432,20 @@ class FunnelLIstAdmin extends Component {
             id: '',
             country: '',
             email: '',
+            categoryType: '',
             isLoading: false,
             isEditing: false
         })
     }
 
     addNotification = (massage) => {
+        let title = 'ETAT DU PROJECT';
+        lang == 'fr'?
+            title = 'ETAT DU PROJECT'
+            :
+            title = 'PROJECT STATE'
         this.notificationDOMRef.current.addNotification({
-          title: "PROJECT STATE",
+          title: title,
           message: massage,
           type: "danger",
           insert: "top",
@@ -450,10 +458,15 @@ class FunnelLIstAdmin extends Component {
     }
 
     addNewProject = () => {
+        let notification = "S'il vous plait, Mettez à jour votre profil en ajoutant votre Email.";
+        lang == 'fr'?
+            notification = "S'il vous plait, Mettez à jour votre profil en ajoutant votre Email."
+            :
+            notification = "Please, update your profile with your email."
         if(this.state.currentUser.emails) {
             this.setState({show: true})
         } else {
-            this.addNotification("Please, update your profile with your email.");
+            this.addNotification(notification);
         }
     }
 
@@ -466,8 +479,8 @@ class FunnelLIstAdmin extends Component {
               :
               lg = adminFunnelListPageEn;
 
-        const { show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing } = this.state;
-        const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user } = this.props;
+        const { typeOfDonation, show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing, categoryType } = this.state;
+        const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user, typeOfDonations } = this.props;
         //console.log(user);
         
         console.log(funnels)
@@ -491,7 +504,7 @@ class FunnelLIstAdmin extends Component {
                                         projectState={projectState} currentAmount={currentAmount} teamName={teamName} 
                                         forWhoFoundsRaise={forWhoFoundsRaise} oneForWhoFoundsRaise={oneForWhoFoundsRaise} 
                                         video={video} show={show} projectImage={projectImage} teamImage={teamImage} 
-                                        document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} 
+                                        document={document} foundRaiseAs={foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs} categoryType={categoryType} 
                                         email={email} objectifAmount={objectifAmount} country={country} countries={countries} isEditing={isEditing}
                                         closeModal={() => this.closeModal()} />
                                 </div>

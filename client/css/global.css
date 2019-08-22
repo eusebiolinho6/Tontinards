@@ -9947,6 +9947,27 @@ a.Link{
   padding-bottom: auto; 
 }
 
+.viewMoreBtnContainer{
+  width: 100%;
+  text-align: center ;
+  margin: 0 0 30px 0 ;
+}
+
+.moreCampaigns{
+  padding: 10px 40px;
+  font-size: 1.5em;
+  border: 2px solid #005DAC;
+  color: #005DAC;
+  /* border: 2px solid #005DAC */
+}
+
+.moreCampaigns:hover{
+  border: 2px solid #005DAC;
+  color: #ffffff;
+  background-color: #005DAC;
+  /* border: 2px solid #005DAC */
+}
+
 .viewMoreBtn{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -10572,6 +10593,16 @@ color: green;
 
 /*------------------------ FILTER MENU ADMIN DASHBOARD -------------------------*/
 
+/*-----ONLY FOR MOZILLA FIREFOX ----*/
+/* @-moz-document url-prefix() { */
+  @media (min-width: 992px){
+    .inputGroup  label{
+      padding-right: 25% !important;
+    }
+  }
+/* } */
+
+
 .inputGroup {
   background-color: #fff;
   display: block;
@@ -10579,7 +10610,7 @@ color: green;
   position: relative;
 }
 .inputGroup  label {
-    padding: 12px 30px;
+    padding: 12px 15px;
     width: 100%;
     display: block;
     text-align: left;
@@ -10621,7 +10652,7 @@ color: green;
       border-radius: 50%;
       z-index: 2;
       position: absolute;
-      right: 30px;
+      right: 15px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -10710,7 +10741,7 @@ padding: 0 8px;
   position: relative;
 }
 .inputGroup  label {
-    padding: 12px 30px;
+    padding: 12px 15px;
     width: 100%;
     display: block;
     text-align: left;
@@ -10748,7 +10779,7 @@ padding: 0 8px;
       border-radius: 50%;
       z-index: 2;
       position: absolute;
-      right: 30px;
+      right: 15px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -11263,11 +11294,9 @@ color:white;
   width: 75% !important;
   height: 42px !important;
 }
-<<<<<<< HEAD
 .selectLanguage{
   background-color: rgb(73, 68, 68) !important;
-=======
-
+}
 /* User manual */
 
 .user-manual {
@@ -11408,5 +11437,4 @@ color:white;
   #radioinput {
     flex-direction: column !important;
   }
->>>>>>> 4dbcf5a185d4bb506af1c6dd039dc824fb4ac1cf
 }

@@ -4,6 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import {toObjectId} from '../../../utilities/';
 import {Funnels, FoundRaiseAs, ForWhoFoundsRaise} from '../../../api/collections';
 import ProjectDonation from '../../components/projects/ProjectDonation';
+import Footer from '../../globalComponents/Footer'
 
 class ProjectDonationLayout extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class ProjectDonationLayout extends Component {
           data = (
             <Fragment>
                 <ProjectDonation user={user} project={project} />
+                <Footer/>
             </Fragment>
           )
         }

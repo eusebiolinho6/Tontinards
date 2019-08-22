@@ -23,7 +23,9 @@ import CurrencyFormat from 'react-currency-format';
 import {toObjectId} from '../../../utilities/';
 import detailPageFr from '../../../../traduction/detailPage/fr.json' ;
 import detailPageEn from '../../../../traduction/detailPage/en.json';
+import Footer from '../../globalComponents/Footer'
 
+let lang = localStorage.getItem('lang')
 // App component - represents the whole app
 class ProjectDetails extends Component {
     constructor(props) {
@@ -56,7 +58,6 @@ class ProjectDetails extends Component {
         this.saveComment()
     }
 
-
     componentWillMount = () => {
         console.log(this.props);
         // this.props.navigation.navigate('Details', {
@@ -73,14 +74,17 @@ class ProjectDetails extends Component {
      */
     setProjectState = ()=>{
         const {project,user}= this.props;
-        console.log(user);
+                
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
 
             this.setState({ 
                 hideButton: false,
             })
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "VALID"}});
-            this.addNotification("Project Validated!");
+            lang == 'fr'?
+                this.addNotification("Projet Validé!")
+                :
+                this.addNotification("Project Validated!");
 
          }else if(user.profile.role == 'admin' && project.projectState == 'VALID'){
 
@@ -94,7 +98,12 @@ class ProjectDetails extends Component {
                 name: project.projectName,
                 link: "http://tontinards.biz/user/campaigns"
             };
-            this.addNotification("Canpaign started successfully!");
+
+            lang == 'fr'?
+              this.addNotification("Campagne debutée avec succès!")
+            :
+             this.addNotification("Campaign started successfully!");
+
             Meteor.call("sendEmail",
                 project.userId.emails[0].address,
                 "Tontinards",
@@ -109,8 +118,13 @@ class ProjectDetails extends Component {
     }
 
     addNotification = (message) => {
+        let title = 'ETAT DU PROJECT';
+        lang == 'fr'?
+            title = 'ETAT DU PROJECT'
+            :
+            title = "PROJECT STATE"
         this.notificationDOMRef.current.addNotification({
-          title: "PROJECT STATE",
+          title: title,
           message: message,
           type: "success",
           insert: "top",
@@ -128,7 +142,10 @@ class ProjectDetails extends Component {
         if(user.profile.role == 'admin' && project.projectState == 'PENDING'){
            
             Funnels.update({_id:toObjectId(project._id._str)},{$set:{projectState: "REFUSED"}});
-            this.addNotification("Project Refused Successsfully!");
+            lang == 'fr'?
+              this.addNotification("Projet rejetté avec succès!")
+            :
+             this.addNotification("Project Refused Successsfully!");
 
          }else{
 
@@ -310,16 +327,16 @@ class ProjectDetails extends Component {
                                     {
                                         user ? 
                                             user.profile.role == 'admin'&& project.projectState == 'PENDING' ?                               
-                                                <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>Validate</button>                                
+                                                <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>{lg.Validate}</button>                                
                                             : '' 
                                         : 
-                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">Donate </Link>
+                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">{lg.donateBtn} </Link>
                                     }
                             {
                                 user ? 
                                 user.profile.role == 'admin'&& project.projectState == 'PENDING'  
                                ?
-                                <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>Refuse</button>       
+                                <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>{lg.Refuse}</button>       
                                 :
                                  '' : null
                               }
@@ -328,7 +345,7 @@ class ProjectDetails extends Component {
                                 user ? 
                                 user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
                                 ?
-                                <button className="st btn btn-lg startCampaignBtn" onClick={()=>this.setProjectState()}>Start campaign</button> 
+                                <button className="st btn btn-lg startCampaignBtn" onClick={()=>this.setProjectState()}>{lg.StartCampaign}</button> 
                                     :
                                     '' : null
                               }
@@ -345,7 +362,7 @@ class ProjectDetails extends Component {
                             }
                         </div>
                         <div className="date">
-                            <p>Création Date: <b>
+                            <p>Creation Date: <b>
                                 <Moment parse="YYYY-MM-DD">
                                     {project.createdAt}
                                 </Moment></b>
@@ -398,8 +415,10 @@ class ProjectDetails extends Component {
                         </div>  */}
                     </div>
                 </div>
+                <Footer/>
             </div>
         )
     }
+       
 }
 export default ProjectDetails;

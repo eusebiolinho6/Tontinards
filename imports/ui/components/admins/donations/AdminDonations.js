@@ -75,8 +75,13 @@ class AdminDonations extends Component {
 
   // Validate a Donation
   validate(don, projectId){
+    let title = 'Effectué avec Succès';
+    lang == 'fr'?
+        title = 'Effectué avec Succès'
+        :
+        title = "Successfully done!"
     Meteor.call('validateDonate', don, projectId)
-    this.addNotification("Successfully done!", "success")
+    this.addNotification(title, "success")
   }
 
   // Delete a donation
@@ -86,8 +91,13 @@ class AdminDonations extends Component {
   }
 
   addNotification = (message, type) => {
+    let title = "Don!";
+    lang == 'fr'?
+        title = "Don!"
+        :
+        title = "Donation!"
     this.notificationDOMRef.current.addNotification({
-      title: "Donation!",
+      title: title,
       message: message,
       type: type,
       insert: "top",
@@ -123,8 +133,8 @@ class AdminDonations extends Component {
                                 <td>{don.choosenDonationType}</td>
                                 <td>{this.formatDate(don.date)} </td>
                                     <td> 
-                                        <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-sm btn-danger m-l-md pull-right">Delete</button>
-                                        <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-sm btn-primary pull-right">Validate</button>
+                                        <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-sm btn-danger m-l-md pull-right">{lg.Delete}</button>
+                                        <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-sm btn-primary pull-right">{lg.validatebtn}</button>
                                     </td>
                             </tr>
                         )
@@ -145,7 +155,7 @@ class AdminDonations extends Component {
                             <div className="ibox-content">
                                 <div className="row">
                                 <div className="col-sm-3">
-                                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >New Donation Type</button>
+                                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >{lg.NewDonationType}</button>
                                 </div>
                                 </div>
                                 <div className="row m-t-md">
@@ -154,10 +164,10 @@ class AdminDonations extends Component {
                                             <table className="table table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>DevName</th>
-                                                    <th>Created At</th>
-                                                    <th className="pull-right">Action</th>
+                                                    <th>{lg.Name}</th>
+                                                    <th>{lg.DevName}</th>
+                                                    <th>{lg.CreatedAt}</th>
+                                                    <th className="pull-right">{lg.Action}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -167,7 +177,7 @@ class AdminDonations extends Component {
                                                             <td>{donationsType.devName}</td>
                                                             <td>{this.formatDate(donationsType.createdAt)} </td>
                                                             <td> <button onClick={() =>this.editDonationType(donationsType)} 
-                                                                type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                                                                type="button" className="btn btn-sm btn-primary pull-right">{lg.Edit} <i className="fa fa-pencil"></i> </button></td>
                                                         </tr>
                                                         ))
                                                     }

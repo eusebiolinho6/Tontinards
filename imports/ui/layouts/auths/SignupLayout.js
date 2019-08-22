@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import SignupForm from '../../components/auths/SignupForm';
 import Location from '../../globalComponents/Location'
+import Footer from '../../globalComponents/Footer'
+
 // App component - represents the whole app
 class SignupLayout extends Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class SignupLayout extends Component {
         <Fragment>
           <Location />
             <SignupForm />
+            <Footer />
         </Fragment>
         
     )

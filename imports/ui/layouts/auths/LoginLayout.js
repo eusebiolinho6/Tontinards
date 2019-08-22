@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import LoginForm from '../../components/auths/LoginForm';
 import Location from '../../globalComponents/Location';
+import Footer from '../../globalComponents/Footer'
 
 // App component - represents the whole app
 class LoginLayout extends Component {
@@ -13,6 +14,7 @@ class LoginLayout extends Component {
         <Fragment>
             <Location />
             <LoginForm />
+            <Footer />
         </Fragment>
         
     )

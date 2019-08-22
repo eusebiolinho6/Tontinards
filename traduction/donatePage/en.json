@@ -9,5 +9,12 @@
     "comment":"Comment",
     "submit":"Comment",
     "mostrecentcomments":"Most recent comments",
-    "Nocomment":"No comment"
+    "Nocomment":"No comment",
+    "placeholderFirstname":"Enter your first name",
+    "placeholderLastname":"Enter your last name",
+    "placeholderPhone":"Enter your phone number",
+    "placeholderEmail":"Enter email",
+    "placeholderLocation":"Enter your Location",
+    "placeholderComment":"Enter your comment",
+    "smallMessage":"We'll never share your email with anyone else."
   }

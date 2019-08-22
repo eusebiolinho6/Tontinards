@@ -1,9 +1,19 @@
 {
     "DonationList": "Donation List",
+    "NewDonationType":"New Donation Type",
     "ProjectName": "Project Name",
     "DonatorName":"Donator Name",
     "Amount": "Amount",
     "Date": "Date",
     "Action": "Action",
-    "validatebtn":"validate"
+    "validatebtn":"validate",
+    "Delete":"Delete",
+    "Edit":"Edit",
+    "Name":"Name",
+    "DevName":"DevName",
+    "CreatedAt":"CreatedAt",
+    "DonationTypeInfo":"Donation Type Info",
+    "EnterDonationTypename":"Enter Donation Type name",
+    "Close":"Close",
+    "Save":"Save"
   }

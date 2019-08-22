@@ -88,81 +88,46 @@ class AdminCategory extends Component {
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <div className="row">
-                    <div className="col-lg-12">
-                        <div className="ibox float-e-margins">
-                            <div className="ibox-projectName">
-                                <h5>Categories List</h5>
-                            </div>
-                            <div className="ibox-content">
-                                <div className="row">
-                                <div className="col-sm-3">
-                                        <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > New category</button>
-                                </div>
-                                <CategoryModalForm id={id} name={name} devName={devName} show={show} closeModal={() => this.closeModal()} />
-                                </div>
-                                {categories&&categories.length ? <div className="table-responsive">
-                                    <table className="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>DevName</th>
-                                            <th>Created At</th>
-                                            <th className="pull-right">Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            {categories&&categories.map((category)=>(<tr key={category._id}>
-                                            <td>{category.name}</td>
-                                            <td>{category.devName}</td>
-                                            <td>{this.formatDate(category.createdAt)} </td>
-                                            <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
-                                        </tr>))}
-                                        
-                                        </tbody>
-                                    </table>
-                                </div>:''}
-
-<<<<<<< HEAD
-<div className="col-lg-12">
-    <div className="ibox float-e-margins">
-        <div className="ibox-projectName">
-            <h5>{lg.CategoriesList}</h5>
-        </div>
-        <div className="ibox-content">
-            <div className="row">
-             <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >{lg.Newcategory}</button>
-            </div>
-            <CategoryModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
-             </div>
-            {categories&&categories.length ? <div className="table-responsive">
-                <table className="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>{lg.Name}</th>
-                        <th>{lg.DevName}</th>
-                        <th>{lg.CreatedAt}</th>
-                        <th className="pull-right">{lg.Action}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {categories&&categories.map((category)=>(<tr key={category._id}>
-                        <td>{category.name}</td>
-                        <td>{category.devName}</td>
-                        <td>{this.formatDate(category.createdAt)} </td>
-                        <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-sm btn-primary pull-right">{lg.Editbtn} <i className="fa fa-pencil"></i> </button></td>
-                    </tr>))}
                     
-                    </tbody>
-                </table>
-            </div>:''}
 
-=======
-                            </div>
+                <div className="col-lg-12">
+                    <div className="ibox float-e-margins">
+                        <div className="ibox-projectName">
+                            <h5>{lg.CategoriesList}</h5>
                         </div>
-                </div>
-            </div>
->>>>>>> 4dbcf5a185d4bb506af1c6dd039dc824fb4ac1cf
+                        <div className="ibox-content">
+                            <div className="row">
+                            <div className="col-sm-3">
+                                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >{lg.Newcategory}</button>
+                            </div>
+                            <CategoryModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
+                            </div>
+                            {categories&&categories.length ? <div className="table-responsive">
+                                <table className="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>{lg.Name}</th>
+                                        <th>{lg.DevName}</th>
+                                        <th>{lg.CreatedAt}</th>
+                                        <th className="pull-right">{lg.Action}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {categories&&categories.map((category)=>(<tr key={category._id}>
+                                        <td>{category.name}</td>
+                                        <td>{category.devName}</td>
+                                        <td>{this.formatDate(category.createdAt)} </td>
+                                        <td> <button onClick={() =>this.editCategory(category)} type="button" className="btn btn-sm btn-primary pull-right">{lg.Editbtn} <i className="fa fa-pencil"></i> </button></td>
+                                    </tr>))}
+                                    
+                                    </tbody>
+                                </table>
+                            </div>:''}
+
+                             </div>
+                         </div>
+                    </div>
+        </div>
         </div>
         )
     }

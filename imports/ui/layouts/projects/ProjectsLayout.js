@@ -46,6 +46,7 @@ class ProjectsLayout extends Component {
 
   render() {
     const {funnels, userId, user} = this.props;
+    let lang = localStorage.getItem('lang');
     const pendingProjects = [];
     const validatedProjects = [];
     const refusedProjects = [];
@@ -62,12 +63,24 @@ class ProjectsLayout extends Component {
     return (
       <div className="container-fluid no-padding">
         <div className="row projectsPageHeader">
+          {
+            lang == 'fr'?
+            <h1>Listes de Projets </h1>
+            :
             <h1>Projects List</h1>
+          }
+            
             <hr/>
         </div>
         {/*---- Begining zone of Pending Projects------*/}
         <div className="row text-center pendingProjectsConatiner">
+          {
+            lang == 'fr'?
+            <h2>Projets en Attente</h2>
+            :
             <h2>Pending Projects</h2>
+          }
+            
             <div className="projects">
 
               {this.renderProjects(pendingProjects, "PENDING")}
@@ -85,7 +98,13 @@ class ProjectsLayout extends Component {
           :
         <div className="row text-center validatedProjectsConatiner">
             <hr/>
-            <h2>Validated Projects</h2>
+            {
+             lang == 'fr'?
+              <h2>Projets Validés</h2>
+              :
+              <h2>Validated Projects</h2>
+            }
+            
             <div className="projects">
                 {this.renderProjects(validatedProjects, "VALID")}
             </div>
@@ -103,7 +122,13 @@ class ProjectsLayout extends Component {
           :
         <div className="row text-center validatedProjectsConatiner">
             <hr/>
-            <h2>Rejected Projects</h2>
+            {
+             lang == 'fr'?
+             <h2>Projets Rejettés</h2>
+              :
+              <h2>Rejected Projects</h2>
+            }
+            
             <div className="projects">
                 {this.renderProjects(refusedProjects, "REFUSED")}
             </div>
@@ -121,7 +146,13 @@ class ProjectsLayout extends Component {
           :
         <div className="row text-center validatedProjectsConatiner">
             <hr/>
-            <h2>Campaigns</h2>
+            {
+             lang == 'fr'?
+             console.log(<h2>Campagnes</h2>)
+              :
+              <h2>Campaigns</h2>
+            }
+            
             <div className="projects">
                 {this.renderProjects(campaigns, "START CAMPAIGN")}
             </div>

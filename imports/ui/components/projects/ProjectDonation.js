@@ -14,6 +14,7 @@ import "react-notifications-component/dist/theme.css";
 import donatePageFr from '../../../../traduction/donatePage/fr.json';
 import donatePageEn from '../../../../traduction/donatePage/en.json';
 
+let lang = localStorage.getItem('lang')
 // App component - represents the whole app
 class ProjectDonation extends Component {
   constructor(props) {
@@ -66,10 +67,16 @@ class ProjectDonation extends Component {
     this.state.email.trim().length <= 0 ||
     this.state.phoneNumber.trim().length <= 0 ||
     this.state.choosenDonationType.trim().length <= 0 ) {
-      this.addNotification("Amount, Donation Type, Phone Number and Email are required!", "danger");
+      lang == 'fr'?
+       this.addNotification("Montant, Numéro de téléphone et Email requis!", "danger")
+      :
+       this.addNotification("Amount, Phone Number and Email are required!", "danger");
     } else {
       Meteor.call('makeDonate', newDonator, projectId);
-      this.addNotification("Successfully done!", "success")
+      lang == 'fr'?
+       this.addNotification("Effectué avec Succès!", "success")
+      :
+       this.addNotification("Successfully done!", "success")
       this.setState({
           redirect: true
       })
@@ -86,8 +93,13 @@ class ProjectDonation extends Component {
   }
 
   addNotification = (message, type) => {
+    let title = "Don!"
+    lang == 'fr'?
+      title = "Don!"
+      :
+      title = "Donation!"
     this.notificationDOMRef.current.addNotification({
-      title: "Donation!",
+      title: title,
       message: message,
       type: type,
       insert: "top",
@@ -159,26 +171,26 @@ class ProjectDonation extends Component {
                     <label for="firstNameInput">{lg.firstName}</label>
                     <input type="text" className="form-control" name="name"
                       value={this.state.name} onChange={(event) => this.handleInputChange(event)}
-                      required id="firstNameInput" placeholder="Enter your first name"/>
+                      required id="firstNameInput" placeholder={lg.placeholderFirstname}/>
                 </div>
                 <div className="form-group">
                     <label for="lastNameInput">{lg.lastName}</label>
                     <input type="text" className="form-control" name="lastName"
                       value={this.state.lastName} onChange={(event) => this.handleInputChange(event)}
-                      required id="lastNameInput" placeholder="Enter your last name"/>
+                      required id="lastNameInput" placeholder={lg.placeholderLastname}/>
                 </div>
                 <div className="form-group">
                     <label for="phoneNumberInput">{lg.PhoneNumber}</label>
                     <input type="text" className="form-control" name="phoneNumber"
                       value={this.state.phoneNumber} onChange={(event) => this.handleInputChange(event)}
-                      required id="phoneNumberInput" placeholder="Enter your phone number"/>
+                      required id="phoneNumberInput" placeholder={lg.placeholderPhone}/>
                 </div>
                 <div className="form-group">
                     <label for="exampleInputEmail">{lg.emailaddress}</label>
                     <input type="email" className="form-control" name="email"
                       value={this.state.email} onChange={(event) => this.handleInputChange(event)}
-                      required id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                      required id="exampleInputEmail" aria-describedby="emailHelp" placeholder={lg.placeholderEmail}/>
+                    <small id="emailHelp" className="form-text text-muted">{lg.smallMessage}</small>
                 </div>
                 <p><strong>Donation Option</strong></p>
                 <div className="wrapper" id="radioinput">
@@ -195,11 +207,11 @@ class ProjectDonation extends Component {
                     <label for="exampleInputEmail">{lg.informationsaboutLocation}</label>
                     <input type="text" className="form-control" name="location"
                       value={this.state.location} onChange={(event) => this.handleInputChange(event)}
-                      required id="exampleInputLocation" aria-describedby="emailHelp" placeholder="Enter your Location"/>
+                      required id="exampleInputLocation" aria-describedby="emailHelp" placeholder={lg.placeholderLocation}/>
                 </div>
                 <div className="form-group">
                     <label for="exampleInputEmail">{lg.comment}</label>
-                    <textarea placeholder="Enter your comment" onChange={(event) => this.handleInputChange(event)}
+                    <textarea placeholder={lg.placeholderComment} onChange={(event) => this.handleInputChange(event)}
                     name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
                 </div>
                 

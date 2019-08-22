@@ -10,6 +10,7 @@ import campaignPageFr from '../../../../traduction/campaignPage/fr.json';
 import campaignPageEn from '../../../../traduction/campaignPage/en.json'
 
 
+
 const emptyIcon = <FontAwesomeIcon icon={faBan} size="3x"/>
 
 class CampaignsLayout extends Component {
@@ -152,7 +153,7 @@ class CampaignsLayout extends Component {
         </div>
         {/*---- End zone of Rejected Projects ------*/}
         
-
+       
       </div>
     )
   }

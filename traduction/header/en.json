@@ -1,0 +1,16 @@
+{
+    "admin":"Admin",
+    "category": "Categories",
+    "foundraise": "Funds Raise As",
+    "foundAs": "Funds Raise For",
+    "project": "Projects",
+    "donation": "Donations",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "logout": "Logout",
+    "campaign":"My Campaigns",
+    "createproject":"Create Project",
+    "login":"Login",
+    "register":"Register",
+    "Help":"Help"
+ }

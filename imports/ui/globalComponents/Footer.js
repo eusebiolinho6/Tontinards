@@ -65,7 +65,7 @@ class Footer extends Component {
                         </div>    
                     </div> */}
                     
-                        <div className="col-md-3 socials">
+                        <div className="col-md-3 col-xm-6 socials">
                                 <label >Languages </label>
                                 <br/>
                                 {console.log(lang)}

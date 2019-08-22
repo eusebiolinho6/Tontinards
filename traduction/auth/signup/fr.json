@@ -1,0 +1,11 @@
+{
+    "signup":"Créer un compte",
+    "name":"Nom",
+    "password":"Mot de Passe",
+    "username":"Nom d'utilisateur",
+    "confirm":"Confirmer Mot de Passe",
+    "save":"Enregistrer",
+    "google":"Créer un compte avec Google",
+    "facebook":"Créer un compte avec Facebook",
+    "twitter":"Créer un compte avec Twitter"
+}
