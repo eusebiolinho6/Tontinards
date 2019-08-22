@@ -3,7 +3,7 @@ import FoundRaiseAsModalForm from './FoundRaiseAsModalForm';
 import Input from '../../../globalComponents/Input'
 import {Modal, Button} from 'react-bootstrap';
 import adminfundRaiseAsPageFr from '../../../../../traduction/adminfundRaiseAsPage/fr.json';
-import adminfundRaiseAsPageEn from '../../../../../traduction/adminDonationPage/en.json';
+import adminfundRaiseAsPageEn from '../../../../../traduction/adminfundRaiseAsPage/en.json';
 
 
 // App component - represents the whole app
