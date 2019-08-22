@@ -196,12 +196,12 @@ export default class ProjectItem extends Component {
                                             projectState == "REFUSED" ?
                                                 <span>{lg.bin}</span>
                                                 :
-                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn detailBtn"></Link>
+                                                <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn detailBtn">{lg.detail} </Link>
                                         :
                                         user.profile.role == "admin" ?
                                             projectState == "VALID" ?
                                                 <div id="wrap-btn">
-                                                    <button onClick={this.editFunnel} className="btn btn-warning">Edit</button>
+                                                    <button onClick={this.editFunnel} className="btn btn-warning">{lg.edit}</button>
                                                     <Link to={{ pathname: '/projects/' +routeId+'/'+ finalProjectRoute , projectId: project._id._str }} className="btn  detailBtn">{lg.detail} </Link>
                                                 </div>
                                             :
