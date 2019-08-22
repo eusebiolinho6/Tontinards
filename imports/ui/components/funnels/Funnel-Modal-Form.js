@@ -1235,7 +1235,7 @@ class FunnelModalForm extends Component {
                         <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = "Upload Project Video" />
                     :
                         null
-                :dit 
+                : 
                     null
             }
             </div>
