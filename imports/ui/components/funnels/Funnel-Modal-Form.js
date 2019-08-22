@@ -1238,6 +1238,7 @@ class FunnelModalForm extends Component {
                 : 
                     null
             }
+            
             </div>
             {errors.global&& <span style={{color: '#ed5565', fontSize:'15px'}} className="error-block">{errors.global}</span>}
     </ModalBody>
