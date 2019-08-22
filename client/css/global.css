@@ -10710,7 +10710,8 @@ box-sizing: inherit;
 }
 
 html {
-box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 code {
@@ -11077,6 +11078,10 @@ color:white;
   .descriptionDiv{
     padding: 20px 0 !important;
     height: 400px !important;
+  }
+
+  .adminBtn{
+    padding-left: 0 !important;
   }
 
 }
