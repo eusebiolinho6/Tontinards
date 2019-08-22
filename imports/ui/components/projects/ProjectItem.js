@@ -74,13 +74,13 @@ export default class ProjectItem extends Component {
     render() {
         // var IntlMixin = ReactIntl.IntlMixin;
         // var FormattedNumber = ReactIntl.FormattedNumber;
-        const { project, propclass, user } = this.props;
+        const { project, propclass, user, typeOfDonations } = this.props;
         if (project.currentAmount == "") project.currentAmount = 0;
         const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount)) * 100);
         const { city, phoneNumber, userId, objectifAmount, projectName,
             currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise,
             description, _id, category, document, projectImage, teamImage, email,
-            feedback, video, country, projectState } = project;
+            feedback, video, country, projectState, typeOfDonation } = project;
 
         //we extract the first 4 chars from the proectId to make the routeId 
         let routeId = project._id._str.slice(0,4);
@@ -91,6 +91,8 @@ export default class ProjectItem extends Component {
             <div className={propclass == 'details' ? 'col-md-3 subject-container' : propclass == 'donation' ? 'col-md-10' : 'col-md-4    subject-container'}>
                 <FunnelModalForm
                     userId={userId} isReview={true}
+                    typeOfDonations={typeOfDonation}
+                    typeOfDonation={typeOfDonation}
                     feedback={feedback} city={city}
                     categories={this.props.categories} id={_id}
                     category={category} phoneNumber={phoneNumber}
@@ -103,7 +105,9 @@ export default class ProjectItem extends Component {
                     teamImage={teamImage} document={document}
                     foundRaiseAs={this.props.foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs}
                     email={email} objectifAmount={objectifAmount} country={country}
-                    countries={this.state.countries} closeModal={this.closeModal} />
+                    countries={this.state.countries} closeModal={this.closeModal} 
+                    isEditing={true}    
+                />
                     <ReactNotification ref={this.notificationDOMRef} />
                 <div className="ibox text-center">
                     <div className="ibox-content product-box active">

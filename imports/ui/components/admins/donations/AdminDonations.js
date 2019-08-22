@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {Modal, Button} from 'react-bootstrap';
 import CurrencyFormat from 'react-currency-format';
+import DonationTypeModalForm from './DonationTypeModalForm';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import adminDonationPageFr from '../../../../../traduction/adminDonationPage/fr.json';
@@ -29,24 +30,59 @@ lang == 'fr'?
 
 class AdminDonations extends Component {
     constructor(props) {
-    super(props);
-    this.state = {
-        
-    };
-    this.notificationDOMRef = React.createRef();
-}
+        super(props);
+        this.state = {
+            name: '',
+            devName: '',
+            id: '',
+            show: false
+        };
+        this.notificationDOMRef = React.createRef();
+    }
 
-formatDate(d) {
-    const date = new Date(d);
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
-}
+    formatDate(d) {
+        const date = new Date(d);
+        const day = date.getDate();
+        const monthIndex = date.getMonth();
+        const year = date.getFullYear();
+        return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
 
+    handleInputChange(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value
+        });
+    }
+    editDonationType(donationType){
+        this.setState({
+            name: donationType.name,
+            devName: donationType.devName,
+            id:donationType._id,
+            show: true
+        });
+    }
+    closeModal(){
+        this.setState({show:false});
+        this.setState({
+            name: '',
+            devName: '',
+            errors: {},
+            id: ''
+        })
+    }
+
+  // Validate a Donation
   validate(don, projectId){
     Meteor.call('validateDonate', don, projectId)
     this.addNotification("Successfully done!", "success")
+  }
+
+  // Delete a donation
+  delete(projectId, donID){
+    Meteor.call('deleteDonate', projectId, donID)
+    this.addNotification("Successfully deleted!", "success")
   }
 
   addNotification = (message, type) => {
@@ -73,7 +109,7 @@ formatDate(d) {
               lg = adminDonationPageEn;
 
         const { show, name, devName, id } = this.state;
-        const { projects } = this.props;
+        const { projects, donationsTypes } = this.props;
         let donations = [];
         projects.forEach((project) => {
             if(project.donators) {
@@ -84,8 +120,12 @@ formatDate(d) {
                                 <td>{project.projectName}</td>
                                 <td>{don.firstName+" "+don.lastName}</td>
                                 <td><CurrencyFormat  value={don.amount} displayType={'text'} thousandSeparator=" "/> FCFA</td>
+                                <td>{don.choosenDonationType}</td>
                                 <td>{this.formatDate(don.date)} </td>
-                                    <td> <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-md btn-primary pull-right">Validate</button></td>
+                                    <td> 
+                                        <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-sm btn-danger m-l-md pull-right">Delete</button>
+                                        <button onClick={() =>this.validate(don, project._id)} type="button" className="btn btn-sm btn-primary pull-right">Validate</button>
+                                    </td>
                             </tr>
                         )
                     }
@@ -95,6 +135,7 @@ formatDate(d) {
         return (
             <div className="wrapper wrapper-content animated fadeInRight">
                 <ReactNotification ref={this.notificationDOMRef} />
+                <DonationTypeModalForm id={id} name={name} devName={devName} show={show} closeModal={() => this.closeModal()} />
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
@@ -103,10 +144,49 @@ formatDate(d) {
                             </div>
                             <div className="ibox-content">
                                 <div className="row">
-                                    <div className="col-lg-4">
-
+                                <div className="col-sm-3">
+                                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >New Donation Type</button>
+                                </div>
+                                </div>
+                                <div className="row m-t-md">
+                                    <div className="col-sm-12 col-md-12 col-lg-12">
+                                        <div className="table-responsive">
+                                            <table className="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>DevName</th>
+                                                    <th>Created At</th>
+                                                    <th className="pull-right">Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {donationsTypes&&donationsTypes.map((donationsType)=>(
+                                                        <tr key={donationsType._id}>
+                                                            <td>{donationsType.name}</td>
+                                                            <td>{donationsType.devName}</td>
+                                                            <td>{this.formatDate(donationsType.createdAt)} </td>
+                                                            <td> <button onClick={() =>this.editDonationType(donationsType)} 
+                                                                type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                                                        </tr>
+                                                        ))
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="ibox float-e-margins">
+                            <div className="ibox-projectName">
+                                <h5>Pending Donation</h5>
+                            </div>
+                            <div className="ibox-content">
                                 <div className="row">
                                     <div className="col-sm-12 col-md-12 col-lg-12">
                                         {projects&&projects.length ? <div className="table-responsive">

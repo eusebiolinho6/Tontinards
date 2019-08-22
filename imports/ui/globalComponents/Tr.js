@@ -9,11 +9,6 @@ class Tr extends Component {
         super(props);
     }
 
-    startEdition = (funnel) => {
-        funnel.isEditing = true;
-        this.props.editFunnel(funnel);
-    }
- 
     render() {
 
         let lg = adminFunnelListPageFr;

@@ -7,7 +7,7 @@ import { ServiceConfiguration } from 'meteor/service-configuration';
 Meteor.startup(() => {
   // code to run on server at startup
   startCron();
-  process.env.MAIL_URL = 'smtps://onlineprepalearning@gmail.com:onlineprepa123@smtp.gmail.com:465';
+  process.env.MAIL_URL = 'smtps://silliconkidys@gmail.com:q:zuhferPFez@smtp.gmail.com:465';
 
 
   Accounts.loginServiceConfiguration.remove({
@@ -30,7 +30,6 @@ Meteor.startup(() => {
       secret: "T8Y1ThL9b5c8hkRWGAZ6VCxxsBeq62nArgPDTqnAw2ZkMfvawa",
       loginStyle: "popup"
   });
-
 
   Accounts.loginServiceConfiguration.remove({
     service: "facebook"

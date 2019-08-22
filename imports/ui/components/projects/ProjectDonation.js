@@ -26,7 +26,8 @@ class ProjectDonation extends Component {
       email: "",
       redirect: false,
       message: '',
-      location: ''
+      location: '',
+      choosenDonationType: ''
     }
     this.notificationDOMRef = React.createRef();
   }
@@ -46,6 +47,7 @@ class ProjectDonation extends Component {
   // Save the Donation
   submit(e) {
     e.preventDefault();
+    console.log(this.state.donationType)
     const projectId = this.props.project._id;
     const newDonator = {
       id: new Mongo.ObjectID(),
@@ -57,12 +59,14 @@ class ProjectDonation extends Component {
       comment: this.state.message,
       location: this.state.location,
       date: new Date(),
-      validated: false
+      validated: false,
+      choosenDonationType: this.state.choosenDonationType
     }
     if(this.state.amount.trim().length <= 0 ||
     this.state.email.trim().length <= 0 ||
-    this.state.phoneNumber.trim().length <= 0 ) {
-      this.addNotification("Amount, Phone Number and Email are required!", "danger");
+    this.state.phoneNumber.trim().length <= 0 ||
+    this.state.choosenDonationType.trim().length <= 0 ) {
+      this.addNotification("Amount, Donation Type, Phone Number and Email are required!", "danger");
     } else {
       Meteor.call('makeDonate', newDonator, projectId);
       this.addNotification("Successfully done!", "success")
@@ -175,6 +179,17 @@ class ProjectDonation extends Component {
                       value={this.state.email} onChange={(event) => this.handleInputChange(event)}
                       required id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <p><strong>Donation Option</strong></p>
+                <div className="wrapper" id="radioinput">
+                  {
+                    project.typeOfDonation.map(type => (
+                        <div className="radioitem">
+                              <input id={type} value={type} type="radio" name="choosenDonationType" onChange={(event) => this.handleInputChange(event)} />
+                              <label for={type}>{type}</label>
+                        </div>
+                      ))
+                  }
                 </div>
                 <div className="form-group">
                     <label for="exampleInputEmail">{lg.informationsaboutLocation}</label>
