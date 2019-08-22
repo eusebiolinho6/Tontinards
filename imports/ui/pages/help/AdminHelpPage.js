@@ -18,68 +18,231 @@ class AdminHelpPage extends Component {
           <div className="container">
             <div className="row m-t-5 full-content">
               <div className="col">
-                  <h2 className="text-center title">Manual for Admin</h2><hr/>
+                  <h2 className="text-center title">User manual for Administrator</h2><hr/>
                   <div className="col-sm-12 content">
-                    <h5 className="step text-center">System Overview</h5>
-                    <p>Tontinards is a platform web, which connects people who have professional or personal projects and people who have financing capabilities.The application saves project data submitted by the funding applicants in the database.</p>
+                    <h5 className="step text-center">GOAL</h5>
+                    <p>This document is intended to help you use the product. It explains the why, the how and what happens if the task is not executed correctly</p>
                   </div>
                   <div className="col-sm-12 content">
-                      <h5 className="step">2. DESCRIPTION OF EACH USE CASE FOR SIMPLE USER</h5>
-                      <h6 className="">2.1 SIGN UP</h6>
-                      <p><strong>As a simple user you want to Register :</strong></p>
+                      <h5 className="step">1. PRESENTATION</h5>
+                      <h6 className="">1.1 Administrator role</h6>
+                      <p>User concerned here is the administrator. Its role is, on the one hand, to select or reject the projects, and on the other hand, to format the selected projects in such a way that it respects the requirements of the projects that can be financed in order to finally make them visible to all, in order to they are funded</p>
+                      <h6 className="">1.1 Administrator features</h6>
+                      <p>Features that concerns the administrator are:</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on "Register"</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> On this page, your username, your password and email or connections to social networks such as facebook twitter and google will be you requested.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>Validate project</b></li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>Refused project</b></li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>Start campaign</b></li>
                       </ul>
-                      <img src="/images/manual/im1.png" />
-                      <p><strong>Note! :  </strong>Note that there is only one login and therefore only one password per account. To validate click on "Save".</p>
-                      <h6 className="">2.2 SIGN IN</h6>
-                      <p><strong>As a simple user you want to Log In:</strong></p>
+
+                      <h5 className="step">2. DESCRIPTIONS</h5>
+                      <h6 className="">1.1 Log in</h6>
+                      <p>As administrator you want to log in.</p>
                       <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Go to www.tontinards.biz:</li>
                         <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on "Login"</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> On this page, your username and your password or connections to social networks such as facebook twitter and google will be you requested.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> On this page, your username and your password or connections to social networks such as facebook twitter and google will be you requested</li>
                       </ul>
-                      <img src="/images/manual/im2.png" />
-                  </div>
+                      <img src="/images/manual/admin/im1.png" />
+                      <p>Now that you are logged in as an administrator, we will describe all the features of the application one after the other.</p>
+                      <h6 className="">1.2 Administrator Menu</h6>
+                      <p>The "Admin" menu contains all the features that allow the administrator to configure the application, namely:</p>
+                      <img src="/images/manual/admin/im2.png" />
+                      <h6 className="">2.1.1 Categories</h6>
+                      <p>The category menu allows the administrator to add new project categories. To do that:</p>
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the category menu in admin.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im3.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new category button.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im4.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the form then click on Save.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im5.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> The new category is added to the list of projects below.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im6.png" />
+                      <h6 className="">2.2.2 Funds Raise As</h6>
+                      <p>The Funds Raising As menu allows the administrator to add a new type of fundraiser (team individual). To do that:</p>
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the Funds Raising As menu in admin.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im7.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new Funds Raising As button.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im8.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the form then click on Save.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im9.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> The new Fund Raising As is added to the list of projects below.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im10.png" />
+                      <h6 className="">2.2.3 Funds Raise For</h6>
+                      <p>The Funds Raise For menu allows the administrator to add a new type of person for whom fundraising is done collecting funds. To do that:</p>
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the Funds Raise For menu in admin.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im11.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new Funds Raise For button.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im12.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the form then click on Save.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im13.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> The new Funds Raise For is added to the list of projects below.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im14.png" />
+                      <h6 className="">2.2.4 Donation</h6>
+                      <p>The Donation menu allows the administrator to confirm or reject a donation. To do that:</p>
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the Donate menu in admin.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im15.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new Donation Type button.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im16.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Choose a particular donation for which you have collected money and click on Validate to confirm that the donation is effective.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im16-1.png" />
+                      <img src="/images/manual/admin/im16-2.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Choose a donation for which you have not recovered money and click Delete to cancel the entry.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im17.png" />
+
+                      <h6 className="">2.3 Contextual Menu</h6>
+                      <p>The Contextual Menu contains all the features related to the connected user, namely:</p>
+                      <h6 className="">2.3.1 Dashboard</h6>
+                      <p>Dashboard menu allows you to manage projects submitted by project promoters. To do that:</p>
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Hover over the user's name.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im18.png" />
+                      <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Dashboard menu.</li>
+                      </ul>
+                      <img src="/images/manual/admin/im19.png" />
+                      <p>Manage a project consists in carrying out several operations,  which consist in making evolve the project.</p>
+                      <p>In the Dashboard page there is a menu whose buttons represent the steps by which a project passes. We have:</p>
+                      <h6 className="">2.3.1.1 Pending Projects</h6>
+                    <p>In Pending Projects menu, we find the list of submitted projects waiting to be processed.</p>
+                    <p>On each project in this section, we can apply two types of processing, Namely:</p>
+                    <h6 className="">2.3.1.1.1 Validate project</h6>
+                    <p>Validate a project is to say that it is worthy of interest, therefore it is selected. To do this, proceed as follows:</p>
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validate project.</li>
+                    </ul>
+                    <img src="/images/manual/admin/im20.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project.</li>
+                    </ul>
+                    <img src="/images/manual/admin/im21.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Detail.</li>
+                    </ul>
+                    <img src="/images/manual/admin/im22.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validate</li>
+                    </ul>
+                    <img src="/images/manual/admin/im23.png" />
+                    <h6 className="">2.3.1.1.2 Refuse project</h6>
+                    <p>Refusing a project is to say that it is not worthy of interest, so it is rejected. For that, proceed as following:</p>
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validate project</li>
+                    </ul>
+                    <img src="/images/manual/admin/im24.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project</li>
+                    </ul>
+                    <img src="/images/manual/admin/im25.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Detail</li>
+                    </ul>
+                    <img src="/images/manual/admin/im26.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Refuse</li>
+                    </ul>
+                    <img src="/images/manual/admin/im27.png" />
+
+                    <h6 className="">2.3.1.2 Validated Projects</h6>
+                    <p>In the Validated Projects menu, we find the list of previously validated projects that are pending processing.</p>
+                    <p>On each project in this section, we can apply two types of processing, namely:</p>
+                    <h6 className="">2.3.1.2.1 Edit projects</h6>
+                    <p>Editing a project is perfecting it to meet the standards of a financeable project. For that, proceed as following:</p>
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validated Project.</li>
+                    </ul>
+                    <img src="/images/manual/admin/im28.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project.</li>
+                    </ul>
+                    <img src="/images/manual/admin/im29.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Edit.</li>
+                    </ul>
+                    <img src="/images/manual/admin/im30.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Modify the necessary fields( Add project video ).</li>
+                    </ul>
+                    <img src="/images/manual/admin/im31.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Save</li>
+                    </ul>
+                    <img src="/images/manual/admin/im32.png" />
+                    <h6 className="">2.3.1.2.2 Start Campaign</h6>
+                    <p>Launch a campaign is to confirm that a project is ready to receive donations, ie it meets the standards of the platform in terms of financeable project.  For that, proceed as following:</p>
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validated Project</li>
+                    </ul>
+                    <img src="/images/manual/admin/im33.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project</li>
+                    </ul>
+                    <img src="/images/manual/admin/im34.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Detail</li>
+                    </ul>
+                    <img src="/images/manual/admin/im35.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Start Campaign</li>
+                    </ul>
+                    <img src="/images/manual/admin/im36.png" />
+                    <h6 className="">2.3.1.3 Campaign</h6>
+                    <p>In the Campaign menu, we find the list of campaigns started (project in expectation of financing).<br/>To gain access, simply click on the Campaign menu button.</p>
+                    <img src="/images/manual/admin/im37.png" />
+                    <h6 className="">2.3.2 Profile</h6>
+                    <p>Le menu Profile vous permet de mettre à jour vos information utilisateur au besoin (Nom, Email, UserName).</p>
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Hover over the user's name</li>
+                    </ul>
+                    <img src="/images/manual/admin/im38.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on the Profile menu</li>
+                    </ul>
+                    <img src="/images/manual/admin/im39.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the necessary fields</li>
+                    </ul>
+                    <img src="/images/manual/admin/im40.png" />
+                    <ul>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Save</li>
+                    </ul>
+                    <img src="/images/manual/admin/im41.png" />
 
 
-                  <div className="col-sm-12 content">
-                      <h5 className="step">3. MENU UTILISATEUR</h5>
-                      <p>Now that you are logged in, you enter the "Tontinards" web application. We will describe all the features of the application after others. As soon as you connect, On the right is a tab at name of your account, in this example <b>"Waffo"</b>: <b>"My Campaigns"</b>, <b>"Profile"</b>, <b>"Create Project"</b> and <b>"Logout"</b> that we will discuss later.
-                      </p>
-                      <img src="/images/manual/im3.png" />
-                      <p>Clicking on it opens a dialog box with 4 possibilities:</p>
-                      <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "My Campaigns": </b> &nbsp;Vous permet de retrouver le statut de toutes vos campagnes en cours.</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Profile": </b> &nbsp;Allows you to change the "User" settings</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Create Project": </b> &nbsp;Allows you to create a project that will be valid and accepted by an administrator for it to be a campaign </li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Logout": </b> &nbsp;Allows you to disconnect</li>
-                      </ul>
-                      <h6 className="">3.1 CREATE PROJECT</h6>
-                      <p><strong>As a simple user you want to Create Project:</strong></p>
-                      <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> By logging in you have to create your project. To do this, click on "Get Funded" on the landing page:</li>
-                        <img src="/images/manual/im4.png" />
-                      </ul>
-                      <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Project creation form </li>
-                      </ul>
-                      <p>All information is not mandatory but more your project has enough information, the easier it will be for the administrator to better understand the project and validate it. Do not hesitate for example, to add a complete description. You must also choose (Project Name, Phone Number, Category project image, Project Document and Project Video) as a required field To continue, click on "save".</p>
-                      <img src="/images/manual/im5.png" />
-                      <p><strong>Note! </strong> on the "Funds Raise As" option if the user selected An individual the project image field is no longer available standard. You have just finalized the creation of your project. It will now appear on the web application among your submitted projects (campaigns pending).</p>
-                      <h6 className="">3.2 MY CAMPAIGN</h6>
-                      <p><strong>As a simple user you want to Manage My Campaigns :</strong></p>
-                      <p> When you have created and managed your projects, they will appear as a list in the "Filter Options" tab as below By default, the projects that will are the "Pending" projects. You can access other projects through filters (Validated projects or Campaigns) as below we describe each state of project.</p>
-                      <img src="/images/manual/im6.png" />
-                      <h6 className="">3.2.1 Pending projects</h6>
-                      <p>All the projects so the administrator has not valid are listed in this part and by default when we have just created a project it is positioned in "Pending" projects.</p>
-                      <h6 className="">3.2.2 Validated projects</h6>
-                      <p>All the projects so the administrator has validated are listed in this part and the administrator will be able to make reviews to improve the project so that it goes to the state of campaign</p>
-                      <img src="/images/manual/im7.png" />
-                      <h6 className="">3.2.3 Campaigns</h6>
-                      <p>All the projects that the administrator has validated and starts a campaign are listed in this part and can be displayed with the admin reviews to make the campaign more credible.</p>
-                      <img src="/images/manual/im8.png" />
-                  </div>
+                </div>
               </div>
             </div>
           </div>
