@@ -95,7 +95,7 @@ class AdminFoundRaiseAs extends Component {
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > {lg.CreateNew}</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > {lg.CreateNewbtn}</button>
             </div>
             <FoundRaiseAsModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>

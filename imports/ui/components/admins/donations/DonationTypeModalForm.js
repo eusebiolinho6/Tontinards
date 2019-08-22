@@ -4,8 +4,11 @@ import {Link} from 'react-router-dom';
 import Input from '../../../globalComponents/Input';
 import Upload from '../../../globalComponents/Upload';
 import validateInput from '../../../../validations/categories';
-import {toObjectId} from '../../../../utilities'
-import {TypeOfDonations} from '../../../../api/collections'
+import {toObjectId} from '../../../../utilities';
+import {TypeOfDonations} from '../../../../api/collections';
+import adminDonationPageFr from '../../../../../traduction/adminDonationPage/fr.json';
+import adminDonationPageEn from '../../../../../traduction/adminDonationPage/en.json';
+
 
 // App component - represents the whole app
 class DonationTypeModalForm extends Component {
@@ -79,20 +82,32 @@ class DonationTypeModalForm extends Component {
 
     }
   render() {
+    let lg = adminDonationPageFr;
+    let lang = localStorage.getItem('lang')
+
+      lang == 'fr'?
+          lg = adminDonationPageFr
+          :
+          lg = adminDonationPageEn;
 
     const {show, errors, name, isLoading, id } = this.state;
     return (            
         <Modal bsSize="medium" aria-labelledby="contained-modal-projectName-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
             <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
                 <ModalHeader>
-                {id ?'Edit Donation Type': ' Add Donation Type'}
+                {  lang == 'fr'?
+                        id ?'Edit Donation Type': ' Ajouter Type de Don'
+                    :
+                        id ?'Edit Donation Type': ' Add Donation Type'
+                    
+                    }
                 </ModalHeader>
                 <ModalBody>
                     <div className="col-md-12">
-                        <h2>Donation Type Info</h2>
+                        <h2>{lg.DonationTypeInfo}</h2>
                         <Input
                             field="name"
-                            label="Enter Donation Type name"
+                            label={lg.EnterDonationTypename}
                             value={name}
                             error={errors.name}
                             onChange={(event)=> this.handleInputChange(event) }
@@ -101,8 +116,8 @@ class DonationTypeModalForm extends Component {
                 </ModalBody>
                 
                 <ModalFooter>
-                <Button onClick={()=> this.closeModal()}>Close</Button>
-                <Button type="submit" bsStyle="primary">Save</Button>
+                <Button onClick={()=> this.closeModal()}>{lg.Close}</Button>
+                <Button type="submit" bsStyle="primary">{lg.Save}</Button>
                 </ModalFooter>
             </form>
         </Modal>

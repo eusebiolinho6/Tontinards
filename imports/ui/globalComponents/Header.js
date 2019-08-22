@@ -143,7 +143,7 @@ class Header extends Component {
                                         <div>
                                             <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
                                             <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
-                                            <Link to="/donation/help" className="m-l-md">Help</Link>
+                                            <Link to="/donation/help" className="m-l-md">{lg.Help}</Link>
                                         </div>
                                     }
                                 </li>
