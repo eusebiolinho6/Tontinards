@@ -78,60 +78,7 @@ Meteor.methods({
     })
     },
 
-    'makeDonate': (data, projectId) => {
-        let currentProject = Funnels.findOne(projectId);
-        return new Promise((resolve, reject) => {
-            const query = {$push: {"donators": data}}
-            let project = Funnels.update({_id: projectId}, query);
-            // Send Email to Donator
-            const passedData = {
-                name: data.lastName+' '+data.firstName,
-                projectName: currentProject.projectName,
-                amount: data.amount
-            }
-            Meteor.call('sendEmail', data.email, "Tontinards@gmail.com", "Donation for Tontinards", passedData, "donation.html")
-            if (project) return resolve(project);
-            return reject();
-        })
-    },
-    'validateDonate': (data, projectId) => {
-        let currentProject = Funnels.findOne(projectId);
-        // Get the previous amount add to the new
-        let newAmount = parseInt(currentProject.currentAmount) + parseInt(data.amount);
-        // Save the new value
-        Funnels.update(projectId, { $set: { currentAmount: newAmount } });
-        // Save the new donator
-        return new Promise((resolve, reject) => {
-            // Find and update the given donation
-            let allDonations = currentProject.donators;
-            let finalDonations = [...allDonations];
-            allDonations.forEach((donation, id) => {
-                if(donation.id.toString() == data.id.toString()) {
-                    finalDonations[id].validated = true;
-                }
-            });
-            const query = {$set: {"donators": finalDonations}}
-            let project = Funnels.update({_id: projectId}, query);
-            if (project) return resolve(project);
-            return reject();
-        })
-    },
-
-    'deleteDonate': (projectId, donID) => {
-        let currentProject = Funnels.findOne(projectId);
-        return new Promise((resolve, reject) => {
-            let allDonations = currentProject.donators;
-            let finalDonations = [];
-            finalDonations = allDonations.filter(don => {
-                return  don.id.toString() != donID.toString();
-            })
-
-            const query = {$set: {"donators": finalDonations}}
-            let project = Funnels.update({_id: projectId}, query);
-            if (project) return resolve(project);
-            return reject();
-        })
-    },
+    
     /**,
     'createPlan': (data) => {
         return new Promise(function (resolve, reject) {
