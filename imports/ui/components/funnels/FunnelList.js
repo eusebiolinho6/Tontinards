@@ -30,11 +30,7 @@ class FunnelList extends Component {
   renderProjects(projects){
     return projects.map((project, index)=>( 
       <div>
-          { project.projectState != "START CAMPAIGN"?
-          ""
-            :
-            <ProjectItem key={index} project={project}  user={{ profile: {role: "guest" }}}/>
-          }
+        <ProjectItem key={index} project={project}  user={{ profile: {role: "guest" }}}/>
       </div>
     ))
   }
@@ -42,7 +38,8 @@ class FunnelList extends Component {
       render() {
         const {show}=this.state;
         const{funnels, userId}=this.props,
-        isAuthorized = checkRole(['user'], userId);
+              isAuthorized = checkRole(['user'], userId);
+        console.log(funnels);
 
         return (
         <div style={{width: '100%', paddingTop: '0px'}} className="wrapper wrapper-content animated fadeInRight">
