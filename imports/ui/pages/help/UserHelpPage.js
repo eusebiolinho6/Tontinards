@@ -44,13 +44,13 @@ class UserHelpPage extends Component {
 
 
                   <div className="col-sm-12 content">
-                      <h5 className="step">3. MENU UTILISATEUR</h5>
+                      <h5 className="step">3. USER MENU</h5>
                       <p>Now that you are logged in, you enter the "Tontinards" web application. We will describe all the features of the application after others. As soon as you connect, On the right is a tab at name of your account, in this example <b>"Waffo"</b>: <b>"My Campaigns"</b>, <b>"Profile"</b>, <b>"Create Project"</b> and <b>"Logout"</b> that we will discuss later.
                       </p>
                       <img src="/images/manual/im3.png" />
                       <p>Clicking on it opens a dialog box with 4 possibilities:</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "My Campaigns": </b> &nbsp;Vous permet de retrouver le statut de toutes vos campagnes en cours.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "My Campaigns": </b> &nbsp;Here you can see the status of all your active campaigns.</li>
                         <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Profile": </b> &nbsp;Allows you to change the "User" settings</li>
                         <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Create Project": </b> &nbsp;Allows you to create a project that will be valid and accepted by an administrator for it to be a campaign </li>
                         <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Logout": </b> &nbsp;Allows you to disconnect</li>

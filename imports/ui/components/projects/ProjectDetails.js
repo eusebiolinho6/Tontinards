@@ -329,7 +329,7 @@ class ProjectDetails extends Component {
                         <div className="video">
                             {
                                 project.video ? 
-                                <video width="100%" height="100%" poster="/images/img2.png" controls>
+                                <video width="100%" height="100%" controls>
                                     <source src={project.video} type="video/mp4"></source>
                                     <source src={project.video} type="video/ogg"></source>
                                 </video>: null
