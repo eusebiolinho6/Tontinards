@@ -11,6 +11,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import AdminDashboard from '../pages/admins/AdminDashboard';
 import ProjectDetails from '../components/funnels/ProjectDetails';
+import AdminHelpPage from '../pages/help/AdminHelpPage';
 
 
 // The Roster component matches one of two different routes
@@ -69,6 +70,7 @@ class Admin extends Component {
               2==2 ?
               <span>
                 <Route exact path='/admin/funnels' component={authenticate(AdminPage)}/>
+                <Route exact path='/admin/help' component={authenticate(AdminHelpPage)}/>
                 <Route exact path='/admin/donations' component={authenticate(AdminDonationPage)}/>
                 <Route exact path='/admin/categories' component={authenticate(AdminCategoryPage)}/>
                 <Route exact path='/admin/foundRaiseAs' component={authenticate(AdminFoundRaiseAsPage)}/>

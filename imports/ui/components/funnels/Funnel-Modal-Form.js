@@ -829,14 +829,15 @@ class FunnelModalForm extends Component {
             feedback: props.feedback,
             country: props.country,
             phoneNumber : props.phoneNumber,
-            categoryType: props.categoryType,
-            fundsRaiseAsPossibilities: []
+            fundsRaiseAsPossibilities: [],
+            user: null,
+            categoryType: props.categoryType
         };
 }   
 
     componentWillReceiveProps(nextProps) {
-        const { show, userId,city, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, email,objectifAmount,feedback, category, description, id, country, typeOfDonation, categoryType } = nextProps;
-        this.setState({ show, userId,city, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email,feedback, objectifAmount, category, description, id, country, typeOfDonation, categoryType });
+        const { user, show, userId,city, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, email,objectifAmount,feedback, category, description, id, country, typeOfDonation,categoryType } = nextProps;
+        this.setState({ user, show, userId,city, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email,feedback, objectifAmount, category, description, id, country, typeOfDonation,categoryType });
     }
     
     closeModal() {
@@ -886,8 +887,8 @@ class FunnelModalForm extends Component {
   handleInputChange = (e) => {
       let name = e.target.name;
       let value = e.target.value;
-      console.log(name);
-      console.log(value);
+    //   console.log(name);
+    //   console.log(value);
       if(e.target.type === 'checkbox') {
             if(e.target.checked) {
                 value = this.state.typeOfDonation ? [...this.state.typeOfDonation,value] : [value];
@@ -976,10 +977,12 @@ class FunnelModalForm extends Component {
              });
         }
 }
-  handleSUbmit(e) { console.log("ENTERED SUBMIT")
+  handleSUbmit(e) { 
+      console.log("ENTERED SUBMIT")
     e.preventDefault();
     if(!this.props.isEditing){
-        if(!this.isValid()){ console.log("IS NOT VALID")
+        if(!this.isValid()){
+             console.log("IS NOT VALID")
             return ;
         }
     }
@@ -1038,22 +1041,13 @@ class FunnelModalForm extends Component {
    * 
    * @author: Junior
    */
-    componentDidUpdate=(prevProps)=>{
-        if(this.props.foundRaiseAs !== prevProps.foundRaiseAs) {
-            this.setState({
-                fundsRaiseAsPossibilities: this.props.foundRaiseAs
-            });
-        }
+  componentDidUpdate=(prevProps)=>{
+    if(this.props.foundRaiseAs !== prevProps.foundRaiseAs) {
+        this.setState({
+          fundsRaiseAsPossibilities: this.props.foundRaiseAs
+        });
     }
-
-    // changeState = () => {
-    //     if(this.state.categoryType !== "Non profit"){
-    //         this.setState({
-    //             typeOfDonation: this.props.typeOfDonations[0]
-    //         })
-    //     }
-    //     console.log(this.state.typeOfDonation);
-    // }
+}
 
   render() {
 
@@ -1065,9 +1059,9 @@ class FunnelModalForm extends Component {
             lg = adminfunnelModalFormEn;
 
     //   const {show, errors, title,projectName, onefoundRaiseAs, oneForWhoFoundsRaise, price, objectifAmount, industry,category, description, isLoading, id } = this.state;
-      const { typeOfDonation, show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities, categoryType } = this.state;
+      const { user,categoryType, typeOfDonation, show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities } = this.state;
 
-      const { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries, user  } = this.props;
+      const { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries  } = this.props;
     //   console.log(foundRaiseAs);
     //   console.log(typeOfDonations);
     //   console.log(typeOfDonation);
@@ -1186,7 +1180,7 @@ class FunnelModalForm extends Component {
             />
             {categoryType == categoryTypes[0] ?
                 <div>
-                    <p><strong>{}</strong></p>
+                    <p><strong>{lg.TypeOfDonation}</strong></p>
                     <div className="donationTypeWrapper">
                         {typeOfDonations.map(type => (
                             <div className="wrapper">
@@ -1195,18 +1189,12 @@ class FunnelModalForm extends Component {
                             </div>
                         ))}
                     </div>
-                </div>
-            :
-                // typeOfDonations[0] ?
-                //     <div className="donationTypeWrapper">
-                //         <input type="checkbox" name="typeOfDonation" checked={true} value={typeOfDonations[0].name} onChange={(event) => this.handleInputChange(event)} />
-                //         <label for={typeOfDonations[0].name}>{typeOfDonations[0].name}</label>
-                //     </div>
-                // :
-                    null
-                // this.changeState()
-                
+                ))
+               </div>
+               :
+               null
             }
+            
             <Summernote
                 field="description"
                 label={lg.Enterthedescription}
@@ -1214,6 +1202,7 @@ class FunnelModalForm extends Component {
                 error={errors.description}
                 onChange={(event)=> this.handleInputChange(event)}
             />
+
             {
                 this.props.isReview ? 
                     <Summernote
@@ -1254,9 +1243,14 @@ class FunnelModalForm extends Component {
             <h2>{lg.Uploads}</h2>
             <br />
             <div className="row">
-                <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name,file)=>this.setFile(name, file)} name="projectImage" label={lg.UploadProjectImage} />
-                <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = {lg.UploadProjectDocument} />
-                <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = {lg.UploadProjectVideo} />
+            <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name,file)=>this.setFile(name, file)} name="projectImage" label={lg.UploadProjectImage} />
+            <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = {lg.UploadProjectDocument} />
+            {
+                user ? 
+                    user.profile.role == "admin" ?
+                        <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = {lg.UploadProjectVideo} />
+                    : null : null
+            }
             </div>
             {errors.global&& <span style={{color: '#ed5565', fontSize:'15px'}} className="error-block">{errors.global}</span>}
     </ModalBody>

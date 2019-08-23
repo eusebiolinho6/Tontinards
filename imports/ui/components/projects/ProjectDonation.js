@@ -129,7 +129,7 @@ class ProjectDonation extends Component {
     if(project.donators) {
       let donators = project.donators.reverse();
       comments = donators.map(donator => {
-        if (donator.comment) {
+        if (donator.comment && donator.validated) {
           return (
             <div className="comment-item">
               <div className="header">

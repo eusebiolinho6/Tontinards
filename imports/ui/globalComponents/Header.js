@@ -122,6 +122,7 @@ class Header extends Component {
                                                             <div className="dropdown-content">
                                                                 <Link to={{pathname:'/admin/admindashboard'}} className="">{lg.dashboard} </Link>
                                                                 <a href="/authentication/profile">{lg.profile}</a>
+                                                                <a href="/admin/help">{lg.Help}</a>
                                                                 <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
                                                             </div>
                                                         </div>

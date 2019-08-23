@@ -11308,6 +11308,9 @@ color:white;
   margin-left: auto;
   margin-right: auto;
 }
+.user-manual .container hr{
+  margin-bottom: 0 !important;
+}
 
 @media only screen and (max-width: 1200px) {
   .user-manual .container{
@@ -11374,11 +11377,15 @@ color:white;
 .user-manual .col ul{
   padding-inline-start: 10px !important;
 }
+.user-manual .col svg{
+  font-size: 1.25rem !important;
+}
 .user-manual .col h6{
   margin-top: 2.5rem;
   font-size: 1.6rem;
   font-weight: bold;
   color: #0076B6;
+  text-transform: uppercase;
 }
 
 .user-manual .col img{
