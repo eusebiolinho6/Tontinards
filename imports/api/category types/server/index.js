@@ -8,7 +8,7 @@ import {checkRole} from '../../../utilities'
       return Categories.find({});
   });
   Meteor.publish('category', function categoryPublication(id) {
-    return Categories.findOne({
+    return Categories.findOne({ 
       _id: id
     });
   });

@@ -57,7 +57,7 @@ class Header extends Component {
                         </div>
                         <div class="Navbar__Items col-md-10">
                             {user ?
-                                <div className="col-md-7 col-sm-3 col-xs-12">
+                                <div className="col-md-7 col-sm-3 col-xs-12 adminBtn">
                                     <span>
                                         {user.profile.role == "admin" ?
                                             <div className="Navbar__Link dropdown">

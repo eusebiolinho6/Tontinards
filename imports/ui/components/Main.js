@@ -70,7 +70,7 @@ class Main extends Component {
                             </div>
                         } */} 
                         <div className="row">
-                            <FunnelList funnels={threeFirstCampaigns} />
+                            <FunnelList funnels={campaigns} />
                         </div>
                         
                         {campaigns.length > 3 ?
