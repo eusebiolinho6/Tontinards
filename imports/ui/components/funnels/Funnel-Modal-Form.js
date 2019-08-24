@@ -1077,7 +1077,7 @@ class FunnelModalForm extends Component {
     <ModalHeader>
     <h3 className="text-center" > {
         lang == 'fr'?
-            id ?'Edit Project': ' Ajouter Projet'
+            id ?'Modifier Projet': ' Ajouter Projet'
         :
             id ?'Edit Project': ' Add Project'
         }
@@ -1104,7 +1104,7 @@ class FunnelModalForm extends Component {
 
             <Input
                 field="email"
-                label={lg.Email}
+                label={lg.email}
                 type="email"
                 value={email}
                 error={errors.email}
