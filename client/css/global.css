@@ -10542,6 +10542,7 @@ color: green;
 
   .footerLogoContainer{
     text-align: left !important;
+    margin-left: 0%;
   }
 
   .getfundBtn{
@@ -10564,7 +10565,15 @@ color: green;
 
   .descriptionText p{
     width: 150% !important;
+
   }
+  .socials {
+    width: 50%;
+    height: 3rem;
+    text-align: right !important;
+    margin-right: 100% !important;
+  }
+
   
 }
 
@@ -10902,14 +10911,12 @@ padding: 0 8px;
   font-size: 1.3vw;
 }
 
-
-.socials span{
-  margin-left: 20px;
-}
-
 .socials{
-  text-align: right !important;
-  padding-right: 15px;
+  width: 30%;
+  height: 3rem;
+  margin-left: 75% ; 
+  margin-top: -12% ; 
+  font-size: 15px;
 }
 
 /* .titles {

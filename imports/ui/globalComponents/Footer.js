@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBaby } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faTwitter, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import FooterFr from '../../../traduction/footer/fr.json';
+import FooterEn from '../../../traduction/footer/en.json';
 
 // style={{backgroundColor: "#005dac"}}
 const fbIcon = <FontAwesomeIcon icon={faFacebook}  color="#ffffff" size="2x" />
@@ -25,7 +27,13 @@ class Footer extends Component {
     }
 
     render() {
-        const lang = localStorage.getItem('lang');
+        let lg = FooterFr;
+        let lang = localStorage.getItem('lang')
+        
+        lang == 'fr'?
+            lg = FooterFr
+            :
+            lg = FooterEn;
         return (
             <div>
                 <div className="footer">
@@ -66,17 +74,17 @@ class Footer extends Component {
                     </div> */}
                     
                         <div className="col-md-3 col-xm-6 socials">
-                                <label >Languages </label>
+                                <label >{lg.Languages} </label>
                                 <br/>
                                 {console.log(lang)}
                                     {lang == 'fr'?
                                     <select className="selectLanguage" onChange={this.setLanguage}>
-                                        <option selected value="fr" >Français</option>
-                                        <option  value="en" >Anglais</option>
+                                        <option selected value="fr" >{lg.Français}</option>
+                                        <option  value="en" >{lg.Anglais}</option>
                                     </select>
                                     :
                                     <select className="selectLanguage" onChange={this.setLanguage}>
-                                        <option  value="fr" >Français</option>
+                                        <option  value="fr" >{lg.Français}</option>
                                         <option selected value="en" >Anglais</option>
                                     </select>
                                     }
