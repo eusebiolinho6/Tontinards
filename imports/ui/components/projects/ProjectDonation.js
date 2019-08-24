@@ -68,9 +68,9 @@ class ProjectDonation extends Component {
     this.state.phoneNumber.trim().length <= 0 ||
     this.state.choosenDonationType.trim().length <= 0 ) {
       lang == 'fr'?
-       this.addNotification("Montant, Numéro de téléphone et Email requis!", "danger")
+       this.addNotification("Montant, Numéro de téléphone, Type de don et Email requis!", "danger")
       :
-       this.addNotification("Amount, Phone Number and Email are required!", "danger");
+       this.addNotification("Amount, Phone Number, Donation Type and Email are required!", "danger");
     } else {
       Meteor.call('makeDonate', newDonator, projectId);
       lang == 'fr'?
@@ -86,7 +86,6 @@ class ProjectDonation extends Component {
   handleInputChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(value);
     this.setState({
         [name]: value
     });
@@ -147,7 +146,7 @@ class ProjectDonation extends Component {
     }
 
     return (
-      <div className="container-fluid no-padding">
+      <div className="container-fluid no-padding p-b-lg">
         {this.state.redirect ? <Redirect to="/" />:null}
         <ReactNotification ref={this.notificationDOMRef} />
         <div className="row projectsPageHeader">
@@ -155,7 +154,7 @@ class ProjectDonation extends Component {
             <hr/>
         </div>
         
-        <div className="row donationPageContent col-md-7 col-sm-9">
+        <div className="row donationPageContent col-md-7 col-sm-9 p-b-lg">
             <h3>{lg.enterYourInvest}</h3>
 
             <form>
