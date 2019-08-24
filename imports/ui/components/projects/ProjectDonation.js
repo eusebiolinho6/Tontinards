@@ -214,7 +214,7 @@ class ProjectDonation extends Component {
                       name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
                   </div>
                   
-                  <button onClick={(event) => this.submit(event)} className="btn btn-primary">{lg.submit}</button>
+                  <button onClick={(event) => this.submit(event)} className="btn btn-primary" id="submit-comment">{lg.submit}</button>
 
                   <br/>
 
