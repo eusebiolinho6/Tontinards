@@ -10055,9 +10055,15 @@ color: green;
   text-align: right;
 }
 
+@media (max-width: 1024px) {
+  #submit-comment {
+    display: block !important;
+    margin-left: auto !important;
+  }
+}
+
 .donationPageContent{
   padding: 1px 5% ;
-  margin-right: 1%;
 }
 
 .inputContainer{
