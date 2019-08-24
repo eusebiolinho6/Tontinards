@@ -1189,7 +1189,7 @@ class FunnelModalForm extends Component {
                             </div>
                         ))}
                     </div>
-                ))
+              
                </div>
                :
                null
