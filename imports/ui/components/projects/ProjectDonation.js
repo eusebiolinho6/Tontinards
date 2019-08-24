@@ -147,86 +147,88 @@ class ProjectDonation extends Component {
 
     return (
       <div className="container-fluid no-padding p-b-lg">
-        {this.state.redirect ? <Redirect to="/" />:null}
         <ReactNotification ref={this.notificationDOMRef} />
+        {this.state.redirect ? <Redirect to="/" />:null}
         <div className="row projectsPageHeader">
             <h1>{lg.invest}</h1>
             <hr/>
         </div>
         
-        <div className="row donationPageContent col-md-7 col-sm-9 p-b-lg">
+        <div className="row donationPageContent">
+            <div className="col-md-7 col-sm-12 p-b-lg">
             <h3>{lg.enterYourInvest}</h3>
-
-            <form>
-                  <div>
-                    <div className="form-group inputContainer">
-                        <input type="number" className="donationInput" name="amount"
-                          value={this.state.amount} onChange={(event) => this.handleInputChange(event)} required /> Fcfa
-                        {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+              <form>
+                    <div>
+                      <div className="form-group inputContainer">
+                          <input type="number" className="donationInput" name="amount"
+                            value={this.state.amount} onChange={(event) => this.handleInputChange(event)} required /> Fcfa
+                          {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                      </div>
                     </div>
+                    {/* <br/> */}
+                  <div className="form-group">
+                      <label for="firstNameInput">{lg.firstName}</label>
+                      <input type="text" className="form-control" name="name"
+                        value={this.state.name} onChange={(event) => this.handleInputChange(event)}
+                        required id="firstNameInput" placeholder={lg.placeholderFirstname}/>
                   </div>
-                  {/* <br/> */}
-                <div className="form-group">
-                    <label for="firstNameInput">{lg.firstName}</label>
-                    <input type="text" className="form-control" name="name"
-                      value={this.state.name} onChange={(event) => this.handleInputChange(event)}
-                      required id="firstNameInput" placeholder={lg.placeholderFirstname}/>
-                </div>
-                <div className="form-group">
-                    <label for="lastNameInput">{lg.lastName}</label>
-                    <input type="text" className="form-control" name="lastName"
-                      value={this.state.lastName} onChange={(event) => this.handleInputChange(event)}
-                      required id="lastNameInput" placeholder={lg.placeholderLastname}/>
-                </div>
-                <div className="form-group">
-                    <label for="phoneNumberInput">{lg.PhoneNumber}</label>
-                    <input type="text" className="form-control" name="phoneNumber"
-                      value={this.state.phoneNumber} onChange={(event) => this.handleInputChange(event)}
-                      required id="phoneNumberInput" placeholder={lg.placeholderPhone}/>
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail">{lg.emailaddress}</label>
-                    <input type="email" className="form-control" name="email"
-                      value={this.state.email} onChange={(event) => this.handleInputChange(event)}
-                      required id="exampleInputEmail" aria-describedby="emailHelp" placeholder={lg.placeholderEmail}/>
-                    <small id="emailHelp" className="form-text text-muted">{lg.smallMessage}</small>
-                </div>
-                <p><strong>Donation Option</strong></p>
-                <div className="wrapper" id="radioinput">
-                  {
-                    project.typeOfDonation.map(type => (
-                        <div className="radioitem">
-                              <input id={type} value={type} type="radio" name="choosenDonationType" onChange={(event) => this.handleInputChange(event)} />
-                              <label for={type}>{type}</label>
-                        </div>
-                      ))
-                  }
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail">{lg.informationsaboutLocation}</label>
-                    <input type="text" className="form-control" name="location"
-                      value={this.state.location} onChange={(event) => this.handleInputChange(event)}
-                      required id="exampleInputLocation" aria-describedby="emailHelp" placeholder={lg.placeholderLocation}/>
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail">{lg.comment}</label>
-                    <textarea placeholder={lg.placeholderComment} onChange={(event) => this.handleInputChange(event)}
-                    name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
-                </div>
-                
-                <button onClick={(event) => this.submit(event)} className="btn btn-primary">{lg.submit}</button>
+                  <div className="form-group">
+                      <label for="lastNameInput">{lg.lastName}</label>
+                      <input type="text" className="form-control" name="lastName"
+                        value={this.state.lastName} onChange={(event) => this.handleInputChange(event)}
+                        required id="lastNameInput" placeholder={lg.placeholderLastname}/>
+                  </div>
+                  <div className="form-group">
+                      <label for="phoneNumberInput">{lg.PhoneNumber}</label>
+                      <input type="text" className="form-control" name="phoneNumber"
+                        value={this.state.phoneNumber} onChange={(event) => this.handleInputChange(event)}
+                        required id="phoneNumberInput" placeholder={lg.placeholderPhone}/>
+                  </div>
+                  <div className="form-group">
+                      <label for="exampleInputEmail">{lg.emailaddress}</label>
+                      <input type="email" className="form-control" name="email"
+                        value={this.state.email} onChange={(event) => this.handleInputChange(event)}
+                        required id="exampleInputEmail" aria-describedby="emailHelp" placeholder={lg.placeholderEmail}/>
+                      <small id="emailHelp" className="form-text text-muted">{lg.smallMessage}</small>
+                  </div>
+                  <p><strong>Donation Option</strong></p>
+                  <div className="wrapper" id="radioinput">
+                    {
+                      project.typeOfDonation.map(type => (
+                          <div className="radioitem">
+                                <input id={type} value={type} type="radio" name="choosenDonationType" onChange={(event) => this.handleInputChange(event)} />
+                                <label for={type}>{type}</label>
+                          </div>
+                        ))
+                    }
+                  </div>
+                  <div className="form-group">
+                      <label for="exampleInputEmail">{lg.informationsaboutLocation}</label>
+                      <input type="text" className="form-control" name="location"
+                        value={this.state.location} onChange={(event) => this.handleInputChange(event)}
+                        required id="exampleInputLocation" aria-describedby="emailHelp" placeholder={lg.placeholderLocation}/>
+                  </div>
+                  <div className="form-group">
+                      <label for="exampleInputEmail">{lg.comment}</label>
+                      <textarea placeholder={lg.placeholderComment} onChange={(event) => this.handleInputChange(event)}
+                      name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
+                  </div>
+                  
+                  <button onClick={(event) => this.submit(event)} className="btn btn-primary">{lg.submit}</button>
 
-                <br/>
+                  <br/>
 
-            </form>
+              </form>
 
-            <div className="comments" id="donation-comment-bloc">
-                <h3>{lg.mostrecentcomments}</h3>
-                {comments}
+              <div className="comments" id="donation-comment-bloc">
+                  <h3>{lg.mostrecentcomments}</h3>
+                  {comments}
+              </div>
+
             </div>
-        </div>
-        <div className="col-md-4  hidden-xs">
-            {this.renderSelectedProject(projects)}
+            <div className="col-md-4  hidden-sm">
+                {this.renderSelectedProject(projects)}
+            </div>
         </div>
         
       </div>
