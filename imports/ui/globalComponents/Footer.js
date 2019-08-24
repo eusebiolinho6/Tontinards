@@ -51,7 +51,7 @@ class Footer extends Component {
                         </div> */}
                     </div>
                     
-                    <div className="col-md-4 col-sm-3 footerLogoContainer">
+                    <div className="col-md-6 col-sm-3 footerLogoContainer">
                         <Link to="/" style={{display: 'block', margin: '12px'}}>
                             < img src = "/images/whiteLogo.png" height="35px"
                             className = ".logo-element"
