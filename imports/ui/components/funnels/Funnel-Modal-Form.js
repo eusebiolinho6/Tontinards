@@ -40,8 +40,8 @@ class FunnelModalForm extends Component {
             show: false,
             projectImage: '',
             teamName: props.teamName,
-            projectState: props.projectState,
-            currentAmount: props.currentAmount,
+            projectState: "PENDIND",
+            currentAmount: 0,
             teamImage: '',
             documentFile: '',
             videoFile: '',
@@ -126,8 +126,9 @@ class FunnelModalForm extends Component {
   handleInputChange = (e) => {
       let name = e.target.name;
       let value = e.target.value;
-      console.log(name);
-      console.log(value);
+      console.log(this.state);
+    //   console.log(name);
+    //   console.log(value);
       if(e.target.type === 'checkbox') {
             if(e.target.checked) {
                 value = this.state.typeOfDonation ? [...this.state.typeOfDonation,value] : [value];
@@ -231,63 +232,63 @@ class FunnelModalForm extends Component {
              }
              });
         }
-}
-  handleSUbmit(e) { 
-    console.log("ENTERED SUBMIT")
-    e.preventDefault();
-    if(!this.props.isEditing){
-        if(!this.isValid()){
-             console.log("IS NOT VALID")
-            return ;
-        }
     }
-    const {errors}=this.state;
-    this.setState({isLoading:true});
-    
-     this.saveFunnel((err, id)=>{
-        if(err){
-            const a ={global:err.error};
-            this.setState({errors: {...errors,...a}, isLoading:false});
-        } else {
-            let uploads = [],
-            cursor =1;
-            if (this.state.projectImage) uploads.push('projectImage');
-            if (this.state.teamImage) uploads.push('teamImage');
-            if (this.state.videoFile) uploads.push('videoFile');
-            if (this.state.documentFile) uploads.push('documentFile');  
-            if (!uploads.length) return this.closeModal();
-            console.log(uploads);
-            for (let i = 0; i < uploads.length; i++) {
-                const fieldName = uploads[i]; 
-                let collection = collections[fieldName];
-                if(!collection) return console.log('IMPOSSIBLE ERROR BUT WE NEED TO BE SURE');
-                const file = this.state[fieldName]; 
-                    const upload = collection.insert({
-                    file: file,
-                    streams: 'dynamic',
-                    chunkSize: 'dynamic'
-                }, false);
-                upload.on('end', (err,fileObj)=> {
-                    if (err) {
-                        errors[fieldName]=err&&err.message;
-                        this.setState({errors});
-                    } else {
-                        const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
-                        let a = fieldName.split('File');
-                        const field = a[0];
-                        Funnels.update(id, {$set: {[field]: link}});
-                    }
-                    if(!(cursor<uploads.length)){
-                        this.setState({isLoading:false});
-                        if (!Object.keys(errors).length) this.closeModal();
-                        return;
-                    } 
-                    cursor++;                 
-                });
-                upload.start();
-            }  
+    handleSUbmit(e) { 
+        console.log("ENTERED SUBMIT")
+        e.preventDefault();
+        if(!this.props.isEditing){
+            if(!this.isValid()){
+                console.log("IS NOT VALID")
+                return ;
+            }
         }
-     })
+        const {errors}=this.state;
+        this.setState({isLoading:true});
+    
+        this.saveFunnel((err, id)=>{
+            if(err){
+                const a ={global:err.error};
+                this.setState({errors: {...errors,...a}, isLoading:false});
+            } else {
+                let uploads = [],
+                cursor =1;
+                if (this.state.projectImage) uploads.push('projectImage');
+                if (this.state.teamImage) uploads.push('teamImage');
+                if (this.state.videoFile) uploads.push('videoFile');
+                if (this.state.documentFile) uploads.push('documentFile');  
+                if (!uploads.length) return this.closeModal();
+                console.log(uploads);
+                for (let i = 0; i < uploads.length; i++) {
+                    const fieldName = uploads[i]; 
+                    let collection = collections[fieldName];
+                    if(!collection) return console.log('IMPOSSIBLE ERROR BUT WE NEED TO BE SURE');
+                    const file = this.state[fieldName]; 
+                        const upload = collection.insert({
+                        file: file,
+                        streams: 'dynamic',
+                        chunkSize: 'dynamic'
+                    }, false);
+                    upload.on('end', (err,fileObj)=> {
+                        if (err) {
+                            errors[fieldName]=err&&err.message;
+                            this.setState({errors});
+                        } else {
+                            const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
+                            let a = fieldName.split('File');
+                            const field = a[0];
+                            Funnels.update(id, {$set: {[field]: link}});
+                        }
+                        if(!(cursor<uploads.length)){
+                            this.setState({isLoading:false});
+                            if (!Object.keys(errors).length) this.closeModal();
+                            return;
+                        } 
+                        cursor++;                 
+                    });
+                    upload.start();
+                }  
+            }
+        })
   }
 
   /**
@@ -347,6 +348,8 @@ class FunnelModalForm extends Component {
                 error={errors.phoneNumber}
                 onChange={(event) => this.handleInputChange(event)}
             />
+            <input type="hidden" name="currentAmount" value={currentAmount} onChange={(event) => this.handleInputChange(event)} />
+            <input type="hidden" name="projectState" value={projectState} onChange={(event) => this.handleInputChange(event)} />
 
             <Input
                 field="email"
@@ -428,8 +431,8 @@ class FunnelModalForm extends Component {
                 <div>
                     <p><strong>{lg.TypeOfDonation}</strong></p>
                     <div className="donationTypeWrapper">
-                        {typeOfDonations.map(type => (
-                            <div className="wrapper">
+                        {typeOfDonations.map((type, id) => (
+                            <div key={id} className="wrapper">
                                 <input required type="checkbox" name="typeOfDonation" checked={typeOfDonation ? typeOfDonation.includes(type.name): false} id={type.name} value={type.name} onChange={(event) => this.handleInputChange(event)} />
                                 <label for={type.name}>{type.name}</label>
                             </div>
