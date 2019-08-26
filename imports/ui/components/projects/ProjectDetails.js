@@ -385,7 +385,8 @@ class ProjectDetails extends Component {
                         </div>
                         <div className="messages">
                             <div className="allmessages">
-                                <h4>{lg.donationMessage}</h4>
+                            <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn2 donationBtn">{lg.donateBtn} </Link>
+                                {/* <h4>{lg.donationMessage}</h4> */}
                             </div>
                             <div className="messages-items">
                                 {!project.donators ?

@@ -10328,6 +10328,14 @@ color: green;
   font-weight: bold;
 }
 
+.donationBtn2{
+  width: 100%;
+  color: #fff;
+}
+.donationBtn2:hover{
+  color: #fff;
+}
+
 #projectdetails .right .date{
   padding: 2rem 2rem 0rem 2rem;
 }
@@ -10374,7 +10382,7 @@ color: green;
   align-items: center;
   justify-content: space-between;
   margin-bottom: .5rem;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 #projectdetails .right .messages .messages-items{
@@ -10396,7 +10404,7 @@ color: green;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 /* -------------------- RESPONSIVE MENU ----------------------------------------------*/
