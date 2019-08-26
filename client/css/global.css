@@ -9861,20 +9861,26 @@ a.Link{
 
 }
 .addprojectBtn{
+  width: 30%;
+  text-align: center;
   margin-left: 10%;
   font-size: 15px;
   font-weight: bold;
   background-color: #ACD61E;
-  padding: 11px 55px 11px 55px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   border-radius: 25px;
  }
 .getfundBtn{
+  width: 30%;
+  text-align: center;
   margin-left:2%;
   font-size: 15px;
   font-weight: bold;
    color:white;
   background-color: #E99607 ;
-  padding: 11px 55px 11px 55px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   border-radius: 25px;
  }
 
@@ -10434,10 +10440,11 @@ color: green;
 
 @media only screen and (max-width: 588px) {
   .imgfirstcontain{
-    margin-left:0%!important; 
+    margin-left:-15%!important; 
+    width: 150%;
   }
   .firstContaindiv{
-    margin-left: 40% !important;
+    margin-left: 45% !important;
   }
   .titleMain{
     font-size:20px !important;
@@ -10546,13 +10553,11 @@ color: green;
   }
 
   .addprojectBtn{
-    font-size: 14px !important;
-    font-weight: bold;
-    background-color: #ACD61E;
-    border-radius: 25px;
-    padding: 10px 45px !important;
-    margin-bottom: 20px !important;
-  }
+    margin-top: -50px;
+    width: 80%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    }
 
   .footerLogoContainer{
     text-align: left !important;
@@ -10560,10 +10565,12 @@ color: green;
   }
 
   .getfundBtn{
-   margin-left:10%;
-   padding: 10px 45px !important;
-
-  }
+   margin-top: -10px;
+   width: 80%;
+   padding-top: 4px;
+   padding-bottom: 4px;
+   margin-left: 10%;
+ }
 
   .firstText{
     padding: 0 0 0 10% !important;
@@ -11005,7 +11012,8 @@ padding: 0 8px;
 .toggleiconwrapper {
   position: relative;
   z-index: 100;
-  top: -2.8rem;
+  top: -15px;
+  height: 20px;
 }
 
 /**-----------------------------------contain-----------------------*/
@@ -11034,7 +11042,6 @@ color:white;
   } */
 .helpSection{
   background-color:#005dac;
-  height: 0px;
 }
 .help{
   font-size: 16px;
@@ -11050,6 +11057,9 @@ color:white;
 }
 
 @media only screen and (max-width: 588px) {
+  .helpSection{
+   margin-top:-30px;
+  }
   .helpContainer{
     display: inline-block;
     height: 250px;
