@@ -103,14 +103,6 @@ class AdminDonations extends Component {
         don: don, 
         projectId: projectId
     })
-
-    let title = 'Effectué avec Succès';
-    lang == 'fr'?
-        title = 'Effectué avec Succès'
-        :
-        title = "Successfully done!"
-    Meteor.call('validateDonate', don, projectId)
-    this.addNotification(title, "success")
   }
     // Validate a donation
     displayNotification = () => {

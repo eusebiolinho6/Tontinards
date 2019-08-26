@@ -3656,7 +3656,7 @@ a.forum-item-projectName:hover {
     float: none !important;
   }
   .imgWhyTontinard{
-    height: 400px !important;
+    /* height: 400px !important; */
     width: 170% !important;
     padding-top: 40px;
   }
@@ -10055,9 +10055,15 @@ color: green;
   text-align: right;
 }
 
+@media (max-width: 1024px) {
+  #submit-comment {
+    display: block !important;
+    margin-left: auto !important;
+  }
+}
+
 .donationPageContent{
   padding: 1px 5% ;
-  margin-right: 1%;
 }
 
 .inputContainer{
@@ -10550,6 +10556,7 @@ color: green;
 
   .footerLogoContainer{
     text-align: left !important;
+    margin-left: 0%;
   }
 
   .getfundBtn{
@@ -10572,6 +10579,7 @@ color: green;
 
   .descriptionText p{
     width: 150% !important;
+
   }
   
 }
@@ -10910,14 +10918,10 @@ padding: 0 8px;
   font-size: 1.3vw;
 }
 
-
-.socials span{
-  margin-left: 20px;
-}
-
 .socials{
-  text-align: right !important;
-  padding-right: 15px;
+  height: 3rem;
+  text-align: center;
+  font-size: 18px;
 }
 
 /* .titles {
@@ -11202,9 +11206,9 @@ color:white;
   color: white !important;
   background-color: #E99607!important; 
 }
-.someProjectContainer{
+/* .someProjectContainer{
   background-color: white !important;
-}
+} */
 
 /* Donation page */
 
@@ -11458,3 +11462,4 @@ color:white;
     flex-direction: column !important;
   }
 }
+

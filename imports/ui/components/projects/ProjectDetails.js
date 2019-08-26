@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Moment from 'react-moment';
 
@@ -189,166 +189,168 @@ class ProjectDetails extends Component {
          let finalProjectRoute = routeProjectName;
  
         return (
-            <div className="container" id="projectdetails">
-                <ReactNotification ref={this.notificationDOMRef} />
-                <div className="row">
-                    <div className="col-sm-12 col-md-8 left">
-                        <div className="infos">
-                            {/* For Team */}
-                            {project.teamImage ?
-                                // project.teamImage.length > 0 ?
-                                    <AwesomeSlider bullets={false}>
-                                        <div data-src={project.projectImage} />
-                                        <div data-src={project.teamImage} />
-                                    </AwesomeSlider>
-                                // :
-                            :        
-                                <img src={project.projectImage} />
-                            }
-                            {/* For Team */}
-                            <div className="otherinfos">
-                                <h2>{project.projectName}</h2>
-                                <h5>{project.teamName.length > 0 ? "Team Name: "+project.teamName : null}</h5>
-                                <hr/>
-                                {/* <div className="founds">
-                                    <h4>Found Raise As</h4>
-                                    <h4>For Who Founds Raise</h4>
-                                </div> */}
-                                {/* <div className="shareButtons">
-                                    <div className="socialBtn">
-                                        <button className="fb btn">Share on Facebook</button>
-                                        <button className="tw btn">Share on Twitter</button>
+            <Fragment>
+                <div className="container p-b-lg" id="projectdetails">
+                    <ReactNotification ref={this.notificationDOMRef} />
+                    <div className="row p-b-lg">
+                        <div className="col-sm-12 col-md-8 left">
+                            <div className="infos">
+                                {/* For Team */}
+                                {project.teamImage ?
+                                    // project.teamImage.length > 0 ?
+                                        <AwesomeSlider bullets={false}>
+                                            <div data-src={project.projectImage} />
+                                            <div data-src={project.teamImage} />
+                                        </AwesomeSlider>
+                                    // :
+                                :        
+                                    <img src={project.projectImage} />
+                                }
+                                {/* For Team */}
+                                <div className="otherinfos">
+                                    <h2>{project.projectName}</h2>
+                                    <h5>{project.teamName.length > 0 ? "Team Name: "+project.teamName : null}</h5>
+                                    <hr/>
+                                    {/* <div className="founds">
+                                        <h4>Found Raise As</h4>
+                                        <h4>For Who Founds Raise</h4>
+                                    </div> */}
+                                    {/* <div className="shareButtons">
+                                        <div className="socialBtn">
+                                            <button className="fb btn">Share on Facebook</button>
+                                            <button className="tw btn">Share on Twitter</button>
+                                        </div>
+                                        <p>Be the first person to share</p>
                                     </div>
-                                    <p>Be the first person to share</p>
+                                    <hr/> */}
                                 </div>
-                                <hr/> */}
-                            </div>
 
-                            <div className="moreinfos">
-                                <div className="headers">
-                                    <h3 
-                                        onClick={this.toggleContent}
-                                        className={this.state.story ? "story btn1 active-content": "story btn1"}>{lg.story}</h3>
-                                    {
-                                        user ?
+                                <div className="moreinfos">
+                                    <div className="headers">
                                         <h3 
                                             onClick={this.toggleContent}
-                                            className={!this.state.story ? "statement btn1 active-content": "statement btn1"}>{lg.reviews}</h3>:null
-                                    }
-                                </div>
-                                <div className="content">
-                                    {
-                                        this.state.story ?
-                                        <div className="text">
-                                            <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
-                                        </div>:
-                                        <div className="reviews">
+                                            className={this.state.story ? "story btn1 active-content": "story btn1"}>{lg.story}</h3>
                                         {
-                                            Meteor.userId() == project.userId._id ||  Meteor.user().profile.role == "admin"?
-                                            <p>{project.feedback.length > 0 ? 
-                                                <div className="text description" dangerouslySetInnerHTML={{__html: project.feedback}} />  : null}</p>:
-                                            null
+                                            user ?
+                                            <h3 
+                                                onClick={this.toggleContent}
+                                                className={!this.state.story ? "statement btn1 active-content": "statement btn1"}>{lg.reviews}</h3>:null
                                         }
-                                        </div>
-                                    }
+                                    </div>
+                                    <div className="content">
+                                        {
+                                            this.state.story ?
+                                            <div className="text">
+                                                <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                            </div>:
+                                            <div className="reviews">
+                                            {
+                                                Meteor.userId() == project.userId._id ||  Meteor.user().profile.role == "admin"?
+                                                <p>{project.feedback.length > 0 ? 
+                                                    <div className="text description" dangerouslySetInnerHTML={{__html: project.feedback}} />  : null}</p>:
+                                                null
+                                            }
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
+                                {/* <div className="form-content">
+                                <form className="input__form" onSubmit={()=>this.handleSubmit}>
+                                    <div className="form-group">
+                                        <textarea placeholder="Enter your message" className="form-control" onChange={(e) => this.setState({message: e.target.value})} id="textmessage" rows="3"></textarea>
+                                    </div>
+                                    <button className="btn send-btn" type="submit">Send</button>
+                                </form>
+                                </div> */}
+                                <div>
+                                
                             </div>
-                            {/* <div className="form-content">
-                             <form className="input__form" onSubmit={()=>this.handleSubmit}>
-                                <div className="form-group">
-                                    <textarea placeholder="Enter your message" className="form-control" onChange={(e) => this.setState({message: e.target.value})} id="textmessage" rows="3"></textarea>
-                                </div>
-                                <button className="btn send-btn" type="submit">Send</button>
-                             </form>
-                            </div> */}
-                            <div>
-                              
+                            </div>
+                        
                         </div>
-                        </div>
-                       
-                    </div>
 
-                    <div className="col-sm-12 col-md-4 right">
-                        <div className="infos">
-                            <div className="otherinfos0">
-                                <div className="item">
-                                    <h4><strong>{lg.Objective}</strong></h4>
-                                    
-                                    <h4>
-                                        <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/> FCFA
-                                    </h4>
-                                </div>
-                                <div className="item">
-                                    <h4><strong>{lg.currentAmount}</strong></h4>
-                                    <h4>
-                                        <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/> FCFA
-                                    </h4>
-                                </div>
-                                {/* <h4><strong>OBJECTIVE: </strong> {project.objectifAmount} FCFA</h4>
-                                <h4><strong>CURRENT AMOUNT: </strong> {project.currentAmount} FCFA</h4> */}
-                            </div>        
-                            <div className="otherinfos">
-                                <div className="d-flex flex-row justify-content-center align-items-center">
-                                    <div>
-                                        <p>Campaign Lauched <Moment fromNow>{project.createdAt}</Moment>.</p>
+                        <div className="col-sm-12 col-md-4 right">
+                            <div className="infos">
+                                <div className="otherinfos0">
+                                    <div className="item">
+                                        <h4><strong>{lg.Objective}</strong></h4>
+                                        
+                                        <h4>
+                                            <CurrencyFormat  value={project.objectifAmount} displayType={'text'} thousandSeparator=" "/> FCFA
+                                        </h4>
                                     </div>
-                                    <div className="progress">
-                                        <CircularProgressbar
-                                            value={percentage}
-                                            text={`${percentage}%`}
-                                            strokeWidth = {15}
-                                            styles={buildStyles({
-                                                rotation: 0,
-                                                strokeLinecap: 'butt',
-                                                textSize: '20px',
-                                                pathTransitionDuration: 0.5,
-                                                pathColor: `#005dac`,
-                                                textColor: '#231F20',
-                                                trailColor: '#d6d6d6',
-                                                backgroundColor: '#3e98c7',
-                                            })}
-                                        />
+                                    <div className="item">
+                                        <h4><strong>{lg.currentAmount}</strong></h4>
+                                        <h4>
+                                            <CurrencyFormat  value={project.currentAmount} displayType={'text'} thousandSeparator=" "/> FCFA
+                                        </h4>
                                     </div>
-                                </div>
-                                <div className="socialBtn">
-                                {user ? 
-                                    user.profile.role == 'admin' ?
-                                        null
-                                    :  
-                                    //user._id == user._id ?
-                                    user._id == project.userId._id ?
-                                        ""
+                                    {/* <h4><strong>OBJECTIVE: </strong> {project.objectifAmount} FCFA</h4>
+                                    <h4><strong>CURRENT AMOUNT: </strong> {project.currentAmount} FCFA</h4> */}
+                                </div>        
+                                <div className="otherinfos">
+                                    <div className="d-flex flex-row justify-content-center align-items-center">
+                                        <div>
+                                            <p>Campaign Lauched <Moment fromNow>{project.createdAt}</Moment>.</p>
+                                        </div>
+                                        <div className="progress">
+                                            <CircularProgressbar
+                                                value={percentage}
+                                                text={`${percentage}%`}
+                                                strokeWidth = {15}
+                                                styles={buildStyles({
+                                                    rotation: 0,
+                                                    strokeLinecap: 'butt',
+                                                    textSize: '20px',
+                                                    pathTransitionDuration: 0.5,
+                                                    pathColor: `#005dac`,
+                                                    textColor: '#231F20',
+                                                    trailColor: '#d6d6d6',
+                                                    backgroundColor: '#3e98c7',
+                                                })}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="socialBtn">
+                                    {user ? 
+                                        user.profile.role == 'admin' ?
+                                            null
+                                        :  
+                                        //user._id == user._id ?
+                                        user._id == project.userId._id ?
+                                            ""
+                                            :
+                                            <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">{lg.donateBtn} </Link>
                                         :
-                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">{lg.donateBtn} </Link>
-                                    :
-                                    null
-                                }
-                                    {/* <button className="fb btn">Partager sur Facebook</button> */}
-                                    {
-                                        user ? 
-                                            user.profile.role == 'admin'&& project.projectState == 'PENDING' ?                               
-                                                <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>{lg.Validate}</button>                                
-                                            : '' 
-                                        : 
-                                        <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">{lg.donateBtn} </Link>
+                                        null
                                     }
-                            {
-                                user ? 
-                                user.profile.role == 'admin'&& project.projectState == 'PENDING'  
-                               ?
-                                <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>{lg.Refuse}</button>       
-                                :
-                                 '' : null
-                              }
-
-                            {
-                                user ? 
-                                user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
+                                        {/* <button className="fb btn">Partager sur Facebook</button> */}
+                                        {
+                                            user ? 
+                                                user.profile.role == 'admin'&& project.projectState == 'PENDING' ?                               
+                                                    <button className="st btn btn-lg validateBtn" onClick={()=>this.setProjectState()}>{lg.Validate}</button>                                
+                                                : '' 
+                                            : 
+                                            <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn">{lg.donateBtn} </Link>
+                                        }
+                                {
+                                    user ? 
+                                    user.profile.role == 'admin'&& project.projectState == 'PENDING'  
                                 ?
-                                <button className="st btn btn-lg startCampaignBtn" onClick={()=>this.setProjectState()}>{lg.StartCampaign}</button> 
+                                    <button className="btn btn-danger mt-3 refuse" onClick={()=>this.setProjectStateToRefused()}>{lg.Refuse}</button>       
                                     :
                                     '' : null
-                              }
+                                }
+
+                                {
+                                    user ? 
+                                    user.profile.role == 'admin'&& project.projectState == 'VALID'  && this.state.hideButton == true
+                                    ?
+                                    <button className="st btn btn-lg startCampaignBtn" onClick={()=>this.setProjectState()}>{lg.StartCampaign}</button> 
+                                        :
+                                        '' : null
+                                }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -388,36 +390,63 @@ class ProjectDetails extends Component {
                             <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn2 donationBtn">{lg.donateBtn} </Link>
                                 {/* <h4>{lg.donationMessage}</h4> */}
                             </div>
-                            <div className="messages-items">
-                                {!project.donators ?
-                                    <h5>{lg.donationsubMessage}.</h5>:
-                                    <div className="alldons">
-                                        {project.donators.map((don) => {
-                                            if(don.validated) {
-                                                return (
-                                                    <div className="messages-item">
-                                                        <h5>{don.firstName}: <CurrencyFormat  value={don.amount} displayType={'text'} thousandSeparator=" "/> FCFA</h5><hr/>
-                                                    </div>
-                                                );
-                                            }
-                                        })}
+                            <div className="date">
+                                <p>Creation Date: <b>
+                                    <Moment parse="YYYY-MM-DD">
+                                        {project.createdAt}
+                                    </Moment></b>
+                                </p>
+                            </div>
+                            <div className="profile">
+                                <img src="/images/user.png" />
+                                <div className="profile-infos">
+                                    <div>
+                                        <p>{project.userId.profile ? project.userId.profile.name ? project.userId.profile.name: project.userId.username : project.userId.username}</p>
+                                        <p>{project.country}</p>
                                     </div>
-                                }
+                                    <div>
+                                        <p>{project.phoneNumber}</p>
+                                    </div>
+                                </div> 
                             </div>
+                            <div className="messages">
+                                <a className="btn readproject" href={project.document}>{lg.readDetailedBtn}</a>                            
+                            </div>
+                            <div className="messages">
+                                <div className="allmessages">
+                                    <h4>{lg.donationMessage}</h4>
+                                </div>
+                                <div className="messages-items">
+                                    {!project.donators ?
+                                        <h5>{lg.donationsubMessage}.</h5>:
+                                        <div className="alldons">
+                                            {project.donators.map((don) => {
+                                                if(don.validated) {
+                                                    return (
+                                                        <div className="messages-item">
+                                                            <h5>{don.firstName}: <CurrencyFormat  value={don.amount} displayType={'text'} thousandSeparator=" "/> FCFA</h5><hr/>
+                                                        </div>
+                                                    );
+                                                }
+                                            })}
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                        
+
+                            {/* <div className="messages">
+                                <div className="allmessages">
+                                    <h4>Inbox Messages</h4>
+                                    <span>5</span>
+                                </div>
+                            </div>  */}
                         </div>
-
-                       
-
-                        {/* <div className="messages">
-                            <div className="allmessages">
-                                <h4>Inbox Messages</h4>
-                                <span>5</span>
-                            </div>
-                        </div>  */}
                     </div>
                 </div>
                 <Footer/>
-            </div>
+            </Fragment>
         )
     }
        
