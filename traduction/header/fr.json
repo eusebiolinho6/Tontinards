@@ -1,0 +1,16 @@
+{
+    "admin":"Administrateur",
+    "category": "Catégories",
+    "foundraise": "Collecter les fonds en tant que",
+    "foundAs": "Collecter les fonds pour",
+    "project": "Liste Projets",
+    "donation": "Liste des Dons",
+    "dashboard": "Tableau de bord",
+    "profile": "Profil",
+    "logout": "Se déconnecter",
+    "campaign":"Mes Campagnes",
+    "createproject":"Créer un Projet",
+    "login":"Se connecter",
+    "register":"Créer un Compte",
+    "Help":"Aide"
+ }

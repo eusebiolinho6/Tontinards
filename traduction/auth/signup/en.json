@@ -1,0 +1,11 @@
+{
+    "signup":"Sign up",
+    "name":"Name",
+    "password":"Password",
+    "username":"Username",
+    "confirm":"Confirm Password",
+    "save":"Save",
+    "google":"Signup with Google",
+    "facebook":"Signup with Facebook",
+    "twitter":"Signup with Twitter"
+}

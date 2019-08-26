@@ -30,6 +30,8 @@ class Main extends Component {
 
     render() {
         const { funnels, categories, userId, industries } = this.props;
+        let lang = localStorage.getItem('lang')
+        // console.log(funnels);
         const threeFirstCampaigns = funnels.slice(0, 3);  //we display only the three first campaigns
         const campaigns = [];
         funnels.map((project, index)=>(
@@ -43,7 +45,13 @@ class Main extends Component {
             <div className="wrapper wrapper-content someProjectContainer">
                 <div className="projectContainer">
                     {/* <hr/> */}
-                    <h1>Some Projects</h1>
+                    {
+                        lang == 'fr'?
+                          <h1>Quelques Projets</h1>
+                         :
+                          <h1>Some Projects</h1>
+                    }
+                    
                     <br/>
                     <br/>
 

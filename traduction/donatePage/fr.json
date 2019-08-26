@@ -1,0 +1,20 @@
+{
+    "invest": "Investir",
+    "enterYourInvest": "Entrez votre investissement",
+    "firstName":"Nom",
+    "lastName":"Prénom",
+    "PhoneNumber":"Numéro de téléphone",
+    "emailaddress":"Addresse Email",
+    "informationsaboutLocation":" Informations par rapport à votre localisation",
+    "comment":"Commentaire",
+    "submit":"Soumettre",
+    "mostrecentcomments":"Commentaire les plus récents",
+    "Nocomment":"Pas de commentaire",
+    "placeholderFirstname":"Entrer votre Prénom",
+    "placeholderLastname":"Entrer votre Nom",
+    "placeholderPhone":"Entrer votre Numéro de Téléphone",
+    "placeholderEmail":"Entrer votre Email",
+    "placeholderLocation":"Entrer votre localisation",
+    "placeholderComment":"Laisser un Commentaire",
+    "smallMessage":"Nous ne partagerons jamais votre email avec qui que ce soit."
+  }

@@ -6,6 +6,10 @@ import ProjectItem from '../../components/projects/ProjectItem';
 import {Categories, Funnels} from '../../../api/collections';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
+import campaignPageFr from '../../../../traduction/campaignPage/fr.json';
+import campaignPageEn from '../../../../traduction/campaignPage/en.json'
+
+
 
 const emptyIcon = <FontAwesomeIcon icon={faBan} size="3x"/>
 
@@ -68,6 +72,13 @@ class CampaignsLayout extends Component {
 
 
   render() {
+    let lg = campaignPageFr;
+    let lang = localStorage.getItem('lang')
+      lang == 'fr'?
+          lg = campaignPageFr
+          :
+          lg = campaignPageEn;
+          
     const {funnels, userId, user, categories} = this.props;
     const campaigns = [];
     funnels.map((project) => {
@@ -84,7 +95,7 @@ class CampaignsLayout extends Component {
       <div className="container-fluid no-padding">
         <div className="row projectsPageHeader">
             <br/>
-            <h1>Select startups you can fund</h1>
+            <h1>{lg.selectStartup}</h1>
             <br/>
             {/* <hr/> */}
         </div>
@@ -93,7 +104,7 @@ class CampaignsLayout extends Component {
         <div className="filerMenu col-md-3" id="filterCategory">
           <h1 className="transparent">.</h1>
           <form className="form">
-            <h2>Filter by Category</h2>
+            <h2>{lg.filterByCategory}</h2>
       
             {
               categories.map((category)=>{
@@ -127,7 +138,7 @@ class CampaignsLayout extends Component {
                     this.state.projectList.length == 0 ? 
                     <div className="noProject">
                       <span>{emptyIcon}</span>
-                      <h3>No project.</h3>
+                      <h3>{lg.NoProject}</h3>
                     </div>
                     :
                     this.state.projectList
@@ -142,7 +153,7 @@ class CampaignsLayout extends Component {
         </div>
         {/*---- End zone of Rejected Projects ------*/}
         
-
+       
       </div>
     )
   }

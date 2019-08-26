@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import HeaderLayout from '../../globalComponents/layouts/HeaderLayout';
 import Footer from '../../globalComponents/Footer';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import usualManualForUserFr from '../../../../traduction/help/usualManualForUser/fr.json';
+import usualManualForUserEn from '../../../../traduction/help/usualManualForUser/en.json';
+
 
 
 class UserHelpPage extends Component {
@@ -11,6 +14,14 @@ class UserHelpPage extends Component {
   }
 
   render() {
+
+    let lg = usualManualForUserFr;
+    let lang = localStorage.getItem('lang')
+     
+          lang == 'fr'?
+              lg = usualManualForUserFr
+              :
+              lg = usualManualForUserEn;
     return (
       <Fragment>
         <HeaderLayout />
@@ -18,66 +29,66 @@ class UserHelpPage extends Component {
           <div className="container">
             <div className="row m-t-5 full-content">
               <div className="col">
-                  <h2 className="text-center title">Manual for Simple User</h2><hr/>
+                  <h2 className="text-center title">{lg.ManualforSimpleUser}</h2><hr/>
                   <div className="col-sm-12 content">
-                    <h5 className="step text-center">System Overview</h5>
-                    <p>Tontinards is a platform web, which connects people who have professional or personal projects and people who have financing capabilities.The application saves project data submitted by the funding applicants in the database.</p>
+                    <h5 className="step text-center">{lg.SystemOverview}</h5>
+                    <p>{lg.TontinardOverview}</p>
                   </div>
                   <div className="col-sm-12 content">
-                      <h5 className="step">2. DESCRIPTION OF EACH USE CASE FOR SIMPLE USER</h5>
-                      <h6 className="">2.1 SIGN UP</h6>
-                      <p><strong>As a simple user you want to Register :</strong></p>
+                      <h5 className="step">{lg.TontinardDescription}</h5>
+                      <h6 className="">{lg.signUp}</h6>
+                      <p><strong>{lg.userScenario}</strong></p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on "Register"</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> On this page, your username, your password and email or connections to social networks such as facebook twitter and google will be you requested.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.ClickOnRegister}</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.afterClickOnRegister}</li>
                       </ul>
                       <img src="/images/manual/im1.png" />
-                      <p><strong>Note! :  </strong>Note that there is only one login and therefore only one password per account. To validate click on "Save".</p>
-                      <h6 className="">2.2 SIGN IN</h6>
-                      <p><strong>As a simple user you want to Log In:</strong></p>
+                      <p><strong>{lg.Note}</strong>{lg.noteContent}</p>
+                      <h6 className="">{lg.signIn}</h6>
+                      <p><strong>{lg.userScenarioSignIn}</strong></p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on "Login"</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> On this page, your username and your password or connections to social networks such as facebook twitter and google will be you requested.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnLogin}</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.afterClickingOnLogin} </li>
                       </ul>
                       <img src="/images/manual/im2.png" />
                   </div>
 
 
                   <div className="col-sm-12 content">
-                      <h5 className="step">3. USER MENU</h5>
-                      <p>Now that you are logged in, you enter the "Tontinards" web application. We will describe all the features of the application after others. As soon as you connect, On the right is a tab at name of your account, in this example <b>"Waffo"</b>: <b>"My Campaigns"</b>, <b>"Profile"</b>, <b>"Create Project"</b> and <b>"Logout"</b> that we will discuss later.
+                      <h5 className="step">{lg.menuUtilisateur}</h5>
+                      <p>{lg.describeFuturesOfTontinard}<b>{lg.Waffo}</b>: <b>{lg.MyCampaigns}</b>, <b>{lg.Profile}</b>, <b>{lg.CreateProject}</b> {lg.and} <b>{lg.Logout}</b> {lg.thatwewilldiscusslater}
                       </p>
                       <img src="/images/manual/im3.png" />
-                      <p>Clicking on it opens a dialog box with 4 possibilities:</p>
+                      <p>{lg.clickingOnIt}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "My Campaigns": </b> &nbsp;Here you can see the status of all your active campaigns.</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Profile": </b> &nbsp;Allows you to change the "User" settings</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Create Project": </b> &nbsp;Allows you to create a project that will be valid and accepted by an administrator for it to be a campaign </li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> "Logout": </b> &nbsp;Allows you to disconnect</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b>{lg.MyCampaigns}: </b> &nbsp;{lg.myCampaignContent}</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> {lg.Profile}:</b> &nbsp;{lg.profileContain}</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> {lg.CreateProject}: </b> &nbsp;{lg.createProjectContain} </li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /><b> {lg.Logout}: </b> &nbsp;{lg.logoutContain}</li>
                       </ul>
-                      <h6 className="">3.1 CREATE PROJECT</h6>
-                      <p><strong>As a simple user you want to Create Project:</strong></p>
+                      <h6 className="">{lg.createProjectUseCase}</h6>
+                      <p><strong>{lg.userSCenarioCreateProjet}</strong></p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> By logging in you have to create your project. To do this, click on "Get Funded" on the landing page:</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnGetFund}</li>
                         <img src="/images/manual/im4.png" />
                       </ul>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Project creation form </li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.Projectcreationform} </li>
                       </ul>
-                      <p>All information is not mandatory but more your project has enough information, the easier it will be for the administrator to better understand the project and validate it. Do not hesitate for example, to add a complete description. You must also choose (Project Name, Phone Number, Category project image, Project Document and Project Video) as a required field To continue, click on "save".</p>
+                      <p>{lg.Allinformation}</p>
                       <img src="/images/manual/im5.png" />
-                      <p><strong>Note! </strong> on the "Funds Raise As" option if the user selected An individual the project image field is no longer available standard. You have just finalized the creation of your project. It will now appear on the web application among your submitted projects (campaigns pending).</p>
-                      <h6 className="">3.2 MY CAMPAIGN</h6>
-                      <p><strong>As a simple user you want to Manage My Campaigns :</strong></p>
-                      <p> When you have created and managed your projects, they will appear as a list in the "Filter Options" tab as below By default, the projects that will are the "Pending" projects. You can access other projects through filters (Validated projects or Campaigns) as below we describe each state of project.</p>
+                      <p><strong>{lg.Note} </strong>{lg.ontheFundsRaiseAsoption} </p>
+                      <h6 className="">{lg.myCampaignUseCase}</h6>
+                      <p><strong>{lg.Asasimpleuser}</strong></p>
+                      <p> {lg.Whenyouhavecreated}</p>
                       <img src="/images/manual/im6.png" />
-                      <h6 className="">3.2.1 Pending projects</h6>
-                      <p>All the projects so the administrator has not valid are listed in this part and by default when we have just created a project it is positioned in "Pending" projects.</p>
-                      <h6 className="">3.2.2 Validated projects</h6>
-                      <p>All the projects so the administrator has validated are listed in this part and the administrator will be able to make reviews to improve the project so that it goes to the state of campaign</p>
+                      <h6 className="">{lg.pendinProjet}</h6>
+                      <p>{lg.Alltheprojects}</p>
+                      <h6 className="">{lg.validatedProject}</h6>
+                      <p>{lg.Alltheprojectssotheadministrator}</p>
                       <img src="/images/manual/im7.png" />
-                      <h6 className="">3.2.3 Campaigns</h6>
-                      <p>All the projects that the administrator has validated and starts a campaign are listed in this part and can be displayed with the admin reviews to make the campaign more credible.</p>
+                      <h6 className="">{lg.campaignUseCase}</h6>
+                      <p>{lg.AlltheprojectsthattheadminHasValidated}</p>
                       <img src="/images/manual/im8.png" />
                   </div>
               </div>

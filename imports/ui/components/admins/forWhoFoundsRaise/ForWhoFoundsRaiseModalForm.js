@@ -6,6 +6,10 @@ import Upload from '../../../globalComponents/Upload';
 import validateInput from '../../../../validations/foundRaiseAs';
 import {toObjectId} from '../../../../utilities';
 import {ForWhoFoundsRaise} from '../../../../api/collections';
+import adminForWhoFoundsRaiseModalFormFr from '../../../../../traduction/adminForWhoFoundsRaiseModalForm/fr.json';
+import adminForWhoFoundsRaiseModalFormEn from '../../../../../traduction/adminForWhoFoundsRaiseModalForm/en.json';
+
+
 
 // App component - represents the whole app
 class ForWhoFoundsRaiseModalForm extends Component {
@@ -76,6 +80,14 @@ componentWillReceiveProps(nextProps){
 
   }
   render() {
+    let lg = adminForWhoFoundsRaiseModalFormFr;
+    let lang = localStorage.getItem('lang')
+
+      lang == 'fr'?
+          lg = adminForWhoFoundsRaiseModalFormFr
+          :
+          lg = adminForWhoFoundsRaiseModalFormEn;
+
 
       const {show, errors, name, isLoading, id } = this.state;
     return (            
@@ -83,14 +95,18 @@ componentWillReceiveProps(nextProps){
         aria-labelledby="contained-modal-projectName-sm" show={show} onHide={()=> this.closeModal()} backdrop={false} >
  <form role="form" onSubmit={(event) =>this.handleSUbmit(event)}>
     <ModalHeader>
-     {id ?'Edit FoundRaiseAs': ' Add FoundRaiseAs'}
+    { lang == 'fr'?
+            id ?'Edit FoundRaiseAs'  : ' Ajouter collecte de fond pour'
+              :
+           id ?'Edit FoundRaiseAs'  : ' Add FoundRaiseAsFor' 
+      }
     </ModalHeader>
     <ModalBody>
         <div className="col-md-12">
-                <h2>Funds Raise For </h2>
+                <h2>{lg.FundsRaiseFor} </h2>
                 <Input
                     field="name"
-                    label="Enter name"
+                    label={lg.EnterName}
                     value={name}
                     error={errors.name}
                     onChange={(event)=> this.handleInputChange(event) }
@@ -99,8 +115,8 @@ componentWillReceiveProps(nextProps){
     </ModalBody>
      
     <ModalFooter>
-      <Button onClick={()=> this.closeModal()}>Close</Button>
-      <Button type="submit" bsStyle="primary">Save</Button>
+      <Button onClick={()=> this.closeModal()}>{lg.Close}</Button>
+      <Button type="submit" bsStyle="primary">{lg.Save}</Button>
     </ModalFooter>
     </form>
   </Modal>

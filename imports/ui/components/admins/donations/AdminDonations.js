@@ -5,13 +5,28 @@ import DonationTypeModalForm from './DonationTypeModalForm';
 import ValidationModalForm from './validationModalForm';
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import adminDonationPageFr from '../../../../../traduction/adminDonationPage/fr.json';
+import adminDonationPageEn from '../../../../../traduction/adminDonationPage/en.json';
 
-const monthNames = [
+const monthNamesEn = [
     "January", "February", "March",
     "April", "May", "June", "July",
     "August", "September", "October",
     "November", "December"
 ];
+
+let lang = localStorage.getItem('lang');
+let monthNames = [];
+let monthNamesFr = [
+    "Janvier", "Fevrier", "Mars",
+    "Avril", "Mai", "Juin", "Juillet",
+    "Août", "Septembre", "Octobre",
+    "Novembre", "Decembre"
+];
+lang == 'fr'?
+    monthNames = monthNamesFr
+:
+    monthNames = monthNamesEn
 
 
 class AdminDonations extends Component {
@@ -69,31 +84,56 @@ class AdminDonations extends Component {
         })
     }
     // Validate a Donation
-    validate(don, projectId, comment) {
-        // open the popup
-        this.setState({ 
-            clickValidate: true, 
-            comment: comment,  
-            don: don, 
-            projectId: projectId
-        })
-    }
+    // validate(don, projectId, comment) {
+    //     // open the popup
+    //     this.setState({ 
+    //         clickValidate: true, 
+    //         comment: comment,  
+    //         don: don, 
+    //         projectId: projectId
+    //     })
+    // }
 
+  // Validate a Donation
+  validate(don, projectId, comment){
+    // open the popup
+    this.setState({ 
+        clickValidate: true, 
+        comment: comment,  
+        don: don, 
+        projectId: projectId
+    })
+  }
     // Validate a donation
     displayNotification = () => {
-        this.addNotification("Successfully done!", "success")
+        let title = 'Effectué avec Succès';
+        lang == 'fr'?
+            title = 'Effectué avec Succès'
+            :
+            title = "Successfully done!"
+        this.addNotification(title, "success")
     }
 
     // Delete a donation
     delete(projectId, donID){
+        let title = 'Supprimé avec Succès';
+        lang == 'fr'?
+            title = 'Supprimé avec Succès'
+            :
+            title = "Successfully deleted!"
         Meteor.call('deleteDonate', projectId, donID)
-        this.addNotification("Successfully deleted!", "success")
+        this.addNotification(title, "success")
     }
 
 
   addNotification = (message, type) => {
+    let title = "Don!";
+    lang == 'fr'?
+        title = "Don!"
+        :
+        title = "Donation!"
     this.notificationDOMRef.current.addNotification({
-      title: "Donation!",
+      title: title,
       message: message,
       type: type,
       insert: "top",
@@ -106,6 +146,14 @@ class AdminDonations extends Component {
   }
 
     render() {
+        let lg = adminDonationPageFr;
+        let lang = localStorage.getItem('lang')
+
+          lang == 'fr'?
+              lg = adminDonationPageFr
+              :
+              lg = adminDonationPageEn;
+
         const { show, name, devName, id, clickValidate, comment, don, projectId } = this.state;
         const { projects, donationsTypes } = this.props;
         let donations = [];
@@ -121,8 +169,8 @@ class AdminDonations extends Component {
                                 <td>{don.choosenDonationType}</td>
                                 <td>{this.formatDate(don.date)} </td>
                                     <td> 
-                                        <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-sm btn-danger m-l-md pull-right">Delete</button>
-                                        <button onClick={() => this.validate(don, project._id , don.comment)} type="button" className="btn btn-sm btn-primary pull-right">Validate</button>
+                                        <button onClick={() =>this.delete(project._id, don.id)} type="button" className="btn btn-sm btn-danger m-l-md pull-right">{lg.Delete}</button>
+                                        <button onClick={() =>this.validate(don, project._id , don.comment)} type="button" className="btn btn-sm btn-primary pull-right">{lg.validatebtn}</button>
                                     </td>
                             </tr>
                         )
@@ -139,12 +187,12 @@ class AdminDonations extends Component {
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
                             <div className="ibox-projectName">
-                                <h5>Donation Type List</h5>
+                                <h5>{lg.DonationList}</h5>
                             </div>
                             <div className="ibox-content">
                                 <div className="row">
                                 <div className="col-sm-3">
-                                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >New Donation Type</button>
+                                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } >{lg.NewDonationType}</button>
                                 </div>
                                 </div>
                                 <div className="row m-t-md">
@@ -153,10 +201,10 @@ class AdminDonations extends Component {
                                             <table className="table table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>DevName</th>
-                                                    <th>Created At</th>
-                                                    <th className="pull-right">Action</th>
+                                                    <th>{lg.Name}</th>
+                                                    <th>{lg.DevName}</th>
+                                                    <th>{lg.CreatedAt}</th>
+                                                    <th className="pull-right">{lg.Action}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -166,7 +214,7 @@ class AdminDonations extends Component {
                                                             <td>{donationsType.devName}</td>
                                                             <td>{this.formatDate(donationsType.createdAt)} </td>
                                                             <td> <button onClick={() =>this.editDonationType(donationsType)} 
-                                                                type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                                                                type="button" className="btn btn-sm btn-primary pull-right">{lg.Edit} <i className="fa fa-pencil"></i> </button></td>
                                                         </tr>
                                                         ))
                                                     }
@@ -192,12 +240,11 @@ class AdminDonations extends Component {
                                             <table className="table table-striped">
                                                 <thead>
                                                 <tr>
-                                                    <th>Project Name</th>
-                                                    <th>Donator Name</th>
-                                                    <th>Amount</th>
-                                                    <th>Date</th>
-                                                    <th>Donation Type</th>
-                                                    <th className="pull-right">Action</th>
+                                                    <th>{lg.ProjectName}</th>
+                                                    <th>{lg.DonatorName}</th>
+                                                    <th>{lg.Amount}</th>
+                                                    <th>{lg.Date}</th>
+                                                    <th className="pull-right">{lg.Action}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

@@ -1,0 +1,14 @@
+{
+  "Projects":"Projets",
+  "NewProject": "Nouveau Projet",
+  "Name":"Nom",
+  "Category": "Catégorie",
+  "PhoneNumber": "Numéro de telephone",
+  "Email":"Email",
+  "ObjectiveAmount":"Montant à atteindre",
+  "CurrentAmount":"Montant courant",
+  "CreatedAt":"Crée le",
+  "Actions":"Actions",
+  "Delete":"Supprimer",
+  "Edit":"Modifier"
+}

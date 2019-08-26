@@ -2,13 +2,32 @@ import React, { Component, Fragment } from 'react';
 import FoundRaiseAsModalForm from './FoundRaiseAsModalForm';
 import Input from '../../../globalComponents/Input'
 import {Modal, Button} from 'react-bootstrap';
+import adminfundRaiseAsPageFr from '../../../../../traduction/adminfundRaiseAsPage/fr.json';
+import adminfundRaiseAsPageEn from '../../../../../traduction/adminfundRaiseAsPage/en.json';
+
+
 // App component - represents the whole app
-const monthNames = [
+const monthNamesEn = [
     "January", "February", "March",
     "April", "May", "June", "July",
     "August", "September", "October",
     "November", "December"
 ];
+
+let lang = localStorage.getItem('lang');
+let monthNames = [];
+let monthNamesFr = [
+    "Janvier", "Fevrier", "Mars",
+    "Avril", "Mai", "Juin", "Juillet",
+    "Août", "Septembre", "Octobre",
+    "Novembre", "Decembre"
+];
+lang == 'fr'?
+    monthNames = monthNamesFr
+:
+    monthNames = monthNamesEn
+
+
 class AdminFoundRaiseAs extends Component {
     constructor(props) {
         super(props);
@@ -54,6 +73,14 @@ class AdminFoundRaiseAs extends Component {
   }
 
     render() {
+        let lg = adminfundRaiseAsPageFr;
+        let lang = localStorage.getItem('lang')
+
+          lang == 'fr'?
+              lg = adminfundRaiseAsPageFr
+              :
+              lg = adminfundRaiseAsPageEn;
+
          const { show, name, devName, id } = this.state;
         const {foundRaiseAs}=this.props;
         return (
@@ -63,12 +90,12 @@ class AdminFoundRaiseAs extends Component {
 <div className="col-lg-12">
     <div className="ibox float-e-margins">
         <div className="ibox-projectName">
-            <h5>Funds Raise As</h5>
+            <h5>{lg.FundsRaiseAs}</h5>
         </div>
         <div className="ibox-content">
             <div className="row">
              <div className="col-sm-3">
-                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > Create New</button>
+                    <button type="button" className="btn btn-primary" onClick={()=> this.setState({show:true}) } > {lg.CreateNewbtn}</button>
             </div>
             <FoundRaiseAsModalForm id={id} name={name} devName={devName} show={show} closeModal={()=>this.closeModal()} />
              </div>
@@ -76,10 +103,10 @@ class AdminFoundRaiseAs extends Component {
                 <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>DevName</th>
-                        <th>Created At</th>
-                        <th className="pull-right">Action</th>
+                        <th>{lg.Name}</th>
+                        <th>{lg.DevName}</th>
+                        <th>{lg.CreatedAt}</th>
+                        <th className="pull-right">{lg.Action}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -87,7 +114,7 @@ class AdminFoundRaiseAs extends Component {
                         <td>{onefoundRaiseAs.name}</td>
                         <td>{onefoundRaiseAs.devName}</td>
                         <td>{this.formatDate(onefoundRaiseAs.createdAt)} </td>
-                        <td> <button onClick={() =>this.editFoundRaiseAs(onefoundRaiseAs)} type="button" className="btn btn-sm btn-primary pull-right">Edit <i className="fa fa-pencil"></i> </button></td>
+                        <td> <button onClick={() =>this.editFoundRaiseAs(onefoundRaiseAs)} type="button" className="btn btn-sm btn-primary pull-right">{lg.Editbtn} <i className="fa fa-pencil"></i> </button></td>
                     </tr>))}
                     
                     </tbody>

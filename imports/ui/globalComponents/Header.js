@@ -5,6 +5,8 @@ import { Meteor } from 'meteor/meteor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { checkRole } from '../../utilities/';
+import HeaderFr from '../../../traduction/header/fr.json'
+import HeaderEn from '../../../traduction/header/en.json'
 
 const toogleMenu = <FontAwesomeIcon icon={faBars} />
 
@@ -27,6 +29,14 @@ class Header extends Component {
 
   render() {
     const {user}=this.props;
+    let lg = HeaderFr;
+    let lang = localStorage.getItem('lang')
+
+    lang == 'fr'?
+        lg = HeaderFr
+        :
+        lg = HeaderEn;
+
     return (
         <div className="container border-bottom">
             {this.state.redirect ? <Redirect to="/" />:null}
@@ -52,13 +62,13 @@ class Header extends Component {
                                         {user.profile.role == "admin" ?
                                             <div className="Navbar__Link dropdown">
                                                 <div>
-                                                    <a className="dropbtn" className="menuLink" href="#">Admin <i className="fa fa-angle-down"></i> </a>
+                                                    <a className="dropbtn" className="menuLink" href="#">{lg.admin} <i className="fa fa-angle-down"></i> </a>
                                                     <div className="dropdown-content">
-                                                        <a id="dropbtn" href="/admin/categories">Categories</a>
-                                                        <a id="dropbtn" href="/admin/foundRaiseAs">Funds Raise As</a>
-                                                        <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">Funds Raise For</a>
-                                                        <a id="dropbtn" href="/admin/funnels">Projects</a>
-                                                        <a id="dropbtn" href="/admin/donations">Donations</a>
+                                                        <a id="dropbtn" href="/admin/categories">{lg.category}</a>
+                                                        <a id="dropbtn" href="/admin/foundRaiseAs">{lg.foundraise}</a>
+                                                        <a id="dropbtn" href="/admin/forWhoFoundsRaisePage">{lg.foundAs}</a>
+                                                        <a id="dropbtn" href="/admin/funnels">{lg.project}</a>
+                                                        <a id="dropbtn" href="/admin/donations">{lg.donation}</a>
                                                     </div>
                                                 </div>
                                             </div> : 
@@ -110,10 +120,10 @@ class Header extends Component {
                                                             <p className="dropbtn">{user.profile.name}</p>
 
                                                             <div className="dropdown-content">
-                                                                <Link to={{pathname:'/admin/admindashboard'}} className="">Dashboard </Link>
-                                                                <a href="/authentication/profile">Profile</a>
-                                                                <a href="/admin/help">Help</a>
-                                                                <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
+                                                                <Link to={{pathname:'/admin/admindashboard'}} className="">{lg.dashboard} </Link>
+                                                                <a href="/authentication/profile">{lg.profile}</a>
+                                                                <a href="/admin/help">{lg.Help}</a>
+                                                                <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
                                                             </div>
                                                         </div>
                                                     : 
@@ -121,20 +131,20 @@ class Header extends Component {
                                                             <p className="dropbtn">{user.profile.name}</p>
 
                                                             <div className="dropdown-content">
-                                                                <Link to={{pathname:'/user/campaigns'}} className="">My Campaigns </Link>
-                                                                <a href="/authentication/profile">Profile</a>
-                                                                <a href="/user/projects">Create Project</a>
-                                                                <a href="/user/help">Help</a>
-                                                                <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>Logout</a>
+                                                                <Link to={{pathname:'/user/campaigns'}} className="">{lg.campaign} </Link>
+                                                                <a href="/authentication/profile">{lg.profile}</a>
+                                                                <a href="/user/projects">{lg.createproject}</a>
+                                                                <a href="/user/help">{lg.Help}</a>
+                                                                <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
                                                             </div>
                                                         </div>
                                                 }
                                             </span>
                                         : 
                                         <div>
-                                            <Link to="/authentication/signin" className="btn signIn"> Login</Link>
-                                            <Link to="/authentication/signup" className="btn signUp"> Register</Link>
-                                            <Link to="/donation/help" className="m-l-md">Help</Link>
+                                            <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
+                                            <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
+                                            <Link to="/donation/help" className="m-l-md">{lg.Help}</Link>
                                         </div>
                                     }
                                 </li>

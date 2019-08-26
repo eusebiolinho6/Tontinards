@@ -9,10 +9,8 @@ import Project from '../imports/ui/routes/Project';
 import Admin from '../imports/ui/routes/Admin';
 import User from '../imports/ui/routes/User';
 import '../imports/startup/accounts-config.js';
-import FunnelList from '../imports/ui/pages/funnels/FunnelList';
 import Authentication from '../imports/ui/routes/Authentication';
 import PaypalPage from '../imports/ui/pages/payments/PaypalPage';
-import PagePlans from '../imports/ui/pages/payments/PagePlans';
 import NotFoundPage from '../imports/ui/pages/errors/NotFoundPage';
 import ProjectsPage from '../imports/ui/pages/projects/ProjectsPage'
 import CampaignsPage from '../imports/ui/pages/projects/CampaignsPage';
@@ -20,6 +18,8 @@ import DonorHelpPage from '../imports/ui/pages/help/DonorHelpPage';
 
 Meteor.startup(() => {
   ['fixed-sidebar', 'mini-navbar', 'fixed-nav', 'pace-done', 'skin-1'].forEach(klass => document.body.classList.add(klass));
+
+
   render((
    <BrowserRouter>
     <div>

@@ -11,7 +11,10 @@ import ReactNotification from "react-notifications-component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import "react-notifications-component/dist/theme.css";
+import donatePageFr from '../../../../traduction/donatePage/fr.json';
+import donatePageEn from '../../../../traduction/donatePage/en.json';
 
+let lang = localStorage.getItem('lang')
 // App component - represents the whole app
 class ProjectDonation extends Component {
   constructor(props) {
@@ -64,10 +67,16 @@ class ProjectDonation extends Component {
     this.state.email.trim().length <= 0 ||
     this.state.phoneNumber.trim().length <= 0 ||
     this.state.choosenDonationType.trim().length <= 0 ) {
-      this.addNotification("Amount, Donation Type, Phone Number and Email are required!", "danger");
+      lang == 'fr'?
+       this.addNotification("Montant, Numéro de téléphone, Type de don et Email requis!", "danger")
+      :
+       this.addNotification("Amount, Phone Number, Donation Type and Email are required!", "danger");
     } else {
       Meteor.call('makeDonate', newDonator, projectId);
-      this.addNotification("Successfully done!", "success")
+      lang == 'fr'?
+       this.addNotification("Effectué avec Succès!", "success")
+      :
+       this.addNotification("Successfully done!", "success")
       this.setState({
           redirect: true
       })
@@ -77,15 +86,19 @@ class ProjectDonation extends Component {
   handleInputChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(value);
     this.setState({
         [name]: value
     });
   }
 
   addNotification = (message, type) => {
+    let title = "Don!"
+    lang == 'fr'?
+      title = "Don!"
+      :
+      title = "Donation!"
     this.notificationDOMRef.current.addNotification({
-      title: "Donation!",
+      title: title,
       message: message,
       type: type,
       insert: "top",
@@ -99,12 +112,19 @@ class ProjectDonation extends Component {
 
 
   render() {
+    let lg = donatePageFr;
+        let lang = localStorage.getItem('lang')
+          lang == 'fr'?
+              lg = donatePageFr
+              :
+              lg = donatePageEn;
+    
     const {project,user} = this.props,
     projects = [];
     /*here we want to apply donation on one project that's why we push one project inside the array of projects */
     projects.push(project);
 
-    let comments = <p>No comment</p>;
+    let comments = <p>{lg.Nocomment}</p>;
     if(project.donators) {
       let donators = project.donators.reverse();
       comments = donators.map(donator => {
@@ -126,87 +146,89 @@ class ProjectDonation extends Component {
     }
 
     return (
-      <div className="container-fluid no-padding">
-        {this.state.redirect ? <Redirect to="/" />:null}
+      <div className="container-fluid no-padding p-b-lg">
         <ReactNotification ref={this.notificationDOMRef} />
+        {this.state.redirect ? <Redirect to="/" />:null}
         <div className="row projectsPageHeader">
-            <h1>Invest</h1>
+            <h1>{lg.invest}</h1>
             <hr/>
         </div>
         
-        <div className="row donationPageContent col-md-7 col-sm-9">
-            <h3>Enter your Investment</h3>
-
-            <form>
-                  <div>
-                    <div className="form-group inputContainer">
-                        <input type="number" className="donationInput" name="amount"
-                          value={this.state.amount} onChange={(event) => this.handleInputChange(event)} required /> Fcfa
-                        {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+        <div className="row donationPageContent">
+            <div className="col-md-7 col-sm-12 p-b-lg">
+            <h3>{lg.enterYourInvest}</h3>
+              <form>
+                    <div>
+                      <div className="form-group inputContainer">
+                          <input type="number" className="donationInput" name="amount"
+                            value={this.state.amount} onChange={(event) => this.handleInputChange(event)} required /> Fcfa
+                          {/* <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                      </div>
                     </div>
+                    {/* <br/> */}
+                  <div className="form-group">
+                      <label for="firstNameInput">{lg.firstName}</label>
+                      <input type="text" className="form-control" name="name"
+                        value={this.state.name} onChange={(event) => this.handleInputChange(event)}
+                        required id="firstNameInput" placeholder={lg.placeholderFirstname}/>
                   </div>
-                  {/* <br/> */}
-                <div className="form-group">
-                    <label for="firstNameInput">First Name</label>
-                    <input type="text" className="form-control" name="name"
-                      value={this.state.name} onChange={(event) => this.handleInputChange(event)}
-                      required id="firstNameInput" placeholder="Enter your first name"/>
-                </div>
-                <div className="form-group">
-                    <label for="lastNameInput">Last Name</label>
-                    <input type="text" className="form-control" name="lastName"
-                      value={this.state.lastName} onChange={(event) => this.handleInputChange(event)}
-                      required id="lastNameInput" placeholder="Enter your last name"/>
-                </div>
-                <div className="form-group">
-                    <label for="phoneNumberInput">Phone Number</label>
-                    <input type="text" className="form-control" name="phoneNumber"
-                      value={this.state.phoneNumber} onChange={(event) => this.handleInputChange(event)}
-                      required id="phoneNumberInput" placeholder="Enter your phone number"/>
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail">Email address</label>
-                    <input type="email" className="form-control" name="email"
-                      value={this.state.email} onChange={(event) => this.handleInputChange(event)}
-                      required id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email"/>
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <p><strong>Donation Option</strong></p>
-                <div className="wrapper" id="radioinput">
-                  {
-                    project.typeOfDonation.map(type => (
-                        <div className="radioitem">
-                              <input id={type} value={type} type="radio" name="choosenDonationType" onChange={(event) => this.handleInputChange(event)} />
-                              <label for={type}>{type}</label>
-                        </div>
-                      ))
-                  }
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail">Informations about your Location</label>
-                    <input type="text" className="form-control" name="location"
-                      value={this.state.location} onChange={(event) => this.handleInputChange(event)}
-                      required id="exampleInputLocation" aria-describedby="emailHelp" placeholder="Enter your Location"/>
-                </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail">Comment</label>
-                    <textarea placeholder="Enter your comment" onChange={(event) => this.handleInputChange(event)}
-                    name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
-                </div>
-                
-                <button onClick={(event) => this.submit(event)} className="btn btn-primary">Submit</button>
+                  <div className="form-group">
+                      <label for="lastNameInput">{lg.lastName}</label>
+                      <input type="text" className="form-control" name="lastName"
+                        value={this.state.lastName} onChange={(event) => this.handleInputChange(event)}
+                        required id="lastNameInput" placeholder={lg.placeholderLastname}/>
+                  </div>
+                  <div className="form-group">
+                      <label for="phoneNumberInput">{lg.PhoneNumber}</label>
+                      <input type="text" className="form-control" name="phoneNumber"
+                        value={this.state.phoneNumber} onChange={(event) => this.handleInputChange(event)}
+                        required id="phoneNumberInput" placeholder={lg.placeholderPhone}/>
+                  </div>
+                  <div className="form-group">
+                      <label for="exampleInputEmail">{lg.emailaddress}</label>
+                      <input type="email" className="form-control" name="email"
+                        value={this.state.email} onChange={(event) => this.handleInputChange(event)}
+                        required id="exampleInputEmail" aria-describedby="emailHelp" placeholder={lg.placeholderEmail}/>
+                      <small id="emailHelp" className="form-text text-muted">{lg.smallMessage}</small>
+                  </div>
+                  <p><strong>Donation Option</strong></p>
+                  <div className="wrapper" id="radioinput">
+                    {
+                      project.typeOfDonation.map(type => (
+                          <div className="radioitem">
+                                <input id={type} value={type} type="radio" name="choosenDonationType" onChange={(event) => this.handleInputChange(event)} />
+                                <label for={type}>{type}</label>
+                          </div>
+                        ))
+                    }
+                  </div>
+                  <div className="form-group">
+                      <label for="exampleInputEmail">{lg.informationsaboutLocation}</label>
+                      <input type="text" className="form-control" name="location"
+                        value={this.state.location} onChange={(event) => this.handleInputChange(event)}
+                        required id="exampleInputLocation" aria-describedby="emailHelp" placeholder={lg.placeholderLocation}/>
+                  </div>
+                  <div className="form-group">
+                      <label for="exampleInputEmail">{lg.comment}</label>
+                      <textarea placeholder={lg.placeholderComment} onChange={(event) => this.handleInputChange(event)}
+                      name="message" value={this.state.message} className="form-control"  id="textmessage" rows="3"></textarea>
+                  </div>
+                  
+                  <button onClick={(event) => this.submit(event)} className="btn btn-primary" id="submit-comment">{lg.submit}</button>
 
-                <br/>
+                  <br/>
 
-            </form>
+              </form>
 
-            <div className="comments" id="donation-comment-bloc">
-                <h3>Most recent comments</h3>
-                {comments}
+              <div className="comments" id="donation-comment-bloc">
+                  <h3>{lg.mostrecentcomments}</h3>
+                  {comments}
+              </div>
+
             </div>
-        </div>
-        <div className="col-md-4  hidden-xs">
-            {this.renderSelectedProject(projects)}
+            <div className="col-md-4  hidden-sm">
+                {this.renderSelectedProject(projects)}
+            </div>
         </div>
         
       </div>

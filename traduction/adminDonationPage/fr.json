@@ -1,0 +1,19 @@
+{
+    "DonationList": "Listes des Dons",
+    "NewDonationType":"Nouveau Type de Dons ",
+    "ProjectName": "Nom du Projet ",
+    "DonatorName":"Nom du Donneur",
+    "Amount": "Montant",
+    "Date": "Date",
+    "Action": "Action",
+    "validatebtn":"valider",
+    "Delete":"Supprimer",
+    "Edit":"Modifier",
+    "Name":"Nom",
+    "DevName":"Dev Name",
+    "CreatedAt":"Crée le",
+    "DonationTypeInfo":"Information sur le Type de Don",
+    "EnterDonationTypename":"Entrer le Nom du type de Don",
+    "Close":"Fermer",
+    "Save":"Enregistrer"
+  }

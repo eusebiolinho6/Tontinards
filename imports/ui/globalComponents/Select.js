@@ -1,5 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import classnames from 'classnames';
+import adminfunnelModalFormFr from '../../../traduction/adminfunnelModalForm/fr.json';
+import adminfunnelModalFormEn from '../../../traduction/adminfunnelModalForm/en.json';
+
+
 
 // App component - represents the whole app
 class Select extends Component {
@@ -8,6 +12,13 @@ class Select extends Component {
     }
 
     render() {
+        let lg = adminfunnelModalFormFr;
+        let lang = localStorage.getItem('lang');
+          lang == 'fr'?
+             lg = adminfunnelModalFormFr
+           :  
+             lg = adminfunnelModalFormEn;
+
         const { field, options, value, label, error, type, onChange, checkUserExists } = this.props;
         return (
         <div className={classnames('form-group', { 'has-error': error })}>
@@ -20,7 +31,7 @@ class Select extends Component {
             name={field}
             className="form-control"
         >
-        <option value=''>Select one value</option>
+        <option value=''>{lg.Selectonevalue}</option>
         {options.map((option, index) =>(<option key={option._id._str} value={option._id._str}>{option.name}</option>))}
  </select>
         {error && <span style={{color: '#ed5565'}} className="error-block">{error}</span>}

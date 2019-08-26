@@ -3,6 +3,8 @@ import HeaderLayout from '../../globalComponents/layouts/HeaderLayout';
 import Footer from '../../globalComponents/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import adminHelpFr from '../../../../traduction/help/adminHelp/fr.json'
+import adminHelpEn from '../../../../traduction/help/adminHelp/en.json'
 
 
 class AdminHelpPage extends Component {
@@ -11,6 +13,13 @@ class AdminHelpPage extends Component {
   }
 
   render() {
+    let lg = adminHelpFr;
+    let lang = localStorage.getItem('lang');
+       lang == 'fr'?
+            lg = adminHelpFr
+        :
+            lg = adminHelpEn;
+
     return (
       <Fragment>
         <HeaderLayout />
@@ -18,226 +27,226 @@ class AdminHelpPage extends Component {
           <div className="container">
             <div className="row m-t-5 full-content">
               <div className="col">
-                  <h2 className="text-center title">User manual for Administrator</h2><hr/>
+                  <h2 className="text-center title">{lg.title}</h2><hr/>
                   <div className="col-sm-12 content">
-                    <h5 className="step text-center">GOAL</h5>
-                    <p>This document is intended to help you use the product. It explains the why, the how and what happens if the task is not executed correctly</p>
+                    <h5 className="step text-center">{lg.goal}</h5>
+                    <p>{lg.thisDoc}</p>
                   </div>
                   <div className="col-sm-12 content">
-                      <h5 className="step">1. PRESENTATION</h5>
-                      <h6 className="">1.1 Administrator role</h6>
-                      <p>User concerned here is the administrator. Its role is, on the one hand, to select or reject the projects, and on the other hand, to format the selected projects in such a way that it respects the requirements of the projects that can be financed in order to finally make them visible to all, in order to they are funded</p>
-                      <h6 className="">1.1 Administrator features</h6>
-                      <p>Features that concerns the administrator are:</p>
+                      <h5 className="step">{lg.presentation}</h5>
+                      <h6 className="">{lg.adminRole}</h6>
+                      <p>{lg.userConcern}</p>
+                      <h6 className="">{lg.adminFeature}</h6>
+                      <p>{lg.featuresthat} </p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>Validate project</b></li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>Refused project</b></li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>Start campaign</b></li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>{lg.validateProject}</b></li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>{lg.refuseProject}</b></li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> <b>{lg.startCampaign}</b></li>
                       </ul>
 
-                      <h5 className="step">2. DESCRIPTIONS</h5>
-                      <h6 className="">1.1 Log in</h6>
-                      <p>As administrator you want to log in.</p>
+                      <h5 className="step">{lg.description}</h5>
+                      <h6 className="">{lg.login}</h6>
+                      <p>{lg.asAdmin}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Go to www.tontinards.biz:</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on "Login"</li>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> On this page, your username and your password or connections to social networks such as facebook twitter and google will be you requested</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.goto}</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickLogin}</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.onThisPage} </li>
                       </ul>
                       <img src="/images/manual/admin/im1.png" />
-                      <p>Now that you are logged in as an administrator, we will describe all the features of the application one after the other.</p>
-                      <h6 className="">1.2 Administrator Menu</h6>
-                      <p>The "Admin" menu contains all the features that allow the administrator to configure the application, namely:</p>
+                      <p>{lg.nowThat}</p>
+                      <h6 className="">{lg.adminMenu}</h6>
+                      <p>{lg.theAdminMenu}</p>
                       <img src="/images/manual/admin/im2.png" />
-                      <h6 className="">2.1.1 Categories</h6>
-                      <p>The category menu allows the administrator to add new project categories. To do that:</p>
+                      <h6 className="">{lg.category}</h6>
+                      <p>{lg.theCategory}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the category menu in admin.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clicksOnTheCategory}</li>
                       </ul>
                       <img src="/images/manual/admin/im3.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new category button.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnNew} </li>
                       </ul>
                       <img src="/images/manual/admin/im4.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the form then click on Save.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.fillInTheForm} </li>
                       </ul>
                       <img src="/images/manual/admin/im5.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> The new category is added to the list of projects below.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.theNewCategory}</li>
                       </ul>
                       <img src="/images/manual/admin/im6.png" />
-                      <h6 className="">2.2.2 Funds Raise As</h6>
-                      <p>The Funds Raising As menu allows the administrator to add a new type of fundraiser (team individual). To do that:</p>
+                      <h6 className="">{lg.fundRaiseAs}</h6>
+                      <p>{lg.theFundRaiseAs}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the Funds Raising As menu in admin.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnFundRaiseAs}</li>
                       </ul>
                       <img src="/images/manual/admin/im7.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new Funds Raising As button.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnNewFundRaiseAs}</li>
                       </ul>
                       <img src="/images/manual/admin/im8.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the form then click on Save.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.saveFundRaiseAs}</li>
                       </ul>
                       <img src="/images/manual/admin/im9.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> The new Fund Raising As is added to the list of projects below.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.newFundRaiseAs}</li>
                       </ul>
                       <img src="/images/manual/admin/im10.png" />
-                      <h6 className="">2.2.3 Funds Raise For</h6>
-                      <p>The Funds Raise For menu allows the administrator to add a new type of person for whom fundraising is done collecting funds. To do that:</p>
+                      <h6 className="">{lg.fundRaiseFor}</h6>
+                      <p>{lg.theFundRaiseFor}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the Funds Raise For menu in admin.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnFundRaiseFor} </li>
                       </ul>
                       <img src="/images/manual/admin/im11.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new Funds Raise For button.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnNewFundRaiseFor} </li>
                       </ul>
                       <img src="/images/manual/admin/im12.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the form then click on Save.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.saveFundRaiseFor} </li>
                       </ul>
                       <img src="/images/manual/admin/im13.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> The new Funds Raise For is added to the list of projects below.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.newFundRaiseFor} </li>
                       </ul>
                       <img src="/images/manual/admin/im14.png" />
-                      <h6 className="">2.2.4 Donation</h6>
-                      <p>The Donation menu allows the administrator to confirm or reject a donation. To do that:</p>
+                      <h6 className="">{lg.donation}</h6>
+                      <p>{lg.theDonation}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Clicks on the Donate menu in admin.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnDonation} </li>
                       </ul>
                       <img src="/images/manual/admin/im15.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on new Donation Type button.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnNewDonationType} </li>
                       </ul>
                       <img src="/images/manual/admin/im16.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Choose a particular donation for which you have collected money and click on Validate to confirm that the donation is effective.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.chooseDonation} </li>
                       </ul>
                       <img src="/images/manual/admin/im16-1.png" />
                       <img src="/images/manual/admin/im16-2.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Choose a donation for which you have not recovered money and click Delete to cancel the entry.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.chooseDonationFor} </li>
                       </ul>
                       <img src="/images/manual/admin/im17.png" />
 
-                      <h6 className="">2.3 Contextual Menu</h6>
-                      <p>The Contextual Menu contains all the features related to the connected user, namely:</p>
-                      <h6 className="">2.3.1 Dashboard</h6>
-                      <p>Dashboard menu allows you to manage projects submitted by project promoters. To do that:</p>
+                      <h6 className="">{lg.contextual}</h6>
+                      <p>{lg.theContextual}</p>
+                      <h6 className="">{lg.dashboard}</h6>
+                      <p>{lg.dashboardMenu}</p>
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Hover over the user's name.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.hover}</li>
                       </ul>
                       <img src="/images/manual/admin/im18.png" />
                       <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Dashboard menu.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnDashboardMenu}</li>
                       </ul>
                       <img src="/images/manual/admin/im19.png" />
-                      <p>Manage a project consists in carrying out several operations,  which consist in making evolve the project.</p>
-                      <p>In the Dashboard page there is a menu whose buttons represent the steps by which a project passes. We have:</p>
-                      <h6 className="">2.3.1.1 Pending Projects</h6>
-                    <p>In Pending Projects menu, we find the list of submitted projects waiting to be processed.</p>
-                    <p>On each project in this section, we can apply two types of processing, Namely:</p>
-                    <h6 className="">2.3.1.1.1 Validate project</h6>
-                    <p>Validate a project is to say that it is worthy of interest, therefore it is selected. To do this, proceed as follows:</p>
+                      <p>{lg.manageProject}</p>
+                      <p>{lg.inTheDashboard}</p>
+                      <h6 className="">{lg.pendingProject}</h6>
+                    <p>{lg.pendingMenu}</p>
+                    <p>{lg.onEachProject}</p>
+                    <h6 className="">{lg.validateProjects}</h6>
+                    <p>{lg.validateAproject}</p>
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validate project.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnValidate}</li>
                     </ul>
                     <img src="/images/manual/admin/im20.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.selectProject} </li>
                     </ul>
                     <img src="/images/manual/admin/im21.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Detail.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnDetail} </li>
                     </ul>
                     <img src="/images/manual/admin/im22.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validate</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnValidates} </li>
                     </ul>
                     <img src="/images/manual/admin/im23.png" />
-                    <h6 className="">2.3.1.1.2 Refuse project</h6>
-                    <p>Refusing a project is to say that it is not worthy of interest, so it is rejected. For that, proceed as following:</p>
+                    <h6 className="">{lg.refuseProjects}</h6>
+                    <p>{lg.Refusing}</p>
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validate project</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnValidate}</li>
                     </ul>
                     <img src="/images/manual/admin/im24.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.selectProject}</li>
                     </ul>
                     <img src="/images/manual/admin/im25.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Detail</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} />{lg.clickOnDetail}</li>
                     </ul>
                     <img src="/images/manual/admin/im26.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Refuse</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnRefuse}</li>
                     </ul>
                     <img src="/images/manual/admin/im27.png" />
 
-                    <h6 className="">2.3.1.2 Validated Projects</h6>
-                    <p>In the Validated Projects menu, we find the list of previously validated projects that are pending processing.</p>
-                    <p>On each project in this section, we can apply two types of processing, namely:</p>
-                    <h6 className="">2.3.1.2.1 Edit projects</h6>
-                    <p>Editing a project is perfecting it to meet the standards of a financeable project. For that, proceed as following:</p>
+                    <h6 className="">{lg.ValidateProjects}</h6>
+                    <p>{lg.inThevalidate}</p>
+                    <p>{lg.onEachProject}</p>
+                    <h6 className="">{lg.editProject}</h6>
+                    <p>{lg.editing}</p>
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validated Project.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnvalidate}</li>
                     </ul>
                     <img src="/images/manual/admin/im28.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.selectProject}</li>
                     </ul>
                     <img src="/images/manual/admin/im29.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Edit.</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickEdit}</li>
                     </ul>
                     <img src="/images/manual/admin/im30.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Modify the necessary fields( Add project video ).</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.manage}</li>
                     </ul>
                     <img src="/images/manual/admin/im31.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Save</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickSave}</li>
                     </ul>
                     <img src="/images/manual/admin/im32.png" />
-                    <h6 className="">2.3.1.2.2 Start Campaign</h6>
-                    <p>Launch a campaign is to confirm that a project is ready to receive donations, ie it meets the standards of the platform in terms of financeable project.  For that, proceed as following:</p>
+                    <h6 className="">{lg.startCampaigns}</h6>
+                    <p>{lg.launchCampaign}</p>
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Validated Project</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnvalidate}</li>
                     </ul>
                     <img src="/images/manual/admin/im33.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Select a project</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.selectProject}</li>
                     </ul>
                     <img src="/images/manual/admin/im34.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Detail</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickOnDetail}</li>
                     </ul>
                     <img src="/images/manual/admin/im35.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Start Campaign</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickStartCampaign}</li>
                     </ul>
                     <img src="/images/manual/admin/im36.png" />
-                    <h6 className="">2.3.1.3 Campaign</h6>
-                    <p>In the Campaign menu, we find the list of campaigns started (project in expectation of financing).<br/>To gain access, simply click on the Campaign menu button.</p>
+                    <h6 className="">{lg.campaigns}</h6>
+                    <p>{lg.inTheCampaignMenu}<br/>{lg.toGain}</p>
                     <img src="/images/manual/admin/im37.png" />
-                    <h6 className="">2.3.2 Profile</h6>
-                    <p>Le menu Profile vous permet de mettre à jour vos information utilisateur au besoin (Nom, Email, UserName).</p>
+                    <h6 className="">{lg.profile}</h6>
+                    <p>{lg.profilMenu}</p>
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Hover over the user's name</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.hover}</li>
                     </ul>
                     <img src="/images/manual/admin/im38.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on the Profile menu</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickProfileMenu}</li>
                     </ul>
                     <img src="/images/manual/admin/im39.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Fill in the necessary fields</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.fillIn}</li>
                     </ul>
                     <img src="/images/manual/admin/im40.png" />
                     <ul>
-                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> Click on Save</li>
+                        <li><FontAwesomeIcon icon={faChevronRight} size={"1x"} /> {lg.clickSave}</li>
                     </ul>
                     <img src="/images/manual/admin/im41.png" />
 

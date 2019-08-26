@@ -1,0 +1,14 @@
+{
+    "Projects":"projects",
+    "NewProject": "New Projet",
+    "Name":"Name",
+    "Category": "Category",
+    "PhoneNumber": "Phone Number",
+    "Email":"Email",
+    "ObjectiveAmount":"Objective Amount",
+    "CurrentAmount":"Current Amount",
+    "CreatedAt":"Created At",
+    "Actions":"Actions",
+    "Delete":"Delete",
+    "Edit":"Edit"
+  }

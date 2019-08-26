@@ -261,14 +261,32 @@ import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import { Modal, Button } from 'react-bootstrap';
 import axios from 'axios';
+import adminFunnelListPageFr from '../../../../traduction/adminFunnelListPage/fr.json';
+import adminFunnelListPageEn from '../../../../traduction/adminFunnelListPage/en.json';
 
 // App component - represents the whole app
-const monthNames = [
+
+const monthNamesEn = [
     "January", "February", "March",
     "April", "May", "June", "July",
     "August", "September", "October",
     "November", "December"
 ];
+
+let lang = localStorage.getItem('lang');
+let monthNames = [];
+let monthNamesFr = [
+    "Janvier", "Fevrier", "Mars",
+    "Avril", "Mai", "Juin", "Juillet",
+    "Août", "Septembre", "Octobre",
+    "Novembre", "Decembre"
+];
+lang == 'fr'?
+    monthNames = monthNamesFr
+:
+    monthNames = monthNamesEn
+
+
 class FunnelLIstAdmin extends Component {
     constructor(props) {
         super(props);
@@ -421,8 +439,13 @@ class FunnelLIstAdmin extends Component {
     }
 
     addNotification = (massage) => {
+        let title = 'ETAT DU PROJECT';
+        lang == 'fr'?
+            title = 'ETAT DU PROJECT'
+            :
+            title = 'PROJECT STATE'
         this.notificationDOMRef.current.addNotification({
-          title: "PROJECT STATE",
+          title: title,
           message: massage,
           type: "danger",
           insert: "top",
@@ -435,14 +458,27 @@ class FunnelLIstAdmin extends Component {
     }
 
     addNewProject = () => {
+        let notification = "S'il vous plait, Mettez à jour votre profil en ajoutant votre Email.";
+        lang == 'fr'?
+            notification = "S'il vous plait, Mettez à jour votre profil en ajoutant votre Email."
+            :
+            notification = "Please, update your profile with your email."
         if(this.state.currentUser.emails) {
             this.setState({show: true})
         } else {
-            this.addNotification("Please, update your profile with your email.");
+            this.addNotification(notification);
         }
     }
 
     render() {
+        let lg = adminFunnelListPageFr;
+        let lang = localStorage.getItem('lang')
+
+          lang == 'fr'?
+              lg = adminFunnelListPageFr
+              :
+              lg = adminFunnelListPageEn;
+
         const { typeOfDonation, show,city, phoneNumber, objectifAmount, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, description, id, category, document, projectImage, teamImage, email, feedback, video, country, countries, isEditing, categoryType } = this.state;
         const { funnels, categories, foundRaiseAs, forWhoFoundsRaise, user, typeOfDonations } = this.props;
         //console.log(user);
@@ -455,12 +491,12 @@ class FunnelLIstAdmin extends Component {
                     <div className="col-lg-12">
                         <div className="ibox float-e-margins">
                             <div className="ibox-projectName">
-                                <h5>Projects</h5>
+                                <h5>{lg.Projects}</h5>
                             </div>
                             <div className="ibox-content">
                                 <div className="row">
                                     <div className="col-sm-3">
-                                        <button type="button" className="btn btn-primary" onClick={() => this.addNewProject()} > New Project</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => this.addNewProject()} > {lg.NewProject}</button>
                                     </div>
                                     <FunnelModalForm userId={this.state.currentUser} feedback={feedback} city={city} 
                                         categories={categories} typeOfDonations={typeOfDonations} id={id} category={category} phoneNumber={phoneNumber} 
@@ -476,14 +512,14 @@ class FunnelLIstAdmin extends Component {
                                     <table className="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th>Phone Number</th>
-                                                <th>Email</th>
-                                                <th>Objective Amount</th>
-                                                <th>Current Amount</th>
-                                                <th>Created At</th>
-                                                <th className="pull-right">Actions</th>
+                                                <th>{lg.Name}</th>
+                                                <th>{lg.Category}</th>
+                                                <th>{lg.PhoneNumber}</th>
+                                                <th>{lg.Email}</th>
+                                                <th>{lg.ObjectiveAmount}</th>
+                                                <th>{lg.CurrentAmount}</th>
+                                                <th>{lg.CreatedAt}</th>
+                                                <th className="pull-right">{lg.Actions}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
