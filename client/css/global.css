@@ -11325,6 +11325,12 @@ color:white;
 .selectLanguage{
   background-color: rgb(73, 68, 68) !important;
 }
+
+.selectLanguageHeader{
+  background-color: #0076B6 !important;
+  color: #fff !important;
+  font-weight: 800;
+}
 /* User manual */
 
 .user-manual {
