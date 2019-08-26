@@ -3667,6 +3667,10 @@ a.forum-item-projectName:hover {
   .firstTextDiv{
     padding: 0 16% !important;
   }
+
+  .projects{
+    padding: 10px 30px !important;
+  }
   
 }
 /* New Timeline style */
@@ -11107,6 +11111,22 @@ color:white;
   }
 
 }
+@media (min-width: 992px) and (max-width: 1084px) { 
+  .viewMoreBtn, .donateBtn{
+    font-size: 1em !important;
+    padding: 5px 22px !important;
+  }
+}
+
+@media (min-width: 588px) and (max-width: 1200px) {
+  .addprojectBtn, .getfundBtn {
+    width: 40%;
+  }
+
+  .allbuttons{
+    margin-top:-30px;
+  }
+}
 @media (min-width: 588px) and (max-width: 1024px) {
   .helpContainer{
     display: flex;
@@ -11127,7 +11147,6 @@ color:white;
   }
   .help p{
     width: 80%;
-  
   }
 
 }
@@ -11343,6 +11362,7 @@ color:white;
   .user-manual .container{
     width: 80% !important;
   }
+
 }
 @media only screen and (max-width: 900px) {
   .user-manual .container{

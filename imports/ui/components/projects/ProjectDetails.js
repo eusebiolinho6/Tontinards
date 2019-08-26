@@ -241,7 +241,9 @@ class ProjectDetails extends Component {
                                         {
                                             this.state.story ?
                                             <div className="text">
-                                                <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                               <p>
+                                                   <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                                </p>
                                             </div>:
                                             <div className="reviews">
                                             {
@@ -353,42 +355,14 @@ class ProjectDetails extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="video">
-                            {
-                                project.video ? 
-                                <video width="100%" height="100%" controls>
-                                    <source src={project.video} type="video/mp4"></source>
-                                    <source src={project.video} type="video/ogg"></source>
-                                </video>: null
-                            }
-                        </div>
-                        <div className="date">
-                            <p>Creation Date: <b>
-                                <Moment parse="YYYY-MM-DD">
-                                    {project.createdAt}
-                                </Moment></b>
-                            </p>
-                        </div>
-                        <div className="profile">
-                            <img src="/images/user.png" />
-                            <div className="profile-infos">
-                                <div>
-                                    <p>{project.userId.profile ? project.userId.profile.name ? project.userId.profile.name: project.userId.username : project.userId.username}</p>
-                                    <p>{project.country}</p>
-                                </div>
-                                <div>
-                                    <p>{project.phoneNumber}</p>
-                                </div>
-                            </div> 
-                        </div>
-                        <div className="messages">
-                            <a className="btn readproject" href={project.document}>{lg.readDetailedBtn}</a>                            
-                        </div>
-                        <div className="messages">
-                            <div className="allmessages">
-                            <Link to={{pathname:'/projects/'+routeId+'/'+ finalProjectRoute + '/donate', projectId: project._id._str}} className="btn st donationBtn2 donationBtn">{lg.donateBtn} </Link>
-                                {/* <h4>{lg.donationMessage}</h4> */}
+                            <div className="video">
+                                {
+                                    project.video ? 
+                                    <video width="100%" height="100%" controls>
+                                        <source src={project.video} type="video/mp4"></source>
+                                        <source src={project.video} type="video/ogg"></source>
+                                    </video>: null
+                                }
                             </div>
                             <div className="date">
                                 <p>Creation Date: <b>

@@ -38,7 +38,7 @@ class Footer extends Component {
             <div>
                 <div className="footer">
                     
-                    {/* <div className="col-md-4 col-sm-6 titles"> */}
+                    {/* { <div className="col-md-4 col-sm-6 titles"> */} 
                         {/* <span className="rightBordered"> English </span>  
                         <span className="rightBordered"> French </span> 
                         <span className="p-w-xs"> Drapeau </span> 
