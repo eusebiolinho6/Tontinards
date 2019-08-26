@@ -98,7 +98,8 @@ export default class ProjectItem extends Component {
             lg = projectItemEn;
         const { project, propclass, user, typeOfDonations } = this.props;
         if (project.currentAmount == "") project.currentAmount = 0;
-        const percentage = Math.floor((project.currentAmount / parseInt(project.objectifAmount)) * 100);
+        const percentage = Math.floor(((project.currentAmount) / parseInt(project.objectifAmount)) * 100);
+        console.log(percentage)
         const { city, phoneNumber, userId, objectifAmount, projectName,
             currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise,
             description, _id, category, document, projectImage, teamImage, email,

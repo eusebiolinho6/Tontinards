@@ -10548,6 +10548,7 @@ color: green;
 
   .footerLogoContainer{
     text-align: left !important;
+    margin-left: 0%;
   }
 
   .getfundBtn{
@@ -10570,7 +10571,16 @@ color: green;
 
   .descriptionText p{
     width: 150% !important;
+
   }
+  .socials {
+    width: 50%;
+    height: 3rem;
+    margin-top: -4.5%;
+    margin-left: 89% ; 
+    font-size: 15px;
+  }
+
   
 }
 
@@ -10908,14 +10918,12 @@ padding: 0 8px;
   font-size: 1.3vw;
 }
 
-
-.socials span{
-  margin-left: 20px;
-}
-
 .socials{
-  text-align: right !important;
-  padding-right: 15px;
+  width: 40%;
+  height: 3rem;
+  margin-top: -4.5%;
+  margin-left: 87% ; 
+  font-size: 18px;
 }
 
 /* .titles {
@@ -11112,6 +11120,15 @@ color:white;
   .help p{
     width: 80%;
   
+  }
+
+  .socials{
+    width: 40%;
+    height: 3rem;
+    margin-top: -6.5%;
+    margin-bottom: 9.5%;
+    margin-left: 79.5% ; 
+    font-size: 25px;
   }
 
 }
@@ -11454,5 +11471,26 @@ color:white;
   }
   #radioinput {
     flex-direction: column !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  .socials{
+    width: 30%;
+    height: 3rem;
+    margin-top: -16%;
+    margin-bottom: 10%;
+    margin-left: 66.5% ; 
+    font-size: 18px;
+  }
+}
+@media only screen and (width: 768px) {
+  .socials{
+    width: 30%;
+    height: 3rem;
+    margin-top: -0.5%;
+    margin-left: 79.5% ; 
+    font-size: 22px;
   }
 }

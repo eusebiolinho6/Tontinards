@@ -52,20 +52,22 @@ class FunnelModalForm extends Component {
             fundsRaiseAsPossibilities: [],
             user: null,
             categoryType: props.categoryType,
-            story: '',
-            motivation: '',
-            aboutyourcompany: '',
-            problem: '',
-            target: '',
-            currentStep: '',
-            havePaidClient: '',
-            haveProspect: ''
+            story: props.story,
+            motivation: props.motivation,
+            aboutyourcompany: props.aboutyourcompany,
+            problem: props.problem,
+            target: props.target,
+            currentStep: props.currentStep,
+            havePaidClient: props.havePaidClient,
+            haveProspect: props.haveProspect
         };
 }   
 
     componentWillReceiveProps(nextProps) {
-        const { user, show, userId,city, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, email,objectifAmount,feedback, category, description, id, country, typeOfDonation,categoryType } = nextProps;
-        this.setState({ user, show, userId,city, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email,feedback, objectifAmount, category, description, id, country, typeOfDonation,categoryType });
+        const { user, show, userId,city, projectName, teamName, projectState, currentAmount, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber, email,objectifAmount,feedback, category, description, id, country, typeOfDonation,categoryType, 
+            story, motivation, aboutyourcompany, problem, target, currentStep, havePaidClient, haveProspect } = nextProps;
+        this.setState({ user, show, userId,city, projectName, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email,feedback, objectifAmount, category, description, id, country, typeOfDonation,categoryType,
+            story, motivation, aboutyourcompany, problem, target, currentStep, havePaidClient, haveProspect });
     }
     
     closeModal() {
@@ -231,7 +233,7 @@ class FunnelModalForm extends Component {
         }
 }
   handleSUbmit(e) { 
-      console.log("ENTERED SUBMIT")
+    console.log("ENTERED SUBMIT")
     e.preventDefault();
     if(!this.props.isEditing){
         if(!this.isValid()){
@@ -247,43 +249,43 @@ class FunnelModalForm extends Component {
             const a ={global:err.error};
             this.setState({errors: {...errors,...a}, isLoading:false});
         } else {
-        let uploads = [],
-        cursor =1;
-     if (this.state.projectImage) uploads.push('projectImage');
-     if (this.state.teamImage) uploads.push('teamImage');
-     if (this.state.videoFile) uploads.push('videoFile');
-     if (this.state.documentFile) uploads.push('documentFile');  
-     if (!uploads.length) return this.closeModal();
-     console.log(uploads);
-     for (let i = 0; i < uploads.length; i++) {
-         const fieldName = uploads[i]; 
-         let collection = collections[fieldName];
-         if(!collection) return console.log('IMPOSSIBLE ERROR BUT WE NEED TO BE SURE');
-         const file = this.state[fieldName]; 
-            const upload = collection.insert({
-            file: file,
-            streams: 'dynamic',
-            chunkSize: 'dynamic'
-        }, false);
-        upload.on('end', (err,fileObj)=> {
-            if (err) {
-                errors[fieldName]=err&&err.message;
-                this.setState({errors});
-            } else {
-                const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
-                let a = fieldName.split('File');
-                const field = a[0];
-                Funnels.update(id, {$set: {[field]: link}});
-            }
-            if(!(cursor<uploads.length)){
-                this.setState({isLoading:false});
-                if (!Object.keys(errors).length) this.closeModal();
-                return;
-            } 
-            cursor++;                 
-        });
-        upload.start();
-     }  
+            let uploads = [],
+            cursor =1;
+            if (this.state.projectImage) uploads.push('projectImage');
+            if (this.state.teamImage) uploads.push('teamImage');
+            if (this.state.videoFile) uploads.push('videoFile');
+            if (this.state.documentFile) uploads.push('documentFile');  
+            if (!uploads.length) return this.closeModal();
+            console.log(uploads);
+            for (let i = 0; i < uploads.length; i++) {
+                const fieldName = uploads[i]; 
+                let collection = collections[fieldName];
+                if(!collection) return console.log('IMPOSSIBLE ERROR BUT WE NEED TO BE SURE');
+                const file = this.state[fieldName]; 
+                    const upload = collection.insert({
+                    file: file,
+                    streams: 'dynamic',
+                    chunkSize: 'dynamic'
+                }, false);
+                upload.on('end', (err,fileObj)=> {
+                    if (err) {
+                        errors[fieldName]=err&&err.message;
+                        this.setState({errors});
+                    } else {
+                        const link= `${Meteor.absoluteUrl() + fileObj._downloadRoute}/${fileObj._collectionName}/${fileObj._id}/original/${fileObj._id}.${fileObj.extension}`;
+                        let a = fieldName.split('File');
+                        const field = a[0];
+                        Funnels.update(id, {$set: {[field]: link}});
+                    }
+                    if(!(cursor<uploads.length)){
+                        this.setState({isLoading:false});
+                        if (!Object.keys(errors).length) this.closeModal();
+                        return;
+                    } 
+                    cursor++;                 
+                });
+                upload.start();
+            }  
         }
      })
   }
@@ -302,14 +304,17 @@ class FunnelModalForm extends Component {
         }
     }
 
-    goToNextStepTwo = () => {
+    goToNextStepTwo = (e) => {
+        e.preventDefault();
         if(!this.props.isEditing){
             if(!this.isValid()){
                  console.log("IS NOT VALID")
                 return ;
             } else {
-                this.setState({ stepOne: false })
+                this.setState({ stepOne: false, errors: {} })
             }
+        } else {
+            this.setState({ stepOne: false, show: true })
         }
     }
 
@@ -319,7 +324,8 @@ class FunnelModalForm extends Component {
     let lang = localStorage.getItem('lang');
     lang == 'fr'?
             lg = adminfunnelModalFormFr : lg = adminfunnelModalFormEn;
-    const { user,categoryType, typeOfDonation, show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities } = this.state;
+    const { user,categoryType, typeOfDonation, show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities, story,
+        motivation, aboutyourcompany,problem, target,currentStep, havePaidClient, haveProspect } = this.state;
     const { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries  } = this.props;
     const categoryTypes = ["Profit", "Non profit"]
 
@@ -429,7 +435,7 @@ class FunnelModalForm extends Component {
                             </div>
                         ))}
                     </div>
-                ))
+              
                </div>
                :
                null
@@ -501,42 +507,42 @@ class FunnelModalForm extends Component {
             <div className="form-group">
                 <label for="exampleInputEmail">Parlez-nous brièvement de vous ?</label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="story" value={this.state.story} className="form-control" rows="2"></textarea>
+                name="story" value={story} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">Qu'est-ce qui vous a motivé à démarrer une entreprise ?</label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="motivation" value={this.state.motivation} className="form-control" rows="2"></textarea>
+                name="motivation" value={motivation} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">Parlez-nous de votre entreprise</label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="aboutyourcompany" value={this.state.aboutyourcompany} className="form-control" rows="2"></textarea>
+                name="aboutyourcompany" value={aboutyourcompany} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">Quels problèmes votre entreprise tente-t-elle de résoudre ?</label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="problem" value={this.state.problem} className="form-control" rows="2"></textarea>
+                name="problem" value={problem} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">Quel est votre public cible ?</label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="target" value={this.state.target} className="form-control" />
+                name="target" value={target} className="form-control" />
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">A quelle étape de votre lancement êtes-vous ?</label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="currentStep" value={this.state.currentStep} className="form-control" />
+                name="currentStep" value={currentStep} className="form-control" />
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">Avez-vous des clients qui paient ?</label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="havePaidClient" value={this.state.havePaidClient} className="form-control" />
+                name="havePaidClient" value={havePaidClient} className="form-control" />
             </div>
             <div className="form-group">
                 <label for="exampleInputEmail">Avez-vous des prospects ?</label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
-                name="haveProspect" value={this.state.haveProspect} className="form-control" />
+                name="haveProspect" value={haveProspect} className="form-control" />
             </div>
         </div>
     );
@@ -561,7 +567,7 @@ class FunnelModalForm extends Component {
                 <Button disabled={isLoading} onClick={()=> this.closeModal()}>{lg.Close} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
                 {
                     this.state.stepOne ?
-                        <Button onClick={() => this.goToNextStepTwo()} disabled={isLoading} bsStyle="primary">{"Next"} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>:
+                        <Button onClick={(e) => this.goToNextStepTwo(e)}  bsStyle="primary">{"Next"} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>:
                         <Button type="submit" disabled={isLoading} bsStyle="primary">{lg.Save} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
                 }
                 </ModalFooter>
