@@ -1064,7 +1064,7 @@ class FunnelModalForm extends Component {
       const { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries  } = this.props;
     //   console.log(foundRaiseAs);
     //   console.log(typeOfDonations);
-    //   console.log(typeOfDonation);
+    //   console.log(typeOfDonation)
 
       const categoryTypes = ["Profit", "Non profit"]
 

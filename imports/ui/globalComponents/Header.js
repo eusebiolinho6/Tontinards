@@ -141,11 +141,11 @@ class Header extends Component {
                                                            &nbsp;
                                                            {lang == 'fr'?
                                                                     <button className="btn selectLanguageHeader">
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
                                                                     </button>
                                                                     :
                                                                     <button className="btn selectLanguageHeader" >
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
                                                                     </button>
                                                                     
                                                          } 
@@ -170,14 +170,14 @@ class Header extends Component {
                                                         &nbsp;
                                                         {lang == 'fr'?
                                                                     <button className="btn selectLanguageHeader">
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
                                                                     </button>
                                                                     :
                                                                     <button className="btn selectLanguageHeader" >
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
                                                                     </button>
                                                                     
-                                                         }
+                                                         } 
                                                         </div>
                                                         
                                                 }
@@ -193,15 +193,15 @@ class Header extends Component {
                                             &nbsp;
 
                                             {lang == 'fr'?
-                                                <button className="btn selectLanguageHeader">
-                                                    <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
-                                                </button>
-                                                 :
-                                                 <button className="btn selectLanguageHeader" >
-                                                     <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
-                                                 </button>
-                                                
-                                             }
+                                                    <button className="btn selectLanguageHeader">
+                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                    </button>
+                                                    :
+                                                    <button className="btn selectLanguageHeader" >
+                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                    </button>
+                                                            
+                                            } 
                                         </div>
                                     }
                                 </li>
