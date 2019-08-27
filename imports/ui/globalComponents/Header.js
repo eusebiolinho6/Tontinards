@@ -87,7 +87,8 @@ class Header extends Component {
                                     </span>
                                 </div>
                                 :
-                                <div className="col-md-7 col-sm-3"></div>
+                                null
+                                // <div className="col-md-3 col-sm-3"></div>
                             }
                             
                             {/* <div className="col-md-5 col-sm-9 col-xs-12">
@@ -117,95 +118,96 @@ class Header extends Component {
                             </div> */}
                                 
 
-                            <ul className="nav navbar-top-links navbar-right logoutMenu">
-                                {/* Vilidate Button for admin */}
-                                {/* End Vilidate Button for admin */}
-                                <li>
-                                    {
-                                        user ?
-                                            <span>
-                                                {
-                                                    user.profile.role == "admin" ?
-                                                       <div>
+                            <div className="col-md-10 col-sm-12 buttonsBiggerContainer">
+                                <ul className="nav navbar-top-links navbar-right logoutMenu">
+                                    {/* Vilidate Button for admin */}
+                                    {/* End Vilidate Button for admin */}
+                                    <li>
+                                        {
+                                            user ?
+                                                <span>
+                                                    {
+                                                        user.profile.role == "admin" ?
+                                                        <div>
+                                                                <div className="dropdown">
+                                                                    <p className="dropbtn">{user.profile.name}</p>
+                                                                
+                                                                    <div className="dropdown-content">
+                                                                        <Link to={{pathname:'/admin/admindashboard'}} className="">{lg.dashboard} </Link>
+                                                                        <a href="/authentication/profile">{lg.profile}</a>
+                                                                        <a href="/admin/help">{lg.Help}</a>
+                                                                        <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
+                                                                </div>
+                                                            </div>
+                                                            &nbsp; 
+                                                            &nbsp;
+                                                            {lang == 'fr'?
+                                                                        <button className="btn selectLanguageHeader">
+                                                                            <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                                        </button>
+                                                                        :
+                                                                        <button className="btn selectLanguageHeader" >
+                                                                            <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                                        </button>
+                                                                        
+                                                            } 
+                                                        </div>
+                                                            
+                                                        : 
+                                                            <div>
+                                                                
+
                                                             <div className="dropdown">
                                                                 <p className="dropbtn">{user.profile.name}</p>
-                                                            
+        
                                                                 <div className="dropdown-content">
-                                                                    <Link to={{pathname:'/admin/admindashboard'}} className="">{lg.dashboard} </Link>
+                                                                    <Link to={{pathname:'/user/campaigns'}} className="">{lg.campaign} </Link>
                                                                     <a href="/authentication/profile">{lg.profile}</a>
-                                                                    <a href="/admin/help">{lg.Help}</a>
+                                                                    <a href="/user/projects">{lg.createproject}</a>
+                                                                    <a href="/user/help">{lg.Help}</a>
                                                                     <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
+                                                                </div>
                                                             </div>
-                                                           </div>
-                                                           &nbsp; 
-                                                           &nbsp;
-                                                           {lang == 'fr'?
-                                                                    <button className="btn selectLanguageHeader">
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
-                                                                    </button>
-                                                                    :
-                                                                    <button className="btn selectLanguageHeader" >
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
-                                                                    </button>
-                                                                    
-                                                         } 
-                                                       </div>
-                                                        
-                                                    : 
-                                                        <div>
-                                                             
-
-                                                        <div className="dropdown">
-                                                            <p className="dropbtn">{user.profile.name}</p>
-    
-                                                            <div className="dropdown-content">
-                                                                <Link to={{pathname:'/user/campaigns'}} className="">{lg.campaign} </Link>
-                                                                <a href="/authentication/profile">{lg.profile}</a>
-                                                                <a href="/user/projects">{lg.createproject}</a>
-                                                                <a href="/user/help">{lg.Help}</a>
-                                                                <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            {lang == 'fr'?
+                                                                        <button className="btn selectLanguageHeader">
+                                                                            <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                                        </button>
+                                                                        :
+                                                                        <button className="btn selectLanguageHeader" >
+                                                                            <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                                        </button>
+                                                                        
+                                                            } 
                                                             </div>
-                                                        </div>
-                                                        &nbsp;
-                                                        &nbsp;
-                                                        {lang == 'fr'?
-                                                                    <button className="btn selectLanguageHeader">
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
-                                                                    </button>
-                                                                    :
-                                                                    <button className="btn selectLanguageHeader" >
-                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
-                                                                    </button>
-                                                                    
-                                                         } 
-                                                        </div>
-                                                        
-                                                }
-                                            </span>
-                                        : 
-                                        <div>
-                                            <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
-                                            <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
-                                            <Link to="/donation/help" className="m-l-md">{lg.Help}</Link>
-                                            &nbsp;
-                                            &nbsp;
-                                            &nbsp;
-                                            &nbsp;
-
-                                            {lang == 'fr'?
-                                                    <button className="btn selectLanguageHeader">
-                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
-                                                    </button>
-                                                    :
-                                                    <button className="btn selectLanguageHeader" >
-                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
-                                                    </button>
                                                             
-                                            } 
-                                        </div>
-                                    }
-                                </li>
-                            </ul>
+                                                    }
+                                                </span>
+                                            : 
+                                            <div className="authBtns">
+                                                <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
+                                                <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
+                                                <Link to="/donation/help" className="m-l-md helpLink">{lg.Help}</Link>
+                                                &nbsp;
+                                                &nbsp;
+                                                &nbsp;
+                                                &nbsp;
+                                                {lang == 'fr'?
+                                                        <button className="btn selectLanguageHeader">
+                                                            <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                        </button>
+                                                        :
+                                                        <button className="btn selectLanguageHeader" >
+                                                            <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                        </button>
+                                                                
+                                                } 
+                                            </div>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </nav>
                 </div>
