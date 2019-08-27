@@ -22,7 +22,7 @@ class Select extends Component {
         const { field, options, value, label, error, type, onChange, checkUserExists } = this.props;
         return (
         <div className={classnames('form-group', { 'has-error': error })}>
-            <label className="control-label">{label}</label>
+            <label className="control-label">{label} <label id="redstar">*</label></label>
             <select
             style={{height:'unset'}}
             value={value}

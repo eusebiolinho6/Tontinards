@@ -38,7 +38,7 @@ class FunnelModalForm extends Component {
             isLoading: false,
             id: '',
             show: false,
-            projectImage: '',
+            projectImage: props.projectImage,
             teamName: props.teamName,
             projectState: "PENDIND",
             currentAmount: 0,
@@ -59,7 +59,11 @@ class FunnelModalForm extends Component {
             target: props.target,
             currentStep: props.currentStep,
             havePaidClient: props.havePaidClient,
-            haveProspect: props.haveProspect
+            haveProspect: props.haveProspect,
+            imagePreview: '',
+            documentPreview: '',
+            videoPreview: '',
+            imageTeamPreview: ''
         };
 }   
 
@@ -104,7 +108,11 @@ class FunnelModalForm extends Component {
             target: '',
             currentStep: '',
             havePaidClient: '',
-            haveProspect: ''
+            haveProspect: '',
+            imagePreview: '',
+            documentPreview: '',
+            videoPreview: '',
+            imageTeamPreview: ''
         });
     }
     isValid() {
@@ -126,9 +134,6 @@ class FunnelModalForm extends Component {
   handleInputChange = (e) => {
       let name = e.target.name;
       let value = e.target.value;
-      console.log(this.state);
-    //   console.log(name);
-    //   console.log(value);
       if(e.target.type === 'checkbox') {
             if(e.target.checked) {
                 value = this.state.typeOfDonation ? [...this.state.typeOfDonation,value] : [value];
@@ -145,9 +150,20 @@ class FunnelModalForm extends Component {
       });
   }
 
-    setFile(name,file) {
+    setFile(name,file, previewFile) {
+        let name2 = "";
+        if(name == "projectImage") {
+            name2 = "imagePreview";
+        } else if (name == "documentFile") {
+            name2 = "documentPreview";
+        } else if (name == "videoFile") {
+            name2 = "videoPreview";
+        } else if (name == "teamImage") {
+            name2 = "imageTeamPreview";
+        }
         this.setState({
-            [name]: file
+            [name]: file,
+            [name2]: previewFile
         });
     }
     saveFunnel(cb){
@@ -318,6 +334,11 @@ class FunnelModalForm extends Component {
             this.setState({ stepOne: false, show: true })
         }
     }
+    
+    backToFirst = (e) => {
+        e.preventDefault();
+        this.setState({ stepOne: true })
+    }
 
   render() {
 
@@ -325,10 +346,12 @@ class FunnelModalForm extends Component {
     let lang = localStorage.getItem('lang');
     lang == 'fr'?
             lg = adminfunnelModalFormFr : lg = adminfunnelModalFormEn;
-    const { user,categoryType, typeOfDonation, show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities, story,
-        motivation, aboutyourcompany,problem, target,currentStep, havePaidClient, haveProspect } = this.state;
-    const { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries  } = this.props;
+    const { user,categoryType, typeOfDonation, show, errors, projectName, city,userId, projectState, currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise, phoneNumber,email, objectifAmount, category, description, isLoading, id, country, feedback, fundsRaiseAsPossibilities, 
+        story, motivation, aboutyourcompany,problem, target,currentStep, havePaidClient, haveProspect } = this.state;
+    let { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries  } = this.props;
     const categoryTypes = ["Profit", "Non profit"]
+
+    console.log(this.state)
 
     const stepOneForm = (
         <div className="">
@@ -369,7 +392,7 @@ class FunnelModalForm extends Component {
                 onChange={(event) => this.handleInputChange(event)}
             />
             <div>
-                <label>{lg.Country}</label> 
+                <label>{lg.Country} <label id="redstar">*</label></label> 
                 <br/>
                 <select name="country" className="countrySelect" onChange={(event) => this.handleInputChange(event)}>
                     <option> {
@@ -390,7 +413,7 @@ class FunnelModalForm extends Component {
                 onChange={(event) => this.handleInputChange(event)}
             />
             <div>
-                <label>{lg.TypeofCategory}</label> 
+                <label>{lg.TypeofCategory} <label id="redstar">*</label></label> 
                 <br/>
                 <select name="categoryType" className="countrySelect" onChange={(event) => this.handleInputChange(event)}>
                     <option> {
@@ -429,7 +452,7 @@ class FunnelModalForm extends Component {
             />
             {categoryType == categoryTypes[0] ?
                 <div>
-                    <p><strong>{lg.TypeOfDonation}</strong></p>
+                    <p><strong>{lg.TypeOfDonation} <label id="redstar">*</label></strong></p>
                     <div className="donationTypeWrapper">
                         {typeOfDonations.map((type, id) => (
                             <div key={id} className="wrapper">
@@ -471,7 +494,7 @@ class FunnelModalForm extends Component {
             {fundsRaiseAsPossibilities[1] ?
                 onefoundRaiseAs == fundsRaiseAsPossibilities[0]._id._str ?                        
                     <div>
-                        <h2>{lg.TeamInformations}</h2>
+                        <h2>{lg.TeamInformations} <label id="redstar">*</label></h2>
                         <Input
                             field="teamName"
                             label={lg.TeamName}
@@ -481,7 +504,7 @@ class FunnelModalForm extends Component {
                             size={250}
                         />
                         <div className="row">
-                            <Upload errors={errors} type="image" oldUrl={teamImage} setFile={(name, file) => this.setFile(name, file)} name="teamImage" label={lg.UploadTeamImage} />
+                            <Upload errors={errors} type="image" oldUrl={this.props.isEditing ? teamImage : this.state.imageTeamPreview} setFile={(name, file, previewFile) => this.setFile(name, file, previewFile)} name="teamImage" label={lg.UploadTeamImage} />
                         </div>
                     </div>
                 :   
@@ -489,15 +512,15 @@ class FunnelModalForm extends Component {
             :   
                 null
             }
-            <h2>{lg.Uploads}</h2>
+            <h2>{lg.Uploads} <label id="redstar">*</label></h2>
             <br />
             <div className="row">
-            <Upload errors={errors} type="image" oldUrl={projectImage} setFile={(name,file)=>this.setFile(name, file)} name="projectImage" label={lg.UploadProjectImage} />
-            <Upload errors={errors} type="document" oldUrl={document} setFile={(name, file)=>this.setFile(name, file)} name="documentFile" label = {lg.UploadProjectDocument} />
+            <Upload errors={errors} type="image" oldUrl={this.props.isEditing ? projectImage : this.state.imagePreview} setFile={(name,file, previewFile)=>this.setFile(name, file, previewFile)} name="projectImage" label={lg.UploadProjectImage} />
+            <Upload errors={errors} type="document" oldUrl={this.props.isEditing ? document :this.state.documentPreview} setFile={(name, file, previewFile)=>this.setFile(name, file, previewFile)} name="documentFile" label = {lg.UploadProjectDocument} />
             {
                 user ? 
                     user.profile.role == "admin" ?
-                        <Upload errors={errors} type="video" oldUrl={video} setFile={(name, file)=>this.setFile(name, file)} name="videoFile" label = {lg.UploadProjectVideo} />
+                        <Upload errors={errors} type="video" oldUrl={this.props.isEditing ? video :this.state.videoPreview} setFile={(name, file, previewFile)=>this.setFile(name, file, previewFile)} name="videoFile" label = {lg.UploadProjectVideo} />
                     : null : null
             }
             </div>
@@ -508,42 +531,42 @@ class FunnelModalForm extends Component {
     const stepTwoForm = (
         <div className="row p-sm">
             <div className="form-group">
-                <label for="exampleInputEmail">Parlez-nous brièvement de vous ?</label>
+                <label for="exampleInputEmail">Parlez-nous brièvement de vous ? <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="story" value={story} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Qu'est-ce qui vous a motivé à démarrer une entreprise ?</label>
+                <label for="exampleInputEmail">Qu'est-ce qui vous a motivé à démarrer une entreprise ? <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="motivation" value={motivation} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Parlez-nous de votre entreprise</label>
+                <label for="exampleInputEmail">Parlez-nous de votre entreprise <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="aboutyourcompany" value={aboutyourcompany} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Quels problèmes votre entreprise tente-t-elle de résoudre ?</label>
+                <label for="exampleInputEmail">Quels problèmes votre entreprise tente-t-elle de résoudre ? <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="problem" value={problem} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Quel est votre public cible ?</label>
+                <label for="exampleInputEmail">Quel est votre public cible ? <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="target" value={target} className="form-control" />
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">A quelle étape de votre lancement êtes-vous ?</label>
+                <label for="exampleInputEmail">A quelle étape de votre lancement êtes-vous ? <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="currentStep" value={currentStep} className="form-control" />
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Avez-vous des clients qui paient ?</label>
+                <label for="exampleInputEmail">Avez-vous des clients qui paient ? <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="havePaidClient" value={havePaidClient} className="form-control" />
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Avez-vous des prospects ?</label>
+                <label for="exampleInputEmail">Avez-vous des prospects ? <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="haveProspect" value={haveProspect} className="form-control" />
             </div>
@@ -571,7 +594,10 @@ class FunnelModalForm extends Component {
                 {
                     this.state.stepOne ?
                         <Button onClick={(e) => this.goToNextStepTwo(e)}  bsStyle="primary">{"Next"} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>:
-                        <Button type="submit" disabled={isLoading} bsStyle="primary">{lg.Save} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
+                        <Fragment>
+                            <Button disabled={isLoading} onClick={(e)=> this.backToFirst(e)}>{"Previous"}</Button>
+                            <Button type="submit" disabled={isLoading} bsStyle="primary">{lg.Save} {isLoading&&<i className="fa fa-spin fa-spinner"></i>}</Button>
+                        </Fragment>
                 }
                 </ModalFooter>
             </form>

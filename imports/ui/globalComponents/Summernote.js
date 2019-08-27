@@ -26,7 +26,7 @@ componentWillUnmount(){
         const {field, label, error, onChange, checkUserExists } = this.props;
         return (
         <div className={classnames('form-group', { 'has-error': error })}>
-            <label className="control-label">{label}</label>
+            <label className="control-label">{label} <label id="redstar">*</label></label>
             <div ref={elem => this.summernote = elem} ></div>
         {error && <span style={{color: '#ed5565'}} className="error-block">{error}</span>}
     </div> 

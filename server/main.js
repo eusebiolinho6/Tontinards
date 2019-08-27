@@ -7,7 +7,7 @@ import { ServiceConfiguration } from 'meteor/service-configuration';
 Meteor.startup(() => {
   // code to run on server at startup
   startCron();
-  process.env.MAIL_URL = 'smtps://silliconkidys@gmail.com:q:zuhferPFez@smtp.gmail.com:465';
+  process.env.MAIL_URL = 'smtps://tontinards@gmail.com:}tontinards{.biz@smtp.gmail.com:465';
 
 
   Accounts.loginServiceConfiguration.remove({
