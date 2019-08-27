@@ -22,5 +22,13 @@
     "Save": "Enregistrer",
     "Selectonevalue":"Sélectionner une valeur",
     "TypeofCategory":"Type de Categorie",
-    "TypeOfDonation":"Types de Dons"
+    "TypeOfDonation":"Types de Dons",
+    "parler":"Parlez-nous brièvement de vous ?",
+    "motivation":"Qu'est-ce qui vous a motivé à démarrer une entreprise ?",
+    "entreprise":"Parlez-nous de votre entreprise",
+    "problem":"Quels problèmes votre entreprise tente-t-elle de résoudre ?",
+    "cible":"Quel est votre public cible ?",
+    "lancement":"A quelle étape de votre lancement êtes-vous ?",
+    "client":"Avez-vous des clients qui paient ?",
+    "prospect":"Avez-vous des prospects ?"
   }

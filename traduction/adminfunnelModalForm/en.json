@@ -22,5 +22,13 @@
     "Save": "Save",
     "Selectonevalue":"Select one value",
     "TypeofCategory":"Type of Category",
-    "TypeOfDonation":"Types of Donations"
+    "TypeOfDonation":"Types of Donations",
+    "parler":"Tell us a little about yourself?",
+    "motivation":"What motivated you to start a business?",
+    "entreprise":"Tell us about your company",
+    "problem":"What problems is your company trying to solve?",
+    "cible":"What is your target audience?",
+    "lancement":"At what stage of your launch are you?",
+    "client":"Do you have customers who pay?",
+    "prospect":"Do you have prospects?"
   }

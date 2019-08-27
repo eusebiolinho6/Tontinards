@@ -530,42 +530,42 @@ class FunnelModalForm extends Component {
     const stepTwoForm = (
         <div className="row p-sm">
             <div className="form-group">
-                <label for="exampleInputEmail">Parlez-nous brièvement de vous ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.parler} <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="story" value={story} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Qu'est-ce qui vous a motivé à démarrer une entreprise ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.motivation} <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="motivation" value={motivation} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Parlez-nous de votre entreprise <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.entreprise} <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="aboutyourcompany" value={aboutyourcompany} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Quels problèmes votre entreprise tente-t-elle de résoudre ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.problem} <label id="redstar">*</label></label>
                 <textarea required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="problem" value={problem} className="form-control" rows="2"></textarea>
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Quel est votre public cible ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.cible} <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="target" value={target} className="form-control" />
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">A quelle étape de votre lancement êtes-vous ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.lancement} <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="currentStep" value={currentStep} className="form-control" />
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Avez-vous des clients qui paient ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.client} <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="havePaidClient" value={havePaidClient} className="form-control" />
             </div>
             <div className="form-group">
-                <label for="exampleInputEmail">Avez-vous des prospects ? <label id="redstar">*</label></label>
+                <label for="exampleInputEmail">{lg.prospect} <label id="redstar">*</label></label>
                 <input required placeholder="" onChange={(event) => this.handleInputChange(event)}
                 name="haveProspect" value={haveProspect} className="form-control" />
             </div>
