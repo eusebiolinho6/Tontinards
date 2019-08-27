@@ -84,7 +84,7 @@ class FunnelList extends Component {
           </div>
           <div className="col-md-2 col-sm-2"></div>
         </div>
-        <section id="projectlist-wrapper">
+        <section id="projectlist-wrappJer">
           <div className="container-fluid" id="container-fluid">
             <div className="col-md-12">
               <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)}  />

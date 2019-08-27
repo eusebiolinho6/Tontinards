@@ -1591,9 +1591,9 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     font-size: 18px !important;
   }
 
-  .descriptionText{
+  /* .descriptionText{
     margin: 0 !important;
-  }
+  } */
 
   .imgWhyTontinard{
     height: 300px !important;
@@ -10506,6 +10506,9 @@ color: green;
 
   .description{
     overflow-wrap: break-word;
+    width: 100px !important;
+    
+    
   }
   
   .donationPageContent h3{
@@ -10543,10 +10546,13 @@ color: green;
 
   .descriptionText h3{
     font-size: 18px !important;
+    text-align: center;
+    margin-left: 35%;
   }
   
   .descriptionText p{
     font-size: 14px !important;
+    text-align: center;
   }
 
   .descriptionText a{
@@ -10554,6 +10560,9 @@ color: green;
     border: 2px solid #005991;
     padding: 7px 35px !important;
     font-weight: 500;
+  }
+  .descriptionText{
+    width: 100%;
   }
 
   .addprojectBtn{
@@ -10589,7 +10598,8 @@ color: green;
   }
 
   .descriptionText p{
-    width: 150% !important;
+   margin-left:14%;
+   width: 100%
 
   }
   
@@ -11109,6 +11119,13 @@ color:white;
   .adminBtn{
     padding-left: 0 !important;
   }
+  .fullwidthBlue{
+    height: 300px !important;
+    padding: 500px 500px 500px 500px;
+  }
+  .fullwidthBlue .firstText{
+    margin-top:10px !important;
+  }
 
 }
 @media (min-width: 992px) and (max-width: 1084px) { 
@@ -11155,8 +11172,9 @@ color:white;
   margin-left: 1%;
 }
 .fullwidthBlue{
+  margin-top: -100px;
   padding: 0 ;
-  height: 410px;
+  height: 400px;
   background-color: #005dac;
   text-align: center;
 }
@@ -11174,6 +11192,7 @@ color:white;
   font-size: 24px;
   color: white;
   font-family: 'Source Sans Pro', sans-serif, serif !important;
+  margin-top:-30px;
 }
 
 .buttonsContainer{
@@ -11200,7 +11219,7 @@ color:white;
 }
 
 .descriptionText{
-  padding: 20px 20px 20px 0;
+  padding: 20px 20px 20px 20px;
   text-align: left;
   margin: 0 0 0 -50px;
 }
