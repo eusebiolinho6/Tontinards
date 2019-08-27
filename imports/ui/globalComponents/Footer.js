@@ -38,7 +38,7 @@ class Footer extends Component {
             <div>
                 <div className="footer">
                     
-                    <div className="col-md-4 col-sm-6 titles">
+                    {/* { <div className="col-md-4 col-sm-6 titles"> */} 
                         {/* <span className="rightBordered"> English </span>  
                         <span className="rightBordered"> French </span> 
                         <span className="p-w-xs"> Drapeau </span> 
@@ -49,9 +49,9 @@ class Footer extends Component {
                             <span><a href="#">privacy policy</a></span> 
 
                         </div> */}
-                    </div>
+                    {/*</div> */}
                     
-                    <div className="col-md-4 col-sm-3 footerLogoContainer">
+                    <div className="col-md-6 col-sm-6 col-xs-6 footerLogoContainer">
                         <Link to="/" style={{display: 'block', margin: '12px'}}>
                             < img src = "/images/whiteLogo.png" height="35px"
                             className = ".logo-element"
@@ -73,7 +73,7 @@ class Footer extends Component {
                         </div>    
                     </div> */}
                     
-                        <div className="col-md-3 col-xm-6 socials">
+                        <div className="col-md-6 col-sm-6 col-xs-6 socials">
                                 <label >{lg.Languages} </label>
                                 <br/>
                                 {console.log(lang)}

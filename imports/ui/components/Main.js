@@ -42,7 +42,7 @@ class Main extends Component {
           ))
         const { isLoading } = this.state;
         return (
-            <div className="wrapper wrapper-content someProjectContainer">
+            <div className="wrapper wrapper-content ">
                 <div className="projectContainer">
                     {/* <hr/> */}
                     {

@@ -103,7 +103,8 @@ export default class ProjectItem extends Component {
         const { city, phoneNumber, userId, objectifAmount, projectName,
             currentAmount, teamName, onefoundRaiseAs, oneForWhoFoundsRaise,
             description, _id, category, document, projectImage, teamImage, email,
-            feedback, video, country, projectState, typeOfDonation } = project;
+            feedback, video, country, projectState, typeOfDonation, story, motivation, 
+            aboutyourcompany,problem, target,currentStep, havePaidClient, haveProspect } = project;
 
         //we extract the first 4 chars from the proectId to make the routeId 
         let routeId = project._id._str.slice(0,4);
@@ -111,7 +112,7 @@ export default class ProjectItem extends Component {
         let routeProjectName = project.projectName.toLowerCase().replace(/\s/g, '-');
         let finalProjectRoute = routeProjectName;
         return (
-            <div className={propclass == 'details' ? 'col-md-3 subject-container' : propclass == 'donation' ? 'col-md-10' : 'col-md-4    subject-container'}>
+            <div className={propclass == 'details' ? 'col-md-3 subject-container' : propclass == 'donation' ? 'col-md-10' : 'col-md-4 col-sm-6 col-xs-12 subject-container'}>
                 <FunnelModalForm
                     userId={userId} isReview={true}
                     typeOfDonations={typeOfDonation}
@@ -129,7 +130,9 @@ export default class ProjectItem extends Component {
                     foundRaiseAs={this.props.foundRaiseAs} onefoundRaiseAs={onefoundRaiseAs}
                     email={email} objectifAmount={objectifAmount} country={country}
                     countries={this.state.countries} closeModal={this.closeModal} 
-                    isEditing={true}    
+                    isEditing={true} story={story} motivation={motivation} aboutyourcompany={aboutyourcompany}
+                    problem={problem} target={target} currentStep={currentStep} 
+                    havePaidClient={havePaidClient} haveProspect={haveProspect}    
                 />
                     <ReactNotification ref={this.notificationDOMRef} />
                 <div className="ibox text-center">

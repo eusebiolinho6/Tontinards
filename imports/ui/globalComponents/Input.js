@@ -12,7 +12,7 @@ class Input extends Component {
         const type = this.props.type||'text';
         return (
         <div className={classnames('form-group', { 'has-error': error })}>
-            <label className="control-label">{label}</label>
+            <label className="control-label">{label} <label id="redstar">*</label></label>
             <input
             onChange={onChange}
             value={value}
