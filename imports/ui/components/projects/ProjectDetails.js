@@ -241,7 +241,9 @@ class ProjectDetails extends Component {
                                         {
                                             this.state.story ?
                                             <div className="text">
-                                                <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                               <p>
+                                                   <div className="text description" dangerouslySetInnerHTML={{__html: project&&project.description}} />
+                                                </p>
                                             </div>:
                                             <div className="reviews">
                                             {

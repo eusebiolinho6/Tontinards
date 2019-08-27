@@ -3656,7 +3656,7 @@ a.forum-item-projectName:hover {
     float: none !important;
   }
   .imgWhyTontinard{
-    height: 400px !important;
+    /* height: 400px !important; */
     width: 170% !important;
     padding-top: 40px;
   }
@@ -3666,6 +3666,10 @@ a.forum-item-projectName:hover {
 
   .firstTextDiv{
     padding: 0 16% !important;
+  }
+
+  .projects{
+    padding: 10px 30px !important;
   }
   
 }
@@ -9861,20 +9865,26 @@ a.Link{
 
 }
 .addprojectBtn{
+  width: 30%;
+  text-align: center;
   margin-left: 10%;
   font-size: 15px;
   font-weight: bold;
   background-color: #ACD61E;
-  padding: 11px 55px 11px 55px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   border-radius: 25px;
  }
 .getfundBtn{
+  width: 30%;
+  text-align: center;
   margin-left:2%;
   font-size: 15px;
   font-weight: bold;
    color:white;
   background-color: #E99607 ;
-  padding: 11px 55px 11px 55px;
+  padding-top: 11px;
+  padding-bottom: 11px;
   border-radius: 25px;
  }
 
@@ -10334,6 +10344,14 @@ color: green;
   font-weight: bold;
 }
 
+.donationBtn2{
+  width: 100%;
+  color: #fff;
+}
+.donationBtn2:hover{
+  color: #fff;
+}
+
 #projectdetails .right .date{
   padding: 2rem 2rem 0rem 2rem;
 }
@@ -10380,7 +10398,7 @@ color: green;
   align-items: center;
   justify-content: space-between;
   margin-bottom: .5rem;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 #projectdetails .right .messages .messages-items{
@@ -10402,7 +10420,7 @@ color: green;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 /* -------------------- RESPONSIVE MENU ----------------------------------------------*/
@@ -10426,10 +10444,11 @@ color: green;
 
 @media only screen and (max-width: 588px) {
   .imgfirstcontain{
-    margin-left:0%!important; 
+    margin-left:-15%!important; 
+    width: 150%;
   }
   .firstContaindiv{
-    margin-left: 40% !important;
+    margin-left: 45% !important;
   }
   .titleMain{
     font-size:20px !important;
@@ -10538,13 +10557,11 @@ color: green;
   }
 
   .addprojectBtn{
-    font-size: 14px !important;
-    font-weight: bold;
-    background-color: #ACD61E;
-    border-radius: 25px;
-    padding: 10px 45px !important;
-    margin-bottom: 20px !important;
-  }
+    margin-top: -50px;
+    width: 80%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    }
 
   .footerLogoContainer{
     text-align: left !important;
@@ -10552,10 +10569,12 @@ color: green;
   }
 
   .getfundBtn{
-   margin-left:10%;
-   padding: 10px 45px !important;
-
-  }
+   margin-top: -10px;
+   width: 80%;
+   padding-top: 4px;
+   padding-bottom: 4px;
+   margin-left: 10%;
+ }
 
   .firstText{
     padding: 0 0 0 10% !important;
@@ -10573,14 +10592,6 @@ color: green;
     width: 150% !important;
 
   }
-  .socials {
-    width: 50%;
-    height: 3rem;
-    margin-top: -4.5%;
-    margin-left: 89% ; 
-    font-size: 15px;
-  }
-
   
 }
 
@@ -10919,10 +10930,8 @@ padding: 0 8px;
 }
 
 .socials{
-  width: 40%;
   height: 3rem;
-  margin-top: -4.5%;
-  margin-left: 87% ; 
+  text-align: center;
   font-size: 18px;
 }
 
@@ -11007,7 +11016,8 @@ padding: 0 8px;
 .toggleiconwrapper {
   position: relative;
   z-index: 100;
-  top: -2.8rem;
+  top: -15px;
+  height: 20px;
 }
 
 /**-----------------------------------contain-----------------------*/
@@ -11036,7 +11046,6 @@ color:white;
   } */
 .helpSection{
   background-color:#005dac;
-  height: 0px;
 }
 .help{
   font-size: 16px;
@@ -11052,6 +11061,9 @@ color:white;
 }
 
 @media only screen and (max-width: 588px) {
+  .helpSection{
+   margin-top:-30px;
+  }
   .helpContainer{
     display: inline-block;
     height: 250px;
@@ -11099,6 +11111,22 @@ color:white;
   }
 
 }
+@media (min-width: 992px) and (max-width: 1084px) { 
+  .viewMoreBtn, .donateBtn{
+    font-size: 1em !important;
+    padding: 5px 22px !important;
+  }
+}
+
+@media (min-width: 588px) and (max-width: 1200px) {
+  .addprojectBtn, .getfundBtn {
+    width: 40%;
+  }
+
+  .allbuttons{
+    margin-top:-30px;
+  }
+}
 @media (min-width: 588px) and (max-width: 1024px) {
   .helpContainer{
     display: flex;
@@ -11119,16 +11147,6 @@ color:white;
   }
   .help p{
     width: 80%;
-  
-  }
-
-  .socials{
-    width: 40%;
-    height: 3rem;
-    margin-top: -6.5%;
-    margin-bottom: 9.5%;
-    margin-left: 79.5% ; 
-    font-size: 25px;
   }
 
 }
@@ -11217,9 +11235,9 @@ color:white;
   color: white !important;
   background-color: #E99607!important; 
 }
-.someProjectContainer{
+/* .someProjectContainer{
   background-color: white !important;
-}
+} */
 
 /* Donation page */
 
@@ -11350,6 +11368,7 @@ color:white;
   .user-manual .container{
     width: 80% !important;
   }
+
 }
 @media only screen and (max-width: 900px) {
   .user-manual .container{
@@ -11480,23 +11499,3 @@ color:white;
   }
 }
 
-@media only screen and (max-width: 480px) {
-
-  .socials{
-    width: 30%;
-    height: 3rem;
-    margin-top: -16%;
-    margin-bottom: 10%;
-    margin-left: 66.5% ; 
-    font-size: 18px;
-  }
-}
-@media only screen and (width: 768px) {
-  .socials{
-    width: 30%;
-    height: 3rem;
-    margin-top: -0.5%;
-    margin-left: 79.5% ; 
-    font-size: 22px;
-  }
-}

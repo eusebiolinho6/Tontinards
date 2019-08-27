@@ -111,7 +111,7 @@ export default class ProjectItem extends Component {
         let routeProjectName = project.projectName.toLowerCase().replace(/\s/g, '-');
         let finalProjectRoute = routeProjectName;
         return (
-            <div className={propclass == 'details' ? 'col-md-3 subject-container' : propclass == 'donation' ? 'col-md-10' : 'col-md-4    subject-container'}>
+            <div className={propclass == 'details' ? 'col-md-3 subject-container' : propclass == 'donation' ? 'col-md-10' : 'col-md-4 col-sm-6 col-xs-12 subject-container'}>
                 <FunnelModalForm
                     userId={userId} isReview={true}
                     typeOfDonations={typeOfDonation}
