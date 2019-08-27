@@ -134,6 +134,7 @@ class FunnelModalForm extends Component {
   handleInputChange = (e) => {
       let name = e.target.name;
       let value = e.target.value;
+      console.log(this.state)
       if(e.target.type === 'checkbox') {
             if(e.target.checked) {
                 value = this.state.typeOfDonation ? [...this.state.typeOfDonation,value] : [value];
@@ -350,8 +351,6 @@ class FunnelModalForm extends Component {
         story, motivation, aboutyourcompany,problem, target,currentStep, havePaidClient, haveProspect } = this.state;
     let { typeOfDonations, projectImage, teamImage, video, document, categories, foundRaiseAs, forWhoFoundsRaise, countries  } = this.props;
     const categoryTypes = ["Profit", "Non profit"]
-
-    console.log(this.state)
 
     const stepOneForm = (
         <div className="">

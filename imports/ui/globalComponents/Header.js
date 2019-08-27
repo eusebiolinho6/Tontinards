@@ -16,6 +16,16 @@ class Header extends Component {
         this.state = { redirect: false };
     }
 
+
+    setLanguage=()=>{
+        
+        localStorage.getItem('lang') == 'fr'?
+            localStorage.setItem('lang','en')
+            :
+            localStorage.setItem('lang','fr')
+        window.location.reload();
+    }
+
     logout(e) {
         e.preventDefault();
         Meteor.logout();
@@ -116,20 +126,38 @@ class Header extends Component {
                                             <span>
                                                 {
                                                     user.profile.role == "admin" ?
-                                                        <div className="dropdown">
-                                                            <p className="dropbtn">{user.profile.name}</p>
-
-                                                            <div className="dropdown-content">
-                                                                <Link to={{pathname:'/admin/admindashboard'}} className="">{lg.dashboard} </Link>
-                                                                <a href="/authentication/profile">{lg.profile}</a>
-                                                                <a href="/admin/help">{lg.Help}</a>
-                                                                <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
+                                                       <div>
+                                                            <div className="dropdown">
+                                                                <p className="dropbtn">{user.profile.name}</p>
+                                                            
+                                                                <div className="dropdown-content">
+                                                                    <Link to={{pathname:'/admin/admindashboard'}} className="">{lg.dashboard} </Link>
+                                                                    <a href="/authentication/profile">{lg.profile}</a>
+                                                                    <a href="/admin/help">{lg.Help}</a>
+                                                                    <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
                                                             </div>
-                                                        </div>
+                                                           </div>
+                                                           &nbsp; 
+                                                           &nbsp;
+                                                           {lang == 'fr'?
+                                                                    <button className="btn selectLanguageHeader">
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                                    </button>
+                                                                    :
+                                                                    <button className="btn selectLanguageHeader" >
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                                    </button>
+                                                                    
+                                                         } 
+                                                       </div>
+                                                        
                                                     : 
+                                                        <div>
+                                                             
+
                                                         <div className="dropdown">
                                                             <p className="dropbtn">{user.profile.name}</p>
-
+    
                                                             <div className="dropdown-content">
                                                                 <Link to={{pathname:'/user/campaigns'}} className="">{lg.campaign} </Link>
                                                                 <a href="/authentication/profile">{lg.profile}</a>
@@ -138,6 +166,20 @@ class Header extends Component {
                                                                 <a onClick={(e) => this.logout(e)} target="_blank"><i className="fa fa-sign-out"></i>{lg.logout}</a>
                                                             </div>
                                                         </div>
+                                                        &nbsp;
+                                                        &nbsp;
+                                                        {lang == 'fr'?
+                                                                    <button className="btn selectLanguageHeader">
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                                    </button>
+                                                                    :
+                                                                    <button className="btn selectLanguageHeader" >
+                                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                                    </button>
+                                                                    
+                                                         } 
+                                                        </div>
+                                                        
                                                 }
                                             </span>
                                         : 
@@ -145,6 +187,21 @@ class Header extends Component {
                                             <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
                                             <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
                                             <Link to="/donation/help" className="m-l-md">{lg.Help}</Link>
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
+
+                                            {lang == 'fr'?
+                                                    <button className="btn selectLanguageHeader">
+                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
+                                                    </button>
+                                                    :
+                                                    <button className="btn selectLanguageHeader" >
+                                                        <a className="selectLanguageHeader" onClick={this.setLanguage}> FR </a>
+                                                    </button>
+                                                            
+                                            } 
                                         </div>
                                     }
                                 </li>
