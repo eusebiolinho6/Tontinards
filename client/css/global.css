@@ -105,12 +105,7 @@ margin: -75px 0 0 -75px;
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.subject-container:nth-child(3n+1) {
-  /* clear: left; */
-}
-.subject-container-2 {
-  width: 100% ;
-}
+
 .glyphicon {
   position: relative;
   top: 1px;
@@ -1590,29 +1585,6 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   
   .footer{
     position: absolute;
-  }
-  .fullwidthBlue .firstText{
-    font-size: 18px !important;
-  }
-
-  /* .descriptionText{
-    margin: 0 !important;
-  } */
-
-  .imgWhyTontinard{
-    height: 300px !important;
-    width: 100% !important;
-    padding-top: 40px;
-  }
-
-  .buttonsContainer{
-    padding-right: 0 !important;
-  }
-  .titleMain,.getStarted{
-    width: 100% !important;
-      }
-  .firstContaindiv{
-    margin-left: 45% !important;
   }
 }
 .menu-visible-lg,
@@ -3658,14 +3630,6 @@ a.forum-item-projectName:hover {
   }
   .forum-desc {
     float: none !important;
-  }
-  .imgWhyTontinard{
-    /* height: 400px !important; */
-    width: 170% !important;
-    padding-top: 40px;
-  }
-  .descriptionDiv{
-    padding: 50px 0 !important;
   }
 
   .firstTextDiv{
@@ -8485,9 +8449,6 @@ body.landing-page {
   .landing-page .carousel-control {
     display: none;
   }
-  .buttonsContainer{
-    padding-right: 0 !important;
-  }
 }
 .box-offer h2 {
   color: #555;
@@ -9827,29 +9788,13 @@ overflow-y: auto;
   padding-right: 0;
 }
 /*-----------------------------------------------------------------------------------------------*/
-.imgfirstcontain{
-  margin-top: -51px;
-  width: 100%;
-  margin-left:20%;
-  height: 500px;
-}
+
 .mainText{
   width: 60%;
   font-size:5vw;
   font-weight: bolder;
 }
 
-.firstContain{
- height: 420px;
- background-color: #F1F1F1;
-}
-.firstContaindiv{
-  margin-top:-420px;
-  margin-left:50%;
-  text-align: left;
-  font-family: 'Source Sans Pro', sans-serif !important;
-
-}
 .bg-overlay {
   background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("/images/tontinard.jpg");
   background-repeat: no-repeat;
@@ -9864,37 +9809,8 @@ overflow-y: auto;
 a.Link{
   color: white !important;
 }
-.allbuttons{
- margin-left:-12%;
 
-}
-.addprojectBtn{
-  width: 30%;
-  text-align: center;
-  margin-left: 10%;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #ACD61E;
-  padding-top: 11px;
-  padding-bottom: 11px;
-  border-radius: 25px;
- }
-.getfundBtn{
-  width: 30%;
-  text-align: center;
-  margin-left:2%;
-  font-size: 15px;
-  font-weight: bold;
-   color:white;
-  background-color: #E99607 ;
-  padding-top: 11px;
-  padding-bottom: 11px;
-  border-radius: 25px;
- }
 
- .getfundBtn:hover{
-   color: #fff
- }
 
  .mainVideo{
   margin: 75px 10% 0px 10%;
@@ -9918,24 +9834,6 @@ a.Link{
   padding: 0 10% !important;
   text-align: justify;
   text-justify: inter-word;
-}
-
-.projectContainer{
-  text-align: center;
-  margin-top: 30px;
-}
-
-.projectContainer h1{
-  margin-top: 10px;
-  margin-bottom: 20px;
-  color: rgb(63, 58, 58);
-  font-size: 30px;
-  font-weight: bolder;
-} 
-
-.projectContainer hr{
-  border: 0.5px solid rgb(155, 148, 148);
-  width: 40%;
 }
 
 /*------------------------CIRCULAR PROGRESS BAR -----------------------------*/
@@ -10485,16 +10383,8 @@ color: green;
 }
 
 @media only screen and (max-width: 588px) {
-  .imgfirstcontain{
-    margin-left:-15%!important; 
-    width: 150%;
-  }
-  .firstContaindiv{
-    margin-left: 45% !important;
-  }
-  .titleMain{
-    font-size:20px !important;
-  }
+
+
  
   .AdminProjectH1 {
     text-align: center;
@@ -10558,46 +10448,10 @@ color: green;
     left: 0;
   }
 
-  .descriptionText h3{
-    font-size: 18px !important;
-    text-align: center;
-    margin-left: 35%;
-  }
-  
-  .descriptionText p{
-    font-size: 14px !important;
-    text-align: center;
-  }
-
-  .descriptionText a{
-    font-size:14px !important;
-    border: 2px solid #005991;
-    padding: 7px 35px !important;
-    font-weight: 500;
-  }
-  .descriptionText{
-    width: 100%;
-  }
-
-  .addprojectBtn{
-    margin-top: -50px;
-    width: 80%;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    }
-
   .footerLogoContainer{
     text-align: left !important;
     margin-left: 0%;
   }
-
-  .getfundBtn{
-   margin-top: -10px;
-   width: 80%;
-   padding-top: 4px;
-   padding-bottom: 4px;
-   margin-left: 10%;
- }
 
   .firstText{
     padding: 0 0 0 10% !important;
@@ -10606,26 +10460,12 @@ color: green;
     padding: 0 0 0 10% !important;
   }
 
-  .centerDiv{
-    margin: 70px 0 !important;
-    padding: 0 15% 0 0 !important;
-  }
-
-  .descriptionText p{
-   margin-left:14%;
-   width: 100%
-
-  }
-
   .selectLanguageHeader{
     margin-top: 15px;
   }
   
 }
 
-#funnelListkamer{
-  text-align: center;
-}
   .description{
     overflow-wrap: break-word;
   }
@@ -10638,10 +10478,6 @@ color: green;
     text-align: left;
   }
 
-
-#funnelListkamer{
-  text-align: center;
- }
 .description{
   overflow-wrap: break-word;
 }
@@ -10988,21 +10824,8 @@ padding: 0 8px;
   margin-right: 1.3rem;
 }
 
-.titleMain{
-  font-size: 32px;
-  font-family: 'Source Sans Pro', sans-serif !important;
-  /* font-family: 'Tahoma', serif !important; */
-  width: 80%;
-  text-align: left;
-  /* margin-left: 25%; */
-}
 
-.getStarted{
-  font-size: 15px;
-  /* margin-left: 25%; */
-  width: 70%;
-  text-align: left;
-}
+
 
 .getStartedlast{
   font-size: 15px;
@@ -11023,33 +10846,6 @@ padding: 0 8px;
 
 .copyrightDiv a{
   color: #fff !important;
-}
-
-.toggle-downIcon{
-  /* position: absolute; */
-  background-color: #005dac;
-  border-radius: 50%;
-  /* margin-top: 46rem;
-  margin-left: 68rem !important; */
-  padding: 13px;
-  width: 5rem;
-  height: 5rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.toggle-downIcon a {
-  text-align: center;
-  display: block;
-  height: 2%;
-}
-
-.toggleiconwrapper {
-  position: relative;
-  z-index: 100;
-  top: -15px;
-  height: 20px;
 }
 
 /**-----------------------------------contain-----------------------*/
@@ -11076,9 +10872,6 @@ color:white;
   font-size: 5px;
   color:white;
   } */
-.helpSection{
-  background-color:#005dac;
-}
 .help{
   font-size: 16px;
   color:white;
@@ -11093,9 +10886,6 @@ color:white;
 }
 
 @media only screen and (max-width: 588px) {
-  .helpSection{
-   margin-top:-30px;
-  }
   .helpContainer{
     display: inline-block;
     height: 250px;
@@ -11122,31 +10912,9 @@ color:white;
   .signIn, .signUp{
     width: 40%;
   }
-  .titleMain{
-    font-size: 28px;
-  }
-  .getStarted{
-    font-size: 14px;
-  }
-
-  .imgWhyTontinardDiv{
-    display: none;
-  }
-
-  .descriptionDiv{
-    padding: 20px 0 !important;
-    height: 400px !important;
-  }
 
   .adminBtn{
     padding-left: 0 !important;
-  }
-  .fullwidthBlue{
-    height: 300px !important;
-    padding: 500px 500px 500px 500px;
-  }
-  .fullwidthBlue .firstText{
-    margin-top:10px !important;
   }
 
 }
@@ -11157,15 +10925,6 @@ color:white;
   }
 }
 
-@media (min-width: 588px) and (max-width: 1200px) {
-  .addprojectBtn, .getfundBtn {
-    width: 40%;
-  }
-
-  .allbuttons{
-    margin-top:-30px;
-  }
-}
 @media (min-width: 588px) and (max-width: 1024px) {
   .helpContainer{
     display: flex;
@@ -11193,76 +10952,12 @@ color:white;
 .subheader{
   margin-left: 1%;
 }
-.fullwidthBlue{
-  margin-top: 0;
-  padding: 0 ;
-  height: 400px;
-  background-color: #005dac;
-  text-align: center;
-}
-
-.fullwidthBlue .centerDiv{
-  margin: 130px 0;
-}
 
 .firstTextDiv{
   text-align: center !important;
   padding: 0 25%;
 }
 
-.fullwidthBlue .firstText{
-  font-size: 24px;
-  color: white;
-  font-family: 'Source Sans Pro', sans-serif, serif !important;
-  margin-top:-30px;
-}
-
-.buttonsContainer{
-  margin-top: 30px;
-  padding-right: 10%;
-}
-
-
-.descriptionDiv{
-  padding: 100px 0 ;
-  height: 550px;
-  background-color: #005dac;
-  color: #fff;
-}
-
-.descriptionDiv .imgWhyTontinard{
-  height: 430px;
-  /* position: absolute; */
-  z-index: 50;
-  width: 150%;
-  margin-top:-38px;
-  margin-left: 15%
-
-}
-
-.descriptionText{
-  padding: 20px 20px 20px 20px;
-  text-align: left;
-  margin: 0 0 0 -50px;
-}
-
-.descriptionText h3{
-  font-size: 24px;
-}
-
-.descriptionText p{
-  font-size: 17px;
-  line-height: 23px;
-}
-
-.descriptionText a{
-  font-size: 18px;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  padding: 10px 50px;
-  color: #fff;
-  font-weight: 500;
-}
 .beforeWhytontinard{
   border: 0.5px solid rgb(155, 148, 148);
   width: 40%;
@@ -11564,3 +11259,8 @@ color:white;
   color: red;
   font-size: 16px;
 }
+
+/* .row {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+} */

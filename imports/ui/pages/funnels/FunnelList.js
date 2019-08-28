@@ -50,7 +50,7 @@ class FunnelList extends Component {
           </div>
           </div>
         </div>
-        <div className="row no-padding helpSection" id="Help">
+        <div className="no-padding helpSection" id="Help">
             <div className="row toggleiconwrapper">
               <div className="toggle-downIcon">
                 <a href="#Help" className="Link">

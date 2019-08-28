@@ -154,7 +154,7 @@ class ProjectDonation extends Component {
             <hr/>
         </div>
         
-        <div className="row donationPageContent">
+        <div className="donationPageContent">
             <div className="col-md-7 col-sm-12 p-b-lg">
             <h3>{lg.enterYourInvest}</h3>
               <form>
