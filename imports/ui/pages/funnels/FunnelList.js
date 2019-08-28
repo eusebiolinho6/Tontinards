@@ -48,6 +48,45 @@ class FunnelList extends Component {
               </div>
           </div>
         </section>
+        <section id="secondSection">
+          <div className="descriptionContainer row">
+              <div>
+                  <div className="col-md-6 col-sm-7 col-xs-12">
+                    <h3> {lg.landing5}</h3>
+                    <p >
+                      {lg.landing6}  
+                      <br/>
+                      <br/>
+                      {lg.landing61}
+                    </p>
+                    <br/>
+                    {/* <a type="btn btn-lg" href="#"> Learn more</a> */}
+                  </div>
+                  <div className="col-md-6 col-sm-5">
+                    <img src = "/images/imge2.png"
+                        className = "imgWhyTontinard"
+                        alt = "Goal Image"
+                      />
+                  </div>
+              </div>
+          </div>
+        </section>
+        <section id="fourthSection">
+          <div className="callToActionContainer row">
+            <div className="col-md-12">
+                <div className="col-md-3 col-sm-1"></div>
+                <div className="col-md-6 col-sm-10 col-xs-12">
+                  <p>{lg.landing7} &nbsp; 
+                    <strong>{lg.landing71}</strong>
+                  </p>
+                </div>
+                <div className="col-md-12 buttonsContainer">
+                  <a href="/projects/campaigns" type="submit" className="btn fundBtn"> {lg.landing8} </a>
+                  <a href="/user/projects" type="submit" className="btn getFundedBtn">{lg.landing9}</a>
+                </div>
+            </div>
+          </div>
+        </section>
       </div>
 
 
