@@ -1175,9 +1175,11 @@ ul.nav-second-level {
   .navbar-right {
     margin-right: -15px;
   }
-  
+}
+@media (max-width: 768px) {
   .buttonsBiggerContainer{
-    margin-left: 15%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 .navbar.navbar-static-top {
@@ -9891,6 +9893,21 @@ a.Link{
   font-size: 1.2em;
 }
 
+@media only screen and (max-width: 600px) {
+  .viewMoreBtn, .donateBtn {
+    width: 100%;
+    font-size: 1rem !important;
+    border-radius: 0px !important;
+  }
+  .viewMoreBtn {
+    margin-left: 0 !important;
+  }
+  #projects-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 .donateBtn{
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -10359,6 +10376,8 @@ color: green;
   }
   .Navbar__ToggleShow {
     display: flex;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   .Navbar__Items{
     margin-top: 13px;
@@ -10376,17 +10395,17 @@ color: green;
   }
 
   .authBtns{
-    text-align: left;
-    margin-left: -15px;
+    
   }
 
 }
 
+.authBtns{
+  
+}
+
 @media only screen and (max-width: 588px) {
-
-
- 
-  .AdminProjectH1 {
+ .AdminProjectH1 {
     text-align: center;
     top:10px;
   }
@@ -10442,6 +10461,7 @@ color: green;
 
   .dropbtn{
     padding-left:  0 !important;
+    font-size: 1.3rem;
   }
 
   .dropdown-content{
@@ -10462,6 +10482,7 @@ color: green;
 
   .selectLanguageHeader{
     margin-top: 15px;
+    font-size: 1.1rem;
   }
   
 }
@@ -10781,6 +10802,7 @@ padding: 0 8px;
 
 .helpLink{
   font-weight: bold;
+  margin-right: 1rem;
 }
 
 /*----------------------- FOOTER -----------------------------*/
@@ -10910,13 +10932,53 @@ color:white;
   
   }
   .signIn, .signUp{
-    width: 40%;
+    font-size: 1rem !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .selectLanguageHeader {
+    margin-top: 0rem !important;
+    font-size: 1rem !important;
   }
 
   .adminBtn{
     padding-left: 0 !important;
   }
 
+}
+@media only screen and (max-width: 350px) {
+  .signIn, .signUp{
+    font-size: .85rem !important;
+    height: auto !important;
+    width: auto !important;
+  }
+  .signIn{
+    margin-right: .75rem;
+  }
+  .helpLink {
+    font-size: .9rem !important;
+    margin-right: .6rem;
+    margin-left: .6rem;
+  }
+  .selectLanguageHeader a {
+    font-size: .85rem !important;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .authBtns {
+    display: flex;
+    flex-direction: column;
+  }
+  .authBtns > * {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+  }
+  .helpLink {
+    flex: 0;
+  }
+  .selectLanguageHeader {
+    flex: 0;
+  }
 }
 @media (min-width: 992px) and (max-width: 1084px) { 
   .viewMoreBtn, .donateBtn{
@@ -11083,7 +11145,8 @@ color:white;
 .selectLanguageHeader{
   background-color: #0076B6 !important;
   color: #fff !important;
-  font-weight: 800;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 /* User manual */
 

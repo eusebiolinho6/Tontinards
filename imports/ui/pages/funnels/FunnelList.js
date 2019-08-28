@@ -30,25 +30,42 @@ class FunnelList extends Component {
           :
           lg = landingEn;
     return (
-      <div className="container-fluid" id="main-content">
-        <section id="firstSection">
-          <div className="row">
-              <div className="col-sm-12 col-md-6 col-lg-6 image-container">
-                  <img src="/images/imge1.png" className="imgfirstcontain"></img>
+      <Fragment>
+        <div className="container-fluid" id="main-content">
+          <section id="firstSection">
+            <div className="container">
+              <div className="row">
+                  <div className="col-xs-12 col-sm-4 col-md-6 col-lg-6 image-container">
+                      <img src="/images/imge1.png" className="imgfirstcontain"></img>
+                  </div>
+                  <div className="col-xs-12 col-sm-8 col-md-6 col-lg-6 right-container">
+                    <div className="textWrapper">
+                      <h2 className="titleMain"><strong><span>{lg.Invest}</span> </strong><strong><br/>{lg.landing1}</strong></h2>
+                      <p className="getStarted">{lg.landing2}</p>
+                    </div>
+                    <div className="allbuttons">
+                      <a key="landing3" href="/projects/campaigns" type="submit" className="btn addprojectBtn"> {lg.landing3} </a>
+                      <a key="landing4" href="/user/projects" type="submit" className="btn getfundBtn ">{lg.landing4}</a>
+                  </div>
+                  </div>
               </div>
-              <div className="col-sm-12 col-md-6 col-lg-6 right-container">
-                <div className="textWrapper">
-                  <h2 className="titleMain"><strong><span>{lg.Invest}</span> </strong><strong><br/>{lg.landing1}</strong></h2>
-                  <p className="getStarted">{lg.landing2}</p>
-                </div>
-                <div className="allbuttons">
-                  <a key="landing3" href="/projects/campaigns" type="submit" className="btn addprojectBtn Link"> {lg.landing3} </a>
-                  <a key="landing4" href="/user/projects" type="submit" className="btn getfundBtn ">{lg.landing4}</a>
-               </div>
+            </div>
+          </section>
+        </div>
+
+
+        {/* Project List */}
+        <div className="container-fluid" id="projects-content">
+            <section id="projectlist-wrapper">
+            <div className="container-fluid" id="container-fluid">
+              <div className="row">
+                <MainLayout isFree={isFree} toggleFree={(b)=>this.toggleFree(b)}  />
               </div>
-          </div>
-        </section>
-      </div>
+            </div>
+          </section>
+        </div>
+
+      </Fragment>
 
 
       // <div className="container-fluid no-padding">

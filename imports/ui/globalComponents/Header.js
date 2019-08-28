@@ -11,7 +11,7 @@ import HeaderEn from '../../../traduction/header/en.json'
 const toogleMenu = <FontAwesomeIcon icon={faBars} />
 
 class Header extends Component {
-    constructor(props) {
+    constructor(props) { 
         super(props);
         this.state = { redirect: false };
     }
@@ -118,7 +118,7 @@ class Header extends Component {
                             </div> */}
                                 
 
-                            <div className="col-md-10 col-sm-12 buttonsBiggerContainer">
+                            <div className="col-md-12 col-sm-12 buttonsBiggerContainer">
                                 <ul className="nav navbar-top-links navbar-right logoutMenu">
                                     {/* Vilidate Button for admin */}
                                     {/* End Vilidate Button for admin */}
@@ -189,10 +189,6 @@ class Header extends Component {
                                                 <Link to="/authentication/signin" className="btn signIn"> {lg.login}</Link>
                                                 <Link to="/authentication/signup" className="btn signUp"> {lg.register}</Link>
                                                 <Link to="/donation/help" className="m-l-md helpLink">{lg.Help}</Link>
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
-                                                &nbsp;
                                                 {lang == 'fr'?
                                                         <button className="btn selectLanguageHeader">
                                                             <a className="selectLanguageHeader" onClick={this.setLanguage}> EN </a>
