@@ -1180,6 +1180,10 @@ ul.nav-second-level {
   .navbar-right {
     margin-right: -15px;
   }
+  
+  .buttonsBiggerContainer{
+    margin-left: 15%;
+  }
 }
 .navbar.navbar-static-top {
   padding: 0;
@@ -8540,7 +8544,7 @@ ul.horizontal-step-list li {
 
 .Navbar__Link{
   margin-top: 15px;
-  margin-left: 7%;
+  margin-left: 60%;
   font-size: 1.5em;
   margin-bottom: auto; 
 }
@@ -9840,7 +9844,7 @@ overflow-y: auto;
  background-color: #F1F1F1;
 }
 .firstContaindiv{
-  margin-top:-390px;
+  margin-top:-420px;
   margin-left:50%;
   text-align: left;
   font-family: 'Source Sans Pro', sans-serif !important;
@@ -10442,18 +10446,7 @@ color: green;
 
 }
 
-@media only screen and (max-width: 588px) {
-  .imgfirstcontain{
-    margin-left:-15%!important; 
-    width: 150%;
-  }
-  .firstContaindiv{
-    margin-left: 45% !important;
-  }
-  .titleMain{
-    font-size:20px !important;
-  }
- 
+@media only screen and (max-width: 768px) {
   .Navbar__Items,
   .menuDiv {
     flex-direction: column;
@@ -10483,6 +10476,26 @@ color: green;
   .s-header{
     min-height: 120px;
   }
+
+  .authBtns{
+    text-align: left;
+    margin-left: -15px;
+  }
+
+}
+
+@media only screen and (max-width: 588px) {
+  .imgfirstcontain{
+    margin-left:-15%!important; 
+    width: 150%;
+  }
+  .firstContaindiv{
+    margin-left: 45% !important;
+  }
+  .titleMain{
+    font-size:20px !important;
+  }
+ 
   .AdminProjectH1 {
     text-align: center;
     top:10px;
@@ -10496,9 +10509,10 @@ color: green;
   } */
 
   .menuDiv svg{
-    margin-left: 55%;
+    margin-left: 20%;
     margin-top: 15px;
   }
+
   .projectsPageHeader h1{
     text-align: center;
     color: #231F20
@@ -10533,7 +10547,7 @@ color: green;
   }
 
   .Navbar__Link {
-    margin-left: 0px !important;
+    margin-left: 40% !important;
   }
 
   .dropbtn{
@@ -10601,6 +10615,10 @@ color: green;
    margin-left:14%;
    width: 100%
 
+  }
+
+  .selectLanguageHeader{
+    margin-top: 15px;
   }
   
 }
@@ -10923,6 +10941,10 @@ padding: 0 8px;
   background-color: #fff;
   color: #0076B6;
   border: 2px solid #0076B6;
+}
+
+.helpLink{
+  font-weight: bold;
 }
 
 /*----------------------- FOOTER -----------------------------*/
