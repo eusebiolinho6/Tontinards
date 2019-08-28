@@ -3634,9 +3634,6 @@ a.forum-item-projectName:hover {
     float: none !important;
   }
 
-  .firstTextDiv{
-    padding: 0 16% !important;
-  }
 
   .projects{
     padding: 10px 30px !important;
@@ -10473,13 +10470,6 @@ color: green;
     margin-left: 0%;
   }
 
-  .firstText{
-    padding: 0 0 0 10% !important;
-  }
-  .firstTextDiv{
-    padding: 0 0 0 10% !important;
-  }
-
   .selectLanguageHeader{
     margin-top: 15px;
     font-size: 1.1rem;
@@ -11013,11 +11003,6 @@ color:white;
 /*--------------------------LANDING PAGE---------------------------*/
 .subheader{
   margin-left: 1%;
-}
-
-.firstTextDiv{
-  text-align: center !important;
-  padding: 0 25%;
 }
 
 .beforeWhytontinard{

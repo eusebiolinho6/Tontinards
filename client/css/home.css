@@ -1,4 +1,4 @@
-/* 1st Section */
+/*------------------ FIRST SECTION --------------------------*/
 #main-content {
     background-color: #F1F1F1 !important;
 }
@@ -124,4 +124,154 @@
 .projectContainer h1 {
     text-align: center;
     font-weight: bold;
+}
+
+/*-------------- SECOND SECTION -------------------------------*/
+#secondSection{
+    /* margin-bottom: 250px; */
+}
+
+#secondSection .descriptionContainer{
+    background-color: #005DAC;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    display: block;
+    padding: 100px 10%;
+    color: #fff;
+    height: 500px;
+    line-height: 27px;
+}
+
+#secondSection h3{
+    font-size: 2.5em;
+    font-weight: bold;
+}
+#secondSection p{
+    font-size: 1.2em;
+}
+#secondSection .imgWhyTontinard{
+    width: 90%;
+    margin-top: -30px;
+    height: 360px;
+}
+
+@media only screen and (max-width: 767px) {
+    #secondSection .descriptionContainer{
+        padding: 40px 5%;
+        height: 400px;
+        text-align: center;
+        text-align:justify;  
+        text-justify:auto;
+    }
+    #secondSection .imgWhyTontinard{
+        display: none;
+    }
+}
+@media only screen and (max-width: 880px) {
+    #secondSection .imgWhyTontinard{
+        width: 150%;
+        height: 250px;
+        margin-top: 50px;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    #secondSection h3{
+        font-size: 2em;
+    }
+    #secondSection p{
+        line-height: 25px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #secondSection .descriptionContainer{
+        height: 450px;
+    }
+}
+@media only screen and (max-width: 360px) {
+    #secondSection .descriptionContainer{
+        height: 480px;
+    }
+}
+@media only screen and (max-width: 285px) {
+    #secondSection .descriptionContainer{
+        height: 590px;
+    }
+}
+
+
+/*--------------------FOURTH SECTION ---------------------*/
+#fourthSection .callToActionContainer{
+    text-align: center; 
+    background-color: #005DAC;
+    margin-left: -15px !important;
+    margin-right: -15px !important;
+    display: block;
+    color: #fff;
+    height: 350px;
+    padding: 70px 0;
+}
+
+#fourthSection p{
+    font-size: 2em;
+}
+
+#fourthSection .getFundedBtn, #fourthSection .fundBtn{
+    border-radius: 25px;
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 10px 40px;
+    width: 320px;
+}
+
+#fourthSection .buttonsContainer{
+    margin-top: 30px;
+}
+
+#fourthSection .fundBtn{
+    background-color: #ACD61E;
+    margin-right: 1%;
+}
+#fourthSection .getFundedBtn{
+    background-color: #F26524;
+    margin-left: 1%;
+}
+
+@media only screen and (max-width: 730px) {
+    #fourthSection .callToActionContainer{
+        height: 400px;
+        padding: 80px 0;
+    }
+    #fourthSection .getFundedBtn{
+        margin-top: 30px;
+        margin-right: 0 !important;
+        font-size: 1.2em;
+        width: 250px;
+    }
+    #fourthSection .fundBtn{
+        margin-top: 20px;
+        margin-right: 0 !important;
+        font-size: 1.2em;
+        width: 250px;
+    }
+    #fourthSection .buttonsContainer{
+        padding-left: 0 !important;
+        padding-right: 0;
+    }
+    
+}
+
+@media only screen and (max-width: 570px) {
+    #fourthSection p{
+        font-size: 1.5em;
+    }
+
+    #fourthSection .getFundedBtn, #fourthSection .fundBtn{
+        font-size: 1.2em;
+        padding: 10px 25px;
+        width: 270px;
+    }
+
 }
