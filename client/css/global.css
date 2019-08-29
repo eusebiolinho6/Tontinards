@@ -949,7 +949,7 @@ h5 {
 .nav > li > a {
   color: #a7b1c2;
   font-weight: 600;
-  padding: 14px 20px 14px 25px;
+  padding: 14px 0px 14px 0px;
   display: block;
 }
 .nav.metismenu > li {
@@ -9779,7 +9779,8 @@ overflow-y: auto;
 }
 
 .logoutMenu li{
-  width: 100%
+  /* width: 100% */
+  font-size: 1.5rem;
 }
 
 .no-padding {
@@ -10019,7 +10020,7 @@ color: green;
 .dropbtn {
   color: inherit;
   padding: 10px 16px 16px 16px;
-  font-size: 19.5px;
+  font-size: 1.6rem !important;
   border: none;
   cursor: pointer;
   margin: 0 !important;
@@ -10453,12 +10454,12 @@ color: green;
   }
 
   .Navbar__Link {
-    margin-left: 40% !important;
+    margin-left: 40%;
   }
 
   .dropbtn{
     padding-left:  0 !important;
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
   }
 
   .dropdown-content{
@@ -10760,34 +10761,33 @@ padding: 0 8px;
 .signIn, .signUp{
   font-size: 2vw;
   border-radius: 30px;
-  width: 30%;
-  height: 40px;
-  padding: 8px 20px;
+  width: 20rem;
+  padding: .8rem 2rem !important;
   font-weight: 600;
 }
 
 .signIn{
-  background-color: #fff;
-  color: #0076B6;
-  border: 2px solid #0076B6;
-  margin-right: 5%;
+  background-color: #fff !important;
+  color: #0076B6 !important;
+  border: 2px solid #0076B6 !important;
+  margin-right: 1rem;
 }
 
 .signIn:hover{
-  background-color: #0076B6;
-  color: #fff;
-  border: 2px solid #0076B6;
+  background-color: #0076B6 !important;
+  color: #fff !important;
+  border: 2px solid #0076B6 !important;
 }
 
 .signUp{
-  background-color: #0076B6;
-  color: #fff;
+  background-color: #0076B6 !important;
+  color: #fff !important;
 }
 
 .signUp:hover{
-  background-color: #fff;
-  color: #0076B6;
-  border: 2px solid #0076B6;
+  background-color: #fff !important;
+  color: #0076B6 !important;
+  border: 2px solid #0076B6 !important;
 }
 
 .helpLink{
@@ -10898,6 +10898,9 @@ color:white;
 }
 
 @media only screen and (max-width: 588px) {
+  .admin-dropdown {
+    margin-left: 0 !important;
+  }
   .helpContainer{
     display: inline-block;
     height: 250px;
