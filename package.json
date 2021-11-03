@@ -35,7 +35,7 @@
     "react-switch": "^5.0.1",
     "react-toggle-button": "^2.2.0",
     "reactstrap": "^6.4.0",
-    "validator": "^10.7.0"
+    "validator": "^13.7.0"
   },
   "meteor": {
     "mainModule": {
